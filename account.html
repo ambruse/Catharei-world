@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CATHAREi — My Account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="toasts.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0b0b0b; --bg2: #131313; --bg3: #1c1c1c; --border: #252525;
+      --accent: #D4AF37; --accent2: #C5A028; --text: #f0ede8; --muted: #888;
+      --red: #f87171; --green: #4ade80;
+      --font: 'Outfit', sans-serif; --serif: 'Playfair Display', serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Header */
+    .account-header {
+      padding: 40px 5%; width: 100%; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; background: var(--bg2);
+    }
+    .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .brand-logo { height: 40px; filter: drop-shadow(0 0 10px rgba(212,175,55,0.3)); }
+    .brand-name { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); letter-spacing: 2px; }
+
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link { color: var(--text); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-link:hover { color: var(--accent); }
+
+    .logout-btn {
+      padding: 10px 20px; background: transparent; color: var(--red);
+      border: 1px solid rgba(248,113,113,0.3); border-radius: 8px; cursor: pointer;
+      font-family: var(--font); font-size: 0.9rem; transition: all 0.2s;
+    }
+    .logout-btn:hover { background: rgba(248,113,113,0.1); border-color: var(--red); }
+
+    /* Main Grid */
+    .container { flex: 1; display: flex; max-width: 1200px; margin: 40px auto; width: 90%; gap: 40px; }
+
+    /* Sidebar */
+    .sidebar { width: 260px; flex-shrink: 0; }
+    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .nav-item {
+      padding: 14px 20px; border-radius: 10px; cursor: pointer; color: var(--muted);
+      transition: all 0.2s; display: flex; align-items: center; gap: 12px;
+    }
+    .nav-item svg { width: 18px; height: 18px; fill: currentColor; }
+    .nav-item:hover { background: var(--bg3); color: var(--text); }
+    .nav-item.active { background: var(--bg3); color: var(--accent); border: 1px solid var(--border); }
+
+    /* Content Area */
+    .content { flex: 1; min-width: 0; }
+    .panel { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 40px; display: none; margin-bottom: 40px; }
+    .panel.active { display: block; animation: fadeUp 0.4s ease-out; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .welcome-title { font-family: var(--serif); font-size: 2.2rem; color: var(--text); margin-bottom: 10px; }
+    .welcome-text { color: var(--muted); font-size: 1rem; margin-bottom: 30px; }
+
+    h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--text); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+    /* Order History Styles */
+    .order-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin-bottom: 20px; }
+    .order-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+    .order-num { font-weight: 700; color: var(--accent); font-size: 1.1rem; }
+    .order-date { font-size: 0.85rem; color: var(--muted); }
+    .order-status { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .status-pending { background: rgba(212,175,55,0.1); color: var(--accent); border: 1px solid var(--accent); }
+    .status-accepted { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid var(--green); }
+    .status-rejected { background: rgba(248,113,113,0.1); color: var(--red); border: 1px solid var(--red); }
+    .order-items { border-top: 1px solid var(--border); padding-top: 15px; }
+    .order-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+    .order-footer { margin-top: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; border-top: 1px dashed var(--border); padding-top: 15px; }
+
+    /* Forms */
+    .field { margin-bottom: 24px; }
+    .field label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 8px; }
+    .field input {
+      width: 100%; padding: 12px 16px; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-family: var(--font); outline: none; transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: var(--accent); }
+    .field input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .submit-btn {
+      padding: 12px 24px; background: var(--accent); color: #000; border: none;
+      border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+    }
+    .submit-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+
+    /* Alert */
+    .alert { padding: 12px 16px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 20px; display: none; }
+    .alert.success { display: block; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); color: var(--green); }
+    .alert.error { display: block; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: var(--red); }
+
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .sidebar-nav { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
+      .nav-item { white-space: nowrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="account-header">
+    <a href="index.html" class="brand-link">
+      <img src="images/misc/Catharei_logo.png" alt="" class="brand-logo" onerror="this.style.display='none'">
+      <div class="brand-name">CATHAREi</div>
+    </a>
+    <div class="header-right">
+      <a href="menu.html" class="nav-link">Main Menu</a>
+      <button class="logout-btn" onclick="doLogout()">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <ul class="sidebar-nav">
+        <li class="nav-item active" onclick="showPanel('dashboard', this)">
+          <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          Dashboard
+        </li>
+        <li class="nav-item" onclick="showPanel('details', this)">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          Account Details
+        </li>
+        <li class="nav-item" onclick="showPanel('orders', this)">
+          <svg viewBox="0 0 24 24"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+          Orders
+        </li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <!-- DASHBOARD -->
+      <div class="panel active" id="dashboard">
+        <h2 class="welcome-title">Hello, <span id="welcome-username">Member</span>!</h2>
+        <p class="welcome-text">From your account dashboard, you can view your recent orders and manage your account details.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+          <div style="background:var(--bg3); padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
+            <h4 style="color:var(--accent); font-size: 0.8rem; text-transform: uppercase;">Total Orders</h4>
+            <p style="font-size: 2rem; font-weight: 700;" id="total-orders-count">0</p>
+          </div>
+          <div style="background:var(--bg3); padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
+            <h4 style="color:var(--accent); font-size: 0.8rem; text-transform: uppercase;">Membership</h4>
+            <p style="font-size: 1.2rem; font-weight: 700; margin-top: 5px;">Elite Member</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCOUNT DETAILS -->
+      <div class="panel" id="details">
+        <h3>Primary Details</h3>
+        <form onsubmit="updateProfile(event)">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" id="details-username" required>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" id="details-email" required>
+          </div>
+          <button type="submit" class="submit-btn" id="update-profile-btn">Save Changes</button>
+        </form>
+
+        <h3 style="margin-top: 50px;">Change Password</h3>
+        <form onsubmit="changePassword(event)">
+          <div class="field">
+            <label>Current Password</label>
+            <input type="password" id="current-password" required>
+          </div>
+          <div class="field">
+            <label>New Password</label>
+            <input type="password" id="new-password" required minlength="8">
+          </div>
+          <div class="field">
+            <label>Confirm New Password</label>
+            <input type="password" id="confirm-password" required minlength="8">
+          </div>
+          <button type="submit" class="submit-btn" id="change-pass-btn">Update Password</button>
+        </form>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="panel" id="orders">
+        <h3>Recent Orders</h3>
+        <div id="orders-list">
+          <div style="text-align: center; padding: 60px 20px; color: var(--muted); background: var(--bg3); border-radius: 12px;">
+            <svg viewBox="0 0 24 24" style="width: 48px; height: 48px; fill: #252525; margin-bottom: 20px;"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+            <p>No orders have been placed yet.</p>
+            <a href="menu.html" style="color:var(--accent); text-decoration: none; font-size: 0.9rem; margin-top: 10px; display: inline-block;">Browse Our Menu</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    let user = null;
+
+    window.onload = async () => {
+      const res = await fetch('/api/auth/me');
+      const data = await res.json();
+      if (!data.loggedIn) {
+        window.location.href = 'login.html';
+      } else {
+        user = data.user;
+        document.getElementById('welcome-username').textContent = user.username;
+        document.getElementById('details-username').value = user.username;
+        document.getElementById('details-email').value = data.email || ''; 
+        loadOrders();
+      }
+    };
+
+    async function loadOrders() {
+      try {
+        const res = await fetch('/api/orders/me');
+        const orders = await res.json();
+        
+        document.getElementById('total-orders-count').textContent = orders.length;
+
+        const list = document.getElementById('orders-list');
+        if (orders.length === 0) return;
+
+        list.innerHTML = orders.map(order => {
+          let items = [];
+          try { items = JSON.parse(order.items); } catch(e) {}
+          
+          const date = new Date(order.created_at).toLocaleDateString('en-GB', {
+            day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+          });
+
+          return `
+            <div class="order-card">
+              <div class="order-header">
+                <div>
+                  <div class="order-num">Order #${order.order_number}</div>
+                  <div class="order-date">${date}</div>
+                </div>
+                <div class="order-status status-${order.status}">${order.status}</div>
+              </div>
+              <div class="order-items">
+                ${items.map(item => `
+                  <div class="order-item">
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>QR ${(item.price * item.quantity).toFixed(2)}</span>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="order-footer">
+                <span>Total Amount</span>
+                <span>QR ${parseFloat(order.total).toFixed(2)}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error("Failed to load orders");
+      }
+    }
+
+    function showPanel(id, el) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      el.classList.add('active');
+    }
+
+    async function doLogout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = 'index.html';
+    }
+
+    async function updateProfile(e) {
+      e.preventDefault();
+      const btn = document.getElementById('update-profile-btn');
+      btn.disabled = true;
+
+      const username = document.getElementById('details-username').value;
+      const email = document.getElementById('details-email').value;
+
+      try {
+        const res = await fetch('/api/auth/update-profile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          showToast("Profile updated successfully!", "success");
+          document.getElementById('welcome-username').textContent = username;
+        } else {
+          showToast(data.error || "Update failed.", "error");
+        }
+      } catch (err) {
+        showToast("Server error.", "error");
+      }
+      btn.disabled = false;
+    }
+
+    async function changePassword(e) {
+      e.preventDefault();
+      const btn = document.getElementById('change-pass-btn');
+      
+      
+      const oldPassword = document.getElementById('current-password').value;
+      const newPassword = document.getElementById('new-password').value;
+      const confirm = document.getElementById('confirm-password').value;
+
+      if (newPassword !== confirm) {
+        showToast("New passwords do not match.", "error");
+        return;
+      }
+
+      btn.disabled = true;
+      try {
+        const res = await fetch('/api/auth/change-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ oldPassword, newPassword })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          showToast("Password changed successfully!", "success");
+          e.target.reset();
+        } else {
+          showToast(data.error || "Failed to change password.", "error");
+        }
+      } catch (err) {
+        showToast("Server error.", "error");
+      }
+      btn.disabled = false;
+    }
+
+    function showToast(message, type = 'success') {
+      let container = document.getElementById('toast-container');
+      if(!container) {
+         container = document.createElement('div');
+         container.id = 'toast-container';
+         document.body.appendChild(container);
+      }
+      const icons = {
+        success: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
+        error: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>',
+        warning: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>'
+      };
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `${icons[type] || icons.success}<span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 400);
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
