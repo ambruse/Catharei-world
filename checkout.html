@@ -66,6 +66,22 @@
     .payment-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); }
     .payment-option.active + .payment-details { display: block; }
 
+    .payment-option.disabled-method {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+      filter: grayscale(1);
+    }
+    .coming-soon-badge {
+      font-size: 0.65rem;
+      background: var(--bg3);
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: auto;
+      border: 1px solid var(--border);
+    }
+
     .apple-pay-btn {
       width: 100%; background: #fff; color: #000; border: none; border-radius: 8px; padding: 12px;
       font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.1rem;
@@ -173,19 +189,21 @@
       <div class="section">
         <h2>Payment Method</h2>
         <div class="payment-methods">
-          <label class="payment-option" onclick="selectPayment('apple-pay')">
+          <label class="payment-option disabled-method" onclick="selectPayment('apple-pay')">
             <div class="radio-circle"></div>
             <span style="font-weight: 600;">Apple Pay</span>
-            <input type="radio" name="payment" value="apple-pay">
+            <span class="coming-soon-badge">Coming Soon</span>
+            <input type="radio" name="payment" value="apple-pay" disabled>
           </label>
           <div class="payment-details" id="details-apple-pay">
             <button class="apple-pay-btn"> Pay</button>
           </div>
 
-          <label class="payment-option" onclick="selectPayment('card')">
+          <label class="payment-option disabled-method" onclick="selectPayment('card')">
             <div class="radio-circle"></div>
             <span style="font-weight: 600;">Credit / Debit Card</span>
-            <input type="radio" name="payment" value="card">
+            <span class="coming-soon-badge">Coming Soon</span>
+            <input type="radio" name="payment" value="card" disabled>
           </label>
           <div class="payment-details" id="details-card">
             <div class="field">
@@ -241,6 +259,7 @@
       initMap();
       renderSummary();
       checkAuth();
+      selectPayment('cod');
     };
 
     async function checkAuth() {

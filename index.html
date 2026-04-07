@@ -213,7 +213,7 @@
           <p style="color: var(--color-text-primary); margin-bottom: 25px;" data-i18n="home.customText">Make celebrations extra special. Give us the blueprint for what the cake needs to reflect & let us make your precise dream a reality.</p>
           <a href="navigation/customized_cakes.html" class="btn" style="background: white; color: var(--color-bg-primary);" data-i18n="btn.orderCustom">Order Your Cake</a>
         </div>
-        <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?auto=format&fit=crop&q=80&w=600" alt="Custom Cake" class="promo-image" style="max-width: 40%">
+        <img id="promo-slideshow" src="./images/products/1775115029250-903191392.JPEG" alt="Custom Cake" class="promo-image" style="max-width: 40%">
       </div>
     </section>
 
@@ -314,6 +314,33 @@
   <!-- Toast Container gets auto-created by JS if needed, but safe to include -->
   <div id="toast-container"></div>
 
+  <script>
+    const promoImages = [
+      './images/products/1775115029250-903191392.JPEG',
+      './images/products/1775125327728-831885018.JPEG',
+      './images/products/1775125336887-558730937.JPEG',
+      './images/products/1775138850586-203824645.PNG',
+      './images/products/1775146563418-538236780.JPEG'
+    ];
+    const promoImgElement = document.getElementById('promo-slideshow');
+    let currentIdx = 0;
+
+    setInterval(() => {
+      let nextIdx;
+      do {
+        nextIdx = Math.floor(Math.random() * promoImages.length);
+      } while (nextIdx === currentIdx);
+      
+      currentIdx = nextIdx;
+      
+      // Smooth fade transition
+      promoImgElement.style.opacity = 0;
+      setTimeout(() => {
+        promoImgElement.src = promoImages[currentIdx];
+        promoImgElement.style.opacity = 1;
+      }, 500); 
+    }, 3000);
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -902,6 +902,7 @@ main {
   max-width: 50%;
   object-fit: cover;
   height: 300px;
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* Category Circles */
