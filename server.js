@@ -6,20 +6,21 @@ const multer = require('multer');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const SQLiteStore = require('connect-sqlite3')(session); // Added for production-grade sessions
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SALT_ROUNDS = 12;
 
-// ── Render Environment Variables ──
+// ── Render Environment Variables & Paths ──
 const IS_RENDER = process.env.RENDER === 'true';
-
-// FIX: Use the local app directory instead of the protected root /data
 const DB_PATH = path.join(__dirname, 'database.sqlite');
-const uploadPath = path.join(__dirname, 'images', 'products'); 
+const UPLOAD_DIR = path.join(__dirname, 'images', 'products');
 
-if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath, { recursive: true });
+// ── Directory Initialization ──
+// Cleaned up redundant directory creations. This creates the folder once safely.
+if (!fs.existsSync(UPLOAD_DIR)) {
+    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 }
 
 // ── Trust Proxy (Required for secure cookies on Render) ──
@@ -28,14 +29,19 @@ if (IS_RENDER) {
 }
 
 // ── Session Configuration ──
+// Upgraded to SQLiteStore to ensure customers stay logged in even if the server restarts.
 app.use(session({
+  store: new SQLiteStore({
+      db: 'sessions.sqlite',
+      dir: __dirname
+  }),
   secret: 'catharei_super_secret_session_key_2026',
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
     secure: IS_RENDER, // Automatically true on Render, false locally
-    sameSite: IS_RENDER ? 'lax' : 'lax', 
+    sameSite: 'lax', 
     maxAge: 1000 * 60 * 60 * 8  // 8 hours
   }
 }));
@@ -68,9 +74,7 @@ app.get('/admin.html', requireAdmin, (req, res) => {
 // ── Static Files (after admin guard) ──
 app.use(express.static(__dirname));
 
-// ── Upload Directory ──
-if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-
+// ── File Upload Configuration ──
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, UPLOAD_DIR),
   filename: (req, file, cb) => {
