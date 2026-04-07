@@ -11,6 +11,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SALT_ROUNDS = 12;
 
+// ── Render Environment Variables ──
+const IS_RENDER = process.env.RENDER === 'true';
+const DB_PATH = IS_RENDER ? '/data/database.sqlite' : './database.sqlite';
+const UPLOAD_DIR = IS_RENDER ? '/data/images/products' : path.join(__dirname, 'images', 'products');
+
+// ── Trust Proxy (Required for secure cookies on Render) ──
+if (IS_RENDER) {
+  app.set('trust proxy', 1); 
+}
+
 // ── Session Configuration ──
 app.use(session({
   secret: 'catharei_super_secret_session_key_2026',
@@ -18,7 +28,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false,      // set to true in production with HTTPS
+    secure: IS_RENDER, // Automatically true on Render, false locally
+    sameSite: IS_RENDER ? 'lax' : 'lax', 
     maxAge: 1000 * 60 * 60 * 8  // 8 hours
   }
 }));
@@ -52,11 +63,10 @@ app.get('/admin.html', requireAdmin, (req, res) => {
 app.use(express.static(__dirname));
 
 // ── Upload Directory ──
-const uploadDir = path.join(__dirname, 'images', 'products');
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, uploadDir),
+  destination: (req, file, cb) => cb(null, UPLOAD_DIR),
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -73,11 +83,11 @@ const upload = multer({
 });
 
 // ── Database ──
-const db = new sqlite3.Database('./database.sqlite', (err) => {
+const db = new sqlite3.Database(DB_PATH, (err) => {
   if (err) {
     console.error('Error connecting to SQLite database:', err.message);
   } else {
-    console.log('Connected to the SQLite database.');
+    console.log(`Connected to the SQLite database at ${DB_PATH}.`);
     initializeDatabase();
   }
 });
@@ -102,8 +112,6 @@ function initializeDatabase() {
     // Helper to safely add columns
     const addColumn = (table, col, def) => {
       db.get(`PRAGMA table_info(${table})`, (err, rows) => {
-        // Since PRAGMA table_info returns multiple rows (one per column), 
-        // we check all rows to see if 'col' exists.
         db.all(`PRAGMA table_info(${table})`, (err, cols) => {
            if (!err && cols) {
              if (!cols.find(c => c.name === col)) {
@@ -179,7 +187,7 @@ function initializeDatabase() {
                   console.log('  Admin account created:');
                   console.log(`  Username : ${defaultAdminUser}`);
                   console.log(`  Password : ${defaultAdminPass}`);
-                  console.log('  Login at : http://localhost:3000/login.html');
+                  console.log('  Login at : /login.html');
                   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
                 }
               }
@@ -262,14 +270,14 @@ app.get('/api/auth/me', (req, res) => {
     res.json({ 
       loggedIn: true, 
       user: req.session.user,
-      email: req.session.user.email // Ensure email is passed
+      email: req.session.user.email 
     });
   } else {
     res.json({ loggedIn: false });
   }
 });
 
-// Verify identity (for forgot password — non-admin only)
+// Verify identity
 app.post('/api/auth/verify-identity', (req, res) => {
   const { username, email } = req.body;
   if (!username || !email) return res.status(400).json({ error: 'Username and email are required.' });
@@ -279,13 +287,12 @@ app.post('/api/auth/verify-identity', (req, res) => {
       if (err) return res.status(500).json({ error: 'Server error.' });
       if (!user) return res.status(404).json({ error: 'No account found with that username and email.' });
       if (user.role === 'admin') return res.status(403).json({ error: 'Password reset is not available for admin accounts.' });
-      // Store verified username in session temporarily
       req.session.resetUser = username.trim();
       res.json({ success: true });
     });
 });
 
-// Reset password (only allowed after verify-identity)
+// Reset password
 app.post('/api/auth/reset-password', async (req, res) => {
   const { username, password } = req.body;
   if (!req.session.resetUser || req.session.resetUser !== username) {
@@ -302,7 +309,7 @@ app.post('/api/auth/reset-password', async (req, res) => {
   } catch { res.status(500).json({ error: 'Server error.' }); }
 });
 
-// Update profile (username/email)
+// Update profile
 app.post('/api/auth/update-profile', requireLogin, async (req, res) => {
   const { username, email } = req.body;
   if (!username || !email) return res.status(400).json({ error: 'Username and email are required.' });
@@ -336,10 +343,9 @@ app.post('/api/auth/change-password', requireLogin, async (req, res) => {
 });
 
 // ═══════════════════════════════════════════
-// PRODUCT API ROUTES (admin routes protected)
+// PRODUCT API ROUTES
 // ═══════════════════════════════════════════
 
-// GET all active products (optionally filter by category)
 app.get('/api/products', (req, res) => {
   const { category } = req.query;
   let query = "SELECT * FROM products WHERE active = 1";
@@ -351,7 +357,6 @@ app.get('/api/products', (req, res) => {
   });
 });
 
-// GET all products for admin (including inactive) — admin only
 app.get('/api/admin/products', requireAdmin, (req, res) => {
   db.all("SELECT * FROM products ORDER BY category, name", [], (err, rows) => {
     if (err) { res.status(500).json({ error: err.message }); return; }
@@ -359,7 +364,6 @@ app.get('/api/admin/products', requireAdmin, (req, res) => {
   });
 });
 
-// PATCH toggle active — admin only
 app.patch('/api/products/:id/toggle', requireAdmin, (req, res) => {
   const { id } = req.params;
   db.run("UPDATE products SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE id = ?", [id], function(err) {
@@ -371,7 +375,6 @@ app.patch('/api/products/:id/toggle', requireAdmin, (req, res) => {
   });
 });
 
-// DELETE product — admin only
 app.delete('/api/products/:id', requireAdmin, (req, res) => {
   const { id } = req.params;
   db.run("DELETE FROM products WHERE id = ?", [id], function(err) {
@@ -380,7 +383,6 @@ app.delete('/api/products/:id', requireAdmin, (req, res) => {
   });
 });
 
-// POST add a new product — admin only
 app.post('/api/products', requireAdmin, upload.single('image'), (req, res) => {
   const { name, price, description, featured, category } = req.body;
   if (!name || !price) return res.status(400).json({ error: "Name and price are required." });
@@ -424,7 +426,6 @@ app.post('/api/orders', (req, res) => {
   db.run(query, params, function(err) {
     if (err) {
       console.error("Order error:", err);
-      // If it's a conflict (rare with 8-digits), try once more
       if(err.code === 'SQLITE_CONSTRAINT') {
          const newNum = generateOrderNumber();
          db.run(query, [newNum, ...params.slice(1)], function(err2) {
