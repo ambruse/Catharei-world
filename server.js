@@ -13,8 +13,10 @@ const SALT_ROUNDS = 12;
 
 // ── Render Environment Variables ──
 const IS_RENDER = process.env.RENDER === 'true';
-const DB_PATH = IS_RENDER ? '/data/database.sqlite' : './database.sqlite';
-const UPLOAD_DIR = IS_RENDER ? '/data/images/products' : path.join(__dirname, 'images', 'products');
+
+// FIX: Use the local app directory instead of the protected root /data
+const DB_PATH = path.join(__dirname, 'database.sqlite');
+const UPLOAD_DIR = path.join(__dirname, 'images', 'products');
 
 // ── Trust Proxy (Required for secure cookies on Render) ──
 if (IS_RENDER) {
