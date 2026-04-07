@@ -6,7 +6,7 @@ const multer = require('multer');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session); // Added for production-grade sessions
+const SQLiteStore = require('connect-sqlite3')(session);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,11 +14,16 @@ const SALT_ROUNDS = 12;
 
 // ── Render Environment Variables & Paths ──
 const IS_RENDER = process.env.RENDER === 'true';
-const DB_PATH = path.join(__dirname, 'database.sqlite');
-const UPLOAD_DIR = path.join(__dirname, 'images', 'products');
+
+// NEW: Define the master data directory. 
+// If on Render, use the Persistent Disk. If local, use the current folder.
+const DATA_DIR = IS_RENDER ? '/opt/render/project/src/data' : __dirname;
+
+// NEW: Point the database and uploads to the DATA_DIR
+const DB_PATH = path.join(DATA_DIR, 'database.sqlite');
+const UPLOAD_DIR = path.join(DATA_DIR, 'images', 'products');
 
 // ── Directory Initialization ──
-// Cleaned up redundant directory creations. This creates the folder once safely.
 if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 }
@@ -29,20 +34,19 @@ if (IS_RENDER) {
 }
 
 // ── Session Configuration ──
-// Upgraded to SQLiteStore to ensure customers stay logged in even if the server restarts.
 app.use(session({
   store: new SQLiteStore({
       db: 'sessions.sqlite',
-      dir: __dirname
+      dir: DATA_DIR // NEW: Save user sessions to the persistent disk too!
   }),
   secret: 'catharei_super_secret_session_key_2026',
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: IS_RENDER, // Automatically true on Render, false locally
+    secure: IS_RENDER, 
     sameSite: 'lax', 
-    maxAge: 1000 * 60 * 60 * 8  // 8 hours
+    maxAge: 1000 * 60 * 60 * 8  
   }
 }));
 
@@ -66,12 +70,15 @@ function requireLogin(req, res, next) {
 }
 
 // ── Protect /admin.html at server level ──
-// This intercepts the file BEFORE express.static can serve it
 app.get('/admin.html', requireAdmin, (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-// ── Static Files (after admin guard) ──
+// ── NEW: Serve Images from the Persistent Disk ──
+// We MUST tell Express how to find the images now that they live on a different drive.
+app.use('/images/products', express.static(UPLOAD_DIR));
+
+// ── Static Files ──
 app.use(express.static(__dirname));
 
 // ── File Upload Configuration ──
