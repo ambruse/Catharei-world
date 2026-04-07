@@ -16,7 +16,11 @@ const IS_RENDER = process.env.RENDER === 'true';
 
 // FIX: Use the local app directory instead of the protected root /data
 const DB_PATH = path.join(__dirname, 'database.sqlite');
-const UPLOAD_DIR = path.join(__dirname, 'images', 'products');
+const uploadPath = path.join(__dirname, 'images', 'products'); 
+
+if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath, { recursive: true });
+}
 
 // ── Trust Proxy (Required for secure cookies on Render) ──
 if (IS_RENDER) {
