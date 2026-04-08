@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CATHAREi — Checkout</title>
+  <link rel="icon" type="image/png" href="images/misc/Catharei_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="toasts.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0b0b0b; --bg2: #131313; --bg3: #1c1c1c; --border: #252525;
+      --accent: #D4AF37; --accent2: #C5A028; --text: #f0ede8; --muted: #888;
+      --red: #f87171; --green: #4ade80;
+      --font: 'Outfit', sans-serif; --serif: 'Playfair Display', serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    header {
+      padding: 30px 5%; background: var(--bg2); border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .brand img { height: 36px; }
+    .brand span { font-family: var(--serif); font-size: 1.6rem; color: var(--accent); letter-spacing: 2px; }
+
+    .container { max-width: 1200px; margin: 40px auto; width: 90%; display: grid; grid-template-columns: 1fr 400px; gap: 40px; }
+
+    h2 { font-family: var(--serif); font-size: 1.8rem; margin-bottom: 25px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 20px; color: var(--accent); }
+
+    .section { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+
+    /* Form Styles */
+    .grid-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 8px; }
+    .field input, .field textarea {
+      width: 100%; padding: 12px 16px; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-family: var(--font); outline: none; transition: border-color 0.2s;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--accent); }
+    
+    .phone-input-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .phone-input-wrap:focus-within { border-color: var(--accent); }
+    .phone-input-wrap .prefix {
+      padding: 12px 0 12px 16px;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+      user-select: none;
+    }
+    .phone-input-wrap input {
+      border: none !important;
+      padding-left: 8px !important;
+    }
+
+    /* Map Styles */
+    #map { height: 300px; border-radius: 12px; border: 1px solid var(--border); margin-top: 15px; }
+
+    /* Payment Styles */
+    .payment-methods { display: flex; flex-direction: column; gap: 12px; }
+    .payment-option {
+      border: 1px solid var(--border); border-radius: 10px; padding: 15px; cursor: pointer;
+      display: flex; align-items: center; gap: 15px; transition: all 0.2s; position: relative;
+    }
+    .payment-option:hover { border-color: var(--accent); background: rgba(212,175,55,0.03); }
+    .payment-option.active { border-color: var(--accent); background: rgba(212,175,55,0.05); }
+    .payment-option input { position: absolute; opacity: 0; }
+    .payment-option .radio-circle {
+      width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .payment-option.active .radio-circle { border-color: var(--accent); }
+    .payment-option.active .radio-circle::after { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
+
+    .payment-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); }
+    .payment-option.active + .payment-details { display: block; }
+
+    .payment-option.disabled-method {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+      filter: grayscale(1);
+    }
+    .coming-soon-badge {
+      font-size: 0.65rem;
+      background: var(--bg3);
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: auto;
+      border: 1px solid var(--border);
+    }
+
+    .apple-pay-btn {
+      width: 100%; background: #fff; color: #000; border: none; border-radius: 8px; padding: 12px;
+      font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 1.1rem;
+    }
+
+    /* Summary Styles */
+    .summary-item { display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--muted); font-size: 0.95rem; }
+    .summary-total { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 1.2rem; font-weight: 700; color: var(--text); }
+
+    .place-order-btn {
+      width: 100%; padding: 16px; background: var(--accent); color: #000; border: none;
+      border-radius: 10px; font-weight: 700; font-size: 1.1rem; cursor: pointer; margin-top: 30px;
+      transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .place-order-btn:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,175,55,0.2); }
+    .place-order-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .grid-fields { grid-template-columns: 1fr; }
+    }
+
+    /* Wait Overlay */
+    #waiting-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999;
+      display: none; align-items: center; justify-content: center; text-align: center; color: #fff;
+      backdrop-filter: blur(10px);
+    }
+    #waiting-overlay.active { display: flex; animation: fadeIn 0.3s forwards; }
+    .wait-content h2 { border: none; color: var(--accent); margin-bottom: 5px; }
+    .loader {
+      width: 50px; height: 50px; border: 3px solid rgba(212,175,55,0.2); border-top-color: var(--accent);
+      border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .map-wrapper { position: relative; }
+    #locate-btn {
+      position: absolute; top: 10px; right: 10px; z-index: 1000;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px; cursor: pointer; color: var(--accent); transition: all 0.2s;
+    }
+    #locate-btn:hover { background: var(--bg3); border-color: var(--accent); }
+
+    /* Verification Modal */
+    .v-modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      z-index: 10000; display: none; align-items: center; justify-content: center;
+    }
+    .v-modal-bg.active { display: flex; }
+    .v-modal {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 20px;
+      padding: 35px; width: 90%; max-width: 450px; text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .v-modal h2 { border: none; font-size: 1.6rem; margin-bottom: 10px; color: var(--accent); }
+    .v-modal p { color: var(--muted); margin-bottom: 25px; line-height: 1.5; }
+    .v-modal .phone-display {
+      font-size: 1.4rem; font-weight: 700; color: var(--text); background: var(--bg3);
+      padding: 15px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border);
+    }
+    .v-modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .v-btn {
+      padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; border: none;
+      transition: all 0.2s; font-family: var(--font);
+    }
+    .v-btn-verify { background: var(--accent); color: #000; }
+    .v-btn-verify:hover { background: var(--accent2); transform: translateY(-2px); }
+    .v-btn-cancel { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .v-btn-cancel:hover { border-color: var(--red); color: var(--red); }
+  </style>
+</head>
+<body>
+
+  <div id="waiting-overlay">
+    <div class="wait-content">
+      <div class="loader"></div>
+      <h2>Awaiting Confirmation</h2>
+      <p>Please wait while we accept your delicious order...</p>
+      <p style="font-size: 0.8rem; color: var(--muted); margin-top: 15px;">Do not refresh this page.</p>
+    </div>
+  </div>
+
+  <!-- Verification Modal -->
+  <div class="v-modal-bg" id="verification-modal">
+    <div class="v-modal">
+      <h2 data-i18n="v.title">Verify Phone Number</h2>
+      <p><span data-i18n="v.desc">Please confirm that the phone number below is correct before we place your order.</span> <br><br> <span style="color: var(--red); font-weight: 600;" data-i18n="v.warning_en">Your Order will be only Deliverd before Confirm it through a call to the Customer.</span><br><br><span style="color: var(--red); font-weight: 600; display: block;" dir="rtl" data-i18n="v.warning_ar">لن يتم تسليم طلبك إلا بعد تأكيده من خلال مكالمة هاتفية مع العميل.</span></p>
+      <div class="phone-display" id="verify-phone-num"></div>
+      <div class="v-modal-actions">
+        <button class="v-btn v-btn-cancel" onclick="closeVerification()" data-i18n="v.cancel">Cancel</button>
+        <button class="v-btn v-btn-verify" onclick="confirmOrder()" data-i18n="v.confirm">Confirm & Place Order</button>
+      </div>
+    </div>
+  </div>
+
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 5%;">
+    <a href="index.html" class="brand">
+      <img src="images/misc/Catharei_logo.png" alt="CATHAREi" onerror="this.style.display='none'">
+      <span>CATHAREi</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 20px;">
+       <div class="nav-item has-dropdown" style="list-style: none;">
+          <button id="lang-btn" style="background:none; border:none; color:var(--muted); font-family:var(--font); cursor:pointer; font-size:0.9rem; display:flex; align-items:center; gap:5px;">
+             <span data-i18n="nav.language">Language</span>
+             <svg class="icon" viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" id="lang-en" onclick="setLanguage('en')">English</button></li>
+            <li><button class="dropdown-item" id="lang-ar" onclick="setLanguage('ar')">Arabic (عربي)</button></li>
+          </ul>
+       </div>
+       <a href="navigation/cart.html" style="color: var(--muted); text-decoration: none; font-size: 0.9rem;" data-i18n="cart.view">← Back to Cart</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <div class="section">
+        <h2 data-i18n="checkout.billing">Billing & Delivery</h2>
+        <form id="checkout-form">
+          <div class="grid-fields">
+            <div class="field">
+              <label data-i18n="checkout.fullName">Full Name</label>
+              <input type="text" id="name" required placeholder="John Doe" data-i18n-ph="checkout.fullName">
+            </div>
+            <div class="field">
+              <label data-i18n="checkout.phone">Phone Number</label>
+              <div class="phone-input-wrap">
+                <span class="prefix">+974</span>
+                <input type="tel" id="phone" required placeholder="0000 0000" maxlength="8" data-i18n-ph="checkout.phone">
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label data-i18n="checkout.email">Email Address</label>
+            <input type="email" id="email" required placeholder="john@example.com" data-i18n-ph="checkout.email">
+          </div>
+          <div class="field">
+            <label data-i18n="checkout.address">Delivery Address</label>
+            <textarea id="address" rows="3" required placeholder="Building No, Street Name, Zone, City" data-i18n-ph="checkout.address"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Confirm on Map</label>
+            <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 10px;">Drag the marker to your precise delivery location.</p>
+            <div class="map-wrapper">
+              <button type="button" id="locate-btn" title="Use My Location">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+              </button>
+              <div id="map"></div>
+            </div>
+            <input type="hidden" id="lat">
+            <input type="hidden" id="lng">
+          </div>
+        </form>
+      </div>
+
+      <div class="section">
+        <h2 data-i18n="checkout.payment">Payment Method</h2>
+        <div class="payment-methods">
+          <label class="payment-option disabled-method" onclick="selectPayment('apple-pay')">
+            <div class="radio-circle"></div>
+            <span style="font-weight: 600;">Apple Pay</span>
+            <span class="coming-soon-badge">Coming Soon</span>
+            <input type="radio" name="payment" value="apple-pay" disabled>
+          </label>
+          <div class="payment-details" id="details-apple-pay">
+            <button class="apple-pay-btn"> Pay</button>
+          </div>
+
+          <label class="payment-option disabled-method" onclick="selectPayment('card')">
+            <div class="radio-circle"></div>
+            <span style="font-weight: 600;">Credit / Debit Card</span>
+            <span class="coming-soon-badge">Coming Soon</span>
+            <input type="radio" name="payment" value="card" disabled>
+          </label>
+          <div class="payment-details" id="details-card">
+            <div class="field">
+              <label>Card Number</label>
+              <input type="text" placeholder="0000 0000 0000 0000">
+            </div>
+            <div class="grid-fields">
+              <div class="field">
+                <label>Expiry Date</label>
+                <input type="text" placeholder="MM/YY">
+              </div>
+              <div class="field">
+                <label>CVV</label>
+                <input type="password" placeholder="***">
+              </div>
+            </div>
+          </div>
+
+          <label class="payment-option" onclick="selectPayment('cod')">
+            <div class="radio-circle"></div>
+            <span style="font-weight: 600;" data-i18n="checkout.cod">Cash on Delivery</span>
+            <input type="radio" name="payment" value="cod">
+          </label>
+          <div class="payment-details" id="details-cod">
+            <p style="font-size: 0.85rem; color: var(--muted);">Pay with cash when your delicious treats arrive at your doorstep.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <aside>
+      <div class="section" style="position: sticky; top: 20px;">
+        <h3 data-i18n="checkout.summary">Order Summary</h3>
+        <div id="order-items">
+          <!-- Rendered via JS -->
+        </div>
+        <div class="summary-total">
+          <span data-i18n="checkout.total">Total</span>
+          <span id="grand-total">Qr 0.00</span>
+        </div>
+        <button class="place-order-btn" id="place-order-btn" onclick="placeOrder()" data-i18n="checkout.placeOrder">Place Order Now</button>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 15px; font-weight: 500;" data-i18n="checkout.deliveryTime">Order will be only delivered in 1-2 Hrs</p>
+      </div>
+    </aside>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    let map, marker;
+    let cartItems = JSON.parse(localStorage.getItem('catharei-cart-data') || '[]');
+    let selectedPaymentMethod = '';
+
+    window.onload = () => {
+      initMap();
+      renderSummary();
+      checkAuth();
+      selectPayment('cod');
+      initFormListeners();
+    };
+
+    function initFormListeners() {
+      const inputs = ['name', 'phone', 'email', 'address'];
+      inputs.forEach(id => {
+        document.getElementById(id).addEventListener('input', validateForm);
+      });
+      validateForm(); // Initial check
+    }
+
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const btn = document.getElementById('place-order-btn');
+      
+      const isValid = name && phone.length === 8 && email && address && selectedPaymentMethod;
+      btn.disabled = !isValid;
+    }
+
+    async function checkAuth() {
+      const res = await fetch('/api/auth/me');
+      const data = await res.json();
+      if (data.loggedIn) {
+        document.getElementById('name').value = data.user.username;
+        document.getElementById('email').value = data.email || '';
+      }
+    }
+
+    function initMap() {
+      // Default to Doha center
+      const defaultPos = [25.2854, 51.5310];
+      map = L.map('map').setView(defaultPos, 13);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      marker = L.marker(defaultPos, { draggable: true }).addTo(map);
+      
+      marker.on('dragend', function() {
+        const pos = marker.getLatLng();
+        document.getElementById('lat').value = pos.lat;
+        document.getElementById('lng').value = pos.lng;
+      });
+
+      document.getElementById('lat').value = defaultPos[0];
+      document.getElementById('lng').value = defaultPos[1];
+
+      document.getElementById('locate-btn').addEventListener('click', () => {
+        if (!navigator.geolocation) return showToast("Geolocation not supported.", "error");
+        navigator.geolocation.getCurrentPosition(pos => {
+          const { latitude, longitude } = pos.coords;
+          const newPos = [latitude, longitude];
+          map.setView(newPos, 16);
+          marker.setLatLng(newPos);
+          document.getElementById('lat').value = latitude;
+          document.getElementById('lng').value = longitude;
+        }, err => {
+          showToast("Unable to retrieve your location.", "error");
+        });
+      });
+    }
+
+    function renderSummary() {
+      const container = document.getElementById('order-items');
+      let total = 0;
+      let html = '';
+      
+      cartItems.forEach(item => {
+        total += item.price * item.qty;
+        html += `
+          <div class="summary-item">
+            <span>${item.qty}x ${item.name}</span>
+            <span>Qr ${(item.price * item.qty).toFixed(2)}</span>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+      document.getElementById('grand-total').textContent = `Qr ${total.toFixed(2)}`;
+      
+      if (cartItems.length === 0) {
+        window.location.href = 'navigation/cart.html';
+      }
+    }
+
+    function selectPayment(method) {
+      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+      document.querySelectorAll('.payment-details').forEach(det => det.style.display = 'none');
+      
+      const option = document.querySelector(`.payment-option[onclick="selectPayment('${method}')"]`);
+      option.classList.add('active');
+      document.getElementById(`details-${method}`).style.display = 'block';
+      selectedPaymentMethod = method;
+      validateForm();
+    }
+
+    function placeOrder() {
+      const phone = document.getElementById('phone').value.trim();
+      document.getElementById('verify-phone-num').textContent = '+974 ' + phone;
+      document.getElementById('verification-modal').classList.add('active');
+    }
+
+    function closeVerification() {
+      document.getElementById('verification-modal').classList.remove('active');
+    }
+
+    async function confirmOrder() {
+      closeVerification();
+      const btn = document.getElementById('place-order-btn');
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = '+974' + document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value;
+      const lat = document.getElementById('lat').value;
+      const lng = document.getElementById('lng').value;
+
+      if (!name || !email || !phone || !address || !selectedPaymentMethod) {
+        showToast("Please fill in all details and select a payment method.", "warning");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Processing...";
+
+      const total = cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      
+      const orderData = {
+        name, email, phone, address, 
+        lat: parseFloat(lat), 
+        lng: parseFloat(lng),
+        paymentMethod: selectedPaymentMethod,
+        items: cartItems,
+        total
+      };
+
+      try {
+        const res = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderData)
+        });
+        
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById('waiting-overlay').classList.add('active');
+          localStorage.removeItem('catharei-cart-data');
+          pollOrderStatus(data.orderId);
+        } else {
+          const err = await res.json();
+          showToast(err.error || "Order failed.", "error");
+          btn.disabled = false;
+          btn.textContent = "Place Order Now";
+        }
+      } catch (err) {
+        showToast("Server error.", "error");
+        btn.disabled = false;
+        btn.textContent = "Place Order Now";
+      }
+    }
+
+    async function pollOrderStatus(orderId) {
+      try {
+        const res = await fetch(`/api/orders/${orderId}/status`);
+        const data = await res.json();
+        
+        if (data.status === 'accepted') {
+          window.location.href = `thankyou.html?num=${data.order_number}`;
+        } else if (data.status === 'rejected') {
+          window.location.href = `thankyou.html?num=${data.order_number}&status=rejected`;
+        } else {
+          // Keep polling every 4 seconds
+          setTimeout(() => pollOrderStatus(orderId), 4000);
+        }
+      } catch (err) {
+        console.error("Polling error:", err);
+        setTimeout(() => pollOrderStatus(orderId), 5000);
+      }
+    }
+
+    function showToast(message, type = 'success') {
+      let container = document.getElementById('toast-container');
+      if(!container) {
+         container = document.createElement('div');
+         container.id = 'toast-container';
+         document.body.appendChild(container);
+      }
+      const icons = {
+        success: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
+        error: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>',
+        warning: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>'
+      };
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `${icons[type] || icons.success}<span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 400);
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
+

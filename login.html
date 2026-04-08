@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CATHAREi — Sign In</title>
+  <link rel="icon" type="image/png" href="images/misc/Catharei_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="toasts.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0b0b0b; --bg2: #131313; --bg3: #1c1c1c; --border: #252525;
+      --accent: #D4AF37; --accent2: #C5A028; --text: #f0ede8; --muted: #888;
+      --red: #f87171; --green: #4ade80;
+      --font: 'Outfit', sans-serif; --serif: 'Playfair Display', serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: stretch; }
+
+    /* Left Panel */
+    .panel-left {
+      flex: 1; background: linear-gradient(160deg,#0d0d0d 0%,#1a1508 50%,#0d0d0d 100%);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 60px 40px; position: relative; overflow: hidden;
+    }
+    .panel-left::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 40%,rgba(212,175,55,0.08) 0%,transparent 70%);
+      pointer-events: none;
+    }
+    .panel-left .tagline { text-align: center; position: relative; z-index: 1; }
+    .panel-left .logo-img { height: 80px; margin-bottom: 24px; filter: drop-shadow(0 0 20px rgba(212,175,55,0.3)); }
+    .panel-left h1 { font-family: var(--serif); font-size: 3rem; color: var(--accent); letter-spacing: 4px; margin-bottom: 12px; }
+    .panel-left .sub { font-size: 0.9rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
+    .panel-left .decorative-line { width: 60px; height: 1px; background: linear-gradient(90deg,transparent,var(--accent),transparent); margin: 0 auto 40px; }
+    .panel-left .feature-list { list-style: none; text-align: left; width: 100%; max-width: 320px; }
+    .panel-left .feature-list li { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
+    .panel-left .feature-list li .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* Right Panel */
+    .panel-right { width: 480px; background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; padding: 60px 48px; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.82rem; text-decoration: none; margin-bottom: 40px; transition: color 0.2s; }
+    .back-link svg { width: 14px; height: 14px; fill: currentColor; }
+    .back-link:hover { color: var(--accent); }
+
+    /* Tabs */
+    .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+    .tab-btn { flex: 1; padding: 12px 0; background: none; border: none; color: var(--muted); font-family: var(--font); font-size: 0.9rem; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* Forms */
+    .form-panel { display: none; }
+    .form-panel.show { display: block; }
+    .form-title { font-family: var(--serif); font-size: 1.7rem; color: var(--text); margin-bottom: 6px; }
+    .form-subtitle { font-size: 0.84rem; color: var(--muted); margin-bottom: 28px; }
+
+    .field { margin-bottom: 18px; }
+    .field label { display: block; font-size: 0.76rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 7px; }
+    .input-wrap { position: relative; }
+    .input-wrap > svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; fill: var(--muted); pointer-events: none; }
+    .field input {
+      width: 100%; padding: 12px 14px 12px 42px;
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); font-family: var(--font); font-size: 0.93rem; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,175,55,0.08); }
+    .field input::placeholder { color: #444; }
+    .field input.error { border-color: var(--red); }
+
+    /* Strength */
+    .strength-bar { display: flex; gap: 4px; margin-top: 8px; }
+    .strength-bar div { flex: 1; height: 3px; border-radius: 2px; background: var(--border); transition: background 0.3s; }
+    .strength-label { font-size: 0.72rem; margin-top: 5px; color: var(--muted); }
+
+    /* Forgot link */
+    .forgot-link { display: block; text-align: right; font-size: 0.8rem; color: var(--accent); cursor: pointer; background: none; border: none; font-family: var(--font); margin-top: 6px; }
+    .forgot-link:hover { text-decoration: underline; }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg,var(--accent),var(--accent2));
+      color: #000; border: none; border-radius: 8px;
+      font-family: var(--font); font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.5px; margin-top: 8px;
+      transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .submit-btn:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,175,55,0.25); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .submit-btn .spinner { width: 16px; height: 16px; border: 2px solid rgba(0,0,0,0.2); border-top-color: #000; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Secondary button */
+    .secondary-btn {
+      width: 100%; padding: 12px;
+      background: transparent; color: var(--muted); border: 1px solid var(--border);
+      border-radius: 8px; font-family: var(--font); font-size: 0.9rem;
+      cursor: pointer; margin-top: 8px; transition: all 0.2s;
+    }
+    .secondary-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Alert */
+    .alert { padding: 12px 16px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 18px; display: none; align-items: center; gap: 10px; }
+    .alert svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+    .alert.error { display: flex; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: var(--red); }
+    .alert.success { display: flex; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); color: var(--green); }
+
+    /* Step indicator for forgot password */
+    .step-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 24px; }
+    .step-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.3s; }
+    .step-dot.active { background: var(--accent); }
+
+    .switch-text { text-align: center; margin-top: 24px; font-size: 0.84rem; color: var(--muted); }
+    .switch-text button { background: none; border: none; color: var(--accent); font-family: var(--font); font-size: 0.84rem; cursor: pointer; text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+      .panel-left { display: none; }
+      .panel-right { width: 100%; padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left decorative panel -->
+  <div class="panel-left">
+    <div class="tagline">
+      <img src="images/misc/Catharei_logo.png" alt="CATHAREi Logo" class="logo-img" onerror="this.style.display='none'">
+      <h1>CATHAREi</h1>
+      <p class="sub">Premium Sweets & Bakery — Doha</p>
+      <div class="decorative-line"></div>
+      <ul class="feature-list">
+        <li><span class="dot"></span> Save your favourite items</li>
+        <li><span class="dot"></span> Faster checkout experience</li>
+        <li><span class="dot"></span> Exclusive member offers</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Right form panel -->
+  <div class="panel-right">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      Back to store
+    </a>
+
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+      <button class="tab-btn" id="tab-register" onclick="switchTab('register')">Create Account</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="form-panel show" id="panel-login">
+      <div class="form-title">Welcome back</div>
+      <div class="form-subtitle">Sign in to your CATHAREi account</div>
+      <div class="alert" id="login-alert">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <span id="login-alert-msg"></span>
+      </div>
+      <form id="login-form" onsubmit="doLogin(event)">
+        <div class="field">
+          <label>Username or Email</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <input type="text" id="login-username" placeholder="Enter your username or email" required autocomplete="username">
+          </div>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+          </div>
+          <button type="button" class="forgot-link" onclick="showForgot()">Forgot password?</button>
+        </div>
+        <button type="submit" class="submit-btn" id="login-btn">Sign In</button>
+      </form>
+      <div class="switch-text">
+        Don't have an account? <button onclick="switchTab('register')">Create one</button>
+      </div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="form-panel" id="panel-register">
+      <div class="form-title">Create account</div>
+      <div class="form-subtitle">Join CATHAREi — it's free</div>
+      <div class="alert" id="register-alert">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <span id="register-alert-msg"></span>
+      </div>
+      <form id="register-form" onsubmit="doRegister(event)">
+        <div class="field">
+          <label>Username</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <input type="text" id="reg-username" placeholder="Choose a username" required minlength="3" autocomplete="username">
+          </div>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <input type="email" id="reg-email" placeholder="your@email.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <input type="password" id="reg-password" placeholder="Min. 8 characters" required minlength="8" autocomplete="new-password" oninput="checkStrength(this.value)">
+          </div>
+          <div class="strength-bar"><div id="s1"></div><div id="s2"></div><div id="s3"></div><div id="s4"></div></div>
+          <div class="strength-label" id="strength-label"></div>
+        </div>
+        <div class="field">
+          <label>Confirm Password</label>
+          <div class="input-wrap">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <input type="password" id="reg-confirm" placeholder="Repeat password" required autocomplete="new-password">
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" id="register-btn">Create Account</button>
+      </form>
+      <div class="switch-text">
+        Already have an account? <button onclick="switchTab('login')">Sign in</button>
+      </div>
+    </div>
+
+    <!-- FORGOT PASSWORD -->
+    <div class="form-panel" id="panel-forgot">
+      <div class="form-title">Reset Password</div>
+      <div class="form-subtitle">Verify your identity to reset your password</div>
+
+      <div class="step-dots">
+        <div class="step-dot active" id="dot1"></div>
+        <div class="step-dot" id="dot2"></div>
+      </div>
+
+      <div class="alert" id="forgot-alert">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        <span id="forgot-alert-msg"></span>
+      </div>
+
+      <!-- Step 1: Verify identity -->
+      <div id="forgot-step1">
+        <form onsubmit="verifyIdentity(event)">
+          <div class="field">
+            <label>Username</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              <input type="text" id="forgot-username" placeholder="Your username" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <input type="email" id="forgot-email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn" id="verify-btn">Verify Identity</button>
+        </form>
+      </div>
+
+      <!-- Step 2: New password -->
+      <div id="forgot-step2" style="display:none">
+        <form onsubmit="doResetPassword(event)">
+          <div class="field">
+            <label>New Password</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              <input type="password" id="reset-password" placeholder="Min. 8 characters" required minlength="8" oninput="checkStrength(this.value)">
+            </div>
+            <div class="strength-bar"><div id="s1r"></div><div id="s2r"></div><div id="s3r"></div><div id="s4r"></div></div>
+            <div class="strength-label" id="strength-label-r"></div>
+          </div>
+          <div class="field">
+            <label>Confirm New Password</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              <input type="password" id="reset-confirm" placeholder="Repeat new password" required>
+            </div>
+          </div>
+          <button type="submit" class="submit-btn" id="reset-btn">Set New Password</button>
+        </form>
+      </div>
+
+      <button class="secondary-btn" onclick="showForgotBack()">← Back to Sign In</button>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect') || '';
+    let resetVerifiedUser = null; // stores username after identity verify
+
+    function switchTab(tab) {
+      document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+      document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+      document.getElementById('panel-login').classList.toggle('show', tab === 'login');
+      document.getElementById('panel-register').classList.toggle('show', tab === 'register');
+      document.getElementById('panel-forgot').classList.remove('show');
+      clearAlerts();
+    }
+
+    function showForgot() {
+      document.getElementById('panel-login').classList.remove('show');
+      document.getElementById('panel-forgot').classList.add('show');
+      // reset to step 1
+      document.getElementById('forgot-step1').style.display = 'block';
+      document.getElementById('forgot-step2').style.display = 'none';
+      document.getElementById('dot1').classList.add('active');
+      document.getElementById('dot2').classList.remove('active');
+      clearAlerts();
+    }
+
+    function showForgotBack() {
+      document.getElementById('panel-forgot').classList.remove('show');
+      document.getElementById('panel-login').classList.add('show');
+      clearAlerts();
+    }
+
+    function clearAlerts() {
+      ['login-alert','register-alert','forgot-alert'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.className = 'alert';
+      });
+    }
+
+    function showAlert(id, msg, type) {
+      showToast(msg, type);
+    }
+
+    function showToast(message, type = 'success') {
+      let container = document.getElementById('toast-container');
+      if(!container) {
+         container = document.createElement('div');
+         container.id = 'toast-container';
+         document.body.appendChild(container);
+      }
+      const icons = {
+        success: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
+        error: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>',
+        warning: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>'
+      };
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `${icons[type] || icons.success}<span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 400);
+      }, 4000);
+    }
+
+    function checkStrength(val) {
+      // Works for both reg and reset bars
+      const isReset = document.getElementById('forgot-step2').style.display !== 'none';
+      const sfx = isReset ? 'r' : '';
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+      const colors = ['#f87171','#fb923c','#facc15','#4ade80'];
+      const labels = ['Weak','Fair','Good','Strong'];
+      ['s1','s2','s3','s4'].forEach((id, i) => {
+        const el = document.getElementById(id + sfx);
+        if (el) el.style.background = i < score ? colors[score-1] : '#252525';
+      });
+      const lbl = document.getElementById('strength-label' + (sfx ? '-r' : ''));
+      if (lbl) { lbl.textContent = val.length === 0 ? '' : (labels[score-1] || 'Weak'); lbl.style.color = score > 0 ? colors[score-1] : '#888'; }
+    }
+
+    async function doLogin(e) {
+      e.preventDefault();
+      const btn = document.getElementById('login-btn');
+      btn.innerHTML = '<div class="spinner"></div> Signing in…'; btn.disabled = true;
+      clearAlerts();
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: document.getElementById('login-username').value.trim(), password: document.getElementById('login-password').value })
+        });
+        const data = await res.json();
+        if (!res.ok) { showAlert('login-alert', data.error || 'Login failed', 'error'); }
+        else {
+          showAlert('login-alert', `Welcome back, ${data.username}!`, 'success');
+          setTimeout(() => {
+            if (data.role === 'admin' && redirect === 'admin') window.location.href = '/admin.html';
+            else window.location.href = '/index.html';
+          }, 800);
+        }
+      } catch { showAlert('login-alert', 'Cannot connect to server. Is it running?', 'error'); }
+      btn.innerHTML = 'Sign In'; btn.disabled = false;
+    }
+
+    async function doRegister(e) {
+      e.preventDefault();
+      const btn = document.getElementById('register-btn');
+      clearAlerts();
+      const password = document.getElementById('reg-password').value;
+      const confirm = document.getElementById('reg-confirm').value;
+      if (password !== confirm) return showAlert('register-alert', 'Passwords do not match.', 'error');
+      if (password.length < 8) return showAlert('register-alert', 'Password must be at least 8 characters.', 'error');
+      btn.innerHTML = '<div class="spinner"></div> Creating account…'; btn.disabled = true;
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: document.getElementById('reg-username').value.trim(), email: document.getElementById('reg-email').value.trim(), password })
+        });
+        const data = await res.json();
+        if (!res.ok) showAlert('register-alert', data.error || 'Registration failed', 'error');
+        else { showAlert('register-alert', `Account created! Welcome, ${data.username}!`, 'success'); setTimeout(() => { window.location.href = '/index.html'; }, 1000); }
+      } catch { showAlert('register-alert', 'Cannot connect to server. Is it running?', 'error'); }
+      btn.innerHTML = 'Create Account'; btn.disabled = false;
+    }
+
+    async function verifyIdentity(e) {
+      e.preventDefault();
+      const btn = document.getElementById('verify-btn');
+      btn.innerHTML = '<div class="spinner"></div> Verifying…'; btn.disabled = true;
+      clearAlerts();
+      const username = document.getElementById('forgot-username').value.trim();
+      const email = document.getElementById('forgot-email').value.trim();
+      try {
+        const res = await fetch('/api/auth/verify-identity', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email })
+        });
+        const data = await res.json();
+        if (!res.ok) { showAlert('forgot-alert', data.error || 'Verification failed', 'error'); }
+        else {
+          resetVerifiedUser = username;
+          document.getElementById('forgot-step1').style.display = 'none';
+          document.getElementById('forgot-step2').style.display = 'block';
+          document.getElementById('dot1').classList.remove('active');
+          document.getElementById('dot2').classList.add('active');
+          showAlert('forgot-alert', 'Identity verified. Now set your new password.', 'success');
+        }
+      } catch { showAlert('forgot-alert', 'Cannot connect to server. Is it running?', 'error'); }
+      btn.innerHTML = 'Verify Identity'; btn.disabled = false;
+    }
+
+    async function doResetPassword(e) {
+      e.preventDefault();
+      const btn = document.getElementById('reset-btn');
+      const password = document.getElementById('reset-password').value;
+      const confirm = document.getElementById('reset-confirm').value;
+      if (password !== confirm) return showAlert('forgot-alert', 'Passwords do not match.', 'error');
+      btn.innerHTML = '<div class="spinner"></div> Resetting…'; btn.disabled = true;
+      try {
+        const res = await fetch('/api/auth/reset-password', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: resetVerifiedUser, password })
+        });
+        const data = await res.json();
+        if (!res.ok) showAlert('forgot-alert', data.error || 'Reset failed', 'error');
+        else {
+          showAlert('forgot-alert', 'Password reset! Redirecting to sign in…', 'success');
+          setTimeout(() => { showForgotBack(); switchTab('login'); }, 1500);
+        }
+      } catch { showAlert('forgot-alert', 'Cannot connect to server. Is it running?', 'error'); }
+      btn.innerHTML = 'Set New Password'; btn.disabled = false;
+    }
+
+    if (params.get('tab') === 'register') switchTab('register');
+  </script>
+</body>
+</html>
+

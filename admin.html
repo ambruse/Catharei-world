@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CATHAREi — Admin Panel</title>
+  <link rel="icon" type="image/png" href="images/misc/Catharei_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="toasts.css">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --bg2: #161616;
+      --bg3: #1f1f1f;
+      --border: #2a2a2a;
+      --accent: #D4AF37;
+      --accent2: #C5A028;
+      --text: #f0ede8;
+      --muted: #888;
+      --green: #4ade80;
+      --red: #f87171;
+      --font: 'Outfit', sans-serif;
+      --serif: 'Playfair Display', serif;
+      --radius: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Top Bar ── */
+    .topbar {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar-brand img { height: 28px; }
+    .topbar-brand .brand-name {
+      font-family: var(--serif);
+      color: var(--accent);
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+    }
+    .topbar-badge {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .topbar-right a {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .topbar-right a:hover { color: var(--accent); }
+    .topbar-right svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 220px;
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+      flex-shrink: 0;
+    }
+    .sidebar-section {
+      padding: 0 16px;
+      margin-bottom: 8px;
+    }
+    .sidebar-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      padding: 12px 8px 6px;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: var(--muted);
+      transition: all 0.2s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .sidebar-item svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+    .sidebar-item:hover { background: var(--bg3); color: var(--text); }
+    .sidebar-item.active { background: rgba(212,175,55,0.12); color: var(--accent); }
+    .sidebar-item .count {
+      margin-left: auto;
+      background: var(--bg3);
+      border-radius: 10px;
+      padding: 1px 8px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .sidebar-item.active .count { background: rgba(212,175,55,0.2); color: var(--accent); }
+
+    /* ── Main Content ── */
+    .main {
+      flex: 1;
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    /* ── Page Header ── */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 16px;
+    }
+    .page-title { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); }
+    .page-subtitle { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn svg { width: 16px; height: 16px; fill: currentColor; }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #000;
+    }
+    .btn-gold:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,175,55,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-danger {
+      background: rgba(248,113,113,0.1);
+      color: var(--red);
+      border: 1px solid rgba(248,113,113,0.2);
+    }
+    .btn-danger:hover { background: rgba(248,113,113,0.2); }
+    .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
+
+    /* ── Stats Row ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .stat-card .stat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .stat-card .stat-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .stat-card .stat-val {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-card .stat-lbl { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── Filter/Search Bar ── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      fill: var(--muted);
+      pointer-events: none;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 10px 12px 10px 38px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-wrap input:focus { border-color: var(--accent); }
+    .search-wrap input::placeholder { color: var(--muted); }
+
+    .filter-select {
+      padding: 10px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.88rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .filter-select:focus { border-color: var(--accent); }
+
+    /* ── Products Table ── */
+    .table-wrap {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .table-head {
+      display: grid;
+      grid-template-columns: 60px 1fr 120px 120px 120px 100px 80px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+    .table-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 120px 120px 120px 100px 80px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      transition: background 0.15s;
+    }
+    .table-row:last-child { border-bottom: none; }
+    .table-row:hover { background: rgba(255,255,255,0.02); }
+    .table-row.inactive { opacity: 0.45; }
+
+    .product-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: var(--bg3);
+      display: block;
+    }
+    .product-thumb-placeholder {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-thumb-placeholder svg { width: 20px; height: 20px; fill: var(--border); }
+
+    .product-meta .name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 220px;
+    }
+    .product-meta .desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 220px;
+    }
+
+    .price-cell { font-weight: 600; font-size: 0.9rem; }
+
+    .category-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: var(--bg3);
+      color: var(--muted);
+    }
+
+    .featured-star {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    .featured-none { color: var(--border); font-size: 1.1rem; }
+
+    /* Toggle Switch */
+    .toggle-label {
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 8px;
+    }
+    .toggle-label input { display: none; }
+    .toggle-track {
+      width: 40px;
+      height: 22px;
+      background: var(--border);
+      border-radius: 11px;
+      position: relative;
+      transition: background 0.25s;
+    }
+    .toggle-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #555;
+      transition: all 0.25s;
+    }
+    .toggle-label input:checked + .toggle-track { background: rgba(74,222,128,0.3); }
+    .toggle-label input:checked + .toggle-track .toggle-thumb {
+      left: 21px;
+      background: var(--green);
+    }
+
+    .row-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .icon-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .icon-btn svg { width: 14px; height: 14px; fill: currentColor; }
+    .icon-btn:hover { border-color: var(--red); color: var(--red); background: rgba(248,113,113,0.08); }
+
+    /* ── Empty State ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .empty-state svg { width: 48px; height: 48px; fill: var(--border); margin-bottom: 16px; }
+
+    /* ── Modal Overlay ── */
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s;
+    }
+    .modal-bg.open { opacity: 1; visibility: visible; }
+
+    .modal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      width: 90%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: transform 0.25s;
+    }
+    .modal-bg.open .modal { transform: translateY(0); }
+
+    .modal-header {
+      padding: 24px 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-close:hover { border-color: var(--red); color: var(--red); }
+
+    .modal-body { padding: 24px 28px 28px; }
+
+    /* Form */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-input, .form-select, .form-textarea {
+      padding: 10px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+
+    /* Variants Toggle & Grid */
+    .variant-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .variant-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 8px;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Image Upload */
+    .image-upload-area {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .image-upload-area:hover, .image-upload-area.dragover {
+      border-color: var(--accent);
+      background: rgba(212,175,55,0.04);
+    }
+    .image-upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .upload-icon svg { width: 36px; height: 36px; fill: var(--muted); margin-bottom: 10px; }
+    .upload-hint { font-size: 0.82rem; color: var(--muted); }
+    .upload-hint strong { color: var(--accent); }
+    .upload-preview {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Image source tabs */
+    .img-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+    .img-tab {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: all 0.2s;
+    }
+    .img-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(212,175,55,0.08); }
+
+    .img-panel { display: none; }
+    .img-panel.show { display: block; }
+
+    /* Featured toggle in form */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .checkbox-group label { font-size: 0.9rem; cursor: pointer; color: var(--text); }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    /* Toast */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
+    }
+    .toast {
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideIn 0.3s ease;
+      min-width: 260px;
+    }
+    .toast.success { background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); color: var(--green); }
+    .toast.error { background: rgba(248,113,113,0.15); border: 1px solid rgba(248,113,113,0.3); color: var(--red); }
+    .toast svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    @keyframes slideIn {
+      from { transform: translateX(30px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Loading spinner */
+    .spinner { width: 18px; height: 18px; border: 2px solid rgba(0,0,0,0.2); border-top-color: #000; border-radius: 50%; animation: spin 0.6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Full-screen Loading Overlay */
+    .full-loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 13, 13, 0.85); /* var(--bg) with opacity */
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .full-loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .full-loading-overlay .large-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--bg3);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    .full-loading-overlay h2 {
+      color: var(--accent);
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    /* Summary Modal */
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .summary-section { background: var(--bg3); padding: 15px; border-radius: 10px; border: 1px solid var(--border); }
+    .summary-section h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; letter-spacing: 1px; }
+    .summary-item-row { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 8px; color: var(--text); }
+    .summary-item-row.total { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-weight: 700; color: var(--accent); font-size: 1.1rem; }
+    .summary-info { font-size: 0.9rem; margin-bottom: 6px; }
+    .summary-info strong { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; width: 80px; display: inline-block; }
+
+    /* Audio Banner */
+    #audio-banner {
+      background: rgba(212,175,55,0.1); border: 1px solid var(--accent); padding: 10px 20px;
+      margin-bottom: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+
+    /* Skeleton loader */
+    .skeleton {
+      background: linear-gradient(90deg, var(--bg3) 25%, var(--bg2) 50%, var(--bg3) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+    }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .table-head, .table-row { grid-template-columns: 50px 1fr 100px 90px 60px; }
+      .table-head > *:nth-child(4),
+      .table-head > *:nth-child(6),
+      .table-row > *:nth-child(4),
+      .table-row > *:nth-child(6) { display: none; }
+    }
+    @media (max-width: 600px) {
+      .main { padding: 16px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="topbar-brand">
+      <img src="images/misc/Catharei_logo.png" alt="CATHAREi Logo" onerror="this.style.display='none'">
+      <span class="brand-name">CATHAREi</span>
+      <span class="topbar-badge">Admin</span>
+    </div>
+    <div class="topbar-right">
+      <span id="admin-user-badge" style="font-size:0.8rem;color:var(--muted);display:flex;align-items:center;gap:6px;">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--accent);"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span id="admin-username">Admin</span>
+      </span>
+      <a href="index.html">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        View Site
+      </a>
+      <button onclick="doLogout()" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid #333;border-radius:8px;background:transparent;color:var(--muted);font-family:var(--font);font-size:0.82rem;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderColor='#f87171';this.style.color='#f87171';" onmouseout="this.style.borderColor='#333';this.style.color='var(--muted)';">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+        Sign Out
+      </button>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Management</div>
+        <button class="sidebar-item active" onclick="switchTab('products')" id="tab-products">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+          Manage Products
+        </button>
+        <button class="sidebar-item" onclick="switchTab('orders')" id="tab-orders">
+          <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+          Manage Orders <span class="count" id="cnt-orders-pending">0</span>
+        </button>
+
+        <div id="product-cats" style="margin-top: 20px;">
+          <div class="sidebar-label">Product Categories</div>
+          <button class="sidebar-item" onclick="filterCategory('all')" id="cat-all">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+            All Products <span class="count" id="cnt-all">—</span>
+          </button>
+          <button class="sidebar-item" onclick="filterCategory('savories')" id="cat-savories">
+            <svg viewBox="0 0 24 24"><path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0 0 0-6.99-7.5-6.99S1 14.99 1 14.99h15.03z"/></svg>
+            Savories <span class="count" id="cnt-savories">—</span>
+          </button>
+          <button class="sidebar-item" onclick="filterCategory('arabic_sweets')" id="cat-arabic_sweets">
+            <svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.58 2 11c0 4.42 4.5 8 10 8s10-3.58 10-8c0-4.42-4.5-8-10-8zm0 14c-4.41 0-8-2.69-8-6s3.59-6 8-6 8 2.69 8 6-3.59 6-8 6z"/></svg>
+            Arabic Sweets <span class="count" id="cnt-arabic_sweets">—</span>
+          </button>
+          <button class="sidebar-item" onclick="filterCategory('oriental_sweets')" id="cat-oriental_sweets">
+            <svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.58 2 11c0 4.42 4.5 8 10 8s10-3.58 10-8c0-4.42-4.5-8-10-8zm0 14c-4.41 0-8-2.69-8-6s3.59-6 8-6 8 2.69 8 6-3.59 6-8 6z"/></svg>
+            Oriental Sweets <span class="count" id="cnt-oriental_sweets">—</span>
+          </button>
+          <button class="sidebar-item" onclick="filterCategory('special')" id="cat-special">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            Special <span class="count" id="cnt-special">—</span>
+          </button>
+          <button class="sidebar-item" onclick="filterCategory('cakes')" id="cat-cakes">
+            <svg viewBox="0 0 24 24"><path d="M12 6c1.11 0 2-.89 2-2 0-.36-.1-.69-.26-1 .26-.44.26-1 0-1.46C13.57.71 12.85.37 12.14.37S10.7.71 10.26 1.54c-.26.46-.26 1.02 0 1.46-.16.31-.26.64-.26 1 0 1.11.89 2 2 2zm0 2c-2.22 0-4 1.79-4 4v1l-2.7 4.05c-.16.24.01.55.3.55h12.8c.29 0 .46-.31.3-.55L16 12v-1c0-2.21-1.78-4-4-4z"/></svg>
+            Cakes <span class="count" id="cnt-cakes">—</span>
+          </button>
+          <button class="sidebar-item" onclick="filterCategory('special_cakes')" id="cat-special_cakes">
+            <svg viewBox="0 0 24 24"><path d="M12 6c1.11 0 2-.89 2-2 0-.36-.1-.69-.26-1 .26-.44.26-1 0-1.46C13.57.71 12.85.37 12.14.37S10.7.71 10.26 1.54c-.26.46-.26 1.02 0 1.46-.16.31-.26.64-.26 1 0 1.11.89 2 2 2zm0 2c-2.22 0-4 1.79-4 4v1l-2.7 4.05c-.16.24.01.55.3.55h12.8c.29 0 .46-.31.3-.55L16 12v-1c0-2.21-1.78-4-4-4z"/></svg>
+            Special Cakes <span class="count" id="cnt-special_cakes">—</span>
+          </button>
+          <button class="sidebar-item" onclick="filterCategory('customized_cakes')" id="cat-customized_cakes">
+            <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            Customized Cakes <span class="count" id="cnt-customized_cakes">—</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <!-- Stats -->
+      <div class="stats" id="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(212,175,55,0.12);color:var(--accent)">
+            <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 15.49 0 12.36 0 10.72 0 9.22.67 8.14 1.75L6 4 3.86 1.75C2.78.67 1.28 0 .36 0H0v2h.36c.9 0 1.77.37 2.41 1L5 5.3 2.77 7.53c-.64.63-1.51 1-2.41 1H0v2h.36c1.64 0 3.14-.67 4.22-1.75L6 6.7l1.42 1.55C8.5 9.33 10 10 11.64 10H12c0 .34-.03.67-.08 1H4c-1.11 0-2 .89-2 2v8c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2v-8c0-1.11-.89-2-2-2h-.56c.36-.63.56-1.3.56-2 0-.7-.2-1.37-.56-2H20z"/></svg>
+          </div>
+          <div class="stat-val" id="stat-total">—</div>
+          <div class="stat-lbl">Total Products</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(74,222,128,0.12);color:var(--green)">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+          <div class="stat-val" id="stat-active">—</div>
+          <div class="stat-lbl">Active & Visible</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(248,113,113,0.12);color:var(--red)">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+          </div>
+          <div class="stat-val" id="stat-hidden">—</div>
+          <div class="stat-lbl">Hidden from Menu</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(212,175,55,0.12);color:var(--accent)">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <div class="stat-val" id="stat-featured">—</div>
+          <div class="stat-lbl">Featured on Home</div>
+        </div>
+      </div>
+
+      <div id="products-view">
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <div>
+            <div class="page-title" id="page-title">All Products</div>
+            <div class="page-subtitle" id="page-subtitle">Manage visibility and product listings across all menu pages</div>
+          </div>
+          <button class="btn btn-gold" onclick="openAddModal()">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            Add New Product
+          </button>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" placeholder="Search products…" id="search-input" oninput="renderTable()">
+          </div>
+          <select class="filter-select" id="status-filter" onchange="renderTable()">
+            <option value="all">All Status</option>
+            <option value="active">Active Only</option>
+            <option value="hidden">Hidden Only</option>
+          </select>
+          <select class="filter-select" id="featured-filter" onchange="renderTable()">
+            <option value="all">All Items</option>
+            <option value="featured">Featured Only</option>
+          </select>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrap">
+          <div class="table-head">
+            <div>Image</div>
+            <div>Product</div>
+            <div>Price</div>
+            <div>Category</div>
+            <div>Featured</div>
+            <div>Visible</div>
+            <div>Actions</div>
+          </div>
+          <div id="product-table-body"></div>
+        </div>
+      </div>
+
+      <div id="orders-view" style="display: none;">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Orders Management</div>
+            <div class="page-subtitle">Track and accept incoming customer orders in real-time</div>
+          </div>
+        </div>
+
+        <div id="audio-banner" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+             <span style="font-size: 1.2rem;">🔔</span>
+             <span id="audio-status-text">New pending orders! Audio notification active.</span>
+          </div>
+          <button class="btn btn-sm btn-gold" id="enable-audio-btn" onclick="enableAudio()">Enable Sound</button>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-head" style="grid-template-columns: 110px 180px 1fr 140px 100px 120px;">
+            <div>Order #</div>
+            <div>Customer</div>
+            <div>Details (Map & Info)</div>
+            <div>Payment</div>
+            <div>Status</div>
+            <div>Actions</div>
+          </div>
+          <div id="order-table-body">
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              <p>No orders received yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <audio id="chime-sound" src="./Rings/Sound.mp3" preload="auto" loop></audio>
+
+  <!-- Add Product Modal -->
+  <div class="modal-bg" id="add-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Add New Product</div>
+        <button class="modal-close" onclick="closeAddModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="add-form" onsubmit="submitProduct(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Product Name *</label>
+              <input class="form-input" type="text" id="f-name" placeholder="e.g. Pistachio Baklava" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                Arabic Name
+                <span style="font-size: 0.65rem; background: var(--accent); color: #000; padding: 1px 5px; border-radius: 4px;">عربي</span>
+              </label>
+              <input class="form-input" type="text" id="f-name-ar" placeholder="مثلاً: بقلاوة بالفستق" dir="rtl">
+            </div>
+            <div class="form-group full">
+              <div class="variant-toggle-wrap">
+                <span class="form-label" style="margin:0;">Has Size Variants? (Small, Medium, Large)</span>
+                <label class="toggle-label">
+                  <input type="checkbox" id="f-has-variants" onchange="toggleVariantPricing(this.checked)">
+                  <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                </label>
+              </div>
+            </div>
+            <div class="form-group full" id="standard-price-wrap">
+              <label class="form-label">Price (QR) *</label>
+              <input class="form-input" type="number" id="f-price" placeholder="24.00" step="0.01" min="0">
+            </div>
+            <div class="form-group full" id="variant-price-wrap" style="display:none;">
+              <label class="form-label">Variant Pricing (QR) *</label>
+              <div class="variant-grid">
+                <!-- Small Variant -->
+                <div class="form-group">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                    <label class="form-label" style="font-size:0.65rem; margin:0;">Small</label>
+                    <label class="toggle-label mini" style="transform: scale(0.7);">
+                      <input type="checkbox" id="f-variant-s-enable" onchange="toggleSizeInput('s', this.checked)" checked>
+                      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                    </label>
+                  </div>
+                  <input class="form-input" type="number" id="f-price-s" placeholder="10.00" step="0.01" min="0">
+                </div>
+                <!-- Medium Variant -->
+                <div class="form-group">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                    <label class="form-label" style="font-size:0.65rem; margin:0;">Medium</label>
+                    <label class="toggle-label mini" style="transform: scale(0.7);">
+                      <input type="checkbox" id="f-variant-m-enable" onchange="toggleSizeInput('m', this.checked)" checked>
+                      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                    </label>
+                  </div>
+                  <input class="form-input" type="number" id="f-price-m" placeholder="15.00" step="0.01" min="0">
+                </div>
+                <!-- Large Variant -->
+                <div class="form-group">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                    <label class="form-label" style="font-size:0.65rem; margin:0;">Large</label>
+                    <label class="toggle-label mini" style="transform: scale(0.7);">
+                      <input type="checkbox" id="f-variant-l-enable" onchange="toggleSizeInput('l', this.checked)" checked>
+                      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                    </label>
+                  </div>
+                  <input class="form-input" type="number" id="f-price-l" placeholder="20.00" step="0.01" min="0">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category *</label>
+              <select class="form-select" id="f-category">
+                <option value="savories">Savories</option>
+                <option value="arabic_sweets">Arabic Sweets</option>
+                <option value="oriental_sweets">Oriental Sweets</option>
+                <option value="special">Special</option>
+                <option value="cakes">Cakes</option>
+                <option value="special_cakes">Special Cakes</option>
+                <option value="customized_cakes">Customized Cakes</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea class="form-textarea" id="f-desc" placeholder="A short description of the product…"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                Arabic Description
+                <span style="font-size: 0.65rem; background: var(--accent); color: #000; padding: 1px 5px; border-radius: 4px;">عربي</span>
+              </label>
+              <textarea class="form-textarea" id="f-desc-ar" placeholder="وصف قصير للمنتج..." dir="rtl"></textarea>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Product Image</label>
+              <div class="img-tabs">
+                <button type="button" class="img-tab active" onclick="switchImgTab('upload', this)">📁 Upload File</button>
+                <button type="button" class="img-tab" onclick="switchImgTab('url', this)">🔗 Image URL</button>
+              </div>
+              <div class="img-panel show" id="panel-upload">
+                <div class="image-upload-area" id="drop-zone">
+                  <input type="file" id="f-image-file" accept="image/*" onchange="previewImage(event)">
+                  <div class="upload-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                  </div>
+                  <div class="upload-hint">Drop image here or <strong>browse</strong><br><span style="font-size:0.75rem;color:#555">JPG, PNG, WEBP — max 10MB</span></div>
+                  <img class="upload-preview" id="img-preview" alt="Preview">
+                </div>
+              </div>
+              <div class="img-panel" id="panel-url">
+                <input class="form-input" type="url" id="f-image-url" placeholder="https://example.com/image.jpg" oninput="previewUrl(this)">
+                <img id="url-preview" style="width:100%;max-height:150px;object-fit:contain;border-radius:8px;margin-top:10px;display:none" alt="URL Preview">
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Options</label>
+              <div class="checkbox-group">
+                <input type="checkbox" id="f-featured">
+                <label for="f-featured">⭐ Feature this product on the homepage</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline" onclick="closeAddModal()">Cancel</button>
+            <button type="submit" class="btn btn-gold" id="submit-btn">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              Add Product
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Product Confirmation Modal -->
+  <div class="modal-bg" id="delete-modal">
+    <div class="modal" style="max-width: 400px; text-align: center;">
+      <div class="modal-body" style="padding: 40px 30px;">
+        <div style="color: var(--red); margin-bottom: 20px;">
+          <svg viewBox="0 0 24 24" style="width: 64px; height: 64px; fill: currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 10px;">Confirm Deletion</h3>
+        <p id="delete-modal-text" style="color: var(--muted); font-size: 0.95rem; margin-bottom: 30px;">Are you sure you want to delete this product?</p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+          <button type="button" class="btn btn-outline" onclick="closeDeleteModal()" style="flex: 1;">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirm-delete-btn" onclick="confirmDeleteProduct()" style="flex: 1; justify-content: center;">Delete Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Summary Modal -->
+  <div class="modal-bg" id="summary-modal">
+    <div class="modal" style="max-width: 650px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Order Summary</h2>
+        <button class="modal-close" onclick="closeSummaryModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="summary-grid">
+           <div class="summary-section">
+              <h4>Customer Details</h4>
+              <div class="summary-info"><strong>Name:</strong> <span id="s-cust-name"></span></div>
+              <div class="summary-info"><strong>Phone:</strong> <span id="s-cust-phone"></span></div>
+              <div class="summary-info"><strong>Email:</strong> <span id="s-cust-email"></span></div>
+              <div class="summary-info"><strong>Address:</strong> <span id="s-cust-addr"></span></div>
+           </div>
+           <div class="summary-section">
+              <h4>Order Info</h4>
+              <div class="summary-info"><strong>Order #:</strong> <span id="s-order-num"></span></div>
+              <div class="summary-info"><strong>Date:</strong> <span id="s-order-date"></span></div>
+              <div class="summary-info"><strong>Payment:</strong> <span id="s-order-pay"></span></div>
+              <div class="summary-info"><strong>Status:</strong> <span id="s-order-status"></span></div>
+           </div>
+        </div>
+        <div class="summary-section" style="margin-top: 20px;">
+           <h4>Order Items</h4>
+           <div id="s-order-items"></div>
+           <div class="summary-item-row total">
+              <span>Grand Total</span>
+              <span id="s-order-total"></span>
+           </div>
+        </div>
+        <div class="modal-footer" style="margin-top: 20px;">
+           <button class="btn btn-gold" onclick="closeSummaryModal()">Close Summary</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant Visibility Management Modal -->
+  <div class="modal-bg" id="variant-visibility-modal">
+    <div class="modal" style="max-width: 450px;">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title">Manage Visibility</h2>
+          <p class="modal-subtitle" id="v-modal-product-name" style="font-size: 0.85rem; color: var(--muted); margin-top: 5px;">Product Name</p>
+        </div>
+        <button class="modal-close" onclick="closeVariantVisibilityModal()">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="form-group full" style="margin-top: 10px;">
+          <label class="form-label">Overall Product Visibility</label>
+          <div class="variant-toggle-wrap">
+            <span style="font-size: 0.9rem; color: var(--text);">Show in Storefront</span>
+            <label class="toggle-label">
+              <input type="checkbox" id="v-product-active">
+              <div class="toggle-track"><div class="toggle-thumb"></div></div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group full" style="margin-top: 20px;">
+          <label class="form-label">Individual Size Visibility</label>
+          <div id="v-size-grid" style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+            <!-- JS will populate size toggles here -->
+          </div>
+        </div>
+
+        <div class="modal-footer" style="padding-top: 10px;">
+          <button class="btn btn-outline" onclick="closeVariantVisibilityModal()">Cancel</button>
+          <button class="btn btn-gold" id="v-save-btn" onclick="saveVariantVisibility()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- 3-Second Loading Page Overlay -->
+  <div class="full-loading-overlay" id="loading-overlay">
+    <div class="large-spinner"></div>
+    <h2 id="loading-overlay-text">Processing...</h2>
+  </div>
+
+  <script>
+    const CATEGORY_LABELS = {
+      all: 'All Products',
+      savories: 'Savories',
+      arabic_sweets: 'Arabic Sweets',
+      oriental_sweets: 'Oriental Sweets',
+      special: 'Special',
+      cakes: 'Cakes',
+      special_cakes: 'Special Cakes',
+      customized_cakes: 'Customized Cakes'
+    };
+
+    // ── Verify admin session on load ──
+    fetch('/api/auth/me').then(r => r.json()).then(data => {
+      if (!data.loggedIn || data.user.role !== 'admin') {
+        window.location.href = '/login.html?redirect=admin';
+      } else {
+        const userEl = document.getElementById('admin-username');
+        if(userEl) userEl.textContent = data.user.username;
+      }
+    }).catch(() => {
+      window.location.href = '/login.html?redirect=admin';
+    });
+
+    async function doLogout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/login.html';
+    }
+
+    let allProducts = [];
+    let allOrders = [];
+    let seenOrderIds = new Set();
+    let currentCategory = 'all';
+    let currentImgTab = 'upload';
+    let currentTab = 'products';
+
+    function switchTab(tab) {
+      currentTab = tab;
+      const pView = document.getElementById('products-view');
+      const oView = document.getElementById('orders-view');
+      
+      if(pView) pView.style.display = tab === 'products' ? 'block' : 'none';
+      if(oView) oView.style.display = tab === 'orders' ? 'block' : 'none';
+      
+      const tProd = document.getElementById('tab-products');
+      const tOrd = document.getElementById('tab-orders');
+      if(tProd) tProd.classList.toggle('active', tab === 'products');
+      if(tOrd) tOrd.classList.toggle('active', tab === 'orders');
+      
+      if(tab === 'orders') fetchOrders();
+    }
+
+    async function loadProducts() {
+      try {
+        const res = await fetch('/api/admin/products');
+        allProducts = await res.json();
+        updateStats();
+        renderTable();
+        fetchOrders();
+      } catch (e) {
+        showToast('Failed to connect to server.', 'error');
+      }
+    }
+
+    async function fetchOrders() {
+      try {
+        const res = await fetch('/api/orders');
+        if (!res.ok) return;
+        const orders = await res.json();
+        
+        allOrders = orders;
+        renderOrders();
+        updatePendingCount();
+        handleAudioLoop();
+      } catch (err) { console.error(err); }
+    }
+
+    let audioEnabled = false;
+    function enableAudio() {
+      audioEnabled = true;
+      const chime = document.getElementById('chime-sound');
+      chime.play().then(() => {
+        chime.pause(); // Just to "unlock" audio on mobile/modern browsers
+        handleAudioLoop();
+        document.getElementById('enable-audio-btn').style.display = 'none';
+        document.getElementById('audio-status-text').textContent = 'Audio notifications active.';
+      }).catch(e => console.log("Audio unlock failed", e));
+    }
+
+    function handleAudioLoop() {
+      const pending = allOrders.filter(o => o.status === 'pending');
+      const chime = document.getElementById('chime-sound');
+      const banner = document.getElementById('audio-banner');
+
+      if (pending.length > 0) {
+        if (banner) banner.style.display = 'flex';
+        if (audioEnabled) {
+          if (chime.paused) chime.play();
+        }
+      } else {
+        if (banner) banner.style.display = 'none';
+        if (chime) chime.pause();
+      }
+    }
+
+    function notifyNewOrder() {
+      const chime = document.getElementById('chime-sound');
+      if (chime) chime.play().catch(e => console.log("Audio skipped: needs interaction"));
+      showToast("🔔 New Pending Order Received!", "success");
+    }
+
+    function updatePendingCount() {
+      const pending = allOrders.filter(o => o.status === 'pending').length;
+      const cntEl = document.getElementById('cnt-orders-pending');
+      if(cntEl) cntEl.textContent = pending;
+    }
+
+    function renderOrders() {
+      const container = document.getElementById('order-table-body');
+      if (!container) return;
+      if (allOrders.length === 0) {
+        container.innerHTML = '<div class="empty-state"><p>No orders yet.</p></div>';
+        return;
+      }
+
+      let html = '';
+      allOrders.forEach(o => {
+        const items = JSON.parse(o.items || '[]');
+        const itemsList = items.map(i => `${i.qty}x ${i.name}`).join(', ');
+        const mapUrl = `https://www.google.com/maps?q=${o.lat},${o.lng}`;
+        
+        let statusBadge = `<span class="category-pill" style="background:${getStatusColor(o.status)}; color:#000; font-weight:700;">${o.status.toUpperCase()}</span>`;
+        if (o.status === 'completed') {
+           statusBadge = `<span style="font-weight:700; color:var(--green); font-size:0.85rem;">Order Delivered</span>`;
+        }
+
+        html += `
+          <div class="table-row" style="grid-template-columns: 110px 180px 1fr 140px 100px 120px;">
+            <div style="font-weight:700; color:var(--accent);">#${o.order_number || o.id}</div>
+            <div class="product-meta">
+              <div class="name">${o.customer_name}</div>
+              <div class="desc">${o.customer_phone}</div>
+            </div>
+            <div style="font-size:0.8rem; line-height:1.4;">
+               <div><strong>Items:</strong> ${itemsList}</div>
+               <div style="color:var(--muted)"><strong>Addr:</strong> ${o.address}</div>
+               <a href="${mapUrl}" target="_blank" style="color:var(--accent); text-decoration:none; font-size:0.75rem;">📍 View on Map</a>
+            </div>
+            <div style="font-size:0.85rem;">
+               <div style="font-weight:600;">Qr ${parseFloat(o.total).toFixed(2)}</div>
+               <div style="color:var(--muted); font-size:0.7rem; text-transform:uppercase;">${o.payment_method}</div>
+            </div>
+            <div>
+               ${statusBadge}
+            </div>
+            <div class="row-actions">
+               ${o.status === 'pending' ? `
+                 <button class="btn btn-sm btn-gold" style="padding:4px 8px; font-size:0.7rem;" onclick="updateOrderStatus(${o.id}, 'accepted')">Accept</button>
+                 <button class="btn btn-sm btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="updateOrderStatus(${o.id}, 'rejected')">Decline</button>
+               ` : ''}
+               ${o.status === 'accepted' ? `
+                 <button class="btn btn-sm btn-gold" style="padding:4px 8px; font-size:0.75rem; background:#4ade80; color:#000;" onclick="completeOrder(${o.id})">Order complete?</button>
+               ` : ''}
+               <button class="icon-btn" title="View Summary" onclick="openSummaryModal(${o.id})">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4S17.52 4 12 4s-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+               </button>
+               <button class="icon-btn" title="Print Receipt" onclick='printReceipt(${JSON.stringify(o).replace(/'/g, "&#39;")})'>
+                  <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+               </button>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function getStatusColor(s) {
+      if(s === 'accepted') return 'var(--green)';
+      if(s === 'pending') return 'var(--accent)';
+      if(s === 'rejected' || s === 'canceled') return 'var(--red)';
+      if(s === 'completed') return '#fff';
+      return 'var(--muted)';
+    }
+
+    async function completeOrder(id) {
+       if (confirm("Are you sure you want to mark this order as completed?")) {
+          await updateOrderStatus(id, 'completed');
+       }
+    }
+
+    function openSummaryModal(id) {
+       const o = allOrders.find(order => order.id === id);
+       if (!o) return;
+
+       document.getElementById('s-cust-name').textContent = o.customer_name;
+       document.getElementById('s-cust-phone').textContent = o.customer_phone;
+       document.getElementById('s-cust-email').textContent = o.customer_email || 'N/A';
+       document.getElementById('s-cust-addr').textContent = o.address;
+       
+       document.getElementById('s-order-num').textContent = `#${o.order_number || o.id}`;
+       document.getElementById('s-order-date').textContent = new Date(o.created_at).toLocaleString();
+       document.getElementById('s-order-pay').textContent = o.payment_method.toUpperCase();
+       document.getElementById('s-order-status').textContent = o.status.toUpperCase();
+       
+       const items = JSON.parse(o.items || '[]');
+       let itemsHtml = '';
+       items.forEach(i => {
+          itemsHtml += `
+            <div class="summary-item-row">
+               <span>${i.qty}x ${i.name}</span>
+               <span>Qr ${(i.qty * i.price).toFixed(2)}</span>
+            </div>
+          `;
+       });
+       document.getElementById('s-order-items').innerHTML = itemsHtml;
+       document.getElementById('s-order-total').textContent = `Qr ${parseFloat(o.total).toFixed(2)}`;
+       
+       document.getElementById('summary-modal').classList.add('open');
+    }
+
+    function closeSummaryModal() {
+       document.getElementById('summary-modal').classList.remove('open');
+    }
+
+    async function updateOrderStatus(id, status) {
+      try {
+        const res = await fetch(`/api/orders/${id}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        if (res.ok) {
+          showToast(`Order updated to ${status}`);
+          fetchOrders();
+        }
+      } catch (err) { showToast("Failed to update", "error"); }
+    }
+
+    function printReceipt(o) {
+      const items = JSON.parse(o.items || '[]');
+      let itemsHtml = '';
+      items.forEach(i => {
+        itemsHtml += '<div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">' +
+                     '<span>' + i.qty + ' x ' + i.name + '</span>' +
+                     '<span>Qr ' + (i.qty * i.price).toFixed(2) + '</span></div>';
+      });
+
+      const printWindow = window.open('', '_blank', 'width=600,height=800');
+      const html = '<html><head><title>Receipt #' + o.order_number + '</title>' +
+        '<style>body { font-family: "Courier New", Courier, monospace; width: 80mm; padding: 5mm; color: #000; font-size: 36px; line-height: 1.2; }' +
+        '.header { text-align: center; margin-bottom: 30px; border-bottom: 2px dashed #000; padding-bottom: 20px; }' +
+        '.section { margin-bottom: 25px; border-bottom: 2px dashed #eee; padding-bottom: 20px; }' +
+        '.total { font-weight: bold; font-size: 42px; display: flex; justify-content: space-between; margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }' +
+        '.footer { text-align: center; margin-top: 50px; font-size: 30px; }' +
+        '@media print { body { width: 80mm; } }</style></head><body>' +
+        '<div class="header"><h1 style="margin:0; font-size:48px;">CATHAREi</h1><div style="font-size:30px;">Premium Sweets & Bakery</div>' +
+        '<div style="margin-top:10px;">Order #' + o.order_number + '</div><div>' + new Date(o.created_at).toLocaleString() + '</div></div>' +
+        '<div class="section"><strong>Customer:</strong> ' + o.customer_name + '<br><strong>Phone:</strong> ' + o.customer_phone + '<br><strong>Address:</strong> ' + o.address + '</div>' +
+        '<div class="section">' + itemsHtml + '</div>' +
+        '<div class="total"><span>TOTAL:</span><span>Qr ' + parseFloat(o.total).toFixed(2) + '</span></div>' +
+        '<div style="font-size:30px; margin-top:10px; font-weight:bold;">Payment: ' + o.payment_method.toUpperCase() + '</div>' +
+        '<div class="footer">Thank you for choosing CATHAREi!<br>www.catharei.com</div>' +
+        '<script>window.onload = () => { window.print(); setTimeout(() => window.close(), 1500); }</scr' + 'ipt></body></html>';
+      
+      printWindow.document.write(html);
+      printWindow.document.close();
+    }
+
+    setInterval(fetchOrders, 8000);
+
+    function updateStats() {
+      const total = allProducts.length;
+      const active = allProducts.filter(p => p.active === 1).length;
+      const hidden = allProducts.filter(p => p.active !== 1).length;
+      const featured = allProducts.filter(p => p.featured === 1).length;
+      const tEl = document.getElementById('stat-total');
+      const aEl = document.getElementById('stat-active');
+      const hEl = document.getElementById('stat-hidden');
+      const fEl = document.getElementById('stat-featured');
+      if(tEl) tEl.textContent = total;
+      if(aEl) aEl.textContent = active;
+      if(hEl) hEl.textContent = hidden;
+      if(fEl) fEl.textContent = featured;
+      updateCounts();
+    }
+
+    function updateCounts() {
+      const cats = ['all', 'savories', 'arabic_sweets', 'oriental_sweets', 'special', 'cakes', 'special_cakes', 'customized_cakes'];
+      cats.forEach(cat => {
+        const el = document.getElementById('cnt-' + cat);
+        if (!el) return;
+        const count = cat === 'all' ? allProducts.length : allProducts.filter(p => p.category === cat).length;
+        el.textContent = count;
+      });
+    }
+
+    // Existing product filter logic modified to handle the tab switch
+    function filterCategory(cat) {
+      if(currentTab !== 'products') switchTab('products');
+      currentCategory = cat;
+      document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+      const catEl = document.getElementById('cat-' + cat);
+      if(catEl) catEl.classList.add('active');
+      
+      const titleEl = document.getElementById('page-title');
+      const subEl = document.getElementById('page-subtitle');
+      if(titleEl) titleEl.textContent = (CATEGORY_LABELS[cat] || cat) + ' Products';
+      if(subEl) subEl.textContent = cat === 'all' ? 'Manage visibility and listings across all menu pages' : `Products shown on the "${CATEGORY_LABELS[cat]}" page`;
+      renderTable();
+    }
+
+    function renderTable() {
+      const searchInput = document.getElementById('search-input');
+      const search = searchInput ? searchInput.value.toLowerCase() : '';
+      const sFilter = document.getElementById('status-filter');
+      const statusFilter = sFilter ? sFilter.value : 'all';
+      const fFilter = document.getElementById('featured-filter');
+      const featuredFilter = fFilter ? fFilter.value : 'all';
+
+      let products = allProducts.filter(p => {
+        if (currentCategory !== 'all' && p.category !== currentCategory) return false;
+        if (search && !p.name.toLowerCase().includes(search) && !(p.description||'').toLowerCase().includes(search)) return false;
+        if (statusFilter === 'active' && p.active !== 1) return false;
+        if (statusFilter === 'hidden' && p.active !== 0) return false;
+        if (featuredFilter === 'featured' && p.featured !== 1) return false;
+        return true;
+      });
+
+      const tbody = document.getElementById('product-table-body');
+      if(!tbody) return;
+
+      if (products.length === 0) {
+        tbody.innerHTML = `<div class="empty-state">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 15.49 0 12.36 0 10.72 0 9.22.67 8.14 1.75L6 4 3.86 1.75C2.78.67 1.28 0 .36 0H0v2h.36c.9 0 1.77.37 2.41 1L5 5.3 2.77 7.53c-.64.63-1.51 1-2.41 1H0v2h.36c1.64 0 3.14-.67 4.22-1.75L6 6.7l1.42 1.55C8.5 9.33 10 10 11.64 10H12c0 .34-.03.67-.08 1H4c-1.11 0-2 .89-2 2v8c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2v-8c0-1.11-.89-2-2-2h-.56c.36-.63.56-1.3.56-2 0-.7-.2-1.37-.56-2H20z"/></svg>
+          <p>No products found.</p></div>`;
+        return;
+      }
+
+      tbody.innerHTML = products.map(p => {
+        const imgSrc = p.image || '';
+        const thumb = imgSrc
+          ? `<img class="product-thumb" src="${imgSrc}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+          : '';
+        const thumbFallback = `<div class="product-thumb-placeholder" style="${imgSrc ? 'display:none' : ''}"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>`;
+
+        let variantLabel = '';
+        if (p.variants) {
+          try {
+            const variants = JSON.parse(p.variants);
+            const disabled = variants._disabled || [];
+            const allSizes = ['small', 'medium', 'large'];
+            const presentSizes = allSizes.filter(s => variants[s] !== undefined);
+            
+            if (presentSizes.length > 0) {
+              const labelParts = presentSizes.map(s => {
+                const char = s.charAt(0).toUpperCase();
+                const isOff = disabled.includes(s);
+                return `<span style="color: ${isOff ? '#ff4d4d' : 'inherit'}; font-weight: ${isOff ? '700' : 'normal'}">${char}</span>`;
+              });
+              variantLabel = `Variants (${labelParts.join('/')})`;
+            } else {
+              variantLabel = 'Variants';
+            }
+          } catch(e) { variantLabel = 'Variants (Err)'; }
+        }
+
+        return `<div class="table-row ${p.active !== 1 ? 'inactive' : ''}" id="row-${p.id}">
+          <div>${thumb}${thumbFallback}</div>
+          <div class="product-meta">
+            <div class="name">${p.name} ${p.name_ar ? `<span style="font-size:0.75rem; color:var(--accent); margin-left:8px;">(${p.name_ar})</span>` : ''}</div>
+            <div class="desc">${p.description || 'No description'}</div>
+          </div>
+          <div class="price-cell">${p.variants ? variantLabel : 'QR ' + parseFloat(p.price).toFixed(2)}</div>
+          <div><span class="category-pill">${CATEGORY_LABELS[p.category] || p.category}</span></div>
+          <div>${p.featured === 1 ? '<span class="featured-star">★</span>' : '<span class="featured-none">☆</span>'}</div>
+          <div>
+            <label class="toggle-label" title="${p.active === 1 ? 'Click to hide' : 'Click to show'}">
+              <input type="checkbox" ${p.active === 1 ? 'checked' : ''} onchange="toggleProduct(${p.id}, this)">
+              <div class="toggle-track"><div class="toggle-thumb"></div></div>
+            </label>
+          </div>
+          <div class="row-actions">
+            <button class="icon-btn" onclick="openDeleteModal(${p.id}, '${p.name.replace(/'/g, "\\'")}')">
+              <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+            </button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    async function toggleProduct(id, checkbox) {
+      const product = allProducts.find(p => p.id === id);
+      if (!product) return;
+
+      // If product has variants, open the management modal instead of direct toggle
+      if (product.variants && product.variants !== 'null') {
+        checkbox.checked = product.active === 1; // reset checkbox visually
+        openVariantVisibilityModal(id);
+        return;
+      }
+
+      const row = document.getElementById('row-' + id);
+      checkbox.disabled = true;
+      try {
+        const res = await fetch(`/api/products/${id}/toggle`, { method: 'PATCH' });
+        const updated = await res.json();
+        product.active = updated.active;
+        if (row) row.classList.toggle('inactive', updated.active !== 1);
+        updateStats();
+        showToast(updated.active === 1 ? '✓ Product visible' : '✓ Product hidden', 'success');
+      } catch (e) {
+        checkbox.checked = !checkbox.checked;
+        showToast('Failed to update product.', 'error');
+      }
+      checkbox.disabled = false;
+    }
+
+    let pendingVProductId = null;
+    function openVariantVisibilityModal(id) {
+      const product = allProducts.find(p => p.id === id);
+      if (!product) return;
+      pendingVProductId = id;
+
+      document.getElementById('v-modal-product-name').textContent = product.name;
+      document.getElementById('v-product-active').checked = product.active === 1;
+
+      const grid = document.getElementById('v-size-grid');
+      grid.innerHTML = '';
+
+      try {
+        const variants = JSON.parse(product.variants);
+        const disabled = variants._disabled || [];
+        const allSizes = ['small', 'medium', 'large'];
+        
+        allSizes.forEach(size => {
+          if (variants[size] !== undefined) {
+            const isEnabled = !disabled.includes(size);
+            const label = size.charAt(0).toUpperCase() + size.slice(1);
+            grid.innerHTML += `
+              <div class="variant-toggle-wrap">
+                <span style="font-size: 0.9rem; color: var(--text);">${label} (QR ${variants[size].toFixed(2)})</span>
+                <label class="toggle-label mini">
+                  <input type="checkbox" class="v-size-toggle" data-size="${size}" ${isEnabled ? 'checked' : ''}>
+                  <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                </label>
+              </div>
+            `;
+          }
+        });
+      } catch(e) { console.error("Error parsing variants for modal", e); }
+
+      document.getElementById('variant-visibility-modal').classList.add('open');
+    }
+
+    function closeVariantVisibilityModal() {
+      pendingVProductId = null;
+      document.getElementById('variant-visibility-modal').classList.remove('open');
+    }
+
+    async function saveVariantVisibility() {
+      if (!pendingVProductId) return;
+      const id = pendingVProductId;
+      const product = allProducts.find(p => p.id == id);
+      if (!product) {
+        console.error("Product with ID " + id + " not found in local allProducts array.");
+        showToast('Error: Product not found locally.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('v-save-btn');
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<div class="spinner"></div> Saving...';
+      btn.disabled = true;
+
+      const productActive = document.getElementById('v-product-active').checked;
+      const sizeToggles = document.querySelectorAll('.v-size-toggle');
+      
+      try {
+        // 1. Handle main product visibility if changed
+        if (product.active !== (productActive ? 1 : 0)) {
+           const resToggle = await fetch(`/api/products/${id}/toggle`, { method: 'PATCH' });
+           const updatedToggle = await resToggle.json();
+           product.active = updatedToggle.active;
+        }
+
+        // 2. Handle individual variant visibility
+        const variants = JSON.parse(product.variants);
+        const disabled = [];
+        sizeToggles.forEach(t => {
+           if (!t.checked) disabled.push(t.getAttribute('data-size'));
+        });
+        variants._disabled = disabled;
+
+        const resVar = await fetch(`/api/products/${id}/variants`, {
+           method: 'PATCH',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ variants: JSON.stringify(variants) })
+        });
+        
+        if (!resVar.ok) {
+           const errData = await resVar.json();
+           throw new Error(errData.error || `Server responded with ${resVar.status}`);
+        }
+        
+        const updatedVar = await resVar.json();
+        product.variants = updatedVar.variants;
+
+        renderTable();
+        updateStats();
+        showToast('✓ Metadata updated', 'success');
+        closeVariantVisibilityModal();
+      } catch(e) {
+        showToast(`Save Error: ${e.message}`, 'error');
+        console.error("Variant save failure details:", e);
+      } finally {
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+      }
+    }
+
+    let pendingDeleteId = null;
+
+    function openDeleteModal(id, name) {
+      pendingDeleteId = id;
+      const modal = document.getElementById('delete-modal');
+      const text = document.getElementById('delete-modal-text');
+      if(text) text.innerHTML = `Are you sure you want to delete <strong>"${name}"</strong>? This action cannot be undone.`;
+      if(modal) modal.classList.add('open');
+    }
+
+    function closeDeleteModal() {
+      pendingDeleteId = null;
+      const modal = document.getElementById('delete-modal');
+      if(modal) modal.classList.remove('open');
+    }
+
+    async function confirmDeleteProduct() {
+      if (!pendingDeleteId) return;
+      const id = pendingDeleteId;
+      const product = allProducts.find(p => p.id === id);
+      const name = product ? product.name : 'this item';
+      
+      const btn = document.getElementById('confirm-delete-btn');
+      if(btn) btn.disabled = true;
+
+      // Close the confirmation modal immediately
+      closeDeleteModal();
+
+      // Show the full-page loading overlay
+      const overlay = document.getElementById('loading-overlay');
+      const overlayText = document.getElementById('loading-overlay-text');
+      if(overlay) {
+        if(overlayText) overlayText.textContent = "Deleting Product...";
+        overlay.classList.add('active');
+        
+        // Wait exactly 3 seconds as requested
+        await new Promise(r => setTimeout(r, 3000));
+      }
+      
+      try {
+        await fetch(`/api/products/${id}`, { method: 'DELETE' });
+        allProducts = allProducts.filter(p => p.id !== id);
+        updateStats();
+        renderTable();
+        showToast(`✓ "${name}" deleted`);
+      } catch (e) {
+        showToast('Failed to delete product.', 'error');
+      }
+      
+      // Hide the overlay
+      if(overlay) overlay.classList.remove('active');
+      if(btn) btn.disabled = false;
+    }
+
+    function openAddModal() {
+      const modal = document.getElementById('add-modal');
+      if(modal) modal.classList.add('open');
+      const form = document.getElementById('add-form');
+      if(form) form.reset();
+      const ip = document.getElementById('img-preview');
+      const up = document.getElementById('url-preview');
+      if(ip) ip.style.display = 'none';
+      if(up) up.style.display = 'none';
+      if (currentCategory !== 'all') {
+        const catS = document.getElementById('f-category');
+        if(catS) catS.value = currentCategory;
+      }
+    }
+    function closeAddModal() {
+      const modal = document.getElementById('add-modal');
+      if(modal) modal.classList.remove('open');
+    }
+    const am = document.getElementById('add-modal');
+    if(am) am.addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeAddModal();
+    });
+    const dm = document.getElementById('delete-modal');
+    if(dm) dm.addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeDeleteModal();
+    });
+
+    function switchImgTab(tab, btn) {
+      currentImgTab = tab;
+      document.querySelectorAll('.img-tab').forEach(t => t.classList.remove('active'));
+      if(btn) btn.classList.add('active');
+      const pu = document.getElementById('panel-upload');
+      const purl = document.getElementById('panel-url');
+      if(pu) pu.classList.toggle('show', tab === 'upload');
+      if(purl) purl.classList.toggle('show', tab === 'url');
+    }
+
+    function previewImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const preview = document.getElementById('img-preview');
+        if(preview) {
+          preview.src = ev.target.result;
+          preview.style.display = 'block';
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function previewUrl(input) {
+      const preview = document.getElementById('url-preview');
+      if(!preview) return;
+      if (input.value) {
+        preview.src = input.value;
+        preview.style.display = 'block';
+        preview.onerror = () => preview.style.display = 'none';
+      } else {
+        preview.style.display = 'none';
+      }
+    }
+
+    const dropZone = document.getElementById('drop-zone');
+    if(dropZone) {
+      dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+      dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const fileInput = document.getElementById('f-image-file');
+          if(fileInput) {
+            fileInput.files = e.dataTransfer.files;
+            previewImage({ target: { files: [file] } });
+          }
+        }
+      });
+    }
+
+    function toggleVariantPricing(enabled) {
+      document.getElementById('standard-price-wrap').style.display = enabled ? 'none' : 'block';
+      document.getElementById('variant-price-wrap').style.display = enabled ? 'block' : 'none';
+      document.getElementById('f-price').required = !enabled;
+      
+      if(enabled) {
+        toggleSizeInput('s', document.getElementById('f-variant-s-enable').checked);
+        toggleSizeInput('m', document.getElementById('f-variant-m-enable').checked);
+        toggleSizeInput('l', document.getElementById('f-variant-l-enable').checked);
+      } else {
+        document.getElementById('f-price-s').required = false;
+        document.getElementById('f-price-m').required = false;
+        document.getElementById('f-price-l').required = false;
+      }
+    }
+
+    function toggleSizeInput(size, enabled) {
+      const input = document.getElementById(`f-price-${size}`);
+      if (!input) return;
+      input.disabled = !enabled;
+      input.required = enabled;
+      input.style.opacity = enabled ? '1' : '0.3';
+      if (!enabled) input.value = '';
+    }
+
+    async function submitProduct(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      if(!btn) return;
+      
+      const name = document.getElementById('f-name').value.trim();
+      const name_ar = document.getElementById('f-name-ar').value.trim();
+      const category = document.getElementById('f-category').value;
+      const description = document.getElementById('f-desc').value.trim();
+      const description_ar = document.getElementById('f-desc-ar').value.trim();
+      const featured = document.getElementById('f-featured').checked ? '1' : '0';
+      const hasVariants = document.getElementById('f-has-variants').checked;
+
+      const variants = {};
+      if (hasVariants) {
+        const sEnabled = document.getElementById('f-variant-s-enable').checked;
+        const mEnabled = document.getElementById('f-variant-m-enable').checked;
+        const lEnabled = document.getElementById('f-variant-l-enable').checked;
+        
+        if (!sEnabled && !mEnabled && !lEnabled) {
+          showToast("Please enable at least one size variant.", "error");
+          return;
+        }
+
+        if (sEnabled) variants.small = parseFloat(document.getElementById('f-price-s').value) || 0;
+        if (mEnabled) variants.medium = parseFloat(document.getElementById('f-price-m').value) || 0;
+        if (lEnabled) variants.large = parseFloat(document.getElementById('f-price-l').value) || 0;
+
+        // Final sanity check for prices
+        for (const [key, value] of Object.entries(variants)) {
+           if (value <= 0) {
+             showToast(`Please provide a valid price for ${key.charAt(0).toUpperCase() + key.slice(1)}.`, "error");
+             return;
+           }
+        }
+      }
+
+      btn.innerHTML = '<div class="spinner"></div> Adding…';
+      btn.disabled = true;
+
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('name_ar', name_ar);
+      formData.append('category', category);
+      formData.append('description', description);
+      formData.append('description_ar', description_ar);
+      formData.append('featured', featured);
+
+      if (hasVariants) {
+        formData.append('variants', JSON.stringify(variants));
+      } else {
+        formData.append('price', document.getElementById('f-price').value);
+      }
+
+      if (currentImgTab === 'upload') {
+        const file = document.getElementById('f-image-file').files[0];
+        if (file) formData.append('image', file);
+      } else {
+        const url = document.getElementById('f-image-url').value.trim();
+        formData.append('imageUrl', url);
+      }
+
+      try {
+        const res = await fetch('/api/products', { method: 'POST', body: formData });
+        if (!res.ok) { const err = await res.json(); throw new Error(err.error); }
+        const newProduct = await res.json();
+        allProducts.unshift(newProduct);
+        updateStats();
+        renderTable();
+        closeAddModal();
+        showToast(`✓ "${name}" added successfully`, 'success');
+      } catch (err) {
+        showToast('Error: ' + (err.message || 'Failed to add product'), 'error');
+      }
+
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Add Product';
+      btn.disabled = false;
+    }
+
+    function showToast(message, type = 'success') {
+      let container = document.getElementById('toast-container');
+      if(!container) {
+         container = document.createElement('div');
+         container.id = 'toast-container';
+         document.body.appendChild(container);
+      }
+      const icons = {
+        success: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>',
+        error: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>',
+        warning: '<svg class="toast-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>'
+      };
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `${icons[type] || icons.success}<span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('fade-out');
+        setTimeout(() => toast.remove(), 400);
+      }, 4000);
+    }
+
+    loadProducts();
+  </script>
+</body>
+</html>
