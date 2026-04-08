@@ -58,7 +58,68 @@ const translations = {
     "faq.a2": "Absolutely! You can customize and order directly through our website.",
     "faq.q3": "Do you make custom cakes?",
     "faq.a3": "Yes, we specialize in custom cakes for any occasion.",
-    "footer.rights": "Copyright © 2026 CATHAREi. All rights reserved."
+    "footer.rights": "Copyright © 2026 CATHAREi. All rights reserved.",
+    "footer.about": "The finest selection of traditional Arabic sweets, oriental pastries, and modern custom cakes in Doha.",
+    "footer.links": "Links",
+    "footer.help": "Help",
+    "footer.follow": "Follow Us",
+    "nav.home": "Home",
+    "nav.contact": "Contact Us",
+    "nav.faq": "FAQs",
+    "nav.privacy": "Privacy Policy",
+    "nav.terms": "Terms of Service",
+    "checkout.title": "Checkout",
+    "checkout.billing": "Billing Details",
+    "checkout.fullName": "Full Name",
+    "checkout.phone": "Phone Number",
+    "checkout.email": "Email Address",
+    "checkout.address": "Delivery Address",
+    "checkout.payment": "Payment Method",
+    "checkout.cod": "Cash on Delivery",
+    "checkout.card": "Card on Delivery",
+    "checkout.summary": "Order Summary",
+    "checkout.subtotal": "Subtotal",
+    "checkout.total": "Total",
+    "checkout.placeOrder": "Place Order Now",
+    "checkout.deliveryTime": "Order will be only delivered in 1-2 Hrs",
+    "v.title": "Verify Phone Number",
+    "v.desc": "Please confirm that the phone number below is correct before we place your order.",
+    "v.warning_en": "Your Order will be only Deliverd before Confirm it through a call to the Customer.",
+    "v.warning_ar": "لن يتم تسليم طلبك إلا بعد تأكيده من خلال مكالمة هاتفية مع العميل.",
+    "v.confirm": "Confirm & Place Order",
+    "v.cancel": "Cancel",
+    "cart.title": "Your Cart",
+    "cart.empty": "Your cart is empty",
+    "cart.view": "View Cart",
+    "cart.checkout": "Proceed to checkout",
+    "menu.discover": "Discover our full collection of premium treats, from traditional Arabic sweets to modern designer cakes. Handcrafted daily in Doha.",
+    "menu.selectSize": "Select Size",
+    "partner.title": "Our Delivery Partners",
+    "cake.scrollTitle": "The Finest Custom Cake",
+    "cake.scrollText": "Handcrafted to perfection, this exclusive creation stands out as the absolute best custom cake in all of Doha. Delicate textures layered with rich flavors promise an unforgettable celebration.",
+    "cart.product": "Product",
+    "cart.qty": "Quantity",
+    "cart.subtotal": "Subtotal",
+    "cart.coupon": "Coupon code",
+    "cart.apply": "Apply coupon",
+    "cart.update": "Update cart",
+    "cat.savoriesDesc": "Discover our handcrafted savory delights baked to perfection.",
+    "cat.arabicSweetsDesc": "A rich tapestry of traditional flavors and premium pistachios.",
+    "cat.cakesDesc": "Classic, fluffy, and freshly baked cakes for every occasion.",
+    "cat.orientalSweetsDesc": "Delicate pastries inspired by the rich traditions of the Orient.",
+    "cat.specialDesc": "Unique and exclusive desserts crafted for special moments.",
+    "cat.specialCakesDesc": "Artisan cakes designed to make every celebration unforgettable.",
+    "cat.customizedCakesDesc": "Bespoke cake designs tailored to your unique vision.",
+    "status.pending": "Pending",
+    "status.accepted": "Accepted",
+    "status.rejected": "Rejected",
+    "status.delivered": "Delivered",
+    "status.sorryTitle": "Order Update",
+    "status.sorryBody": "Thank you for choosing CATHAREi. We are truly sorry, but we are unable to accept your order at this time. Please contact us for more information.",
+    "footer.stores": "Our Stores",
+    "stores.aziziya": "Al Aziziya, Salawa Rd",
+    "stores.wakrah": "Al wakrah",
+    "stores.kharaitiyat": "Al Kharaitiyat"
   },
   ar: {
     "nav.savories": "موالح",
@@ -92,7 +153,7 @@ const translations = {
     "home.exploreTitle": "استكشف أصنافنا اللذيذة!",
     "home.exploreText": "صنع الفرح في رغبات منتصف الليل أو في وليمة لا شيء سوى ما تضمنه كاثاري في كل قضمة.",
     "home.customTitle": "كعكات مخصصة لكل مناسبة",
-    "home.customText": "اجعل الاحتفالات مميزة. أعطنا المخطط لما تحتاجه الكعكة لتعكسه ودعنا نجعل حلمك حقيقة.",
+    "home.customText": "اجعل الاحتفال مميزاً. أعطنا المخطط لما تحتاجه الكعكة لتعكسه ودعنا نجعل حلمك حقيقة.",
     "cat.savories": "موالح",
     "cat.arabic": "حلويات عربية",
     "cat.oriental": "حلويات شرقية",
@@ -118,7 +179,68 @@ const translations = {
     "faq.a2": "بالتأكيد! يمكنك تخصيص وطلب كعكتك مباشرة عبر موقعنا.",
     "faq.q3": "هل تصنعون كعكات مخصصة؟",
     "faq.a3": "نعم، نحن متخصصون في الكعك المخصص لأي مناسبة.",
-    "footer.rights": "حقوق النشر © 2026 CATHAREi. جميع الحقوق محفوظة."
+    "footer.rights": "حقوق النشر © 2026 CATHAREi. جميع الحقوق محفوظة.",
+    "footer.about": "أرقى تشكيلة من الحلويات العربية التقليدية والمعجنات الشرقية والكعك المخصص الحديث في الدوحة.",
+    "footer.links": "روابط",
+    "footer.help": "مساعدة",
+    "footer.follow": "تابعنا",
+    "nav.home": "الرئيسية",
+    "nav.contact": "اتصل بنا",
+    "nav.faq": "الأسئلة الشائعة",
+    "nav.privacy": "سياسة الخصوصية",
+    "nav.terms": "شروط الخدمة",
+    "checkout.title": "إتمام الطلب",
+    "checkout.billing": "تفاصيل الفاتورة",
+    "checkout.fullName": "الاسم الكامل",
+    "checkout.phone": "رقم الهاتف",
+    "checkout.email": "البريد الإلكتروني",
+    "checkout.address": "عنوان التوصيل",
+    "checkout.payment": "طريقة الدفع",
+    "checkout.cod": "نقداً عند الاستلام",
+    "checkout.card": "بطاقة (عند الاستلام)",
+    "checkout.summary": "ملخص الطلب",
+    "checkout.subtotal": "المجموع الفرعي",
+    "checkout.total": "الإجمالي",
+    "checkout.placeOrder": "اطلب الآن",
+    "checkout.deliveryTime": "سيتم تسليم الطلب خلال ساعة إلى ساعتين",
+    "v.title": "تأكيد رقم الهاتف",
+    "v.desc": "يرجى التأكد من أن رقم الهاتف أدناه صحيح قبل إتمام الطلب.",
+    "v.warning_en": "Your Order will be only Deliverd before Confirm it through a call to the Customer.",
+    "v.warning_ar": "لن يتم تسليم طلبك إلا بعد تأكيده من خلال مكالمة هاتفية مع العميل.",
+    "v.confirm": "تأكيد وإتمام الطلب",
+    "v.cancel": "إلغاء",
+    "cart.title": "سلتك",
+    "cart.empty": "سلتك فارغة",
+    "cart.view": "عرض السلة",
+    "cart.checkout": "إتمام الطلب",
+    "menu.discover": "اكتشف مجموعتنا الكاملة من الحلويات الفاخرة، من الحلويات العربية التقليدية إلى كعكات التصميم الحديثة. تصنع يدوياً يومياً في الدوحة.",
+    "menu.selectSize": "اختر الحجم",
+    "partner.title": "شركاء التوصيل لدينا",
+    "cake.scrollTitle": "أرقى كيكة مخصصة",
+    "cake.scrollText": "صُنعت بإتقان لتكون الأفضل في الدوحة. طبقات رقيقة من النكهات الغنية تعدكم باحتفال لا يُنسى.",
+    "cart.product": "المنتج",
+    "cart.qty": "الكمية",
+    "cart.subtotal": "المجموع الفرعي",
+    "cart.coupon": "كود الخصم",
+    "cart.apply": "تطبيق الكود",
+    "cart.update": "تحديث السلة",
+    "cat.savoriesDesc": "اكتشف موالحنا الحرفية المخبوزة بإتقان.",
+    "cat.arabicSweetsDesc": "نسيج غني من النكهات التقليدية والفستق الفاخر.",
+    "cat.cakesDesc": "كعكات كلاسيكية هشة ومخبوزة طازجة لكل مناسبة.",
+    "cat.orientalSweetsDesc": "معجنات رقيقة مستوحاة من التقاليد الغنية للشرق.",
+    "cat.specialDesc": "حلويات فريدة وحصرية مصممة للحظات الخاصة.",
+    "cat.specialCakesDesc": "كعكات حرفية مصممة لتجعل كل احتفال لا يُنسى.",
+    "cat.customizedCakesDesc": "تصاميم كيك مخصصة وفقاً لرؤيتك الفريدة.",
+    "status.pending": "قيد الانتظار",
+    "status.accepted": "تم القبول",
+    "status.rejected": "تم الرفض",
+    "status.delivered": "تم التوصيل",
+    "status.sorryTitle": "تحديث الطلب",
+    "status.sorryBody": "شكراً لاختياركم كاثاري. نعتذر جداً، ولكن لا يمكننا قبول طلبكم في الوقت الحالي. يرجى التواصل معنا للحصول على مزيد من المعلومات.",
+    "footer.stores": "فروعنا",
+    "stores.aziziya": "العزيزية، طريق سلوى",
+    "stores.wakrah": "الوكرة",
+    "stores.kharaitiyat": "الخريطيات"
   }
 };
 
@@ -311,9 +433,17 @@ function renderProducts(productsList) {
     let titleText = product.name;
     let titleI18nAttr = '';
     
-    if (product.nameKey && translations[currentLang][product.nameKey]) {
+    // Choose between standard name and Arabic name based on current language
+    if (currentLang === 'ar' && product.name_ar) {
+        titleText = product.name_ar;
+    } else if (product.nameKey && translations[currentLang][product.nameKey]) {
         titleText = translations[currentLang][product.nameKey];
         titleI18nAttr = `data-i18n="${product.nameKey}"`;
+    }
+
+    let descriptionText = product.description || '';
+    if (currentLang === 'ar' && product.description_ar) {
+        descriptionText = product.description_ar;
     }
 
     // Resolve image path: absolute URLs pass through; relative paths get a leading /
@@ -358,7 +488,7 @@ function renderProducts(productsList) {
         <div>
           <h3 class="product-title" ${titleI18nAttr}>${titleText}</h3>
           <div class="product-description" style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 10px;">
-            ${product.description || ''}
+            ${descriptionText}
           </div>
           <div class="product-price">${priceHTML}</div>
           ${variantLabelsHTML}

@@ -657,6 +657,23 @@
       letter-spacing: 1px;
     }
 
+    /* Summary Modal */
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .summary-section { background: var(--bg3); padding: 15px; border-radius: 10px; border: 1px solid var(--border); }
+    .summary-section h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; letter-spacing: 1px; }
+    .summary-item-row { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 8px; color: var(--text); }
+    .summary-item-row.total { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-weight: 700; color: var(--accent); font-size: 1.1rem; }
+    .summary-info { font-size: 0.9rem; margin-bottom: 6px; }
+    .summary-info strong { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; width: 80px; display: inline-block; }
+
+    /* Audio Banner */
+    #audio-banner {
+      background: rgba(212,175,55,0.1); border: 1px solid var(--accent); padding: 10px 20px;
+      margin-bottom: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+
     /* Skeleton loader */
     .skeleton {
       background: linear-gradient(90deg, var(--bg3) 25%, var(--bg2) 50%, var(--bg3) 75%);
@@ -849,6 +866,14 @@
           </div>
         </div>
 
+        <div id="audio-banner" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+             <span style="font-size: 1.2rem;">🔔</span>
+             <span id="audio-status-text">New pending orders! Audio notification active.</span>
+          </div>
+          <button class="btn btn-sm btn-gold" id="enable-audio-btn" onclick="enableAudio()">Enable Sound</button>
+        </div>
+
         <div class="table-wrap">
           <div class="table-head" style="grid-template-columns: 110px 180px 1fr 140px 100px 120px;">
             <div>Order #</div>
@@ -870,7 +895,7 @@
     </main>
   </div>
 
-  <audio id="chime-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" preload="auto"></audio>
+  <audio id="chime-sound" src="./Rings/Sound.mp3" preload="auto" loop></audio>
 
   <!-- Add Product Modal -->
   <div class="modal-bg" id="add-modal">
@@ -882,9 +907,16 @@
       <div class="modal-body">
         <form id="add-form" onsubmit="submitProduct(event)">
           <div class="form-grid">
-            <div class="form-group full">
+            <div class="form-group">
               <label class="form-label">Product Name *</label>
               <input class="form-input" type="text" id="f-name" placeholder="e.g. Pistachio Baklava" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                Arabic Name
+                <span style="font-size: 0.65rem; background: var(--accent); color: #000; padding: 1px 5px; border-radius: 4px;">عربي</span>
+              </label>
+              <input class="form-input" type="text" id="f-name-ar" placeholder="مثلاً: بقلاوة بالفستق" dir="rtl">
             </div>
             <div class="form-group full">
               <div class="variant-toggle-wrap">
@@ -949,9 +981,16 @@
                 <option value="customized_cakes">Customized Cakes</option>
               </select>
             </div>
-            <div class="form-group full">
+            <div class="form-group">
               <label class="form-label">Description</label>
               <textarea class="form-textarea" id="f-desc" placeholder="A short description of the product…"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                Arabic Description
+                <span style="font-size: 0.65rem; background: var(--accent); color: #000; padding: 1px 5px; border-radius: 4px;">عربي</span>
+              </label>
+              <textarea class="form-textarea" id="f-desc-ar" placeholder="وصف قصير للمنتج..." dir="rtl"></textarea>
             </div>
             <div class="form-group full">
               <label class="form-label">Product Image</label>
@@ -1006,6 +1045,45 @@
         <div style="display: flex; gap: 15px; justify-content: center;">
           <button type="button" class="btn btn-outline" onclick="closeDeleteModal()" style="flex: 1;">Cancel</button>
           <button type="button" class="btn btn-danger" id="confirm-delete-btn" onclick="confirmDeleteProduct()" style="flex: 1; justify-content: center;">Delete Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Summary Modal -->
+  <div class="modal-bg" id="summary-modal">
+    <div class="modal" style="max-width: 650px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Order Summary</h2>
+        <button class="modal-close" onclick="closeSummaryModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="summary-grid">
+           <div class="summary-section">
+              <h4>Customer Details</h4>
+              <div class="summary-info"><strong>Name:</strong> <span id="s-cust-name"></span></div>
+              <div class="summary-info"><strong>Phone:</strong> <span id="s-cust-phone"></span></div>
+              <div class="summary-info"><strong>Email:</strong> <span id="s-cust-email"></span></div>
+              <div class="summary-info"><strong>Address:</strong> <span id="s-cust-addr"></span></div>
+           </div>
+           <div class="summary-section">
+              <h4>Order Info</h4>
+              <div class="summary-info"><strong>Order #:</strong> <span id="s-order-num"></span></div>
+              <div class="summary-info"><strong>Date:</strong> <span id="s-order-date"></span></div>
+              <div class="summary-info"><strong>Payment:</strong> <span id="s-order-pay"></span></div>
+              <div class="summary-info"><strong>Status:</strong> <span id="s-order-status"></span></div>
+           </div>
+        </div>
+        <div class="summary-section" style="margin-top: 20px;">
+           <h4>Order Items</h4>
+           <div id="s-order-items"></div>
+           <div class="summary-item-row total">
+              <span>Grand Total</span>
+              <span id="s-order-total"></span>
+           </div>
+        </div>
+        <div class="modal-footer" style="margin-top: 20px;">
+           <button class="btn btn-gold" onclick="closeSummaryModal()">Close Summary</button>
         </div>
       </div>
     </div>
@@ -1127,23 +1205,39 @@
         if (!res.ok) return;
         const orders = await res.json();
         
-        let hasNew = false;
-        orders.forEach(o => {
-          if (!seenOrderIds.has(o.id) && o.status === 'pending') {
-            hasNew = true;
-          }
-          seenOrderIds.add(o.id);
-        });
-
-        if (hasNew && seenOrderIds.size > orders.length - (hasNew ? 1 : 0)) { 
-           // Only chime if it's not the very first load of many pending orders
-           notifyNewOrder();
-        }
-
         allOrders = orders;
         renderOrders();
         updatePendingCount();
+        handleAudioLoop();
       } catch (err) { console.error(err); }
+    }
+
+    let audioEnabled = false;
+    function enableAudio() {
+      audioEnabled = true;
+      const chime = document.getElementById('chime-sound');
+      chime.play().then(() => {
+        chime.pause(); // Just to "unlock" audio on mobile/modern browsers
+        handleAudioLoop();
+        document.getElementById('enable-audio-btn').style.display = 'none';
+        document.getElementById('audio-status-text').textContent = 'Audio notifications active.';
+      }).catch(e => console.log("Audio unlock failed", e));
+    }
+
+    function handleAudioLoop() {
+      const pending = allOrders.filter(o => o.status === 'pending');
+      const chime = document.getElementById('chime-sound');
+      const banner = document.getElementById('audio-banner');
+
+      if (pending.length > 0) {
+        if (banner) banner.style.display = 'flex';
+        if (audioEnabled) {
+          if (chime.paused) chime.play();
+        }
+      } else {
+        if (banner) banner.style.display = 'none';
+        if (chime) chime.pause();
+      }
     }
 
     function notifyNewOrder() {
@@ -1172,6 +1266,11 @@
         const itemsList = items.map(i => `${i.qty}x ${i.name}`).join(', ');
         const mapUrl = `https://www.google.com/maps?q=${o.lat},${o.lng}`;
         
+        let statusBadge = `<span class="category-pill" style="background:${getStatusColor(o.status)}; color:#000; font-weight:700;">${o.status.toUpperCase()}</span>`;
+        if (o.status === 'completed') {
+           statusBadge = `<span style="font-weight:700; color:var(--green); font-size:0.85rem;">Order Delivered</span>`;
+        }
+
         html += `
           <div class="table-row" style="grid-template-columns: 110px 180px 1fr 140px 100px 120px;">
             <div style="font-weight:700; color:var(--accent);">#${o.order_number || o.id}</div>
@@ -1189,10 +1288,19 @@
                <div style="color:var(--muted); font-size:0.7rem; text-transform:uppercase;">${o.payment_method}</div>
             </div>
             <div>
-               <span class="category-pill" style="background:${getStatusColor(o.status)}; color:#000; font-weight:700;">${o.status.toUpperCase()}</span>
+               ${statusBadge}
             </div>
             <div class="row-actions">
-               ${o.status === 'pending' ? `<button class="btn btn-sm btn-gold" onclick="updateOrderStatus(${o.id}, 'accepted')">Accept</button>` : ''}
+               ${o.status === 'pending' ? `
+                 <button class="btn btn-sm btn-gold" style="padding:4px 8px; font-size:0.7rem;" onclick="updateOrderStatus(${o.id}, 'accepted')">Accept</button>
+                 <button class="btn btn-sm btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="updateOrderStatus(${o.id}, 'rejected')">Decline</button>
+               ` : ''}
+               ${o.status === 'accepted' ? `
+                 <button class="btn btn-sm btn-gold" style="padding:4px 8px; font-size:0.75rem; background:#4ade80; color:#000;" onclick="completeOrder(${o.id})">Order complete?</button>
+               ` : ''}
+               <button class="icon-btn" title="View Summary" onclick="openSummaryModal(${o.id})">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4S17.52 4 12 4s-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+               </button>
                <button class="icon-btn" title="Print Receipt" onclick='printReceipt(${JSON.stringify(o).replace(/'/g, "&#39;")})'>
                   <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
                </button>
@@ -1206,8 +1314,49 @@
     function getStatusColor(s) {
       if(s === 'accepted') return 'var(--green)';
       if(s === 'pending') return 'var(--accent)';
-      if(s === 'rejected') return 'var(--red)';
+      if(s === 'rejected' || s === 'canceled') return 'var(--red)';
+      if(s === 'completed') return '#fff';
       return 'var(--muted)';
+    }
+
+    async function completeOrder(id) {
+       if (confirm("Are you sure you want to mark this order as completed?")) {
+          await updateOrderStatus(id, 'completed');
+       }
+    }
+
+    function openSummaryModal(id) {
+       const o = allOrders.find(order => order.id === id);
+       if (!o) return;
+
+       document.getElementById('s-cust-name').textContent = o.customer_name;
+       document.getElementById('s-cust-phone').textContent = o.customer_phone;
+       document.getElementById('s-cust-email').textContent = o.customer_email || 'N/A';
+       document.getElementById('s-cust-addr').textContent = o.address;
+       
+       document.getElementById('s-order-num').textContent = `#${o.order_number || o.id}`;
+       document.getElementById('s-order-date').textContent = new Date(o.created_at).toLocaleString();
+       document.getElementById('s-order-pay').textContent = o.payment_method.toUpperCase();
+       document.getElementById('s-order-status').textContent = o.status.toUpperCase();
+       
+       const items = JSON.parse(o.items || '[]');
+       let itemsHtml = '';
+       items.forEach(i => {
+          itemsHtml += `
+            <div class="summary-item-row">
+               <span>${i.qty}x ${i.name}</span>
+               <span>Qr ${(i.qty * i.price).toFixed(2)}</span>
+            </div>
+          `;
+       });
+       document.getElementById('s-order-items').innerHTML = itemsHtml;
+       document.getElementById('s-order-total').textContent = `Qr ${parseFloat(o.total).toFixed(2)}`;
+       
+       document.getElementById('summary-modal').classList.add('open');
+    }
+
+    function closeSummaryModal() {
+       document.getElementById('summary-modal').classList.remove('open');
     }
 
     async function updateOrderStatus(id, status) {
@@ -1355,7 +1504,7 @@
         return `<div class="table-row ${p.active !== 1 ? 'inactive' : ''}" id="row-${p.id}">
           <div>${thumb}${thumbFallback}</div>
           <div class="product-meta">
-            <div class="name">${p.name}</div>
+            <div class="name">${p.name} ${p.name_ar ? `<span style="font-size:0.75rem; color:var(--accent); margin-left:8px;">(${p.name_ar})</span>` : ''}</div>
             <div class="desc">${p.description || 'No description'}</div>
           </div>
           <div class="price-cell">${p.variants ? variantLabel : 'QR ' + parseFloat(p.price).toFixed(2)}</div>
@@ -1672,8 +1821,10 @@
       if(!btn) return;
       
       const name = document.getElementById('f-name').value.trim();
+      const name_ar = document.getElementById('f-name-ar').value.trim();
       const category = document.getElementById('f-category').value;
       const description = document.getElementById('f-desc').value.trim();
+      const description_ar = document.getElementById('f-desc-ar').value.trim();
       const featured = document.getElementById('f-featured').checked ? '1' : '0';
       const hasVariants = document.getElementById('f-has-variants').checked;
 
@@ -1706,8 +1857,10 @@
 
       const formData = new FormData();
       formData.append('name', name);
+      formData.append('name_ar', name_ar);
       formData.append('category', category);
       formData.append('description', description);
+      formData.append('description_ar', description_ar);
       formData.append('featured', featured);
 
       if (hasVariants) {

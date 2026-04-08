@@ -73,6 +73,7 @@
     .status-pending { background: rgba(212,175,55,0.1); color: var(--accent); border: 1px solid var(--accent); }
     .status-accepted { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid var(--green); }
     .status-rejected { background: rgba(248,113,113,0.1); color: var(--red); border: 1px solid var(--red); }
+    .status-completed { background: rgba(74,222,128,0.2); color: var(--green); border: 1px solid var(--green); }
     .order-items { border-top: 1px solid var(--border); padding-top: 15px; }
     .order-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
     .order-footer { margin-top: 15px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; border-top: 1px dashed var(--border); padding-top: 15px; }
@@ -104,6 +105,14 @@
       .sidebar-nav { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
       .nav-item { white-space: nowrap; }
     }
+
+    /* Dropdown Styling */
+    .has-dropdown { position: relative; }
+    .has-dropdown:hover .dropdown-menu { display: block !important; }
+    .dropdown-menu { 
+      min-width: 150px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    }
   </style>
 </head>
 <body>
@@ -115,6 +124,16 @@
     </a>
     <div class="header-right">
       <a href="menu.html" class="nav-link">Main Menu</a>
+      <div class="nav-item has-dropdown" style="list-style:none; margin:0 15px;">
+        <button id="lang-btn" class="nav-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:5px; color:var(--text); font-family:var(--font);">
+          <span data-i18n="nav.language">Language</span>
+          <svg style="width:14px; height:14px; fill:currentColor;" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <ul class="dropdown-menu" style="display:none; position:absolute; right:5%; background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:10px; z-index:100;">
+          <li style="list-style:none;"><button onclick="setLanguage('en')" style="background:none; border:none; color:var(--text); padding:8px 15px; cursor:pointer; width:100%; text-align:left;">English</button></li>
+          <li style="list-style:none;"><button onclick="setLanguage('ar')" style="background:none; border:none; color:var(--text); padding:8px 15px; cursor:pointer; width:100%; text-align:left;">Arabic (عربي)</button></li>
+        </ul>
+      </div>
       <button class="logout-btn" onclick="doLogout()">Sign Out</button>
     </div>
   </header>
@@ -202,7 +221,9 @@
     </main>
   </div>
 
+  <script src="script.js"></script>
   <script>
+    // Note: translations and currentLang now come from script.js
     let user = null;
 
     window.onload = async () => {
@@ -244,7 +265,9 @@
                   <div class="order-num">Order #${order.order_number}</div>
                   <div class="order-date">${date}</div>
                 </div>
-                <div class="order-status status-${order.status}">${order.status}</div>
+                <div class="order-status status-${order.status}" data-i18n="status.${order.status === 'completed' ? 'delivered' : order.status.toLowerCase()}">
+                  ${(window.translations && window.translations[window.currentLang] && window.translations[window.currentLang]["status." + (order.status === 'completed' ? 'delivered' : order.status.toLowerCase())]) || (order.status === 'completed' ? 'Delivered' : order.status)}
+                </div>
               </div>
               <div class="order-items">
                 ${items.map(item => `

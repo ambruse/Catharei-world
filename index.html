@@ -176,8 +176,8 @@
       <div class="sticky-canvas-wrapper">
         <canvas id="cake-canvas"></canvas>
         <div class="scroll-overlay-text" id="cake-scroll-text">
-          <h2>The Finest Custom Cake</h2>
-          <p>Handcrafted to perfection, this exclusive creation stands out as the absolute best custom cake in all of
+          <h2 data-i18n="cake.scrollTitle">The Finest Custom Cake</h2>
+          <p data-i18n="cake.scrollText">Handcrafted to perfection, this exclusive creation stands out as the absolute best custom cake in all of
             Doha. Delicate textures layered with rich flavors promise an unforgettable celebration.</p>
         </div>
       </div>
@@ -304,7 +304,7 @@
 
     <!-- 8. Delivery Partners -->
     <section class="section-padding container text-center" style="padding-top: 20px;">
-      <h3 style="color: var(--color-text-secondary); font-size: 1rem; margin-bottom: 20px; text-transform: uppercase;">
+      <h3 style="color: var(--color-text-secondary); font-size: 1rem; margin-bottom: 20px; text-transform: uppercase;" data-i18n="partner.title">
         Our Delivery Partners</h3>
       <div class="partners-list">
         <!-- Delivery partner links -->
@@ -331,34 +331,34 @@
             <img src="images/misc/Catharei_logo.png" alt="CATHAREi Logo" style="height: 28px; width: auto;">
             <div class="brand-name" style="font-size: 1.2rem; letter-spacing: 2px;">CATHAREi</div>
           </a>
-          <p style="color: #999; font-size: 0.85rem; line-height: 1.6;">The finest selection of traditional Arabic
+          <p style="color: #999; font-size: 0.85rem; line-height: 1.6;" data-i18n="footer.about">The finest selection of traditional Arabic
             sweets, oriental pastries, and modern custom cakes in Doha.</p>
         </div>
         <div class="footer-col" style="text-align: left;">
           <h4 class="footer-title"
-            style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;">
+            style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;" data-i18n="footer.links">
             Links</h4>
           <ul class="footer-links">
-            <li><a href="navigation/savories.html" style="color:#ccc; font-size:0.85rem;">Savouries</a></li>
-            <li><a href="navigation/Arabic_sweets.html" style="color:#ccc; font-size:0.85rem;">Sweets</a></li>
-            <li><a href="navigation/cakes.html" style="color:#ccc; font-size:0.85rem;">Cakes</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Offers</a></li>
+            <li><a href="navigation/savories.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.savories">Savouries</a></li>
+            <li><a href="navigation/Arabic_sweets.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.arabicSweets">Sweets</a></li>
+            <li><a href="navigation/cakes.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.cakesPlain">Cakes</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.offers">Offers</a></li>
           </ul>
         </div>
         <div class="footer-col" style="text-align: left;">
           <h4 class="footer-title"
-            style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;">
+            style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;" data-i18n="footer.help">
             Help</h4>
           <ul class="footer-links">
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Contact Us</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">FAQs</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Privacy Policy</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Terms of Service</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.faq">FAQs</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.privacy">Privacy Policy</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.terms">Terms of Service</a></li>
           </ul>
         </div>
         <div class="footer-col" style="text-align: left;">
           <h4 class="footer-title"
-            style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;">
+            style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;" data-i18n="footer.follow">
             Follow Us</h4>
           <div style="display: flex; gap: 15px;">
             <a href="https://www.instagram.com/catharei_bakery_sweets/" target="_blank" aria-label="Instagram"
@@ -369,7 +369,21 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom" style="text-align: center; color:#666; font-size:0.8rem; padding-top: 10px;">
+      <div class="footer-stores">
+        <h4 class="stores-title" data-i18n="footer.stores">Our Stores</h4>
+        <div class="stores-grid">
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z/data=!4m6!3m5!1s0x3e45db0706a6f2b3:0x1aaa8102b449d84d!8m2!3d25.2425559!4d51.4594252!16s%2Fg%2F11fn79k3vx?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.aziziya">Al Aziziya, Salawa Rd</a>
+          </div>
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45cd007ea1c319:0x66da9b23749a18c1!8m2!3d25.1639112!4d51.5974203!16s%2Fg%2F11yp0h_08s?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.wakrah">Al wakrah</a>
+          </div>
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/CATHAREI/@25.3974258,51.4226857,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45e1bfcddd87c7:0x1c95e11fcbef8780!8m2!3d25.397421!4d51.425266!16s%2Fg%2F11q_jnx095?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.kharaitiyat">Al Kharaitiyat</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom" style="text-align: center; color:#666; font-size:0.8rem; padding-top: 10px;" data-i18n="footer.rights">
         Copyright &copy; 2026 CATHAREi. All rights reserved.
       </div>
     </div>
@@ -389,6 +403,18 @@
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%" data-i18n="modal.signIn">Sign In</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Variant Selection Modal -->
+  <div class="modal-overlay" id="variant-modal">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+      <button class="modal-close" onclick="closeVariantModal()">&times;</button>
+      <h2 class="modal-title" id="variant-modal-title" style="margin-bottom: 20px; font-family: var(--font-serif); color: var(--color-accent); font-size: 1.5rem;">Select Size</h2>
+      <div id="variant-options" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; text-align: left;">
+        <!-- JS will populate radio buttons here -->
+      </div>
+      <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="confirmVariantAddToCart()">Add to Cart</button>
     </div>
   </div>
 

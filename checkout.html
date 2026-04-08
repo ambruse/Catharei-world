@@ -44,6 +44,28 @@
       border-radius: 8px; color: var(--text); font-family: var(--font); outline: none; transition: border-color 0.2s;
     }
     .field input:focus, .field textarea:focus { border-color: var(--accent); }
+    
+    .phone-input-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .phone-input-wrap:focus-within { border-color: var(--accent); }
+    .phone-input-wrap .prefix {
+      padding: 12px 0 12px 16px;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+      user-select: none;
+    }
+    .phone-input-wrap input {
+      border: none !important;
+      padding-left: 8px !important;
+    }
 
     /* Map Styles */
     #map { height: 300px; border-radius: 12px; border: 1px solid var(--border); margin-top: 15px; }
@@ -127,6 +149,33 @@
       padding: 8px; cursor: pointer; color: var(--accent); transition: all 0.2s;
     }
     #locate-btn:hover { background: var(--bg3); border-color: var(--accent); }
+
+    /* Verification Modal */
+    .v-modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      z-index: 10000; display: none; align-items: center; justify-content: center;
+    }
+    .v-modal-bg.active { display: flex; }
+    .v-modal {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 20px;
+      padding: 35px; width: 90%; max-width: 450px; text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .v-modal h2 { border: none; font-size: 1.6rem; margin-bottom: 10px; color: var(--accent); }
+    .v-modal p { color: var(--muted); margin-bottom: 25px; line-height: 1.5; }
+    .v-modal .phone-display {
+      font-size: 1.4rem; font-weight: 700; color: var(--text); background: var(--bg3);
+      padding: 15px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border);
+    }
+    .v-modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .v-btn {
+      padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; border: none;
+      transition: all 0.2s; font-family: var(--font);
+    }
+    .v-btn-verify { background: var(--accent); color: #000; }
+    .v-btn-verify:hover { background: var(--accent2); transform: translateY(-2px); }
+    .v-btn-cancel { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .v-btn-cancel:hover { border-color: var(--red); color: var(--red); }
   </style>
 </head>
 <body>
@@ -140,36 +189,64 @@
     </div>
   </div>
 
-  <header>
+  <!-- Verification Modal -->
+  <div class="v-modal-bg" id="verification-modal">
+    <div class="v-modal">
+      <h2 data-i18n="v.title">Verify Phone Number</h2>
+      <p><span data-i18n="v.desc">Please confirm that the phone number below is correct before we place your order.</span> <br><br> <span style="color: var(--red); font-weight: 600;" data-i18n="v.warning_en">Your Order will be only Deliverd before Confirm it through a call to the Customer.</span><br><br><span style="color: var(--red); font-weight: 600; display: block;" dir="rtl" data-i18n="v.warning_ar">لن يتم تسليم طلبك إلا بعد تأكيده من خلال مكالمة هاتفية مع العميل.</span></p>
+      <div class="phone-display" id="verify-phone-num"></div>
+      <div class="v-modal-actions">
+        <button class="v-btn v-btn-cancel" onclick="closeVerification()" data-i18n="v.cancel">Cancel</button>
+        <button class="v-btn v-btn-verify" onclick="confirmOrder()" data-i18n="v.confirm">Confirm & Place Order</button>
+      </div>
+    </div>
+  </div>
+
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 5%;">
     <a href="index.html" class="brand">
       <img src="images/misc/Catharei_logo.png" alt="CATHAREi" onerror="this.style.display='none'">
       <span>CATHAREi</span>
     </a>
-    <a href="navigation/cart.html" style="color: var(--muted); text-decoration: none; font-size: 0.9rem;">← Back to Cart</a>
+    <div style="display: flex; align-items: center; gap: 20px;">
+       <div class="nav-item has-dropdown" style="list-style: none;">
+          <button id="lang-btn" style="background:none; border:none; color:var(--muted); font-family:var(--font); cursor:pointer; font-size:0.9rem; display:flex; align-items:center; gap:5px;">
+             <span data-i18n="nav.language">Language</span>
+             <svg class="icon" viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" id="lang-en" onclick="setLanguage('en')">English</button></li>
+            <li><button class="dropdown-item" id="lang-ar" onclick="setLanguage('ar')">Arabic (عربي)</button></li>
+          </ul>
+       </div>
+       <a href="navigation/cart.html" style="color: var(--muted); text-decoration: none; font-size: 0.9rem;" data-i18n="cart.view">← Back to Cart</a>
+    </div>
   </header>
 
   <div class="container">
     <main>
       <div class="section">
-        <h2>Billing & Delivery</h2>
+        <h2 data-i18n="checkout.billing">Billing & Delivery</h2>
         <form id="checkout-form">
           <div class="grid-fields">
             <div class="field">
-              <label>Full Name</label>
-              <input type="text" id="name" required placeholder="John Doe">
+              <label data-i18n="checkout.fullName">Full Name</label>
+              <input type="text" id="name" required placeholder="John Doe" data-i18n-ph="checkout.fullName">
             </div>
             <div class="field">
-              <label>Phone Number</label>
-              <input type="tel" id="phone" required placeholder="+974 0000 0000">
+              <label data-i18n="checkout.phone">Phone Number</label>
+              <div class="phone-input-wrap">
+                <span class="prefix">+974</span>
+                <input type="tel" id="phone" required placeholder="0000 0000" maxlength="8" data-i18n-ph="checkout.phone">
+              </div>
             </div>
           </div>
           <div class="field">
-            <label>Email Address</label>
-            <input type="email" id="email" required placeholder="john@example.com">
+            <label data-i18n="checkout.email">Email Address</label>
+            <input type="email" id="email" required placeholder="john@example.com" data-i18n-ph="checkout.email">
           </div>
           <div class="field">
-            <label>Delivery Address</label>
-            <textarea id="address" rows="3" required placeholder="Building No, Street Name, Zone, City"></textarea>
+            <label data-i18n="checkout.address">Delivery Address</label>
+            <textarea id="address" rows="3" required placeholder="Building No, Street Name, Zone, City" data-i18n-ph="checkout.address"></textarea>
           </div>
 
           <div class="field">
@@ -188,7 +265,7 @@
       </div>
 
       <div class="section">
-        <h2>Payment Method</h2>
+        <h2 data-i18n="checkout.payment">Payment Method</h2>
         <div class="payment-methods">
           <label class="payment-option disabled-method" onclick="selectPayment('apple-pay')">
             <div class="radio-circle"></div>
@@ -225,7 +302,7 @@
 
           <label class="payment-option" onclick="selectPayment('cod')">
             <div class="radio-circle"></div>
-            <span style="font-weight: 600;">Cash on Delivery</span>
+            <span style="font-weight: 600;" data-i18n="checkout.cod">Cash on Delivery</span>
             <input type="radio" name="payment" value="cod">
           </label>
           <div class="payment-details" id="details-cod">
@@ -237,15 +314,16 @@
 
     <aside>
       <div class="section" style="position: sticky; top: 20px;">
-        <h3>Order Summary</h3>
+        <h3 data-i18n="checkout.summary">Order Summary</h3>
         <div id="order-items">
           <!-- Rendered via JS -->
         </div>
         <div class="summary-total">
-          <span>Total</span>
+          <span data-i18n="checkout.total">Total</span>
           <span id="grand-total">Qr 0.00</span>
         </div>
-        <button class="place-order-btn" id="place-order-btn" onclick="placeOrder()">Place Order Now</button>
+        <button class="place-order-btn" id="place-order-btn" onclick="placeOrder()" data-i18n="checkout.placeOrder">Place Order Now</button>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 15px; font-weight: 500;" data-i18n="checkout.deliveryTime">Order will be only delivered in 1-2 Hrs</p>
       </div>
     </aside>
   </div>
@@ -261,7 +339,27 @@
       renderSummary();
       checkAuth();
       selectPayment('cod');
+      initFormListeners();
     };
+
+    function initFormListeners() {
+      const inputs = ['name', 'phone', 'email', 'address'];
+      inputs.forEach(id => {
+        document.getElementById(id).addEventListener('input', validateForm);
+      });
+      validateForm(); // Initial check
+    }
+
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const btn = document.getElementById('place-order-btn');
+      
+      const isValid = name && phone.length === 8 && email && address && selectedPaymentMethod;
+      btn.disabled = !isValid;
+    }
 
     async function checkAuth() {
       const res = await fetch('/api/auth/me');
@@ -338,13 +436,25 @@
       option.classList.add('active');
       document.getElementById(`details-${method}`).style.display = 'block';
       selectedPaymentMethod = method;
+      validateForm();
     }
 
-    async function placeOrder() {
+    function placeOrder() {
+      const phone = document.getElementById('phone').value.trim();
+      document.getElementById('verify-phone-num').textContent = '+974 ' + phone;
+      document.getElementById('verification-modal').classList.add('active');
+    }
+
+    function closeVerification() {
+      document.getElementById('verification-modal').classList.remove('active');
+    }
+
+    async function confirmOrder() {
+      closeVerification();
       const btn = document.getElementById('place-order-btn');
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
+      const phone = '+974' + document.getElementById('phone').value.trim();
       const address = document.getElementById('address').value;
       const lat = document.getElementById('lat').value;
       const lng = document.getElementById('lng').value;
@@ -401,8 +511,7 @@
         if (data.status === 'accepted') {
           window.location.href = `thankyou.html?num=${data.order_number}`;
         } else if (data.status === 'rejected') {
-          showToast("Order was declined. Please contact support.", "error");
-          window.location.href = 'navigation/cart.html';
+          window.location.href = `thankyou.html?num=${data.order_number}&status=rejected`;
         } else {
           // Keep polling every 4 seconds
           setTimeout(() => pollOrderStatus(orderId), 4000);

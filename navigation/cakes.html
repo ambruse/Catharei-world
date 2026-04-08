@@ -83,7 +83,7 @@
             <svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
           </a>
         </div>
-        <div class="nav-item cart-icon-wrapper">
+        <div class="nav-item cart-icon-wrapper hide-mobile">
           <button id="cart-btn" aria-label="Cart">
             <svg class="icon" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
             <span class="cart-badge" id="cart-badge">0</span>
@@ -94,11 +94,35 @@
     </nav>
   </header>
 
+  <!-- Bottom Nav -->
+  <nav class="mobile-bottom-nav">
+    <a href="../index.html" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="../menu.html" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      <span data-i18n="nav.menu">Menu</span>
+    </a>
+    <a href="cart.html" class="bottom-nav-item">
+      <div class="cart-icon-wrapper" style="position:relative;">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        <span class="cart-badge">0</span>
+      </div>
+      <span data-i18n="nav.cart">Cart</span>
+    </a>
+    <button onclick="handleAccountClick()" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      <span data-i18n="nav.account">Account</span>
+    </button>
+  </nav>
+
+
   <!-- Product Listing -->
   <main class="section-padding container text-center" style="margin-top: 50px; min-height: 60vh;">
     <div class="section-head" style="margin-bottom: 40px;">
-      <h2 style="margin-bottom: 10px; text-transform: uppercase;">CAKES</h2>
-      <p style="font-size: 0.9rem; color: #999;">Classic, fluffy, and freshly baked cakes for every occasion.</p>
+      <h2 style="margin-bottom: 10px; text-transform: uppercase;" data-i18n="nav.cakesPlain">CAKES</h2>
+      <p style="font-size: 0.9rem; color: #999;" data-i18n="cat.cakesDesc">Classic, fluffy, and freshly baked cakes for every occasion.</p>
     </div>
     
     <!-- Script.js will populate ALL items here by default, or you can filter by category later -->
@@ -142,6 +166,20 @@
           </div>
         </div>
       </div>
+      <div class="footer-stores">
+        <h4 class="stores-title" data-i18n="footer.stores">Our Stores</h4>
+        <div class="stores-grid">
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z/data=!4m6!3m5!1s0x3e45db0706a6f2b3:0x1aaa8102b449d84d!8m2!3d25.2425559!4d51.4594252!16s%2Fg%2F11fn79k3vx?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.aziziya">Al Aziziya, Salawa Rd</a>
+          </div>
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45cd007ea1c319:0x66da9b23749a18c1!8m2!3d25.1639112!4d51.5974203!16s%2Fg%2F11yp0h_08s?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.wakrah">Al wakrah</a>
+          </div>
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/CATHAREI/@25.3974258,51.4226857,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45e1bfcddd87c7:0x1c95e11fcbef8780!8m2!3d25.397421!4d51.425266!16s%2Fg%2F11q_jnx095?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.kharaitiyat">Al Kharaitiyat</a>
+          </div>
+        </div>
+      </div>
       <div class="footer-bottom" style="text-align: center; color:#666; font-size:0.8rem; padding-top: 10px;">
         Copyright &copy; 2026 CATHAREi. All rights reserved.
       </div>
@@ -165,5 +203,6 @@
   <script src="../script.js"></script>
 </body>
 </html>
+
 
 

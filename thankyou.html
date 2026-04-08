@@ -54,26 +54,54 @@
 </head>
 <body>
 
-  <div class="thankview">
-    <div class="check-icon">
-      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+  <div class="thankview" id="status-card">
+    <div class="check-icon" id="status-icon">
+      <svg viewBox="0 0 24 24" id="icon-path"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
     </div>
-    <h1>Thank You!</h1>
-    <p>Your order has been accepted and is being prepared with love. We'll notify you once it's on the way.</p>
+    <h1 id="status-title" data-i18n="thank.title">Thank You!</h1>
+    <p id="status-msg">Your order has been accepted and is being prepared with love. We'll notify you once it's on the way.</p>
     
     <div class="order-card">
       <span class="label">Order Number</span>
       <span class="number" id="ord-num"># ———</span>
     </div>
 
-    <a href="index.html" class="btn">Back to Menu</a>
+    <a href="index.html" class="btn" data-i18n="nav.home">Back to Menu</a>
   </div>
 
+  <script src="script.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const orderNum = urlParams.get('num');
+    const status = urlParams.get('status');
+
     if (orderNum) {
       document.getElementById('ord-num').textContent = '#' + orderNum;
+    }
+
+    if (status === 'rejected') {
+      // Update UI for Rejected State
+      const title = document.getElementById('status-title');
+      const msg = document.getElementById('status-msg');
+      const icon = document.getElementById('status-icon');
+      const iconPath = document.getElementById('icon-path');
+
+      title.textContent = translations[currentLang]["status.sorryTitle"] || "Order Update";
+      title.removeAttribute('data-i18n'); // prevent override
+      
+      msg.textContent = translations[currentLang]["status.sorryBody"] || "We are sorry, but your order couldn't be accepted.";
+      
+      icon.style.color = 'var(--red)';
+      icon.style.background = 'rgba(248,113,113,0.1)';
+      iconPath.innerHTML = '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>'; // Warning/Info icon
+      
+      document.documentElement.style.setProperty('--accent', 'var(--red)');
+    } else {
+       // Success Message (ensure translations)
+       if(currentLang === 'ar') {
+         document.getElementById('status-title').textContent = "شكراً لك!";
+         document.getElementById('status-msg').textContent = "لقد تم قبول طلبك ويتم تحضيره بكل حب. سنقوم بإخطارك بمجرد إرساله.";
+       }
     }
   </script>
 </body>

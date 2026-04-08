@@ -1399,3 +1399,63 @@ main {
     text-align: center;
   }
 }
+
+/* --- Our Stores Footer Section --- */
+.footer-stores {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.footer-stores .stores-title {
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+}
+
+.stores-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.store-item {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+  padding: 10px;
+}
+
+.store-item a {
+  display: block;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: inherit;
+}
+
+.store-item a:hover {
+  color: var(--color-accent);
+}
+
+/* Specific alignment requirement */
+.store-item:nth-child(1) { text-align: left; }
+.store-item:nth-child(2) { text-align: center; }
+.store-item:nth-child(3) { text-align: right; }
+
+@media (max-width: 768px) {
+  .stores-grid {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .store-item {
+    text-align: center !important;
+  }
+}

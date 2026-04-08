@@ -135,6 +135,13 @@
             <li><a href="navigation/cakes.html" class="dropdown-item" data-i18n="nav.cakesPlain">CAKES</a></li>
           </ul>
         </li>
+        <li class="nav-item has-dropdown">
+          <button id="lang-btn"><span data-i18n="nav.language">Language</span><svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" id="lang-en" onclick="setLanguage('en')">English</button></li>
+            <li><button class="dropdown-item" id="lang-ar" onclick="setLanguage('ar')">Arabic (عربي)</button></li>
+          </ul>
+        </li>
       </ul>
       <div class="action-icons">
         <div class="nav-item"><button id="account-btn"><svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></button></div>
@@ -148,7 +155,7 @@
   <main>
     <section class="menu-hero">
       <h1 data-i18n="nav.menu">Menu</h1>
-      <p>Discover our full collection of premium treats, from traditional Arabic sweets to modern designer cakes. Handcrafted daily in Doha.</p>
+      <p data-i18n="menu.discover">Discover our full collection of premium treats, from traditional Arabic sweets to modern designer cakes. Handcrafted daily in Doha.</p>
     </section>
 
     <div class="menu-container" id="menu-content">
@@ -250,34 +257,48 @@
             <img src="images/misc/Catharei_logo.png" alt="CATHAREi Logo" style="height: 28px; width: auto;">
             <div class="brand-name" style="font-size: 1.2rem; letter-spacing: 2px;">CATHAREi</div>
           </a>
-          <p style="color: #999; font-size: 0.85rem; line-height: 1.6;">The finest selection of traditional Arabic sweets, oriental pastries, and modern custom cakes in Al Ain.</p>
+          <p style="color: #999; font-size: 0.85rem; line-height: 1.6;" data-i18n="footer.about">The finest selection of traditional Arabic sweets, oriental pastries, and modern custom cakes in Al Ain.</p>
         </div>
         <div class="footer-col" style="text-align: left;">
-          <h4 class="footer-title" style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;">Links</h4>
+          <h4 class="footer-title" style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;" data-i18n="footer.links">Links</h4>
           <ul class="footer-links">
-            <li><a href="navigation/savories.html" style="color:#ccc; font-size:0.85rem;">Savouries</a></li>
-            <li><a href="navigation/Arabic_sweets.html" style="color:#ccc; font-size:0.85rem;">Sweets</a></li>
-            <li><a href="navigation/cakes.html" style="color:#ccc; font-size:0.85rem;">Cakes</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Offers</a></li>
+            <li><a href="navigation/savories.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.savories">Savouries</a></li>
+            <li><a href="navigation/Arabic_sweets.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.arabicSweets">Sweets</a></li>
+            <li><a href="navigation/cakes.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.cakesPlain">Cakes</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.offers">Offers</a></li>
           </ul>
         </div>
         <div class="footer-col" style="text-align: left;">
-          <h4 class="footer-title" style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;">Help</h4>
+          <h4 class="footer-title" style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;" data-i18n="footer.help">Help</h4>
           <ul class="footer-links">
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Contact Us</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">FAQs</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Privacy Policy</a></li>
-            <li><a href="#" style="color:#ccc; font-size:0.85rem;">Terms of Service</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.faq">FAQs</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.privacy">Privacy Policy</a></li>
+            <li><a href="#" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.terms">Terms of Service</a></li>
           </ul>
         </div>
         <div class="footer-col" style="text-align: left;">
-          <h4 class="footer-title" style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;">Follow Us</h4>
+          <h4 class="footer-title" style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;" data-i18n="footer.follow">Follow Us</h4>
           <div style="display: flex; gap: 15px;">
              <a href="https://www.instagram.com/catharei_bakery_sweets/" target="_blank" aria-label="Instagram" style="color:#ccc;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom" style="text-align: center; color:#666; font-size:0.8rem; padding-top: 10px;">
+      <div class="footer-stores">
+        <h4 class="stores-title" data-i18n="footer.stores">Our Stores</h4>
+        <div class="stores-grid">
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z/data=!4m6!3m5!1s0x3e45db0706a6f2b3:0x1aaa8102b449d84d!8m2!3d25.2425559!4d51.4594252!16s%2Fg%2F11fn79k3vx?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.aziziya">Al Aziziya, Salawa Rd</a>
+          </div>
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45cd007ea1c319:0x66da9b23749a18c1!8m2!3d25.1639112!4d51.5974203!16s%2Fg%2F11yp0h_08s?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.wakrah">Al wakrah</a>
+          </div>
+          <div class="store-item">
+            <a href="https://www.google.com/maps/place/CATHAREI/@25.3974258,51.4226857,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45e1bfcddd87c7:0x1c95e11fcbef8780!8m2!3d25.397421!4d51.425266!16s%2Fg%2F11q_jnx095?entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="stores.kharaitiyat">Al Kharaitiyat</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom" style="text-align: center; color:#666; font-size:0.8rem; padding-top: 10px;" data-i18n="footer.rights">
         Copyright &copy; 2026 CATHAREi. All rights reserved.
       </div>
     </div>
