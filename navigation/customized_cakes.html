@@ -148,6 +148,18 @@
     </div>
   </footer>
 
+  <!-- Variant Selection Modal -->
+  <div class="modal-overlay" id="variant-modal">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+      <button class="modal-close" onclick="closeVariantModal()">&times;</button>
+      <h2 class="modal-title" id="variant-modal-title" style="margin-bottom: 20px; font-family: var(--font-serif); color: var(--color-accent); font-size: 1.5rem;">Select Size</h2>
+      <div id="variant-options" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; text-align: left;">
+        <!-- JS will populate radio buttons here -->
+      </div>
+      <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="confirmVariantAddToCart()">Add to Cart</button>
+    </div>
+  </div>
+
   <div id="toast-container"></div>
 
   <script src="../script.js"></script>
