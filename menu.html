@@ -192,16 +192,42 @@
             <div class="line"></div>
           </div>
           <div class="menu-grid">
-            ${catProducts.map(p => `
-              <div class="menu-item" onclick="showProductDetails(${p.id})">
-                <img src="${p.image || 'https://via.placeholder.com/400x300?text='+p.name}" class="menu-item-img" alt="${p.name}">
-                <div class="menu-item-info">
-                  <div class="menu-item-name">${p.name}</div>
-                  <div class="menu-item-price">QR ${parseFloat(p.price).toFixed(2)}</div>
-                  <div class="menu-item-desc">${p.description || ''}</div>
+            ${catProducts.map(p => {
+              // Handle pricing: showing specific variants if they exist
+              let priceHTML = `QR ${parseFloat(p.price).toFixed(2)}`;
+              if (p.variants) {
+                try {
+                  const variants = JSON.parse(p.variants);
+                  const disabled = variants._disabled || [];
+                  const allSizes = ['small', 'medium', 'large'];
+                  
+                  const activeVariants = allSizes
+                    .filter(s => variants[s] !== undefined && !disabled.includes(s))
+                    .map(s => {
+                      const name = s.charAt(0).toUpperCase() + s.slice(1);
+                      return `${name}: ${variants[s]}`;
+                    });
+
+                  if (activeVariants.length > 0) {
+                    priceHTML = `<span style="font-size:0.8rem; font-weight:600;">${activeVariants.join(', ')}</span>`;
+                  }
+                } catch (e) { console.error("Error parsing variants", e); }
+              }
+
+              return `
+                <div class="menu-item">
+                  <img src="${p.image || 'https://via.placeholder.com/400x300?text='+p.name}" class="menu-item-img" alt="${p.name}">
+                  <div class="menu-item-info">
+                    <div class="menu-item-name">${p.name}</div>
+                    <div class="menu-item-price">${priceHTML}</div>
+                    <div class="menu-item-desc">${p.description || ''}</div>
+                    <button class="btn btn-primary add-to-cart" style="width:100%; margin-top:15px; padding:8px; font-size:0.8rem;" 
+                      onclick="addToCart(event, ${p.id}, '${p.name.replace(/'/g, "\\'")}', ${p.price || 0}, '${(p.image || '').replace(/'/g, "\\'")}', '${(p.variants || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" 
+                      data-i18n="btn.addCart">Add to Cart</button>
+                  </div>
                 </div>
-              </div>
-            `).join('')}
+              `;
+            }).join('')}
           </div>
         `;
         container.appendChild(section);
@@ -271,6 +297,18 @@
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%" data-i18n="modal.signIn">Sign In</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Variant Selection Modal -->
+  <div class="modal-overlay" id="variant-modal">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+      <button class="modal-close" onclick="closeVariantModal()">&times;</button>
+      <h2 class="modal-title" id="variant-modal-title" style="margin-bottom: 20px; font-family: var(--font-serif); color: var(--color-accent); font-size: 1.5rem;">Select Size</h2>
+      <div id="variant-options" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; text-align: left;">
+        <!-- JS will populate radio buttons here -->
+      </div>
+      <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="confirmVariantAddToCart()">Add to Cart</button>
     </div>
   </div>
 

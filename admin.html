@@ -498,6 +498,26 @@
     .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
     .form-textarea { resize: vertical; min-height: 80px; }
 
+    /* Variants Toggle & Grid */
+    .variant-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .variant-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 8px;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
     /* Image Upload */
     .image-upload-area {
       border: 2px dashed var(--border);
@@ -866,9 +886,56 @@
               <label class="form-label">Product Name *</label>
               <input class="form-input" type="text" id="f-name" placeholder="e.g. Pistachio Baklava" required>
             </div>
-            <div class="form-group">
+            <div class="form-group full">
+              <div class="variant-toggle-wrap">
+                <span class="form-label" style="margin:0;">Has Size Variants? (Small, Medium, Large)</span>
+                <label class="toggle-label">
+                  <input type="checkbox" id="f-has-variants" onchange="toggleVariantPricing(this.checked)">
+                  <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                </label>
+              </div>
+            </div>
+            <div class="form-group full" id="standard-price-wrap">
               <label class="form-label">Price (QR) *</label>
-              <input class="form-input" type="number" id="f-price" placeholder="24.00" step="0.01" min="0" required>
+              <input class="form-input" type="number" id="f-price" placeholder="24.00" step="0.01" min="0">
+            </div>
+            <div class="form-group full" id="variant-price-wrap" style="display:none;">
+              <label class="form-label">Variant Pricing (QR) *</label>
+              <div class="variant-grid">
+                <!-- Small Variant -->
+                <div class="form-group">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                    <label class="form-label" style="font-size:0.65rem; margin:0;">Small</label>
+                    <label class="toggle-label mini" style="transform: scale(0.7);">
+                      <input type="checkbox" id="f-variant-s-enable" onchange="toggleSizeInput('s', this.checked)" checked>
+                      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                    </label>
+                  </div>
+                  <input class="form-input" type="number" id="f-price-s" placeholder="10.00" step="0.01" min="0">
+                </div>
+                <!-- Medium Variant -->
+                <div class="form-group">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                    <label class="form-label" style="font-size:0.65rem; margin:0;">Medium</label>
+                    <label class="toggle-label mini" style="transform: scale(0.7);">
+                      <input type="checkbox" id="f-variant-m-enable" onchange="toggleSizeInput('m', this.checked)" checked>
+                      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                    </label>
+                  </div>
+                  <input class="form-input" type="number" id="f-price-m" placeholder="15.00" step="0.01" min="0">
+                </div>
+                <!-- Large Variant -->
+                <div class="form-group">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;">
+                    <label class="form-label" style="font-size:0.65rem; margin:0;">Large</label>
+                    <label class="toggle-label mini" style="transform: scale(0.7);">
+                      <input type="checkbox" id="f-variant-l-enable" onchange="toggleSizeInput('l', this.checked)" checked>
+                      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                    </label>
+                  </div>
+                  <input class="form-input" type="number" id="f-price-l" placeholder="20.00" step="0.01" min="0">
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label class="form-label">Category *</label>
@@ -939,6 +1006,44 @@
         <div style="display: flex; gap: 15px; justify-content: center;">
           <button type="button" class="btn btn-outline" onclick="closeDeleteModal()" style="flex: 1;">Cancel</button>
           <button type="button" class="btn btn-danger" id="confirm-delete-btn" onclick="confirmDeleteProduct()" style="flex: 1; justify-content: center;">Delete Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant Visibility Management Modal -->
+  <div class="modal-bg" id="variant-visibility-modal">
+    <div class="modal" style="max-width: 450px;">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title">Manage Visibility</h2>
+          <p class="modal-subtitle" id="v-modal-product-name" style="font-size: 0.85rem; color: var(--muted); margin-top: 5px;">Product Name</p>
+        </div>
+        <button class="modal-close" onclick="closeVariantVisibilityModal()">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="form-group full" style="margin-top: 10px;">
+          <label class="form-label">Overall Product Visibility</label>
+          <div class="variant-toggle-wrap">
+            <span style="font-size: 0.9rem; color: var(--text);">Show in Storefront</span>
+            <label class="toggle-label">
+              <input type="checkbox" id="v-product-active">
+              <div class="toggle-track"><div class="toggle-thumb"></div></div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group full" style="margin-top: 20px;">
+          <label class="form-label">Individual Size Visibility</label>
+          <div id="v-size-grid" style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+            <!-- JS will populate size toggles here -->
+          </div>
+        </div>
+
+        <div class="modal-footer" style="padding-top: 10px;">
+          <button class="btn btn-outline" onclick="closeVariantVisibilityModal()">Cancel</button>
+          <button class="btn btn-gold" id="v-save-btn" onclick="saveVariantVisibility()">Save Changes</button>
         </div>
       </div>
     </div>
@@ -1123,27 +1228,27 @@
       const items = JSON.parse(o.items || '[]');
       let itemsHtml = '';
       items.forEach(i => {
-        itemsHtml += '<div style="display:flex; justify-content:space-between; margin-bottom:5px;">' +
+        itemsHtml += '<div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">' +
                      '<span>' + i.qty + ' x ' + i.name + '</span>' +
                      '<span>Qr ' + (i.qty * i.price).toFixed(2) + '</span></div>';
       });
 
-      const printWindow = window.open('', '_blank', 'width=350,height=600');
+      const printWindow = window.open('', '_blank', 'width=600,height=800');
       const html = '<html><head><title>Receipt #' + o.order_number + '</title>' +
-        '<style>body { font-family: "Courier New", Courier, monospace; width: 80mm; padding: 5mm; color: #000; font-size: 12px; }' +
-        '.header { text-align: center; margin-bottom: 20px; border-bottom: 1px dashed #000; padding-bottom: 10px; }' +
-        '.section { margin-bottom: 15px; border-bottom: 1px dashed #eee; padding-bottom: 10px; }' +
-        '.total { font-weight: bold; font-size: 14px; display: flex; justify-content: space-between; margin-top: 10px; }' +
-        '.footer { text-align: center; margin-top: 30px; font-size: 10px; }' +
+        '<style>body { font-family: "Courier New", Courier, monospace; width: 80mm; padding: 5mm; color: #000; font-size: 36px; line-height: 1.2; }' +
+        '.header { text-align: center; margin-bottom: 30px; border-bottom: 2px dashed #000; padding-bottom: 20px; }' +
+        '.section { margin-bottom: 25px; border-bottom: 2px dashed #eee; padding-bottom: 20px; }' +
+        '.total { font-weight: bold; font-size: 42px; display: flex; justify-content: space-between; margin-top: 20px; border-top: 2px solid #000; padding-top: 10px; }' +
+        '.footer { text-align: center; margin-top: 50px; font-size: 30px; }' +
         '@media print { body { width: 80mm; } }</style></head><body>' +
-        '<div class="header"><h2 style="margin:0;">CATHAREi</h2><div style="font-size:10px;">Premium Sweets & Bakery</div>' +
-        '<div>Order #' + o.order_number + '</div><div>' + new Date(o.created_at).toLocaleString() + '</div></div>' +
+        '<div class="header"><h1 style="margin:0; font-size:48px;">CATHAREi</h1><div style="font-size:30px;">Premium Sweets & Bakery</div>' +
+        '<div style="margin-top:10px;">Order #' + o.order_number + '</div><div>' + new Date(o.created_at).toLocaleString() + '</div></div>' +
         '<div class="section"><strong>Customer:</strong> ' + o.customer_name + '<br><strong>Phone:</strong> ' + o.customer_phone + '<br><strong>Address:</strong> ' + o.address + '</div>' +
         '<div class="section">' + itemsHtml + '</div>' +
         '<div class="total"><span>TOTAL:</span><span>Qr ' + parseFloat(o.total).toFixed(2) + '</span></div>' +
-        '<div style="font-size:10px; margin-top:5px;">Payment: ' + o.payment_method.toUpperCase() + '</div>' +
+        '<div style="font-size:30px; margin-top:10px; font-weight:bold;">Payment: ' + o.payment_method.toUpperCase() + '</div>' +
         '<div class="footer">Thank you for choosing CATHAREi!<br>www.catharei.com</div>' +
-        '<script>window.onload = () => { window.print(); setTimeout(() => window.close(), 500); }</scr' + 'ipt></body></html>';
+        '<script>window.onload = () => { window.print(); setTimeout(() => window.close(), 1500); }</scr' + 'ipt></body></html>';
       
       printWindow.document.write(html);
       printWindow.document.close();
@@ -1226,13 +1331,34 @@
           : '';
         const thumbFallback = `<div class="product-thumb-placeholder" style="${imgSrc ? 'display:none' : ''}"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>`;
 
+        let variantLabel = '';
+        if (p.variants) {
+          try {
+            const variants = JSON.parse(p.variants);
+            const disabled = variants._disabled || [];
+            const allSizes = ['small', 'medium', 'large'];
+            const presentSizes = allSizes.filter(s => variants[s] !== undefined);
+            
+            if (presentSizes.length > 0) {
+              const labelParts = presentSizes.map(s => {
+                const char = s.charAt(0).toUpperCase();
+                const isOff = disabled.includes(s);
+                return `<span style="color: ${isOff ? '#ff4d4d' : 'inherit'}; font-weight: ${isOff ? '700' : 'normal'}">${char}</span>`;
+              });
+              variantLabel = `Variants (${labelParts.join('/')})`;
+            } else {
+              variantLabel = 'Variants';
+            }
+          } catch(e) { variantLabel = 'Variants (Err)'; }
+        }
+
         return `<div class="table-row ${p.active !== 1 ? 'inactive' : ''}" id="row-${p.id}">
           <div>${thumb}${thumbFallback}</div>
           <div class="product-meta">
             <div class="name">${p.name}</div>
             <div class="desc">${p.description || 'No description'}</div>
           </div>
-          <div class="price-cell">QR ${parseFloat(p.price).toFixed(2)}</div>
+          <div class="price-cell">${p.variants ? variantLabel : 'QR ' + parseFloat(p.price).toFixed(2)}</div>
           <div><span class="category-pill">${CATEGORY_LABELS[p.category] || p.category}</span></div>
           <div>${p.featured === 1 ? '<span class="featured-star">★</span>' : '<span class="featured-none">☆</span>'}</div>
           <div>
@@ -1251,13 +1377,22 @@
     }
 
     async function toggleProduct(id, checkbox) {
+      const product = allProducts.find(p => p.id === id);
+      if (!product) return;
+
+      // If product has variants, open the management modal instead of direct toggle
+      if (product.variants && product.variants !== 'null') {
+        checkbox.checked = product.active === 1; // reset checkbox visually
+        openVariantVisibilityModal(id);
+        return;
+      }
+
       const row = document.getElementById('row-' + id);
       checkbox.disabled = true;
       try {
         const res = await fetch(`/api/products/${id}/toggle`, { method: 'PATCH' });
         const updated = await res.json();
-        const product = allProducts.find(p => p.id === id);
-        if (product) product.active = updated.active;
+        product.active = updated.active;
         if (row) row.classList.toggle('inactive', updated.active !== 1);
         updateStats();
         showToast(updated.active === 1 ? '✓ Product visible' : '✓ Product hidden', 'success');
@@ -1266,6 +1401,109 @@
         showToast('Failed to update product.', 'error');
       }
       checkbox.disabled = false;
+    }
+
+    let pendingVProductId = null;
+    function openVariantVisibilityModal(id) {
+      const product = allProducts.find(p => p.id === id);
+      if (!product) return;
+      pendingVProductId = id;
+
+      document.getElementById('v-modal-product-name').textContent = product.name;
+      document.getElementById('v-product-active').checked = product.active === 1;
+
+      const grid = document.getElementById('v-size-grid');
+      grid.innerHTML = '';
+
+      try {
+        const variants = JSON.parse(product.variants);
+        const disabled = variants._disabled || [];
+        const allSizes = ['small', 'medium', 'large'];
+        
+        allSizes.forEach(size => {
+          if (variants[size] !== undefined) {
+            const isEnabled = !disabled.includes(size);
+            const label = size.charAt(0).toUpperCase() + size.slice(1);
+            grid.innerHTML += `
+              <div class="variant-toggle-wrap">
+                <span style="font-size: 0.9rem; color: var(--text);">${label} (QR ${variants[size].toFixed(2)})</span>
+                <label class="toggle-label mini">
+                  <input type="checkbox" class="v-size-toggle" data-size="${size}" ${isEnabled ? 'checked' : ''}>
+                  <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                </label>
+              </div>
+            `;
+          }
+        });
+      } catch(e) { console.error("Error parsing variants for modal", e); }
+
+      document.getElementById('variant-visibility-modal').classList.add('open');
+    }
+
+    function closeVariantVisibilityModal() {
+      pendingVProductId = null;
+      document.getElementById('variant-visibility-modal').classList.remove('open');
+    }
+
+    async function saveVariantVisibility() {
+      if (!pendingVProductId) return;
+      const id = pendingVProductId;
+      const product = allProducts.find(p => p.id == id);
+      if (!product) {
+        console.error("Product with ID " + id + " not found in local allProducts array.");
+        showToast('Error: Product not found locally.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('v-save-btn');
+      const originalHtml = btn.innerHTML;
+      btn.innerHTML = '<div class="spinner"></div> Saving...';
+      btn.disabled = true;
+
+      const productActive = document.getElementById('v-product-active').checked;
+      const sizeToggles = document.querySelectorAll('.v-size-toggle');
+      
+      try {
+        // 1. Handle main product visibility if changed
+        if (product.active !== (productActive ? 1 : 0)) {
+           const resToggle = await fetch(`/api/products/${id}/toggle`, { method: 'PATCH' });
+           const updatedToggle = await resToggle.json();
+           product.active = updatedToggle.active;
+        }
+
+        // 2. Handle individual variant visibility
+        const variants = JSON.parse(product.variants);
+        const disabled = [];
+        sizeToggles.forEach(t => {
+           if (!t.checked) disabled.push(t.getAttribute('data-size'));
+        });
+        variants._disabled = disabled;
+
+        const resVar = await fetch(`/api/products/${id}/variants`, {
+           method: 'PATCH',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ variants: JSON.stringify(variants) })
+        });
+        
+        if (!resVar.ok) {
+           const errData = await resVar.json();
+           throw new Error(errData.error || `Server responded with ${resVar.status}`);
+        }
+        
+        const updatedVar = await resVar.json();
+        product.variants = updatedVar.variants;
+
+        renderTable();
+        updateStats();
+        showToast('✓ Metadata updated', 'success');
+        closeVariantVisibilityModal();
+      } catch(e) {
+        showToast(`Save Error: ${e.message}`, 'error');
+        console.error("Variant save failure details:", e);
+      } finally {
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+      }
     }
 
     let pendingDeleteId = null;
@@ -1403,25 +1641,80 @@
       });
     }
 
+    function toggleVariantPricing(enabled) {
+      document.getElementById('standard-price-wrap').style.display = enabled ? 'none' : 'block';
+      document.getElementById('variant-price-wrap').style.display = enabled ? 'block' : 'none';
+      document.getElementById('f-price').required = !enabled;
+      
+      if(enabled) {
+        toggleSizeInput('s', document.getElementById('f-variant-s-enable').checked);
+        toggleSizeInput('m', document.getElementById('f-variant-m-enable').checked);
+        toggleSizeInput('l', document.getElementById('f-variant-l-enable').checked);
+      } else {
+        document.getElementById('f-price-s').required = false;
+        document.getElementById('f-price-m').required = false;
+        document.getElementById('f-price-l').required = false;
+      }
+    }
+
+    function toggleSizeInput(size, enabled) {
+      const input = document.getElementById(`f-price-${size}`);
+      if (!input) return;
+      input.disabled = !enabled;
+      input.required = enabled;
+      input.style.opacity = enabled ? '1' : '0.3';
+      if (!enabled) input.value = '';
+    }
+
     async function submitProduct(e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
       if(!btn) return;
-      btn.innerHTML = '<div class="spinner"></div> Adding…';
-      btn.disabled = true;
-
+      
       const name = document.getElementById('f-name').value.trim();
-      const price = document.getElementById('f-price').value;
       const category = document.getElementById('f-category').value;
       const description = document.getElementById('f-desc').value.trim();
       const featured = document.getElementById('f-featured').checked ? '1' : '0';
+      const hasVariants = document.getElementById('f-has-variants').checked;
+
+      const variants = {};
+      if (hasVariants) {
+        const sEnabled = document.getElementById('f-variant-s-enable').checked;
+        const mEnabled = document.getElementById('f-variant-m-enable').checked;
+        const lEnabled = document.getElementById('f-variant-l-enable').checked;
+        
+        if (!sEnabled && !mEnabled && !lEnabled) {
+          showToast("Please enable at least one size variant.", "error");
+          return;
+        }
+
+        if (sEnabled) variants.small = parseFloat(document.getElementById('f-price-s').value) || 0;
+        if (mEnabled) variants.medium = parseFloat(document.getElementById('f-price-m').value) || 0;
+        if (lEnabled) variants.large = parseFloat(document.getElementById('f-price-l').value) || 0;
+
+        // Final sanity check for prices
+        for (const [key, value] of Object.entries(variants)) {
+           if (value <= 0) {
+             showToast(`Please provide a valid price for ${key.charAt(0).toUpperCase() + key.slice(1)}.`, "error");
+             return;
+           }
+        }
+      }
+
+      btn.innerHTML = '<div class="spinner"></div> Adding…';
+      btn.disabled = true;
 
       const formData = new FormData();
       formData.append('name', name);
-      formData.append('price', price);
       formData.append('category', category);
       formData.append('description', description);
       formData.append('featured', featured);
+
+      if (hasVariants) {
+        formData.append('variants', JSON.stringify(variants));
+      } else {
+        formData.append('price', document.getElementById('f-price').value);
+      }
 
       if (currentImgTab === 'upload') {
         const file = document.getElementById('f-image-file').files[0];

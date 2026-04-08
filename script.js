@@ -322,6 +322,36 @@ function renderProducts(productsList) {
       imgSrc = '/' + imgSrc;
     }
 
+    // Handle pricing: showing "Starting from" if variants exist
+    let priceHTML = `Qr ${product.price}`;
+    let variantLabelsHTML = '';
+    if (product.variants) {
+      try {
+        const variants = JSON.parse(product.variants);
+        const disabled = variants._disabled || [];
+        const prices = Object.entries(variants)
+          .filter(([key, val]) => val > 0 && key !== '_disabled' && !disabled.includes(key))
+          .map(([key, val]) => val);
+          
+        if (prices.length > 0) {
+          const minPrice = Math.min(...prices);
+          priceHTML = `<span style="font-size:0.8rem; color:var(--color-text-secondary);">Starting from</span> Qr ${minPrice.toFixed(2)}`;
+        }
+
+        // Build S/M/L labels
+        const allSizes = ['small', 'medium', 'large'];
+        const presentSizes = allSizes.filter(s => variants[s] !== undefined);
+        if (presentSizes.length > 0) {
+          const parts = presentSizes.map(s => {
+            const char = s.charAt(0).toUpperCase();
+            const isOff = disabled.includes(s);
+            return `<span style="color: ${isOff ? '#ff4d4d' : 'var(--color-accent)'}; font-weight: 600;">${char}</span>`;
+          });
+          variantLabelsHTML = `<div class="variant-label-small" style="font-size: 0.75rem; margin-top: 4px;">(${parts.join('/')})</div>`;
+        }
+      } catch (e) { console.error("Error parsing variants", e); }
+    }
+
     card.innerHTML = `
       <img src="${imgSrc}" alt="${titleText}" class="product-image" onerror="this.style.background='#1e1e1e'">
       <div class="product-info">
@@ -330,18 +360,29 @@ function renderProducts(productsList) {
           <div class="product-description" style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 10px;">
             ${product.description || ''}
           </div>
-          <div class="product-price">Qr ${product.price}</div>
+          <div class="product-price">${priceHTML}</div>
+          ${variantLabelsHTML}
         </div>
-        <button class="btn btn-primary add-to-cart" onclick="addToCart(event, ${product.id || Date.now()}, '${titleText.replace(/'/g, "\\'")}', ${product.price}, '${imgSrc.replace(/'/g, "\\'")}')" data-i18n="btn.addCart">${translations[currentLang]["btn.addCart"]}</button>
+        <button class="btn btn-primary add-to-cart" onclick="addToCart(event, ${product.id || Date.now()}, '${titleText.replace(/'/g, "\\'")}', ${product.price || 0}, '${imgSrc.replace(/'/g, "\\'")}', '${(product.variants || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" data-i18n="btn.addCart">${translations[currentLang]["btn.addCart"]}</button>
       </div>
     `;
     grid.appendChild(card);
   });
 }
 
-function addToCart(e, id, name, price, image) {
+let pendingVariantItem = null;
+
+function addToCart(e, id, name, price, image, variantsData) {
   if(e) e.preventDefault();
   
+  if (variantsData && variantsData !== 'null' && variantsData !== '') {
+    try {
+      const variants = JSON.parse(variantsData);
+      openVariantModal(id, name, price, image, variants);
+      return;
+    } catch(err) { console.error("Error with variantsData", err); }
+  }
+
   // Check if item exists in cart already
   let existingItem = cartItems.find(item => item.id === id);
   if(existingItem) {
@@ -350,6 +391,73 @@ function addToCart(e, id, name, price, image) {
     cartItems.push({ id, name, price, image, qty: 1 });
   }
 
+  finalizeCartAddition();
+}
+
+function openVariantModal(id, name, price, image, variants) {
+  pendingVariantItem = { id, name, price, image, variants };
+  const modal = document.getElementById('variant-modal');
+  const optionsWrap = document.getElementById('variant-options');
+  if(!modal || !optionsWrap) return;
+
+  let html = '';
+  const disabled = variants._disabled || [];
+  const availableSizes = Object.keys(variants).filter(key => key !== '_disabled' && !disabled.includes(key));
+  
+  availableSizes.forEach((size, index) => {
+    const label = size.charAt(0).toUpperCase() + size.slice(1);
+    html += `
+      <label style="display: flex; align-items: center; gap: 12px; padding: 12px 15px; background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 8px; cursor: pointer; transition: all 0.2s;">
+        <input type="radio" name="product-size" value="${size}" style="accent-color: var(--color-accent); width: 18px; height: 18px;" ${index === 0 ? 'checked' : ''}>
+        <div style="flex: 1;">
+          <div style="font-weight: 600; color: #fff;">${label}</div>
+          <div style="font-size: 0.85rem; color: var(--color-accent);">Qr ${variants[size].toFixed(2)}</div>
+        </div>
+      </label>
+    `;
+  });
+
+  optionsWrap.innerHTML = html;
+  modal.classList.add('active');
+}
+
+function closeVariantModal() {
+  const modal = document.getElementById('variant-modal');
+  if(modal) modal.classList.remove('active');
+  pendingVariantItem = null;
+}
+
+function confirmVariantAddToCart() {
+  if (!pendingVariantItem) return;
+  
+  const selectedRadio = document.querySelector('input[name="product-size"]:checked');
+  if (!selectedRadio) return;
+
+  const size = selectedRadio.value;
+  const sizeLabel = size.charAt(0).toUpperCase() + size.slice(1);
+  const price = pendingVariantItem.variants[size];
+  const uniqueId = `${pendingVariantItem.id}_${size}`;
+  const nameWithVariant = `${pendingVariantItem.name} (${sizeLabel})`;
+
+  // Add to cart with unique ID and name
+  let existingItem = cartItems.find(item => item.id === uniqueId);
+  if(existingItem) {
+    existingItem.qty += 1;
+  } else {
+    cartItems.push({ 
+      id: uniqueId, 
+      name: nameWithVariant, 
+      price: price, 
+      image: pendingVariantItem.image, 
+      qty: 1 
+    });
+  }
+
+  closeVariantModal();
+  finalizeCartAddition();
+}
+
+function finalizeCartAddition() {
   // Save to persistent storage
   localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
   
