@@ -1319,6 +1319,16 @@ main {
   font-family: var(--font-sans);
 }
 
+@media (max-width: 768px) {
+  .cart-coupon-area {
+    flex-direction: column;
+  }
+  .cart-coupon-area > * {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+}
+
 .cart-totals-section {
   flex: 1;
   background: white;

@@ -754,7 +754,7 @@ function renderCartPage() {
       </div>
     </div>
     
-    <button class="btn" style="width:100%; background-color:#5a6e5a; color:white; border-radius:5px; padding:12px;" onclick="window.location.href='../checkout.html'">Proceed to checkout</button>
+    <button class="btn" style="width:100%; background-color:#D4AF37; color:white; border-radius:5px; padding:12px;" onclick="window.location.href='../checkout.html'">Proceed to checkout</button>
   `;
 }
 
