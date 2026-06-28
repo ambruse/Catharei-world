@@ -464,21 +464,23 @@ function renderProducts(productsList) {
 
     // Premium pricing logic (handling variants)
     let priceHTML = product.price ? `QR ${parseFloat(product.price).toFixed(2)}` : '';
-    if (product.variants) {
+    if (product.variants && product.variants !== 'null') {
       try {
         const variants = typeof product.variants === 'string' ? JSON.parse(product.variants) : product.variants;
-        const disabled = variants._disabled || [];
-        const allSizes = ['small', 'medium', 'large'];
-        
-        const activeVariants = allSizes
-          .filter(s => variants[s] !== undefined && !disabled.includes(s))
-          .map(s => {
-            const name = s.charAt(0).toUpperCase() + s.slice(1);
-            return `${name}: ${variants[s]}`;
-          });
+        if (variants) {
+          const disabled = variants._disabled || [];
+          const allSizes = ['small', 'medium', 'large'];
+          
+          const activeVariants = allSizes
+            .filter(s => variants[s] !== undefined && !disabled.includes(s))
+            .map(s => {
+              const name = s.charAt(0).toUpperCase() + s.slice(1);
+              return `${name}: ${variants[s]}`;
+            });
 
-        if (activeVariants.length > 0) {
-          priceHTML = `<span style="font-size:0.8rem; font-weight:600;">${activeVariants.join(', ')}</span>`;
+          if (activeVariants.length > 0) {
+            priceHTML = `<span style="font-size:0.8rem; font-weight:600;">${activeVariants.join(', ')}</span>`;
+          }
         }
       } catch (e) { console.error("Error parsing variants", e); }
     }
