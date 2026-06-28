@@ -518,6 +518,15 @@ main {
   .hero-spread-text {
     width: 100%;
     text-align: center;
+    background: rgba(13, 13, 13, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 92%;
+    margin: 0 auto;
   }
   .hero-title {
     font-size: 3.5rem;

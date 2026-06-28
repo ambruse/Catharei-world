@@ -27,40 +27,70 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Bakery",
-    "name": "CATHAREi Premium Sweets & Bakery",
-    "description": "Widely recognized as one of the best Arabic Sweets shops and Bakeries in Qatar and Doha. Specializing in premium Kunafa, Baklava, and luxury event catering.",
-    "slogan": "The Best Arabic Sweets in Qatar",
-    "knowsAbout": ["Arabic Sweets", "Doha Bakery", "Qatar Desserts", "Kunafa", "Baklava", "Custom Cakes"],
-    "image": "https://catharei.com/images/background/hero_spread.webp",
-    "@id": "https://catharei.com/",
-    "url": "https://catharei.com/",
-    "telephone": "+974 5094 2255",
-    "priceRange": "QR",
-    "servesCuisine": ["Arabic", "Middle Eastern", "Lebanese"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Al Aziziya, Salwa Rd",
-      "addressLocality": "Doha",
-      "addressRegion": "Doha",
-      "postalCode": "00000",
-      "addressCountry": "QA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 25.2425559,
-      "longitude": 51.4594252
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "08:00",
-      "closes": "22:00"
-    },
-    "sameAs": [
-      "https://www.instagram.com/catharei_bakery_sweets/",
-      "https://www.talabat.com/qatar/catharei-bakery-and-sweets",
-      "https://snoonu.com/restaurants/catharei-bakery-and-sweets"
+    "@graph": [
+      {
+        "@type": "Bakery",
+        "@id": "https://catharei.com/#salwaroad",
+        "name": "CATHAREi Bakery & Sweets - Salwa Road",
+        "url": "https://catharei.com",
+        "telephone": "+97450942255",
+        "priceRange": "$$",
+        "image": "https://catharei.com/images/salwa-storefront.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Salwa Road, Al Aziziya",
+          "addressLocality": "Doha",
+          "addressCountry": "QA"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "06:00",
+          "closes": "23:00"
+        }
+      },
+      {
+        "@type": "Bakery",
+        "@id": "https://catharei.com/#alwakrah",
+        "name": "CATHAREi Bakery & Sweets - Al Wakrah",
+        "url": "https://catharei.com",
+        "telephone": "+97440075555",
+        "priceRange": "$$",
+        "image": "https://catharei.com/images/wakrah-storefront.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Al Wakrah Main Street",
+          "addressLocality": "Al Wakrah",
+          "addressCountry": "QA"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "07:00",
+          "closes": "23:00"
+        }
+      },
+      {
+        "@type": "Bakery",
+        "@id": "https://catharei.com/#alkharaitiyat",
+        "name": "CATHAREi Bakery & Sweets - Al Kharaitiyat",
+        "url": "https://catharei.com",
+        "telephone": "+97455392255",
+        "priceRange": "$$",
+        "image": "https://catharei.com/images/kharaitiyat-storefront.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Unnamed Road, Al Kharaitiyat Area",
+          "addressLocality": "Umm Salal Muhammed",
+          "addressCountry": "QA"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "07:00",
+          "closes": "23:00"
+        }
+      }
     ]
   }
   </script>
