@@ -480,7 +480,7 @@ function renderProducts(productsList) {
 
     // Premium card structure matching menu.html
     card.innerHTML = `
-      <img src="${imgSrc || 'https://via.placeholder.com/400x300?text=' + product.name}" class="menu-item-img" alt="${titleText}">
+      <img loading="lazy" src="${imgSrc || 'https://via.placeholder.com/400x300?text=' + product.name}" class="menu-item-img" alt="${titleText}">
       <div class="menu-item-info">
         <div>
           <div class="menu-item-name" ${titleI18nAttr}>${titleText}</div>
@@ -654,7 +654,7 @@ function renderCartDropdown() {
     
     html += `
       <div class="cart-dropdown-item">
-        <img src="${imgPath}" alt="${item.name}">
+        <img loading="lazy" src="${imgPath}" alt="${item.name}">
         <div class="cart-dropdown-info">
           <div class="cart-dropdown-title">${item.name}</div>
           <div class="cart-dropdown-price">${item.qty} x Qr ${item.price.toFixed(2)}</div>
@@ -717,7 +717,7 @@ function renderCartPage() {
     html += `
       <div class="cart-table-row">
         <div class="cart-col-product">
-          <img src="${item.image}" alt="${item.name}">
+          <img loading="lazy" src="${item.image}" alt="${item.name}">
           <div class="cart-item-meta">
             <h4>${item.name}</h4>
             <span class="price-strikethrough" style="display:none;"></span>
@@ -844,9 +844,9 @@ function initCakeAnimation() {
   const prefix = isNav ? '../images/herosection_1/' : 'images/herosection_1/';
   
   const currentFrame = index => {
-    // ezgif-frame-001.png
+    // ezgif-frame-001.webp
     const paddedIndex = index.toString().padStart(3, '0');
-    return `${prefix}ezgif-frame-${paddedIndex}.png`;
+    return `${prefix}ezgif-frame-${paddedIndex}.webp`;
   };
 
   const images = [];
