@@ -39,7 +39,7 @@ body {
   color: var(--color-text-primary);
   font-size: 14.5px;
   line-height: 1.6;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 .blurred-hero-bg::before {
@@ -1486,6 +1486,11 @@ main {
 @media (max-width: 768px) {
   .menu-hero h1 { font-size: 2.5rem; }
   .menu-item-img { height: 180px; }
+  .menu-grid {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+    gap: 15px;
+  }
 }
 
 /* --- Mobile Bottom Nav --- */
