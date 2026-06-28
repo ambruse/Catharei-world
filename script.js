@@ -436,7 +436,7 @@ function renderProducts(productsList) {
     </div>`;
     return;
   }
-
+  let schemaData = [];
   productsList.forEach(product => {
     const card = document.createElement('div');
     card.className = 'menu-item';
