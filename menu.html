@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Menu — CATHAREi Premium Sweets</title>
+  <title>Full Menu — CATHAREi Premium Sweets in Doha</title>
+  <meta name="description" content="Explore Catharei Bakery & Sweets full menu of traditional Arabic sweets, oriental pastries, and custom cakes in Doha.">
+  <meta name="keywords" content="Arabic sweets near me, Best Arabic bakery in Doha, Order Kunafa online, Authentic Baklava delivery, Halal bakery near me, Lebanese sweets shop Doha, Fresh Arabic pastries daily, Middle Eastern dessert shop open now, Authentic pistacho Baklava, Cheese Kunafa / Knafeh hot delivery, Maamoul cookies with dates, Basbousa / Harissa cake, Umm Ali traditional dessert, Halawet el Jibn fresh, Awameh / Luqaimat sweet balls, Freshly baked pita bread, Manakish Zaatar and cheese, Fatayer spinach and meat pastries, Traditional Ka'ak bread, Middle Eastern savory pastries savory box, Ramadan sweets boxes, Eid dessert catering, Arabic sweets gift box delivery, Middle Eastern wedding dessert table, Corporate gifting Arabic sweets, Iftar dessert platters, Best Luqaimat">
+  <meta property="og:title" content="Full Menu — CATHAREi Premium Sweets">
+  <meta property="og:description" content="Explore Doha's finest selection of traditional Arabic sweets and custom cakes.">
+  <meta property="og:image" content="https://catharei.com/images/background/hero_spread.png">
+  <meta property="og:url" content="https://catharei.com/menu.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="images/misc/Catharei_logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="toasts.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="toasts.css">
+  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="canonical" href="https://catharei.com/menu.html" />
 </head>
-<body>
+<body class="blurred-hero-bg">
 
   <!-- Header -->
   <header class="site-header">
@@ -24,7 +32,7 @@
       </a>
     </div>
     <nav class="nav">
-      <ul class="nav-list">
+      <ul class="nav-list" id="nav-list">
         <li class="nav-item"><a href="menu.html" class="active" data-i18n="nav.menu">Menu</a></li>
         <li class="nav-item"><a href="navigation/savories.html" data-i18n="nav.savories">Savories</a></li>
         <li class="nav-item has-dropdown">
@@ -55,6 +63,7 @@
         <div class="nav-item"><button id="account-btn"><svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></button></div>
         <div class="nav-item cart-icon-wrapper">
           <button id="cart-btn"><svg class="icon" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="cart-badge" id="cart-badge">0</span></button>
+          <div class="cart-dropdown" id="cart-dropdown"></div>
         </div>
       </div>
     </nav>
@@ -74,17 +83,20 @@
   <script src="script.js"></script>
   <script>
     async function initMenu() {
+      const container = document.getElementById('menu-content');
+      container.innerHTML = Array(3).fill('<div class="skeleton" style="height:300px; margin-bottom:40px; border-radius:8px;"></div>').join('');
+
       const res = await fetch('/api/products');
       const products = await res.json();
       
       const categories = [
-        { id: 'savories', label: 'Savouries' },
-        { id: 'arabic_sweets', label: 'Arabic Sweets' },
-        { id: 'oriental_sweets', label: 'Oriental Sweets' },
-        { id: 'special', label: 'Special Selection' },
-        { id: 'cakes', label: 'Traditional Cakes' },
-        { id: 'special_cakes', label: 'Special Occasion Cakes' },
-        { id: 'customized_cakes', label: 'Custom Creations' }
+        { id: 'savories', label: 'Savouries', i18n: 'cat.savories' },
+        { id: 'arabic_sweets', label: 'Arabic Sweets', i18n: 'cat.arabic' },
+        { id: 'oriental_sweets', label: 'Oriental Sweets', i18n: 'cat.oriental' },
+        { id: 'special', label: 'Special Selection', i18n: 'cat.specialDes' },
+        { id: 'cakes', label: 'Traditional Cakes', i18n: 'cat.cakesPlain' },
+        { id: 'special_cakes', label: 'Special Occasion Cakes', i18n: 'cat.specialCake' },
+        { id: 'customized_cakes', label: 'Custom Creations', i18n: 'cat.customCake' }
       ];
 
       const container = document.getElementById('menu-content');
@@ -103,7 +115,7 @@
         
         section.innerHTML = `
           <div class="category-header">
-            <h2>${cat.label}</h2>
+            <h2 data-i18n="${cat.i18n}">${translations[currentLang]?.[cat.i18n] || cat.label}</h2>
             <div class="line"></div>
           </div>
           <div class="menu-grid">
@@ -129,19 +141,27 @@
                 } catch (e) { console.error("Error parsing variants", e); }
               }
 
-              return `
+              // Handle Arabic names dynamically
+              let titleText = p.name;
+              let descriptionText = p.description || '';
+              if (currentLang === 'ar') {
+                 if (p.name_ar) titleText = p.name_ar;
+                 if (p.description_ar) descriptionText = p.description_ar;
+              }
+
+              return \`
                 <div class="menu-item">
-                  <img src="${p.image || 'https://via.placeholder.com/400x300?text='+p.name}" class="menu-item-img" alt="${p.name}">
+                  <img src="\${p.image || 'https://via.placeholder.com/400x300?text='+p.name}" class="menu-item-img" alt="\${titleText}">
                   <div class="menu-item-info">
-                    <div class="menu-item-name">${p.name}</div>
-                    <div class="menu-item-price">${priceHTML}</div>
-                    <div class="menu-item-desc">${p.description || ''}</div>
+                    <div class="menu-item-name">\${titleText}</div>
+                    <div class="menu-item-price">\${priceHTML}</div>
+                    <div class="menu-item-desc">\${descriptionText}</div>
                     <button class="btn btn-primary add-to-cart" style="width:100%; margin-top:15px; padding:8px; font-size:0.8rem;" 
-                      onclick="addToCart(event, ${p.id}, '${p.name.replace(/'/g, "\\'")}', ${p.price || 0}, '${(p.image || '').replace(/'/g, "\\'")}', '${(p.variants || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" 
+                      onclick="addToCart(event, '\${p.id}', '\${p.name.replace(/'/g, "\\\\'")}', \${p.price || 0}, '\${(p.image || '').replace(/'/g, "\\\\'")}', '\${(typeof p.variants === 'string' ? p.variants : JSON.stringify(p.variants) || '').replace(/'/g, "\\\\'").replace(/"/g, '&quot;')}')" 
                       data-i18n="btn.addCart">Add to Cart</button>
                   </div>
                 </div>
-              `;
+              \`;
             }).join('')}
           </div>
         `;
@@ -165,7 +185,7 @@
             <img src="images/misc/Catharei_logo.png" alt="CATHAREi Logo" style="height: 28px; width: auto;">
             <div class="brand-name" style="font-size: 1.2rem; letter-spacing: 2px;">CATHAREi</div>
           </a>
-          <p style="color: #999; font-size: 0.85rem; line-height: 1.6;" data-i18n="footer.about">The finest selection of traditional Arabic sweets, oriental pastries, and modern custom cakes in Al Ain.</p>
+          <p style="color: #999; font-size: 0.85rem; line-height: 1.6;" data-i18n="footer.about">The finest selection of traditional Arabic sweets, oriental pastries, and modern custom cakes in Doha.</p>
         </div>
         <div class="footer-col" style="text-align: left;">
           <h4 class="footer-title" style="color:var(--color-accent); font-family:var(--font-serif); font-size:1.1rem; margin-bottom:20px; text-transform:none;" data-i18n="footer.links">Links</h4>

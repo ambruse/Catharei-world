@@ -3,13 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CATHAREi — Checkout</title>
+  <title>Checkout — CATHAREi Premium Sweets</title>
+  <meta name="description" content="Securely checkout your order of traditional Arabic sweets, oriental pastries, and custom cakes from Catharei Bakery.">
+  <meta name="keywords" content="Arabic sweets near me, Best Arabic bakery in Doha, Order Kunafa online, Authentic Baklava delivery, Halal bakery near me, Lebanese sweets shop Doha, Fresh Arabic pastries daily, Middle Eastern dessert shop open now, Authentic pistacho Baklava, Cheese Kunafa / Knafeh hot delivery, Maamoul cookies with dates, Basbousa / Harissa cake, Umm Ali traditional dessert, Halawet el Jibn fresh, Awameh / Luqaimat sweet balls, Freshly baked pita bread, Manakish Zaatar and cheese, Fatayer spinach and meat pastries, Traditional Ka'ak bread, Middle Eastern savory pastries savory box, Ramadan sweets boxes, Eid dessert catering, Arabic sweets gift box delivery, Middle Eastern wedding dessert table, Corporate gifting Arabic sweets, Iftar dessert platters, Best Luqaimat">
+  <meta property="og:title" content="Checkout — CATHAREi Premium Sweets">
+  <meta property="og:description" content="Securely checkout your order from Catharei Bakery.">
+  <meta property="og:image" content="https://catharei.com/images/background/hero_spread.png">
+  <meta property="og:url" content="https://catharei.com/checkout.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="images/misc/Catharei_logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="toasts.css">
+  <link rel="stylesheet" href="styles.css?v=3">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -177,8 +185,9 @@
     .v-btn-cancel { background: transparent; color: var(--muted); border: 1px solid var(--border); }
     .v-btn-cancel:hover { border-color: var(--red); color: var(--red); }
   </style>
+  <link rel="canonical" href="https://catharei.com/checkout.html" />
 </head>
-<body>
+<body class="blurred-hero-bg">
 
   <div id="waiting-overlay">
     <div class="wait-content">
@@ -345,7 +354,16 @@
     function initFormListeners() {
       const inputs = ['name', 'phone', 'email', 'address'];
       inputs.forEach(id => {
-        document.getElementById(id).addEventListener('input', validateForm);
+        const el = document.getElementById(id);
+        el.addEventListener('input', validateForm);
+        el.addEventListener('blur', function() {
+          if (!this.value.trim() && id !== 'phone') this.style.borderColor = 'var(--red)';
+          else if (id === 'phone' && this.value.trim().length !== 8) this.parentElement.style.borderColor = 'var(--red)';
+          else {
+             this.style.borderColor = '';
+             if(id === 'phone') this.parentElement.style.borderColor = '';
+          }
+        });
       });
       validateForm(); // Initial check
     }
@@ -362,11 +380,15 @@
     }
 
     async function checkAuth() {
-      const res = await fetch('/api/auth/me');
-      const data = await res.json();
-      if (data.loggedIn) {
-        document.getElementById('name').value = data.user.username;
-        document.getElementById('email').value = data.email || '';
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (data.loggedIn) {
+          document.getElementById('name').value = data.user.username;
+          document.getElementById('email').value = data.user.email || '';
+        }
+      } catch (err) {
+        console.error("Auth check failed", err);
       }
     }
 
@@ -503,7 +525,18 @@
       }
     }
 
-    async function pollOrderStatus(orderId) {
+    async function pollOrderStatus(orderId, attempts = 0) {
+      if (attempts > 30) {
+        document.getElementById('waiting-overlay').innerHTML = `
+          <div class="wait-content">
+            <h2 style="color:var(--red);">Request Timeout</h2>
+            <p>It took too long to confirm your order.</p>
+            <p>Please contact support to verify if it went through.</p>
+            <button class="place-order-btn" style="margin-top:20px;" onclick="window.location.href='index.html'">Return Home</button>
+          </div>
+        `;
+        return;
+      }
       try {
         const res = await fetch(`/api/orders/${orderId}/status`);
         const data = await res.json();
@@ -514,11 +547,11 @@
           window.location.href = `thankyou.html?num=${data.order_number}&status=rejected`;
         } else {
           // Keep polling every 4 seconds
-          setTimeout(() => pollOrderStatus(orderId), 4000);
+          setTimeout(() => pollOrderStatus(orderId, attempts + 1), 4000);
         }
       } catch (err) {
         console.error("Polling error:", err);
-        setTimeout(() => pollOrderStatus(orderId), 5000);
+        setTimeout(() => pollOrderStatus(orderId, attempts + 1), 5000);
       }
     }
 

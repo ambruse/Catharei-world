@@ -24,8 +24,9 @@ const translations = {
     "btn.discover": "Discover Deals",
     "btn.orderCustom": "Order Your Cake",
     "hero.title": "CATHAREi",
-    "hero.discover": "DISCOVER THE ARTISANAL COLLECTION",
-    "home.aboutTitle": "Best Cake Shop and Bakery in Doha",
+    "hero.subtitle": "The Art of Traditional Arabic Sweets.",
+    "hero.discover": "Indulge in the Artisanal Collection",
+    "home.aboutTitle": "Doha's Finest Cake Shop & Bakery",
     "home.aboutText": "Catharei Bakery & Sweets brings you the finest selection of traditional Arabic sweets, oriental pastries, and modern custom cakes. Handcrafted with love and the purest ingredients.",
     "home.promoTitle": "Catharei Bakery & Sweets",
     "home.promoText": "Whether to celebrate success proudly, let the fresh cake bakery at our confectionary store in Doha bring our incredible creations directly to you.",
@@ -68,6 +69,7 @@ const translations = {
     "nav.faq": "FAQs",
     "nav.privacy": "Privacy Policy",
     "nav.terms": "Terms of Service",
+    "nav.offers": "Offers",
     "checkout.title": "Checkout",
     "checkout.billing": "Billing Details",
     "checkout.fullName": "Full Name",
@@ -84,7 +86,7 @@ const translations = {
     "checkout.deliveryTime": "Order will be only delivered in 1-2 Hrs",
     "v.title": "Verify Phone Number",
     "v.desc": "Please confirm that the phone number below is correct before we place your order.",
-    "v.warning_en": "Your Order will be only Deliverd before Confirm it through a call to the Customer.",
+    "v.warning_en": "Your order will only be delivered after confirmation via a call to the customer.",
     "v.warning_ar": "لن يتم تسليم طلبك إلا بعد تأكيده من خلال مكالمة هاتفية مع العميل.",
     "v.confirm": "Confirm & Place Order",
     "v.cancel": "Cancel",
@@ -145,7 +147,8 @@ const translations = {
     "btn.discover": "اكتشف العروض",
     "btn.orderCustom": "اطلب كيكتك",
     "hero.title": "كاثاري",
-    "hero.discover": "اكتشف التشكيلة الحرفية",
+    "hero.subtitle": "نصنع لحظات من الدلال الخالص.",
+    "hero.discover": "اكتشف المجموعة الحرفية",
     "home.aboutTitle": "أفضل متجر كيك ومخبز في الدوحة",
     "home.aboutText": "نقدم لكم أرقى تشكيلة من الحلويات العربية التقليدية والمعجنات الشرقية والكعك المخصص الحديث. مصنوعة بحب وأنقى المكونات.",
     "home.promoTitle": "حلويات ومعجنات كاثاري",
@@ -189,6 +192,7 @@ const translations = {
     "nav.faq": "الأسئلة الشائعة",
     "nav.privacy": "سياسة الخصوصية",
     "nav.terms": "شروط الخدمة",
+    "nav.offers": "العروض",
     "checkout.title": "إتمام الطلب",
     "checkout.billing": "تفاصيل الفاتورة",
     "checkout.fullName": "الاسم الكامل",
@@ -205,7 +209,7 @@ const translations = {
     "checkout.deliveryTime": "سيتم تسليم الطلب خلال ساعة إلى ساعتين",
     "v.title": "تأكيد رقم الهاتف",
     "v.desc": "يرجى التأكد من أن رقم الهاتف أدناه صحيح قبل إتمام الطلب.",
-    "v.warning_en": "Your Order will be only Deliverd before Confirm it through a call to the Customer.",
+    "v.warning_en": "Your order will only be delivered after confirmation via a call to the customer.",
     "v.warning_ar": "لن يتم تسليم طلبك إلا بعد تأكيده من خلال مكالمة هاتفية مع العميل.",
     "v.confirm": "تأكيد وإتمام الطلب",
     "v.cancel": "إلغاء",
@@ -260,6 +264,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isFeatured = grid.getAttribute('data-type') === 'featured';
 
     try {
+      grid.innerHTML = Array(4).fill('<div class="product-card skeleton" style="height:350px; border-color:transparent;"></div>').join('');
+      
       let url = '/api/products';
       if (category) url += `?category=${encodeURIComponent(category)}`;
 
@@ -303,6 +309,7 @@ function updateCartBadgeUI() {
     let count = 0;
     cartItems.forEach(item => count += item.qty);
     badge.textContent = count;
+    badge.setAttribute('data-count', count);
   }
 }
 
@@ -451,7 +458,7 @@ function renderProducts(productsList) {
     }
 
     // Premium pricing logic (handling variants)
-    let priceHTML = `QR ${parseFloat(product.price).toFixed(2)}`;
+    let priceHTML = product.price ? `QR ${parseFloat(product.price).toFixed(2)}` : '';
     if (product.variants) {
       try {
         const variants = typeof product.variants === 'string' ? JSON.parse(product.variants) : product.variants;
@@ -481,7 +488,8 @@ function renderProducts(productsList) {
           <div class="menu-item-desc">${descriptionText}</div>
         </div>
         <button class="btn btn-primary add-to-cart" style="width:100%; margin-top:15px; padding:10px; font-size:0.85rem;" 
-          onclick="addToCart(event, ${product.id}, '${product.name.replace(/'/g, "\\'")}', ${product.price || 0}, '${(product.image || '').replace(/'/g, "\\'")}', '${(typeof product.variants === 'string' ? product.variants : JSON.stringify(product.variants) || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}')" 
+          data-variants='${(typeof product.variants === 'string' ? product.variants : JSON.stringify(product.variants) || '').replace(/'/g, "&#39;")}'
+          onclick="addToCart(event, '${product.id}', '${product.name.replace(/'/g, "\\'")}', ${product.price || 0}, '${(product.image || '').replace(/'/g, "\\'")}', this.dataset.variants)" 
           data-i18n="btn.addCart">Add to Cart</button>
       </div>
     `;
@@ -624,8 +632,12 @@ function renderCartDropdown() {
   const dropdown = document.getElementById('cart-dropdown');
   if(!dropdown) return;
   
+  const emptyText = translations[currentLang]?.['cart.empty'] || "Your cart is empty";
+  const totalText = translations[currentLang]?.['cart.total'] || "Total:";
+  const viewCartText = currentLang === 'ar' ? 'عرض السلة' : 'View Cart';
+
   if(cartItems.length === 0) {
-    dropdown.innerHTML = '<div style="padding:15px;text-align:center;color:#999;font-size:0.9rem;">Your cart is empty</div>';
+    dropdown.innerHTML = `<div style="padding:15px;text-align:center;color:#999;font-size:0.9rem;">${emptyText}</div>`;
     return;
   }
   
@@ -647,7 +659,7 @@ function renderCartDropdown() {
           <div class="cart-dropdown-title">${item.name}</div>
           <div class="cart-dropdown-price">${item.qty} x Qr ${item.price.toFixed(2)}</div>
         </div>
-        <button class="cart-dropdown-remove" onclick="removeFromCart(${item.id})">&times;</button>
+        <button class="cart-dropdown-remove" onclick="removeFromCart('${item.id}')">&times;</button>
       </div>
     `;
   });
@@ -659,10 +671,10 @@ function renderCartDropdown() {
   html += `
     <div class="cart-dropdown-footer">
       <div class="cart-dropdown-total">
-        <span>Total:</span>
+        <span>${totalText}</span>
         <span>Qr ${total.toFixed(2)}</span>
       </div>
-      <a href="${cartUrl}" class="btn btn-primary" style="display:block; text-align:center; padding:8px 0; margin-top:10px;">View Cart</a>
+      <a href="${cartUrl}" class="btn btn-primary" style="display:block; text-align:center; padding:8px 0; margin-top:10px;">${viewCartText}</a>
     </div>
   `;
   dropdown.innerHTML = html;
@@ -714,16 +726,16 @@ function renderCartPage() {
         </div>
         <div class="cart-col-qty">
           <div class="qty-adjuster">
-             <button onclick="updateCartQuantity(${item.id}, -1)">-</button>
+             <button onclick="updateCartQuantity('${item.id}', -1)">-</button>
              <input type="text" value="${item.qty}" readonly>
-             <button onclick="updateCartQuantity(${item.id}, 1)">+</button>
+             <button onclick="updateCartQuantity('${item.id}', 1)">+</button>
           </div>
         </div>
         <div class="cart-col-subtotal">
           <span class="subtotal-val">Qr ${(item.price * item.qty).toFixed(2)}</span>
         </div>
         <div class="cart-col-remove">
-          <button onclick="removeFromCart(${item.id})" aria-label="Remove item">
+          <button onclick="removeFromCart('${item.id}')" aria-label="Remove item">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
           </button>
         </div>
@@ -741,11 +753,6 @@ function renderCartPage() {
       <span>Qr ${subtotal.toFixed(2)}</span>
     </div>
 
-    <div style="margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #e0e0e0; font-size:0.95rem;">
-      <span style="display:block; margin-bottom:10px;">Shipment 1</span>
-      <p style="color:#777; font-size:0.85rem; margin-bottom:5px;">Enter your address to view shipping options.</p>
-      <a href="#" style="color:var(--color-accent); font-size:0.85rem; text-decoration:none;">Calculate shipping</a>
-    </div>
 
     <div style="display:flex; justify-content:space-between; margin-bottom:25px; font-weight:bold; font-size:1.1rem;">
       <span>Total</span>
@@ -807,11 +814,7 @@ function applyTranslations() {
   elements.forEach(el => {
     const key = el.getAttribute('data-i18n');
     if(dictionary[key]) {
-      if(el.tagName === 'SPAN' && el.parentElement.tagName === 'BUTTON') {
-         el.textContent = dictionary[key];
-      } else {
-         el.textContent = dictionary[key];
-      }
+      el.textContent = dictionary[key];
     }
   });
 
