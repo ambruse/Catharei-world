@@ -882,11 +882,12 @@
         </div>
 
         <div class="table-wrap">
-          <div class="table-head" style="grid-template-columns: 110px 180px 1fr 140px 100px 120px;">
+          <div class="table-head" style="grid-template-columns: 100px 160px 1fr 110px 140px 90px 120px;">
             <div>Order #</div>
             <div>Customer</div>
             <div>Details (Map & Info)</div>
             <div>Payment</div>
+            <div>Date &amp; Time</div>
             <div>Status</div>
             <div>Actions</div>
           </div>
@@ -1142,6 +1143,16 @@
     <h2 id="loading-overlay-text">Processing...</h2>
   </div>
 
+  <!-- Full Screen New Order Notification Overlay -->
+  <div class="full-loading-overlay" id="new-order-overlay" style="background: rgba(0, 0, 0, 0.95); z-index: 100000;">
+    <div style="font-size: 5rem; margin-bottom: 20px; animation: pulse 1s infinite alternate;">🔔</div>
+    <h1 style="color: var(--accent); font-family: var(--serif); font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">New Order Received!</h1>
+    <div style="color: var(--text); font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; line-height: 1.6; text-align: left; width: 100%; max-height: 50vh; overflow-y: auto; padding: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;" id="new-order-details">
+      Order details will appear here...
+    </div>
+    <button class="btn btn-gold" id="new-order-ok-btn" style="padding: 16px 50px; font-size: 1.2rem; border-radius: 30px; box-shadow: 0 0 20px var(--accent);" onclick="acknowledgeNewOrders()">OK, I Understand</button>
+  </div>
+
   <script>
     const CATEGORY_LABELS = {
       all: 'All Products',
@@ -1165,6 +1176,87 @@
     }).catch(() => {
       window.location.href = '/login.html?redirect=admin';
     });
+
+    const acknowledgedOrderIds = new Set();
+    let alarmInterval = null;
+
+    function formatOrderDate(dateString) {
+      if (!dateString) return '—';
+      const d = new Date(dateString);
+      if (isNaN(d.getTime())) return '—';
+      
+      const dd = String(d.getDate()).padStart(2, '0');
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const yy = String(d.getFullYear()).slice(-2);
+      const hh = String(d.getHours()).padStart(2, '0');
+      const min = String(d.getMinutes()).padStart(2, '0');
+      
+      return `${dd}/${mm}/${yy} - ${hh}:${min}`;
+    }
+
+    function speakNewOrder() {
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel(); // cancel any active speech
+        const utterance = new SpeechSynthesisUtterance("New Order. New Order. Please check the admin panel.");
+        utterance.rate = 1.0;
+        utterance.volume = 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function startNewOrderAlarm() {
+      stopNewOrderAlarm();
+      const chime = document.getElementById('chime-sound');
+      if (chime) {
+        chime.loop = true;
+        chime.play().catch(e => console.log("Chime play blocked, waiting for interaction", e));
+      }
+      speakNewOrder();
+      alarmInterval = setInterval(() => {
+        const chimeInner = document.getElementById('chime-sound');
+        if (chimeInner && chimeInner.paused) {
+          chimeInner.play().catch(e => {});
+        }
+        speakNewOrder();
+      }, 4000);
+    }
+
+    function stopNewOrderAlarm() {
+      if (alarmInterval) {
+        clearInterval(alarmInterval);
+        alarmInterval = null;
+      }
+      const chime = document.getElementById('chime-sound');
+      if (chime) {
+        chime.pause();
+      }
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function showNewOrderOverlay(htmlText) {
+      const overlay = document.getElementById('new-order-overlay');
+      const details = document.getElementById('new-order-details');
+      if (overlay && details) {
+        details.innerHTML = htmlText;
+        overlay.classList.add('active');
+        startNewOrderAlarm();
+      }
+    }
+
+    function acknowledgeNewOrders() {
+      const overlay = document.getElementById('new-order-overlay');
+      if (overlay) {
+        overlay.classList.remove('active');
+      }
+      stopNewOrderAlarm();
+      
+      // Acknowledge all currently pending orders
+      allOrders.filter(o => o.status === 'pending').forEach(o => {
+        acknowledgedOrderIds.add(o.id);
+      });
+    }
 
     async function doLogout() {
       await fetch('/api/auth/logout', { method: 'POST' });
@@ -1216,10 +1308,57 @@
         renderOrders();
         updatePendingCount();
         handleAudioLoop();
+
+        // Check for pending orders that have not been acknowledged yet
+        const unacknowledgedPending = allOrders.filter(o => o.status === 'pending' && !acknowledgedOrderIds.has(o.id));
+        if (unacknowledgedPending.length > 0) {
+          let detailsText = '';
+          unacknowledgedPending.forEach(o => {
+            const items = JSON.parse(o.items || '[]');
+            const itemsList = items.map(i => `${i.qty}x ${i.name}`).join(', ');
+            detailsText += `
+              <div style="margin-bottom: 20px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 15px;">
+                <span style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">Order #${o.order_number || o.id}</span><br>
+                <strong>Customer:</strong> ${o.customer_name} (${o.customer_phone})<br>
+                <strong>Items:</strong> ${itemsList}<br>
+                <strong>Total:</strong> QR ${parseFloat(o.total).toFixed(2)}
+              </div>
+            `;
+          });
+          showNewOrderOverlay(detailsText);
+        } else {
+          // If no unacknowledged orders, make sure overlay/sound is closed (e.g. if accepted/declined elsewhere)
+          const overlay = document.getElementById('new-order-overlay');
+          if (overlay && overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
+            stopNewOrderAlarm();
+          }
+        }
       } catch (err) { console.error(err); }
     }
 
-    let audioEnabled = false;
+    let audioEnabled = true;
+    
+    // Auto-unlock audio on first click or touch interaction
+    function autoUnlockAudio() {
+      const chime = document.getElementById('chime-sound');
+      if (chime) {
+        chime.play().then(() => {
+          chime.pause();
+          console.log("Audio unlocked successfully");
+          const btn = document.getElementById('enable-audio-btn');
+          if (btn) btn.style.display = 'none';
+          const statusText = document.getElementById('audio-status-text');
+          if (statusText) statusText.textContent = 'Audio notifications active.';
+          
+          document.removeEventListener('click', autoUnlockAudio);
+          document.removeEventListener('touchstart', autoUnlockAudio);
+        }).catch(e => console.log("Autoplay context not yet unlocked:", e));
+      }
+    }
+    document.addEventListener('click', autoUnlockAudio);
+    document.addEventListener('touchstart', autoUnlockAudio);
+
     function enableAudio() {
       audioEnabled = true;
       const chime = document.getElementById('chime-sound');
@@ -1238,9 +1377,6 @@
 
       if (pending.length > 0) {
         if (banner) banner.style.display = 'flex';
-        if (audioEnabled) {
-          if (chime.paused) chime.play();
-        }
       } else {
         if (banner) banner.style.display = 'none';
         if (chime) chime.pause();
@@ -1279,7 +1415,7 @@
         }
 
         html += `
-          <div class="table-row" style="grid-template-columns: 110px 180px 1fr 140px 100px 120px;">
+          <div class="table-row" style="grid-template-columns: 100px 160px 1fr 110px 140px 90px 120px;">
             <div style="font-weight:700; color:var(--accent);">#${o.order_number || o.id}</div>
             <div class="product-meta">
               <div class="name">${o.customer_name}</div>
@@ -1293,6 +1429,9 @@
             <div style="font-size:0.85rem;">
                <div style="font-weight:600;">Qr ${parseFloat(o.total).toFixed(2)}</div>
                <div style="color:var(--muted); font-size:0.7rem; text-transform:uppercase;">${o.payment_method}</div>
+            </div>
+            <div style="font-size:0.85rem; color:var(--muted);">
+               ${formatOrderDate(o.created_at)}
             </div>
             <div>
                ${statusBadge}
