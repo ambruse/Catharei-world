@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /database.sqlite
+Disallow: /sessions.sqlite
+Disallow: /node_modules/
+Disallow: /temp_fetch.json
+Disallow: /dump_db.js
+Disallow: /check_db.js
+Disallow: /check_orders.js
+Disallow: /check_products.js
+Disallow: /check_categories.js
+Disallow: /list_tables.js
+Disallow: /seed_products.js
 
 Sitemap: https://catharei.com/sitemap.xml
+
