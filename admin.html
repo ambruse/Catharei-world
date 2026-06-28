@@ -1250,9 +1250,8 @@
       if (overlay) {
         overlay.classList.remove('active');
       }
-      stopNewOrderAlarm();
       
-      // Acknowledge all currently pending orders
+      // Acknowledge all currently pending orders (dismisses overlay but keeps sound active until accepted/declined)
       allOrders.filter(o => o.status === 'pending').forEach(o => {
         acknowledgedOrderIds.add(o.id);
       });
@@ -1309,29 +1308,31 @@
         updatePendingCount();
         handleAudioLoop();
 
-        // Check for pending orders that have not been acknowledged yet
-        const unacknowledgedPending = allOrders.filter(o => o.status === 'pending' && !acknowledgedOrderIds.has(o.id));
-        if (unacknowledgedPending.length > 0) {
-          let detailsText = '';
-          unacknowledgedPending.forEach(o => {
-            const items = JSON.parse(o.items || '[]');
-            const itemsList = items.map(i => `${i.qty}x ${i.name}`).join(', ');
-            detailsText += `
-              <div style="margin-bottom: 20px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 15px;">
-                <span style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">Order #${o.order_number || o.id}</span><br>
-                <strong>Customer:</strong> ${o.customer_name} (${o.customer_phone})<br>
-                <strong>Items:</strong> ${itemsList}<br>
-                <strong>Total:</strong> QR ${parseFloat(o.total).toFixed(2)}
-              </div>
-            `;
-          });
-          showNewOrderOverlay(detailsText);
-        } else {
-          // If no unacknowledged orders, make sure overlay/sound is closed (e.g. if accepted/declined elsewhere)
+        const pendingOrders = allOrders.filter(o => o.status === 'pending');
+        
+        // If there are absolutely no pending orders left, stop the alarm
+        if (pendingOrders.length === 0) {
+          stopNewOrderAlarm();
           const overlay = document.getElementById('new-order-overlay');
-          if (overlay && overlay.classList.contains('active')) {
-            overlay.classList.remove('active');
-            stopNewOrderAlarm();
+          if (overlay) overlay.classList.remove('active');
+        } else {
+          // Check for pending orders that have not been acknowledged yet
+          const unacknowledgedPending = pendingOrders.filter(o => !acknowledgedOrderIds.has(o.id));
+          if (unacknowledgedPending.length > 0) {
+            let detailsText = '';
+            unacknowledgedPending.forEach(o => {
+              const items = JSON.parse(o.items || '[]');
+              const itemsList = items.map(i => `${i.qty}x ${i.name}`).join(', ');
+              detailsText += `
+                <div style="margin-bottom: 20px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 15px;">
+                  <span style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">Order #${o.order_number || o.id}</span><br>
+                  <strong>Customer:</strong> ${o.customer_name} (${o.customer_phone})<br>
+                  <strong>Items:</strong> ${itemsList}<br>
+                  <strong>Total:</strong> QR ${parseFloat(o.total).toFixed(2)}
+                </div>
+              `;
+            });
+            showNewOrderOverlay(detailsText);
           }
         }
       } catch (err) { console.error(err); }
