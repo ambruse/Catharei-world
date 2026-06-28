@@ -148,19 +148,19 @@
                  if (p.description_ar) descriptionText = p.description_ar;
               }
 
-              return \`
+              return `
                 <div class="menu-item">
-                  <img loading="lazy" src="\${p.image || 'https://via.placeholder.com/400x300?text='+p.name}" class="menu-item-img" alt="\${titleText}">
+                  <img loading="lazy" src="${p.image || 'https://via.placeholder.com/400x300?text='+p.name}" class="menu-item-img" alt="${titleText}">
                   <div class="menu-item-info">
-                    <div class="menu-item-name">\${titleText}</div>
-                    <div class="menu-item-price">\${priceHTML}</div>
-                    <div class="menu-item-desc">\${descriptionText}</div>
+                    <div class="menu-item-name">${titleText}</div>
+                    <div class="menu-item-price">${priceHTML}</div>
+                    <div class="menu-item-desc">${descriptionText}</div>
                     <button class="btn btn-primary add-to-cart" style="width:100%; margin-top:15px; padding:8px; font-size:0.8rem;" 
-                      onclick="addToCart(event, '\${p.id}', '\${p.name.replace(/'/g, "\\\\'")}', \${p.price || 0}, '\${(p.image || '').replace(/'/g, "\\\\'")}', '\${(typeof p.variants === 'string' ? p.variants : JSON.stringify(p.variants) || '').replace(/'/g, "\\\\'").replace(/"/g, '&quot;')}')" 
+                      onclick="addToCart(event, '${p.id}', '${p.name.replace(/'/g, "\\\\'")}', ${p.price || 0}, '${(p.image || '').replace(/'/g, "\\\\'")}', '${(typeof p.variants === 'string' ? p.variants : JSON.stringify(p.variants) || '').replace(/'/g, "\\\\'").replace(/"/g, '&quot;')}')" 
                       data-i18n="btn.addCart">Add to Cart</button>
                   </div>
                 </div>
-              \`;
+              `;
             }).join('')}
           </div>
         `;
