@@ -10,7 +10,9 @@ const locations = [
     lat: 25.2425559,
     lng: 51.4594252,
     address: 'Al Aziziya, Salwa Rd, Doha, Qatar',
-    mapsUrl: 'https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z/data=!4m6!3m5!1s0x3e45db0706a6f2b3:0x1aaa8102b449d84d!8m2!3d25.2425559!4d51.4594252!16s%2Fg%2F11fn79k3vx'
+    phone: '+974 5094 2255',
+    mapsUrl: 'https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z/data=!4m6!3m5!1s0x3e45db0706a6f2b3:0x1aaa8102b449d84d!8m2!3d25.2425559!4d51.4594252!16s%2Fg%2F11fn79k3vx',
+    keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Best Arabic Sweets in Doha, Best Arabic Sweets in Qatar, Best Kunafa in Doha, Where to buy authentic Baklava in Qatar, Arabic sweets Salwa Road, CATHAREi Bakery Doha, buy Arabic sweets Doha, traditional Arabic desserts Doha'
   },
   {
     id: 'al-wakrah',
@@ -20,7 +22,9 @@ const locations = [
     lat: 25.1639112,
     lng: 51.5974203,
     address: 'Al Wakrah, Doha, Qatar',
-    mapsUrl: 'https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45cd007ea1c319:0x66da9b23749a18c1!8m2!3d25.1639112!4d51.5974203!16s%2Fg%2F11yp0h_08s'
+    phone: '+974 4007 5555',
+    mapsUrl: 'https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45cd007ea1c319:0x66da9b23749a18c1!8m2!3d25.1639112!4d51.5974203!16s%2Fg%2F11yp0h_08s',
+    keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Arabic sweets Al Wakrah, bakery Al Wakrah, best arabic sweets in al wakrah, bakery near wakrah, premium sweet trays wakrah qatar, custom birthday cakes wakrah, kunafa and pastry delivery in al wakrah'
   },
   {
     id: 'al-kharaitiyat',
@@ -30,7 +34,9 @@ const locations = [
     lat: 25.397421,
     lng: 51.425266,
     address: 'Al Kharaitiyat, Doha, Qatar',
-    mapsUrl: 'https://www.google.com/maps/place/CATHAREI/@25.3974258,51.4226857,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45e1bfcddd87c7:0x1c95e11fcbef8780!8m2!3d25.397421!4d51.425266!16s%2Fg%2F11q_jnx095'
+    phone: '+974 5539 2255',
+    mapsUrl: 'https://share.google/otBX5VPPoHUPctZgy',
+    keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Arabic sweets Al Kharaitiyat, Umm Salal bakery, best arabic sweets in al kharaitiyat, bakery near umm salal muhammed, premium sweet trays al kharaitiyat qatar, custom birthday cakes izghawa doha, kunafa and pastry delivery in al kharaitiyat'
   }
 ];
 
@@ -44,6 +50,11 @@ function createLocationPage(loc) {
   
   // Replace Meta Description
   content = content.replace(/<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i, `<meta name="description" content="${loc.desc}">`);
+  
+  // Replace Keywords if custom specified
+  if (loc.keywords) {
+    content = content.replace(/<meta\s+name="keywords"\s+content="[^"]*"\s*\/?>/i, `<meta name="keywords" content="${loc.keywords}">`);
+  }
   
   // Fix Hreflang Tags
   const hreflangRegex = /<link rel="alternate" hreflang="([a-z-]+)" href="[^"]*" \/>/g;
@@ -67,7 +78,7 @@ function createLocationPage(loc) {
           <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
             <li style="margin-bottom: 15px;"><strong>📍 Address:</strong> ${loc.address}</li>
             <li style="margin-bottom: 15px;"><strong>🕒 Hours:</strong> 08:00 AM - 10:00 PM</li>
-            <li style="margin-bottom: 15px;"><strong>📞 Phone:</strong> +974 5094 2255</li>
+            <li style="margin-bottom: 15px;"><strong>📞 Phone:</strong> ${loc.phone}</li>
           </ul>
           <a href="${loc.mapsUrl}" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; margin-right: 15px;">Get Directions</a>
           <a href="../menu.html" class="btn btn-outline" style="font-size: 1.1rem; padding: 15px 40px;">Order Online</a>
@@ -99,7 +110,7 @@ function createLocationPage(loc) {
     "image": "https://catharei.com/images/background/hero_spread.webp",
     "@id": "https://catharei.com/locations/${loc.id}.html",
     "url": "https://catharei.com/locations/${loc.id}.html",
-    "telephone": "+974 5094 2255",
+    "telephone": "${loc.phone}",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "${loc.address}",
