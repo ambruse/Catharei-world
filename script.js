@@ -248,6 +248,11 @@ const translations = {
   }
 };
 
+const urlParams = new URLSearchParams(window.location.search);
+const langParam = urlParams.get('lang');
+if (langParam === 'en' || langParam === 'ar') {
+  localStorage.setItem('catharei-lang', langParam);
+}
 let currentLang = localStorage.getItem('catharei-lang') || 'en';
 let cartItems = JSON.parse(localStorage.getItem('catharei-cart-data') || '[]');
 // Fallback array for empty cart scenario
@@ -824,14 +829,9 @@ function showToast(message, type = 'success') {
 
 window.setLanguage = function(langCode) {
   if(langCode === currentLang) return;
-  currentLang = langCode;
-  localStorage.setItem('catharei-lang', langCode);
-  
-  initLanguage();
-  applyTranslations();
-  
-  const navList = document.getElementById('nav-list');
-  if(navList) navList.classList.remove('active');
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.set('lang', langCode);
+  window.location.search = urlParams.toString();
 };
 
 function applyTranslations() {
