@@ -494,7 +494,34 @@ function renderProducts(productsList) {
       </div>
     `;
     grid.appendChild(card);
+
+    // Build Product Schema
+    schemaData.push({
+      "@type": "Product",
+      "name": titleText,
+      "image": imgSrc ? ("https://catharei.com" + imgSrc) : "",
+      "description": descriptionText || titleText,
+      "offers": {
+        "@type": "Offer",
+        "url": "https://catharei.com/",
+        "priceCurrency": "QAR",
+        "price": product.price || "0.00",
+        "availability": "https://schema.org/InStock"
+      }
+    });
   });
+
+  // Inject Schema into DOM
+  const oldSchema = document.getElementById('dynamic-product-schema');
+  if (oldSchema) oldSchema.remove();
+  const script = document.createElement('script');
+  script.id = 'dynamic-product-schema';
+  script.type = 'application/ld+json';
+  script.text = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": schemaData
+  });
+  document.head.appendChild(script);
 }
 
 let pendingVariantItem = null;
