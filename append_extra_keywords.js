@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const extraKeywords = ", salwa, Doha, Catharei, Food, food, trending, best, fatayer, Dibs";
+const extraKeywords = ", salwa, Doha, CATHAREi, Food, food, trending, best, fatayer, Dibs";
 
 function appendKeywords(dir) {
   const files = fs.readdirSync(dir);

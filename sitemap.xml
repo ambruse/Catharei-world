@@ -19,7 +19,25 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- ===== CATERING & OCCASIONS ===== -->
+  <!-- ===== CORE PAGES ===== -->
+  <url>
+    <loc>https://catharei.com/menu.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/menu.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/menu.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/menu.html"/>
+  </url>
+  <url>
+    <loc>https://catharei.com/about.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/about.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/about.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/about.html"/>
+  </url>
   <url>
     <loc>https://catharei.com/catering.html</loc>
     <lastmod>2026-06-28</lastmod>
@@ -55,32 +73,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/delivery.html?lang=en"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/delivery.html?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/delivery.html"/>
-  </url>
-
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/menu.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/menu.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/menu.html"/>
-  </url>
-  <url>
-    <loc>https://catharei.com/about.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/about.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/about.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/about.html"/>
-  </url>
-  <url>
-    <loc>https://catharei.com/catering.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/catering.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/catering.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/catering.html"/>
   </url>
   <url>
     <loc>https://catharei.com/faq.html</loc>

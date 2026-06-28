@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const misspellings = ", Catharei, Catharie, Qatharei, Qatharie, qatharei, qatharie, catharei, catharie";
+const misspellings = ", CATHAREi, Catharie, Qatharei, Qatharie, qatharei, qatharie, catharei, catharie";
 
 function appendKeywords(dir) {
   const files = fs.readdirSync(dir);

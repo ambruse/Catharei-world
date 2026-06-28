@@ -52,7 +52,7 @@ createPage('contact.html', 'Contact Us', 'Contact Us', `
   <p>We would love to hear from you. For orders, catering inquiries, or general questions, please reach out to our team in Doha.</p>
   <ul style="list-style: none; padding: 0; margin-top: 30px;">
     <li style="margin-bottom: 15px;"><strong>Email:</strong> info@catharei.com</li>
-    <li style="margin-bottom: 15px;"><strong>Phone:</strong> +974 0000 0000</li>
+    <li style="margin-bottom: 15px;"><strong>Phone:</strong> +974 5094 2255</li>
     <li style="margin-bottom: 15px;"><strong>Address:</strong> Al Aziziya, Salwa Rd, Doha, Qatar</li>
   </ul>
 `);
@@ -91,11 +91,11 @@ createPage('privacy.html', 'Privacy Policy', 'Privacy Policy', `
 `);
 
 createPage('terms.html', 'Terms of Service', 'Terms of Service', `
-  <p>By accessing or using Catharei Bakery's website, you agree to be bound by these Terms of Service. All orders are subject to availability and confirmation.</p>
+  <p>By accessing or using CATHAREi Bakery's website, you agree to be bound by these Terms of Service. All orders are subject to availability and confirmation.</p>
 `);
 
-createPage('blog.html', 'Catharei Blog', 'Catharei Bakery Blog', `
-  <p>Welcome to the Catharei Bakery blog. Read about the history, culture, and artistry behind our premium Arabic sweets.</p>
+createPage('blog.html', 'CATHAREi Blog', 'CATHAREi Bakery Blog', `
+  <p>Welcome to the CATHAREi Bakery blog. Read about the history, culture, and artistry behind our premium Arabic sweets.</p>
   <div style="margin-top: 40px;">
     <article style="background: #111; padding: 20px; border-radius: 8px; border: 1px solid var(--color-accent); margin-bottom: 20px;">
       <h3 style="font-family: var(--font-serif); margin-bottom: 10px;"><a href="blog/history-of-luqaimat.html" style="color: #fff;">The Sweet History of Luqaimat: A Qatari Tradition</a></h3>
@@ -112,11 +112,11 @@ createPage('blog/history-of-luqaimat.html', 'History of Luqaimat', 'The Sweet Hi
   <p>Luqaimat, meaning "bite-sized" in Arabic, is arguably the most famous and beloved traditional dessert in Qatar and the Gulf region, especially during the holy month of Ramadan.</p>
   <p>These crispy, golden dough balls are famously crunchy on the outside, incredibly airy on the inside, and completely drenched in rich date syrup (dibs) or honey. But where did this sweet tradition originate?</p>
   <p>The origins of Luqaimat can be traced back to early Arabic literature. Similar recipes were mentioned in medieval cookbooks, often referred to as 'Luqmat al-Qadi' or 'The Judge's Bite,' due to their irresistible taste that could supposedly sway a judge's ruling.</p>
-  <p>At Catharei Bakery in Doha, we honor this timeless recipe by using premium saffron and cardamom in our dough, deep-frying them to perfection, and serving them hot. Come try the best Luqaimat in Qatar today!</p>
+  <p>At CATHAREi Bakery in Doha, we honor this timeless recipe by using premium saffron and cardamom in our dough, deep-frying them to perfection, and serving them hot. Come try the best Luqaimat in Qatar today!</p>
 `);
 
 createPage('blog/best-arabic-sweets-gifting.html', 'Arabic Sweets Gifting Guide', 'Arabic Sweets for Corporate Gifting', `
   <p>When it comes to corporate gifting in Doha, nothing conveys respect, hospitality, and appreciation quite like a luxury box of premium Arabic sweets.</p>
   <p>Whether you are thanking a loyal client, celebrating a company milestone, or sending Eid greetings, traditional desserts like Pistachio Baklava and Maamoul are universally loved.</p>
-  <p>At Catharei Bakery, our beautifully curated sweet boxes are designed to leave a lasting impression. With rich flavors, intricate craftsmanship, and elegant packaging, they represent the pinnacle of Middle Eastern culinary heritage.</p>
+  <p>At CATHAREi Bakery, our beautifully curated sweet boxes are designed to leave a lasting impression. With rich flavors, intricate craftsmanship, and elegant packaging, they represent the pinnacle of Middle Eastern culinary heritage.</p>
 `);

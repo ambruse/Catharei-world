@@ -6,7 +6,7 @@ const locations = [
     id: 'al-aziziya',
     name: 'Al Aziziya (Salwa Road)',
     title: 'Best Bakery in Al Aziziya, Salwa Rd | Order Arabic Sweets',
-    desc: 'Visit Catharei Bakery in Al Aziziya, Salwa Road for the best fresh Arabic sweets, custom cakes, and premium Kunafa in Doha.',
+    desc: 'Visit CATHAREi Bakery in Al Aziziya, Salwa Road for the best fresh Arabic sweets, custom cakes, and premium Kunafa in Doha.',
     lat: 25.2425559,
     lng: 51.4594252,
     address: 'Al Aziziya, Salwa Rd, Doha, Qatar',
@@ -16,7 +16,7 @@ const locations = [
     id: 'al-wakrah',
     name: 'Al Wakrah',
     title: 'Best Bakery in Al Wakrah | Order Fresh Arabic Sweets & Cakes',
-    desc: 'Visit Catharei Bakery in Al Wakrah. Enjoy our famous hot cheese Kunafa, premium Baklava, and luxury custom cakes available for pickup and delivery.',
+    desc: 'Visit CATHAREi Bakery in Al Wakrah. Enjoy our famous hot cheese Kunafa, premium Baklava, and luxury custom cakes available for pickup and delivery.',
     lat: 25.1639112,
     lng: 51.5974203,
     address: 'Al Wakrah, Doha, Qatar',
@@ -26,7 +26,7 @@ const locations = [
     id: 'al-kharaitiyat',
     name: 'Al Kharaitiyat',
     title: 'Best Bakery in Al Kharaitiyat | Premium Arabic Sweets Doha',
-    desc: 'Catharei Bakery in Al Kharaitiyat offers the finest selection of traditional Arabic desserts, oriental pastries, and modern custom cakes.',
+    desc: 'CATHAREi Bakery in Al Kharaitiyat offers the finest selection of traditional Arabic desserts, oriental pastries, and modern custom cakes.',
     lat: 25.397421,
     lng: 51.425266,
     address: 'Al Kharaitiyat, Doha, Qatar',
@@ -54,7 +54,7 @@ function createLocationPage(loc) {
   <main class="menu-page">
     <section class="menu-hero" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('../images/hero/hero-sweets.webp') center/cover;">
       <div class="container" style="text-align: center;">
-        <h1 style="font-family: var(--font-serif); font-size: 3rem; color: var(--color-accent); margin-bottom: 20px;">Catharei Bakery - ${loc.name}</h1>
+        <h1 style="font-family: var(--font-serif); font-size: 3rem; color: var(--color-accent); margin-bottom: 20px;">CATHAREi Bakery - ${loc.name}</h1>
         <p style="font-size: 1.2rem; color: #fff; max-width: 600px; margin: 0 auto;">Available for Pickup and Fast Delivery</p>
       </div>
     </section>
@@ -67,7 +67,7 @@ function createLocationPage(loc) {
           <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
             <li style="margin-bottom: 15px;"><strong>📍 Address:</strong> ${loc.address}</li>
             <li style="margin-bottom: 15px;"><strong>🕒 Hours:</strong> 08:00 AM - 10:00 PM</li>
-            <li style="margin-bottom: 15px;"><strong>📞 Phone:</strong> +974 0000 0000</li>
+            <li style="margin-bottom: 15px;"><strong>📞 Phone:</strong> +974 5094 2255</li>
           </ul>
           <a href="${loc.mapsUrl}" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 40px; margin-right: 15px;">Get Directions</a>
           <a href="../menu.html" class="btn btn-outline" style="font-size: 1.1rem; padding: 15px 40px;">Order Online</a>
@@ -99,7 +99,7 @@ function createLocationPage(loc) {
     "image": "https://catharei.com/images/background/hero_spread.webp",
     "@id": "https://catharei.com/locations/${loc.id}.html",
     "url": "https://catharei.com/locations/${loc.id}.html",
-    "telephone": "+974 0000 0000",
+    "telephone": "+974 5094 2255",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "${loc.address}",

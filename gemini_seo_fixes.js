@@ -48,7 +48,7 @@ function processHtmlFiles(dir, relativePath = '') {
           // No alt or empty alt. 
           // Extract filename to make a good alt text if possible
           const srcMatch = attrs.match(/src="([^"]+)"/);
-          let altText = "Premium Catharei Dessert Doha";
+          let altText = "Premium CATHAREi Dessert Doha";
           if (srcMatch) {
             const filename = srcMatch[1].split('/').pop().split('.')[0];
             altText = filename.replace(/[-_]/g, ' ') + " - Custom Cake and Arabic Sweets Doha";

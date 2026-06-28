@@ -1547,3 +1547,333 @@ main {
     padding-bottom: 100px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE CENTERING — applies to all pages at phone width
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Core layout containers ── */
+  .container,
+  .menu-container,
+  .section-padding,
+  main,
+  .menu-page,
+  .blurred-hero-bg main {
+    text-align: center;
+  }
+
+  /* ── Section heads & intro text ── */
+  .section-head,
+  .section-head h2,
+  .section-head p,
+  .section-title,
+  .section-title span {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Hero sections ── */
+  .menu-hero,
+  .menu-hero h1,
+  .menu-hero p,
+  .hero-spread-text,
+  .hero-title,
+  .hero-subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Prose paragraphs & body text ── */
+  p,
+  li,
+  address,
+  blockquote {
+    text-align: center;
+  }
+
+  /* ── Headings ── */
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+  }
+
+  /* ── Flex rows → stacked centered columns ── */
+  .promo-banner-inner,
+  .custom-cakes-banner,
+  .hero-spread-layout,
+  .partners-list,
+  .stores-grid {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .action-icons {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  /* ── Grids → single centered column ── */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  /* ── Footer columns ── */
+  .footer-col {
+    text-align: center !important;
+    padding-right: 0 !important;
+  }
+
+  .footer-col .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-col .footer-links li {
+    text-align: center;
+  }
+
+  .footer-col .brand-link {
+    justify-content: center;
+  }
+
+  /* ── Store grid ── */
+  .store-item,
+  .store-item:nth-child(1),
+  .store-item:nth-child(2),
+  .store-item:nth-child(3) {
+    text-align: center !important;
+  }
+
+  /* ── Buttons: stack and center ── */
+  .btn,
+  .btn-primary,
+  .btn-outline,
+  .btn-solid-gold {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* When buttons are siblings, add spacing between them */
+  .btn + .btn,
+  .btn-primary + .btn-outline,
+  .btn-outline + .btn-primary {
+    margin-top: 12px;
+  }
+
+  /* ── Inline-flex CTA pairs → stack centered ── */
+  a.btn,
+  a.btn-primary,
+  a.btn-outline {
+    display: inline-block;
+  }
+
+  /* ── Category & product grids ── */
+  .category-circles {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .category-circle-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  /* ── Promo text sections ── */
+  .promo-text {
+    text-align: center;
+    padding: 24px 20px;
+  }
+
+  .promo-image {
+    max-width: 100%;
+    width: 100%;
+    height: 200px;
+  }
+
+  /* ── Category headers (line + title) ── */
+  .category-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .category-header h2 {
+    text-align: center;
+    white-space: normal;
+  }
+
+  .category-header .line {
+    display: none;
+  }
+
+  /* ── FAQ list ── */
+  .faq-list {
+    text-align: center;
+  }
+
+  .faq-question {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .faq-answer {
+    text-align: center;
+  }
+
+  /* ── Location / about page inline content ── */
+  address,
+  [itemtype*="LocalBusiness"] p {
+    text-align: center;
+  }
+
+  /* ── Custom inline styles on inline grid/flex divs (landing pages) ── */
+  /* Target the service-card grids on catering, ramadan-eid, etc. */
+  [style*="display:grid"],
+  [style*="display: grid"] {
+    justify-items: center;
+  }
+
+  [style*="display:flex"][style*="gap"],
+  [style*="display: flex"][style*="gap"] {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── Scroll overlay text ── */
+  .scroll-overlay-text {
+    top: auto;
+    bottom: 10%;
+    left: 5%;
+    right: 5%;
+    transform: none;
+    text-align: center;
+  }
+
+  /* ── Cart coupon row ── */
+  .cart-coupon-area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cart-coupon-area > * {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+
+  /* ── Brand hero text (about / story pages) ── */
+  .about-hero-text,
+  .story-section,
+  .about-section {
+    text-align: center;
+  }
+
+  /* ── RTL support: keep centered in RTL too ── */
+  [dir="rtl"] p,
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    text-align: center;
+  }
+
+  /* ── Menu item info ── */
+  .menu-item-info {
+    text-align: center;
+    align-items: center;
+  }
+
+  .menu-item-name,
+  .menu-item-desc,
+  .menu-item-price {
+    text-align: center;
+  }
+
+  /* ── Product card info ── */
+  .product-info,
+  .product-title,
+  .product-price {
+    text-align: center;
+  }
+
+  /* ── Prevent hero-image from being too short ── */
+  .hero-image {
+    height: 240px;
+  }
+
+  /* ── Inline padded rich-text blocks (from landing pages / FAQ) ── */
+  div[style*="text-align: left"],
+  div[style*="text-align:left"] {
+    text-align: center !important;
+  }
+
+  /* Exception: keep RTL/dir=rtl text right-aligned */
+  [dir="rtl"] div[style*="text-align: left"],
+  [dir="rtl"] div[style*="text-align:left"] {
+    text-align: right !important;
+  }
+
+  /* ── Nav mobile panel stays left-aligned (readability) ── */
+  .nav-list li,
+  .nav-list a,
+  .nav-list button,
+  .nav-item {
+    text-align: left !important;
+  }
+
+  /* ── Modals stay centered ── */
+  .modal-content,
+  .modal-title {
+    text-align: center;
+  }
+}
+
+/* Extra small phones (≤ 480px) */
+@media (max-width: 480px) {
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-circles {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-hero h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  /* Stack all flex rows on tiny screens */
+  .action-icons {
+    gap: 10px;
+  }
+
+  /* Ensure all inline-style text blocks centre on tiny phones */
+  div[style*="text-align: left"],
+  div[style*="text-align:left"],
+  p[style*="text-align: left"],
+  p[style*="text-align:left"] {
+    text-align: center !important;
+  }
+
+  [dir="rtl"] div[style*="text-align: left"],
+  [dir="rtl"] div[style*="text-align:left"] {
+    text-align: right !important;
+  }
+}

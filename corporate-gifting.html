@@ -96,28 +96,62 @@
     </div>
     <nav class="nav" id="main-nav">
       <ul class="nav-list" id="nav-list">
-        <li class="nav-item"><a href="menu.html" data-i18n="nav.menu">Menu</a></li>
-        <li class="nav-item"><a href="navigation/savories.html" data-i18n="nav.savories">Savories</a></li>
+        <!-- 0. Menu -->
+        <li class="nav-item">
+          <a href="menu.html" data-i18n="nav.menu">Menu</a>
+        </li>
+        <!-- 1. Savories -->
+        <li class="nav-item">
+          <a href="navigation/savories.html" data-i18n="nav.savories">Savories</a>
+        </li>
+        <!-- 2. Sweets (Dropdown) -->
         <li class="nav-item has-dropdown">
-          <button id="sweets-btn"><span data-i18n="nav.sweets">SWEETS</span><svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+          <button id="sweets-btn"><span data-i18n="nav.sweets">SWEETS</span>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
           <ul class="dropdown-menu">
-            <li><a href="navigation/Arabic_sweets.html" class="dropdown-item">Arabic Sweets</a></li>
-            <li><a href="navigation/oriental_sweets.html" class="dropdown-item">Oriental Sweets</a></li>
+            <li><a href="navigation/Arabic_sweets.html" class="dropdown-item" data-i18n="nav.arabicSweets">Arabic Sweets</a></li>
+            <li><a href="navigation/oriental_sweets.html" class="dropdown-item" data-i18n="nav.orientalSweets">Oriental Sweets</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a href="navigation/special.html">Special</a></li>
+        <!-- 3. Special -->
+        <li class="nav-item">
+          <a href="navigation/special.html" data-i18n="nav.special">Special</a>
+        </li>
+        <!-- 4. Cakes (Dropdown) -->
         <li class="nav-item has-dropdown">
-          <button><span>CAKES</span><svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+          <button id="cakes-btn"><span data-i18n="nav.cakes">CAKES</span>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
           <ul class="dropdown-menu">
-            <li><a href="navigation/special_cakes.html" class="dropdown-item">Special Cakes</a></li>
-            <li><a href="navigation/customized_cakes.html" class="dropdown-item">Customized Cakes</a></li>
-            <li><a href="navigation/cakes.html" class="dropdown-item">CAKES</a></li>
+            <li><a href="navigation/special_cakes.html" class="dropdown-item" data-i18n="nav.specialCakes">Special Cakes</a></li>
+            <li><a href="navigation/customized_cakes.html" class="dropdown-item" data-i18n="nav.customizedCakes">Customized Cakes</a></li>
+            <li><a href="navigation/cakes.html" class="dropdown-item" data-i18n="nav.cakesPlain">CAKES</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a href="about.html">About Us</a></li>
-        <li class="nav-item"><a href="catering.html">Catering</a></li>
+        <!-- 5. About Us -->
+        <li class="nav-item">
+          <a href="about.html" data-i18n="nav.about">About Us</a>
+        </li>
+        <!-- 6. Other (Dropdown) -->
         <li class="nav-item has-dropdown">
-          <button id="lang-btn"><span>Language</span><svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+          <button id="other-btn"><span data-i18n="nav.other">Other</span>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="catering.html" class="dropdown-item" data-i18n="nav.catering">Catering &amp; Occasions</a></li>
+            <li><a href="blog.html" class="dropdown-item" data-i18n="nav.blog">Blog</a></li>
+            <li><a href="contact.html" class="dropdown-item" data-i18n="nav.contact">Contact Us</a></li>
+            <li><a href="faq.html" class="dropdown-item" data-i18n="nav.faq">FAQs</a></li>
+            <li><a href="privacy.html" class="dropdown-item" data-i18n="nav.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" class="dropdown-item" data-i18n="nav.terms">Terms of Service</a></li>
+          </ul>
+        </li>
+        <!-- 7. Language (Dropdown) -->
+        <li class="nav-item has-dropdown">
+          <button id="lang-btn"><span data-i18n="nav.language" id="current-lang-text">Language</span>
+            <svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
           <ul class="dropdown-menu">
             <li><button class="dropdown-item" id="lang-en" onclick="setLanguage('en')">English</button></li>
             <li><button class="dropdown-item" id="lang-ar" onclick="setLanguage('ar')">Arabic (عربي)</button></li>

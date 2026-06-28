@@ -17,14 +17,14 @@ function updateStoreFooters(dir, relativePath = '') {
       let modified = false;
 
       // Al Aziziya
-      const aziziyaRegex = /href="https:\/\/www\.google\.com\/maps\/place\/Catharei\/@[^"]*"\s*target="_blank"(\s*data-i18n="stores\.aziziya")/i;
+      const aziziyaRegex = /href="https:\/\/www\.google\.com\/maps\/place\/CATHAREi\/@[^"]*"\s*target="_blank"(\s*data-i18n="stores\.aziziya")/i;
       if (aziziyaRegex.test(content)) {
         content = content.replace(aziziyaRegex, `href="${prefix}locations/al-aziziya.html"$1`);
         modified = true;
       }
 
       // Al Wakrah
-      const wakrahRegex = /href="https:\/\/www\.google\.com\/maps\/place\/Catharei\+Wakrah\/@[^"]*"\s*target="_blank"(\s*data-i18n="stores\.wakrah")/i;
+      const wakrahRegex = /href="https:\/\/www\.google\.com\/maps\/place\/CATHAREi\+Wakrah\/@[^"]*"\s*target="_blank"(\s*data-i18n="stores\.wakrah")/i;
       if (wakrahRegex.test(content)) {
         content = content.replace(wakrahRegex, `href="${prefix}locations/al-wakrah.html"$1`);
         modified = true;

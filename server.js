@@ -201,7 +201,7 @@ function initializeDatabase() {
 
     // Create default admin if no admin exists
     const defaultAdminUser = 'catharei_admin';
-    const defaultAdminPass = 'Admin@Catharei2026';
+    const defaultAdminPass = 'Admin@CATHAREi2026';
 
     db.get("SELECT id FROM users WHERE role = 'admin' LIMIT 1", (err, row) => {
       if (!row) {
