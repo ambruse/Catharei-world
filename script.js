@@ -128,6 +128,8 @@ const translations = {
     "stores.wakrahAddress": "Al Wakrah Main Street, Zone 90, Al Wakrah, Qatar",
     "stores.kharaitiyat": "Catharei Bakery - Al Kharaitiyat",
     "stores.kharaitiyatAddress": "Al Kharaitiyat Commercial Street, Zone 71, Al Kharaitiyat, Qatar",
+    "brand.name": "CATHAREi",
+    "brand.sub": "كاثاري",
     "home.title": "CATHAREI | Premium Arabic Sweets & Custom Cakes Qatar",
     "home.desc": "Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah & Al Kharaitiyat.",
     "customized_cakes.title": "Custom Celebration & Wedding Cakes Doha | CATHAREI",
@@ -269,6 +271,8 @@ const translations = {
     "stores.wakrahAddress": "شارع الوكرة العام، منطقة 90، الوكرة، قطر",
     "stores.kharaitiyat": "مخبز كاثاري - الخريطيات",
     "stores.kharaitiyatAddress": "شارع الخريطيات التجاري، منطقة 71، الخريطيات، قطر",
+    "brand.name": "كاثاري",
+    "brand.sub": "",
     "home.title": "كاثاري | حلويات عربية فاخرة وكيك مخصص قطر",
     "home.desc": "اكتشف أفخر الحلويات العربية، المعجنات الشرقية، وكيك المناسبات المخصص من كاثاري. زوروا فروعنا في طريق سلوى، الوكرة، والخريطيات. اطلب أونلاين الآن!",
     "customized_cakes.title": "كيك مخصص واحتفالات فاخرة في الدوحة | كاثاري",
@@ -878,7 +882,7 @@ function applyTranslations() {
   const elements = document.querySelectorAll('[data-i18n]');
   elements.forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if(dictionary[key]) {
+    if(dictionary[key] !== undefined) {
       el.textContent = dictionary[key];
     }
   });
