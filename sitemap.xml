@@ -84,13 +84,13 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/faq.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/blog.html</loc>
+    <loc>https://catharei.com/blog</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/blog.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/blog?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/blog"/>
   </url>
   <url>
     <loc>https://catharei.com/contact.html</loc>
@@ -195,16 +195,22 @@
 
   <!-- ===== BLOG POSTS ===== -->
   <url>
-    <loc>https://catharei.com/blog/history-of-luqaimat.html</loc>
+    <loc>https://catharei.com/blog/history-of-luqaimat</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog/history-of-luqaimat?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/blog/history-of-luqaimat?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/blog/history-of-luqaimat"/>
   </url>
   <url>
-    <loc>https://catharei.com/blog/best-arabic-sweets-gifting.html</loc>
+    <loc>https://catharei.com/blog/best-arabic-sweets-gifting</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog/best-arabic-sweets-gifting?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/blog/best-arabic-sweets-gifting?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/blog/best-arabic-sweets-gifting"/>
   </url>
 
   <!-- ===== SUPPORT PAGES ===== -->
