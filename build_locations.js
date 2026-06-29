@@ -9,8 +9,9 @@ const locations = [
     desc: 'Visit CATHAREi Bakery in Al Aziziya, Salwa Road for the best fresh Arabic sweets, custom cakes, and premium Kunafa in Doha.',
     lat: 25.2425559,
     lng: 51.4594252,
-    address: 'Al Aziziya, Salwa Rd, Doha, Qatar',
+    address: 'Building 384, Street 340 (Salwa Road), Al Waab / Al Aziziya, Doha, Qatar',
     phone: '+974 5094 2255',
+    plusCode: '6FV5+2Q Doha',
     mapsUrl: 'https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z/data=!4m6!3m5!1s0x3e45db0706a6f2b3:0x1aaa8102b449d84d!8m2!3d25.2425559!4d51.4594252!16s%2Fg%2F11fn79k3vx',
     keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Best Arabic Sweets in Doha, Best Arabic Sweets in Qatar, Best Kunafa in Doha, Where to buy authentic Baklava in Qatar, Arabic sweets Salwa Road, CATHAREi Bakery Doha, buy Arabic sweets Doha, traditional Arabic desserts Doha'
   },
@@ -21,8 +22,9 @@ const locations = [
     desc: 'Visit CATHAREi Bakery in Al Wakrah. Enjoy our famous hot cheese Kunafa, premium Baklava, and luxury custom cakes available for pickup and delivery.',
     lat: 25.1639112,
     lng: 51.5974203,
-    address: 'Al Wakrah, Doha, Qatar',
+    address: 'Al Wakra Main St, Al Wakrah, Qatar',
     phone: '+974 4007 5555',
+    plusCode: '5H7W+FW Al Wakrah',
     mapsUrl: 'https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45cd007ea1c319:0x66da9b23749a18c1!8m2!3d25.1639112!4d51.5974203!16s%2Fg%2F11yp0h_08s',
     keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Arabic sweets Al Wakrah, bakery Al Wakrah, best arabic sweets in al wakrah, bakery near wakrah, premium sweet trays wakrah qatar, custom birthday cakes wakrah, kunafa and pastry delivery in al wakrah'
   },
@@ -33,8 +35,9 @@ const locations = [
     desc: 'CATHAREi Bakery in Al Kharaitiyat offers the finest selection of traditional Arabic desserts, oriental pastries, and modern custom cakes.',
     lat: 25.397421,
     lng: 51.425266,
-    address: 'Al Kharaitiyat, Doha, Qatar',
+    address: 'Al Kharaitiyat Commercial Street, Zone 71, Al Kharaitiyat, Qatar',
     phone: '+974 5539 2255',
+    plusCode: '',
     mapsUrl: 'https://share.google/otBX5VPPoHUPctZgy',
     keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Arabic sweets Al Kharaitiyat, Umm Salal bakery, best arabic sweets in al kharaitiyat, bakery near umm salal muhammed, premium sweet trays al kharaitiyat qatar, custom birthday cakes izghawa doha, kunafa and pastry delivery in al kharaitiyat'
   }
@@ -63,7 +66,7 @@ function createLocationPage(loc) {
   // Build the specific Branch HTML
   const newMain = `
   <main class="menu-page">
-    <section class="menu-hero" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('../images/hero/hero-sweets.webp') center/cover;">
+    <section class="menu-hero" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url(\'../images/hero/hero-sweets.webp\') center/cover;">
       <div class="container" style="text-align: center;">
         <h1 style="font-family: var(--font-serif); font-size: 3rem; color: var(--color-accent); margin-bottom: 20px;">CATHAREi Bakery - ${loc.name}</h1>
         <p style="font-size: 1.2rem; color: #fff; max-width: 600px; margin: 0 auto;">Available for Pickup and Fast Delivery</p>
@@ -77,6 +80,7 @@ function createLocationPage(loc) {
           <p style="margin-bottom: 20px;">${loc.desc}</p>
           <ul style="list-style: none; padding: 0; margin-bottom: 30px;">
             <li style="margin-bottom: 15px;"><strong>📍 Address:</strong> ${loc.address}</li>
+            ${loc.plusCode ? `<li style="margin-bottom: 15px;"><strong>📍 Plus Code:</strong> ${loc.plusCode}</li>` : ''}
             <li style="margin-bottom: 15px;"><strong>🕒 Hours:</strong> 08:00 AM - 10:00 PM</li>
             <li style="margin-bottom: 15px;"><strong>📞 Phone:</strong> ${loc.phone}</li>
           </ul>

@@ -19,7 +19,7 @@ const multiLocationSchema = `
         "image": "https://catharei.com/images/salwa-storefront.jpg",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Building 384, Street 340 (Salwa Road), Zone 55, Al Waab / Al Aziziya",
+          "streetAddress": "Building 384, Street 340 (Salwa Road), Al Waab / Al Aziziya",
           "addressLocality": "Doha",
           "addressCountry": "QA"
         },
@@ -40,7 +40,7 @@ const multiLocationSchema = `
         "image": "https://catharei.com/images/wakrah-storefront.jpg",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Al Wakrah Main Street, Zone 90",
+          "streetAddress": "Al Wakra Main St",
           "addressLocality": "Al Wakrah",
           "addressCountry": "QA"
         },
