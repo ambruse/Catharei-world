@@ -87,7 +87,160 @@ app.get('/admin.html', requireAdmin, (req, res) => {
 // ── Serve Images from the Persistent Disk (Added from server2) ──
 app.use('/images/products', express.static(UPLOAD_DIR));
 
-// ── Static Files (after admin guard) ──
+// ── Dynamic Blog System ──
+// Redirect old legacy static paths first
+app.get('/blog.html', (req, res) => {
+  res.redirect(301, '/blog');
+});
+app.get('/blog/history-of-luqaimat.html', (req, res) => {
+  res.redirect(301, '/blog/history-of-luqaimat');
+});
+app.get('/blog/best-arabic-sweets-gifting.html', (req, res) => {
+  res.redirect(301, '/blog/best-arabic-sweets-gifting');
+});
+
+// Dynamic Blog Feed / Directory
+app.get('/blog', (req, res) => {
+  try {
+    const posts = JSON.parse(fs.readFileSync(path.join(__dirname, 'posts.json'), 'utf8'));
+    let blogTemplate = fs.readFileSync(path.join(__dirname, 'blog.html'), 'utf8');
+
+    const postsHtml = posts.map(post => `
+      <article style="background: #111; padding: 25px; border-radius: 8px; border: 1px solid var(--color-accent); margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px;">
+        <div style="background: url('${post.cover}') center center / cover; height: 200px; border-radius: 6px;"></div>
+        <div>
+          <h3 style="font-family: var(--font-serif); margin-bottom: 8px; font-size: 1.5rem;">
+            <a href="/blog/${post.slug}" style="color: #fff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='#fff'">${post.title}</a>
+          </h3>
+          <p style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">📅 Published on ${post.date}</p>
+          <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6;">${post.desc}</p>
+          <a href="/blog/${post.slug}" style="display: inline-block; margin-top: 10px; color: var(--color-accent); font-weight: 600; text-decoration: underline; font-size: 0.95rem;">Read Full Post &rarr;</a>
+        </div>
+      </article>
+    `).join('');
+
+    // Locate and replace the static container in blog.html
+    const targetPattern = /<div style="margin-top: 40px;">[\s\S]*?<\/div>\s*<\/div>\s*<\/main>/i;
+    
+    const newMainSection = `
+    <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr; gap: 30px;">
+      ${postsHtml}
+    </div>
+    </div>
+    </main>
+    `;
+
+    blogTemplate = blogTemplate.replace(targetPattern, newMainSection);
+    res.send(blogTemplate);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Dynamic Blog Post Route
+app.get('/blog/:slug', (req, res) => {
+  try {
+    const { slug } = req.params;
+    const posts = JSON.parse(fs.readFileSync(path.join(__dirname, 'posts.json'), 'utf8'));
+    const post = posts.find(p => p.slug === slug);
+    if (!post) {
+      return res.status(404).send('<h1>Post not found</h1>');
+    }
+
+    let blogTemplate = fs.readFileSync(path.join(__dirname, 'blog.html'), 'utf8');
+
+    // Dynamic metadata replacements
+    blogTemplate = blogTemplate.replace(/<title>.*?<\/title>/i, `<title>${post.title} | CATHAREI</title>`);
+    
+    // Description replacements
+    const descRegex = /<meta\s+name=["']description["']\s+content=["'][\s\S]*?["']\s*\/?>/i;
+    blogTemplate = blogTemplate.replace(descRegex, `<meta name="description" content="${post.desc}">`);
+    
+    // OpenGraph Title & Description
+    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:title["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:title" content="${post.title}">`);
+    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:description["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:description" content="${post.desc}">`);
+    
+    // OpenGraph URL and Canonical Link
+    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:url["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:url" content="https://catharei.com/blog/${post.slug}">`);
+    blogTemplate = blogTemplate.replace(/<link\s+rel=["']canonical["']\s+href=["'][\s\S]*?["']\s*\/?>/i, `<link rel="canonical" href="https://catharei.com/blog/${post.slug}">`);
+
+    // Replace alternate links for the post page to point to dynamic slug
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei.com\/blog.html\?lang=en["']/g, `href="https://catharei.com/blog/${post.slug}?lang=en"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei.com\/blog.html\?lang=ar["']/g, `href="https://catharei.com/blog/${post.slug}?lang=ar"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei.com\/blog.html["']/g, `href="https://catharei.com/blog/${post.slug}"`);
+
+    // Dynamic Breadcrumbs & BlogPosting Schema block
+    const schemaBlock = `
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "${post.title}",
+      "description": "${post.desc}",
+      "image": "https://catharei.com/${post.cover}",
+      "datePublished": "${post.date}",
+      "author": {
+        "@type": "Organization",
+        "name": "CATHAREI",
+        "url": "https://catharei.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CATHAREI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://catharei.com/images/misc/Catharei_logo.webp"
+        }
+      },
+      "mainEntityOfPage": "https://catharei.com/blog/${post.slug}"
+    }
+    </script>
+    `;
+
+    blogTemplate = blogTemplate.replace('</head>', `${schemaBlock}\n</head>`);
+
+    // Dynamic main section replacement for individual blog post
+    const individualPostHtml = `
+    <main class="menu-page">
+      <section class="menu-hero" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('../${post.cover}') center center / cover;">
+        <div class="container" style="text-align: center;">
+          <h1 style="font-family: var(--font-serif); font-size: 2.8rem; color: var(--color-accent); margin-bottom: 20px;">${post.title}</h1>
+          <p style="font-size: 1rem; color: #fff;">📅 Published on ${post.date}</p>
+        </div>
+      </section>
+
+      <div class="container" style="max-width: 800px; margin: 60px auto; padding: 0 20px; line-height: 1.8; font-size: 1.1rem; color: #ccc;">
+        <div style="margin-bottom: 45px;">
+          <a href="/blog" style="color: var(--color-accent); font-weight: 600; text-decoration: none; font-size: 0.95rem;">&larr; Back to Blog Feed</a>
+        </div>
+        <div class="blog-post-content" style="line-height: 1.9; color: #ddd;">
+          ${post.body}
+        </div>
+      </div>
+    </main>
+    `;
+
+    blogTemplate = blogTemplate.replace(/<main[\s\S]*?<\/main>/i, individualPostHtml);
+
+    // Adjust relative assets path since this is 1 folder deep (/blog/:slug)
+    blogTemplate = blogTemplate.replace(/href="([^"h]*.css.*)"/g, 'href="../$1"');
+    blogTemplate = blogTemplate.replace(/src=["'](images\/[^"']*)["']/g, 'src="../$1"');
+    blogTemplate = blogTemplate.replace(/src=["'](script.js)["']/g, 'src="../$1"');
+    
+    // Adjust header and footer relative links to navigate back to root folder
+    blogTemplate = blogTemplate.replace(/href=["'](index.html|menu.html|catering.html|about.html|contact.html|faq.html|privacy.html|terms.html)["']/g, 'href="../$1"');
+    blogTemplate = blogTemplate.replace(/href=["'](navigation\/[^"']*)["']/g, 'href="../$1"');
+    blogTemplate = blogTemplate.replace(/href=["'](locations\/[^"']*)["']/g, 'href="../$1"');
+
+    res.send(blogTemplate);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// ── Static Files (after admin guard & dynamic routes) ──
 app.use(express.static(__dirname));
 
 // ── File Upload Configuration (Updated from server2) ──
