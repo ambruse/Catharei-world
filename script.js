@@ -124,7 +124,19 @@ const translations = {
     "footer.stores": "Our Stores",
     "stores.aziziya": "Al Aziziya, Salawa Rd",
     "stores.wakrah": "Al wakrah",
-    "stores.kharaitiyat": "Al Kharaitiyat"
+    "stores.kharaitiyat": "Al Kharaitiyat",
+    "home.title": "CATHAREI | Premium Arabic Sweets & Custom Cakes Qatar",
+    "home.desc": "Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah & Al Kharaitiyat.",
+    "customized_cakes.title": "Custom Celebration & Wedding Cakes Doha | CATHAREI",
+    "customized_cakes.desc": "Order luxury custom cakes in Qatar. From premium wedding designs to eggless birthday cakes, CATHAREI crafts bespoke cakes for delivery across Doha.",
+    "special_cakes.title": "Premium Specialty Cakes & Birthday Cakes | CATHAREI",
+    "special_cakes.desc": "Explore CATHAREI’s signature specialty cakes. Handcrafted daily with premium ingredients, perfect for birthdays, anniversaries, and luxury gatherings.",
+    "arabic_sweets.title": "Best Arabic Sweets, Kunafa & Baklava in Doha | CATHAREI",
+    "arabic_sweets.desc": "Savor authentic Arabic sweets at CATHAREI. Fresh cheese Kunafa, premium Baklava trays, and luxury gifting boxes for Ramadan and Eid delivered across Qatar.",
+    "oriental_sweets.title": "Artisanal Oriental Sweets & Pastries Doha | CATHAREI",
+    "oriental_sweets.desc": "Indulge in premium oriental pastries, Maamoul, and gourmet pistachio desserts. Handcrafted traditional sweets beautifully packaged for luxury gifting.",
+    "savories.title": "Fresh Savories, Fatayer & Catering Trays Doha | CATHAREI",
+    "savories.desc": "Order fresh local savories, traditional mini fatayer, and premium gathering platters from CATHAREI. Perfect catering options for events and VIP gatherings."
   },
   ar: {
     "nav.savories": "موالح",
@@ -250,7 +262,19 @@ const translations = {
     "footer.stores": "فروعنا",
     "stores.aziziya": "العزيزية، طريق سلوى",
     "stores.wakrah": "الوكرة",
-    "stores.kharaitiyat": "الخريطيات"
+    "stores.kharaitiyat": "الخريطيات",
+    "home.title": "كاثاري | حلويات عربية فاخرة وكيك مخصص قطر",
+    "home.desc": "اكتشف أفخر الحلويات العربية، المعجنات الشرقية، وكيك المناسبات المخصص من كاثاري. زوروا فروعنا في طريق سلوى، الوكرة، والخريطيات. اطلب أونلاين الآن!",
+    "customized_cakes.title": "كيك مخصص واحتفالات فاخرة في الدوحة | كاثاري",
+    "customized_cakes.desc": "اطلب كيك مخصص فاخر لجميع مناسباتك في قطر. كعكات زفاف وأعياد ميلاد راقية ومصممة حسب الطلب مع خدمة التوصيل في الدوحة. صمم كعكتك الآن!",
+    "special_cakes.title": "كعكات خاصة فاخرة وأعياد ميلاد | كاثاري",
+    "special_cakes.desc": "تصفح تشكيلة كاثاري المميزة من الكعكات الخاصة. طازجة يومياً بأجود المكونات، مثالية لأعياد الميلاد، المناسبات، والتجمعات الفاخرة في قطر.",
+    "arabic_sweets.title": "أفضل حلويات عربية، كنافة وبقلاوة في الدوحة | كاثاري",
+    "arabic_sweets.desc": "تذوق أصالة الحلويات العربية من كاثاري. كنافة بالجبن طازجة، صواني بقلاوة فاخرة، وعلب هدايا راقية للأعياد والمناسبات مع التوصيل في قطر.",
+    "oriental_sweets.title": "حلويات ومعجنات شرقية فاخرة في الدوحة | كاثاري",
+    "oriental_sweets.desc": "استمتع بأفخر المعجنات الشرقية، المعمول التقليدي، وحلويات الفستق الفاخرة من كاثاري. حلويات تراثية مصنعة يدوياً ومثالية للهدايا الراقية في قطر.",
+    "savories.title": "فطائر وموالح طازجة وصواني ضيافة الدوحة | كاثاري",
+    "savories.desc": "اطلب موالح طازجة، فطائر صغيرة تقليدية، وأطباق تجمعات فاخرة من كاثاري. خيارات ضيافة مثالية للمناسبات والجمعات العائلية في قطر."
   }
 };
 
@@ -860,6 +884,31 @@ function applyTranslations() {
       input.placeholder = dictionary[key];
     }
   });
+
+  // Translate document title and meta description dynamically
+  function getPageKey() {
+    const path = window.location.pathname;
+    if (path.endsWith('/') || path.endsWith('index.html') || path === '' || (!path.includes('.html') && !path.includes('/navigation/') && !path.includes('/blog/') && !path.includes('/locations/'))) return 'home';
+    if (path.includes('customized_cakes.html')) return 'customized_cakes';
+    if (path.includes('special_cakes.html')) return 'special_cakes';
+    if (path.includes('Arabic_sweets.html')) return 'arabic_sweets';
+    if (path.includes('oriental_sweets.html')) return 'oriental_sweets';
+    if (path.includes('savories.html')) return 'savories';
+    return '';
+  }
+
+  const pageKey = getPageKey();
+  if (pageKey) {
+    if (dictionary[`${pageKey}.title`]) {
+      document.title = dictionary[`${pageKey}.title`];
+    }
+    if (dictionary[`${pageKey}.desc`]) {
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute('content', dictionary[`${pageKey}.desc`]);
+      }
+    }
+  }
 }
 
 
