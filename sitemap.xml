@@ -5,7 +5,7 @@
   <!-- ===== HOMEPAGE ===== -->
   <url>
     <loc>https://catharei.com/</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/?lang=en"/>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://catharei.com/index.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -22,7 +22,7 @@
   <!-- ===== CORE PAGES ===== -->
   <url>
     <loc>https://catharei.com/menu.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/menu.html?lang=en"/>
@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://catharei.com/about.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/about.html?lang=en"/>
@@ -40,7 +40,7 @@
   </url>
   <url>
     <loc>https://catharei.com/catering.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/catering.html?lang=en"/>
@@ -49,7 +49,7 @@
   </url>
   <url>
     <loc>https://catharei.com/ramadan-eid.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>seasonal</changefreq>
     <priority>0.92</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/ramadan-eid.html?lang=en"/>
@@ -58,7 +58,7 @@
   </url>
   <url>
     <loc>https://catharei.com/corporate-gifting.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/corporate-gifting.html?lang=en"/>
@@ -67,7 +67,7 @@
   </url>
   <url>
     <loc>https://catharei.com/delivery.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/delivery.html?lang=en"/>
@@ -76,7 +76,7 @@
   </url>
   <url>
     <loc>https://catharei.com/faq.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/faq.html?lang=en"/>
@@ -85,7 +85,7 @@
   </url>
   <url>
     <loc>https://catharei.com/blog.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog.html?lang=en"/>
@@ -94,7 +94,7 @@
   </url>
   <url>
     <loc>https://catharei.com/contact.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -102,7 +102,7 @@
   <!-- ===== CATEGORY / NAVIGATION PAGES ===== -->
   <url>
     <loc>https://catharei.com/navigation/Arabic_sweets.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/Arabic_sweets.html?lang=en"/>
@@ -111,7 +111,7 @@
   </url>
   <url>
     <loc>https://catharei.com/navigation/oriental_sweets.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/oriental_sweets.html?lang=en"/>
@@ -120,7 +120,7 @@
   </url>
   <url>
     <loc>https://catharei.com/navigation/savories.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/savories.html?lang=en"/>
@@ -129,7 +129,7 @@
   </url>
   <url>
     <loc>https://catharei.com/navigation/cakes.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/cakes.html?lang=en"/>
@@ -138,7 +138,7 @@
   </url>
   <url>
     <loc>https://catharei.com/navigation/customized_cakes.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/customized_cakes.html?lang=en"/>
@@ -147,7 +147,7 @@
   </url>
   <url>
     <loc>https://catharei.com/navigation/special_cakes.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/special_cakes.html?lang=en"/>
@@ -156,7 +156,7 @@
   </url>
   <url>
     <loc>https://catharei.com/navigation/special.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/special.html?lang=en"/>
@@ -167,7 +167,7 @@
   <!-- ===== LOCATION PAGES ===== -->
   <url>
     <loc>https://catharei.com/locations/al-aziziya.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/locations/al-aziziya.html?lang=en"/>
@@ -176,7 +176,7 @@
   </url>
   <url>
     <loc>https://catharei.com/locations/al-wakrah.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/locations/al-wakrah.html?lang=en"/>
@@ -185,7 +185,7 @@
   </url>
   <url>
     <loc>https://catharei.com/locations/al-kharaitiyat.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/locations/al-kharaitiyat.html?lang=en"/>
@@ -196,13 +196,13 @@
   <!-- ===== BLOG POSTS ===== -->
   <url>
     <loc>https://catharei.com/blog/history-of-luqaimat.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://catharei.com/blog/best-arabic-sweets-gifting.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
@@ -210,13 +210,13 @@
   <!-- ===== SUPPORT PAGES ===== -->
   <url>
     <loc>https://catharei.com/privacy.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://catharei.com/terms.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
