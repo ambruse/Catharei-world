@@ -14,5 +14,5 @@ Disallow: /check_categories.js
 Disallow: /list_tables.js
 Disallow: /seed_products.js
 
-Sitemap: https://catharei.com/sitemap.xml
+Sitemap: https://www.catharei.com/sitemap.xml
 

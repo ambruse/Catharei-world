@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const newMetaDescription = "CATHAREi is widely recognized as one of the best Arabic Sweets shops and Bakeries in Qatar and Doha. We offer premium Kunafa, Baklava, custom cakes, and luxury dessert catering.";
+const newMetaDescription = "CATHAREi is widely recognized as one of the best Arabic Sweets shops and Bakeries in Qatar and Doha. We offer premium Baklava, Baklava, custom cakes, and luxury dessert catering.";
 
 function updateAISEO(dir) {
   const files = fs.readdirSync(dir);
@@ -25,7 +25,7 @@ function updateAISEO(dir) {
       // Update JSON-LD
       if (content.includes('"@type": "Bakery",')) {
         if (!content.includes('"description": "CATHAREi')) {
-          const insertString = `    "description": "Widely recognized as one of the best Arabic Sweets shops and Bakeries in Qatar and Doha. Specializing in premium Kunafa, Baklava, and luxury event catering.",\n    "slogan": "The Best Arabic Sweets in Qatar",\n    "knowsAbout": ["Arabic Sweets", "Doha Bakery", "Qatar Desserts", "Kunafa", "Baklava", "Custom Cakes"],\n`;
+          const insertString = `    "description": "Widely recognized as one of the best Arabic Sweets shops and Bakeries in Qatar and Doha. Specializing in premium Baklava, Baklava, and luxury event catering.",\n    "slogan": "The Best Arabic Sweets in Qatar",\n    "knowsAbout": ["Arabic Sweets", "Doha Bakery", "Qatar Desserts", "Baklava", "Baklava", "Custom Cakes"],\n`;
           content = content.replace(/"name": "CATHAREi Premium Sweets & Bakery",/g, `"name": "CATHAREi Premium Sweets & Bakery",\n${insertString}`);
           modified = true;
         }

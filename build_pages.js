@@ -13,7 +13,7 @@ const aboutContent = `
       <h2 style="font-family: var(--font-serif); color: var(--color-accent); font-size: 2rem; margin-bottom: 30px; text-align: center;">Welcome to CATHAREi</h2>
       <p style="margin-bottom: 20px;">At CATHAREi, we believe that traditional Arabic desserts are more than just food—they are a celebration of culture, hospitality, and timeless heritage. As a premier Arabic bakery, we take pride in serving an exquisite selection of freshly baked delicacies, from savory staples like traditional Ka'ak bread and freshly baked pita bread to perfectly spiced Manakish Zaatar and cheese.</p>
       
-      <p style="margin-bottom: 20px;">For those with a sweet tooth, our pastry chefs specialize in authentic, heavy-hitting classics. We are renowned for our signature cheese Kunafa / Knafeh, standard-setting pistachio Baklava, melts-in-your-mouth Maamoul cookies with dates, and rich Basbousa.</p>
+      <p style="margin-bottom: 20px;">For those with a sweet tooth, our pastry chefs specialize in authentic, heavy-hitting classics. We are renowned for our signature cheese Baklava / Baklava, standard-setting pistachio Baklava, melts-in-your-mouth Maamoul cookies with dates, and rich Basbousa.</p>
 
       <p style="margin-bottom: 40px;">Whether you are looking for a casual weekend treat or searching for a "Middle Eastern dessert shop open now," CATHAREi guarantees an unparalleled premium experience.</p>
       
@@ -37,7 +37,7 @@ const cateringContent = `
       <h2 style="font-family: var(--font-serif); color: var(--color-accent); font-size: 2rem; margin-bottom: 30px; text-align: center;">Premium Catering for All Occasions</h2>
       <p style="margin-bottom: 20px;">Make your next celebration unforgettable with the finest Middle Eastern dessert tables from CATHAREi. We specialize in premium catering for all occasions—offering beautifully curated Ramadan sweets boxes, bespoke Eid dessert catering, luxury Iftar dessert platters, and stunning corporate gifting options.</p>
       
-      <p style="margin-bottom: 40px;">From fresh, hot-delivered cheese Kunafa to elegantly packaged Arabic sweets gift boxes, our artisanal pastries add a touch of sophisticated tradition to weddings, family gatherings, and corporate events.</p>
+      <p style="margin-bottom: 40px;">From fresh, hot-delivered cheese Baklava to elegantly packaged Arabic sweets gift boxes, our artisanal pastries add a touch of sophisticated tradition to weddings, family gatherings, and corporate events.</p>
 
       <div style="text-align: center; background: #111; padding: 40px; border-radius: 12px; border: 1px solid var(--color-accent);">
         <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 15px; color: #fff;">Contact Us to Customize Your Order</h3>

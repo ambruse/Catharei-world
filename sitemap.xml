@@ -4,96 +4,90 @@
 
   <!-- ===== HOMEPAGE ===== -->
   <url>
-    <loc>https://catharei.com/</loc>
+    <loc>https://www.catharei.com/</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/"/>
-  </url>
-  <url>
-    <loc>https://catharei.com/index.html</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/"/>
   </url>
 
   <!-- ===== CORE PAGES ===== -->
   <url>
-    <loc>https://catharei.com/menu.html</loc>
+    <loc>https://www.catharei.com/menu.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/menu.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/menu.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/menu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/menu.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/menu.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/menu.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/about.html</loc>
+    <loc>https://www.catharei.com/about.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/about.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/about.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/about.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/about.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/about.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/catering.html</loc>
+    <loc>https://www.catharei.com/catering.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/catering.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/catering.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/catering.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/catering.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/catering.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/catering.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/ramadan-eid.html</loc>
+    <loc>https://www.catharei.com/ramadan-eid.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/ramadan-eid.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/ramadan-eid.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/ramadan-eid.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/ramadan-eid.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/ramadan-eid.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/ramadan-eid.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/corporate-gifting.html</loc>
+    <loc>https://www.catharei.com/corporate-gifting.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/corporate-gifting.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/corporate-gifting.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/corporate-gifting.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/corporate-gifting.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/corporate-gifting.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/corporate-gifting.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/delivery.html</loc>
+    <loc>https://www.catharei.com/delivery.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/delivery.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/delivery.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/delivery.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/delivery.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/delivery.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/delivery.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/faq.html</loc>
+    <loc>https://www.catharei.com/faq.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/faq.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/faq.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/faq.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/faq.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/faq.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/blog</loc>
+    <loc>https://www.catharei.com/blog</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/blog?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/blog?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/blog?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/blog"/>
   </url>
   <url>
-    <loc>https://catharei.com/contact.html</loc>
+    <loc>https://www.catharei.com/contact.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -101,127 +95,127 @@
 
   <!-- ===== CATEGORY / NAVIGATION PAGES ===== -->
   <url>
-    <loc>https://catharei.com/navigation/Arabic_sweets.html</loc>
+    <loc>https://www.catharei.com/navigation/Arabic_sweets.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/Arabic_sweets.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/navigation/Arabic_sweets.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/navigation/Arabic_sweets.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/navigation/Arabic_sweets.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/navigation/Arabic_sweets.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/navigation/Arabic_sweets.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/navigation/oriental_sweets.html</loc>
+    <loc>https://www.catharei.com/navigation/oriental_sweets.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/oriental_sweets.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/navigation/oriental_sweets.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/navigation/oriental_sweets.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/navigation/oriental_sweets.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/navigation/oriental_sweets.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/navigation/oriental_sweets.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/navigation/savories.html</loc>
+    <loc>https://www.catharei.com/navigation/savories.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/savories.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/navigation/savories.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/navigation/savories.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/navigation/savories.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/navigation/savories.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/navigation/savories.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/navigation/cakes.html</loc>
+    <loc>https://www.catharei.com/navigation/cakes.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/cakes.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/navigation/cakes.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/navigation/cakes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/navigation/cakes.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/navigation/cakes.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/navigation/cakes.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/navigation/customized_cakes.html</loc>
+    <loc>https://www.catharei.com/navigation/customized_cakes.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/customized_cakes.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/navigation/customized_cakes.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/navigation/customized_cakes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/navigation/customized_cakes.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/navigation/customized_cakes.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/navigation/customized_cakes.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/navigation/special_cakes.html</loc>
+    <loc>https://www.catharei.com/navigation/special_cakes.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/special_cakes.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/navigation/special_cakes.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/navigation/special_cakes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/navigation/special_cakes.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/navigation/special_cakes.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/navigation/special_cakes.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/navigation/special.html</loc>
+    <loc>https://www.catharei.com/navigation/special.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/navigation/special.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/navigation/special.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/navigation/special.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/navigation/special.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/navigation/special.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/navigation/special.html"/>
   </url>
 
   <!-- ===== LOCATION PAGES ===== -->
   <url>
-    <loc>https://catharei.com/locations/al-aziziya.html</loc>
+    <loc>https://www.catharei.com/locations/al-aziziya.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/locations/al-aziziya.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/locations/al-aziziya.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/locations/al-aziziya.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/locations/al-aziziya.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/locations/al-aziziya.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/locations/al-aziziya.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/locations/al-wakrah.html</loc>
+    <loc>https://www.catharei.com/locations/al-wakrah.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/locations/al-wakrah.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/locations/al-wakrah.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/locations/al-wakrah.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/locations/al-wakrah.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/locations/al-wakrah.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/locations/al-wakrah.html"/>
   </url>
   <url>
-    <loc>https://catharei.com/locations/al-kharaitiyat.html</loc>
+    <loc>https://www.catharei.com/locations/al-kharaitiyat.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/locations/al-kharaitiyat.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/locations/al-kharaitiyat.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/locations/al-kharaitiyat.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/locations/al-kharaitiyat.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/locations/al-kharaitiyat.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/locations/al-kharaitiyat.html"/>
   </url>
 
   <!-- ===== BLOG POSTS ===== -->
   <url>
-    <loc>https://catharei.com/blog/history-of-luqaimat</loc>
+    <loc>https://www.catharei.com/blog/history-of-luqaimat</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog/history-of-luqaimat?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/blog/history-of-luqaimat?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/blog/history-of-luqaimat"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/blog/history-of-luqaimat?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/blog/history-of-luqaimat?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/blog/history-of-luqaimat"/>
   </url>
   <url>
-    <loc>https://catharei.com/blog/best-arabic-sweets-gifting</loc>
+    <loc>https://www.catharei.com/blog/best-arabic-sweets-gifting</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://catharei.com/blog/best-arabic-sweets-gifting?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://catharei.com/blog/best-arabic-sweets-gifting?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://catharei.com/blog/best-arabic-sweets-gifting"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.catharei.com/blog/best-arabic-sweets-gifting?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.catharei.com/blog/best-arabic-sweets-gifting?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.catharei.com/blog/best-arabic-sweets-gifting"/>
   </url>
 
   <!-- ===== SUPPORT PAGES ===== -->
   <url>
-    <loc>https://catharei.com/privacy.html</loc>
+    <loc>https://www.catharei.com/privacy.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://catharei.com/terms.html</loc>
+    <loc>https://www.catharei.com/terms.html</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

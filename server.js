@@ -55,6 +55,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
+  const host = req.headers.host || '';
+  const proto = req.headers['x-forwarded-proto'];
+  const isProd = IS_RENDER || process.env.NODE_ENV === 'production';
+  
+  if (isProd && (!host.startsWith('www.') || proto === 'http')) {
+    const targetHost = host.startsWith('www.') ? host : `www.${host}`;
+    return res.redirect(301, `https://${targetHost}${req.url}`);
+  }
+  next();
+});
+
+app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
 });
@@ -162,13 +174,16 @@ app.get('/blog/:slug', (req, res) => {
     blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:description["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:description" content="${post.desc}">`);
     
     // OpenGraph URL and Canonical Link
-    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:url["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:url" content="https://catharei.com/blog/${post.slug}">`);
-    blogTemplate = blogTemplate.replace(/<link\s+rel=["']canonical["']\s+href=["'][\s\S]*?["']\s*\/?>/i, `<link rel="canonical" href="https://catharei.com/blog/${post.slug}">`);
+    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:url["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:url" content="https://www.catharei.com/blog/${post.slug}">`);
+    blogTemplate = blogTemplate.replace(/<link\s+rel=["']canonical["']\s+href=["'][\s\S]*?["']\s*\/?>/i, `<link rel="canonical" href="https://www.catharei.com/blog/${post.slug}">`);
 
     // Replace alternate links for the post page to point to dynamic slug
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei.com\/blog.html\?lang=en["']/g, `href="https://catharei.com/blog/${post.slug}?lang=en"`);
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei.com\/blog.html\?lang=ar["']/g, `href="https://catharei.com/blog/${post.slug}?lang=ar"`);
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei.com\/blog.html["']/g, `href="https://catharei.com/blog/${post.slug}"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/www\.catharei\.com\/blog\.html\?lang=en["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=en"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/www\.catharei\.com\/blog\.html\?lang=ar["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=ar"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/www\.catharei\.com\/blog\.html["']/g, `href="https://www.catharei.com/blog/${post.slug}"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei\.com\/blog\.html\?lang=en["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=en"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei\.com\/blog\.html\?lang=ar["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=ar"`);
+    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei\.com\/blog\.html["']/g, `href="https://www.catharei.com/blog/${post.slug}"`);
 
     // Dynamic Breadcrumbs & BlogPosting Schema block
     const schemaBlock = `
@@ -178,22 +193,22 @@ app.get('/blog/:slug', (req, res) => {
       "@type": "BlogPosting",
       "headline": "${post.title}",
       "description": "${post.desc}",
-      "image": "https://catharei.com/${post.cover}",
+      "image": "https://www.catharei.com/${post.cover}",
       "datePublished": "${post.date}",
       "author": {
         "@type": "Organization",
         "name": "CATHAREI",
-        "url": "https://catharei.com"
+        "url": "https://www.catharei.com"
       },
       "publisher": {
         "@type": "Organization",
         "name": "CATHAREI",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://catharei.com/images/misc/Catharei_logo.webp"
+          "url": "https://www.catharei.com/images/misc/Catharei_logo.webp"
         }
       },
-      "mainEntityOfPage": "https://catharei.com/blog/${post.slug}"
+      "mainEntityOfPage": "https://www.catharei.com/blog/${post.slug}"
     }
     </script>
     `;

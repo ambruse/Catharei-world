@@ -4,7 +4,7 @@ const urls = ['locations/al-aziziya.html', 'locations/al-wakrah.html', 'location
 let additions = '';
 urls.forEach(u => {
   if (!sitemap.includes(u)) {
-    additions += `\n  <url>\n    <loc>https://catharei.com/${u}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`;
+    additions += `\n  <url>\n    <loc>https://www.catharei.com/${u}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>`;
   }
 });
 if (additions) {

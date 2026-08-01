@@ -28,9 +28,9 @@ function processHtmlFiles(dir, relativePath = '') {
       // 1. Inject Hreflang
       if (!content.includes('hreflang="ar"')) {
         const hreflangTags = `
-  <link rel="alternate" hreflang="en" href="https://catharei.com/${urlPath}?lang=en" />
-  <link rel="alternate" hreflang="ar" href="https://catharei.com/${urlPath}?lang=ar" />
-  <link rel="alternate" hreflang="x-default" href="https://catharei.com/${urlPath}" />`;
+  <link rel="alternate" hreflang="en" href="https://www.catharei.com/${urlPath}?lang=en" />
+  <link rel="alternate" hreflang="ar" href="https://www.catharei.com/${urlPath}?lang=ar" />
+  <link rel="alternate" hreflang="x-default" href="https://www.catharei.com/${urlPath}" />`;
         content = content.replace('</head>', `${hreflangTags}\n</head>`);
       }
 

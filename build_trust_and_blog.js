@@ -11,12 +11,12 @@ const multiLocationSchema = `
     "@graph": [
       {
         "@type": "Bakery",
-        "@id": "https://catharei.com/#salwaroad",
+        "@id": "https://www.catharei.com/#salwaroad",
         "name": "CATHAREi Bakery & Sweets - Salwa Road",
-        "url": "https://catharei.com",
+        "url": "https://www.catharei.com",
         "telephone": "+97450942255",
         "priceRange": "$$",
-        "image": "https://catharei.com/images/salwa-storefront.jpg",
+        "image": "https://www.catharei.com/images/salwa-storefront.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Building 384, Street 340 (Salwa Road), Al Waab / Al Aziziya",
@@ -32,12 +32,12 @@ const multiLocationSchema = `
       },
       {
         "@type": "Bakery",
-        "@id": "https://catharei.com/#alwakrah",
+        "@id": "https://www.catharei.com/#alwakrah",
         "name": "CATHAREi Bakery & Sweets - Al Wakrah",
-        "url": "https://catharei.com",
+        "url": "https://www.catharei.com",
         "telephone": "+97440075555",
         "priceRange": "$$",
-        "image": "https://catharei.com/images/wakrah-storefront.jpg",
+        "image": "https://www.catharei.com/images/wakrah-storefront.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Al Wakra Main St",
@@ -53,12 +53,12 @@ const multiLocationSchema = `
       },
       {
         "@type": "Bakery",
-        "@id": "https://catharei.com/#alkharaitiyat",
+        "@id": "https://www.catharei.com/#alkharaitiyat",
         "name": "CATHAREi Bakery & Sweets - Al Kharaitiyat",
-        "url": "https://catharei.com",
+        "url": "https://www.catharei.com",
         "telephone": "+97455392255",
         "priceRange": "$$",
-        "image": "https://catharei.com/images/kharaitiyat-storefront.jpg",
+        "image": "https://www.catharei.com/images/kharaitiyat-storefront.jpg",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Al Kharaitiyat Commercial Street, Zone 71",
@@ -84,9 +84,9 @@ const multiLocationSchema = `
     "@type": "Organization",
     "name": "CATHAREI",
     "alternateName": ["CATHAREi Bakery", "كاثاري"],
-    "url": "https://catharei.com",
-    "logo": "https://catharei.com/images/misc/Catharei_logo.webp",
-    "description": "Doha's finest Arabic bakery, specializing in handcrafted Kunafa, Baklava, Maamoul, and bespoke custom cakes.",
+    "url": "https://www.catharei.com",
+    "logo": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+    "description": "Doha's finest Arabic bakery, specializing in handcrafted Baklava, Baklava, Maamoul, and bespoke custom cakes.",
     "foundingLocation": "Doha, Qatar",
     "areaServed": [
       {"@type": "City", "name": "Doha"},
@@ -128,7 +128,7 @@ function createPage(filename, title, description, heading, bodyHtml, extraSchema
   }
 
   // Update canonical link in the page
-  const canonicalUrl = `https://catharei.com/${filename}`;
+  const canonicalUrl = `https://www.catharei.com/${filename}`;
   content = content.replace(/<link\s+rel=["']canonical["']\s+href=["'][\s\S]*?["']\s*\/?>/i, `<link rel="canonical" href="${canonicalUrl}">`);
 
   // Update alternate links

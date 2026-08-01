@@ -4,10 +4,10 @@ const db = new sqlite3.Database('database.sqlite');
 const newProducts = [
   // Arabic Sweets
   {
-    name: "Hot Cheese Kunafa",
+    name: "Hot Cheese Baklava",
     price: "45",
-    image: "https://via.placeholder.com/400x300?text=Cheese+Kunafa",
-    desc: "Signature hot cheese kunafa, baked fresh to order and soaked in our special syrup.",
+    image: "https://via.placeholder.com/400x300?text=Cheese+Baklava",
+    desc: "Signature hot cheese Baklava, baked fresh to order and soaked in our special syrup.",
     cat: "arabic_sweets"
   },
   {

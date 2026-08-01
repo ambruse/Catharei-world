@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const newMetaDescription = "CATHAREi is widely recognized as one of the best Arabic Sweets shops and Bakeries in Qatar and Doha. We offer premium Kunafa, Baklava, custom cakes, and luxury dessert catering.";
+const newMetaDescription = "CATHAREi is widely recognized as one of the best Arabic Sweets shops and Bakeries in Qatar and Doha. We offer premium Baklava, Baklava, custom cakes, and luxury dessert catering.";
 
 function updateAISEOAll(dir) {
   const files = fs.readdirSync(dir);
