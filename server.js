@@ -213,7 +213,37 @@ app.get('/blog/:slug', (req, res) => {
     </script>
     `;
 
-    blogTemplate = blogTemplate.replace('</head>', `${schemaBlock}\n</head>`);
+    let faqSchema = '';
+    if (slug === 'history-of-luqaimat') {
+      faqSchema = `
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Where did Luqaimat originate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Luqaimat (meaning 'bite-sized morsels' in Arabic) originated in the ancient Arab world and Middle East, tracing back centuries as a staple celebratory dessert during Ramadan, Eid, and family gatherings across Qatar and the Gulf region."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Qatari Luqaimat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Qatari Luqaimat are crisp, golden fried dough balls drizzled with date syrup (Dibs) or honey and sprinkled with sesame seeds or cardamom, served fresh as Qatar's favourite traditional sweet."
+          }
+        }
+      ]
+    }
+    </script>
+      `;
+    }
+
+    blogTemplate = blogTemplate.replace('</head>', `${schemaBlock}\n${faqSchema}\n</head>`);
 
     // Dynamic main section replacement for individual blog post
     const individualPostHtml = `

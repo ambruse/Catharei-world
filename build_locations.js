@@ -13,7 +13,7 @@ const locations = [
     phone: '+974 5094 2255',
     plusCode: '6FV5+2Q Doha',
     mapsUrl: 'https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z/data=!4m6!3m5!1s0x3e45db0706a6f2b3:0x1aaa8102b449d84d!8m2!3d25.2425559!4d51.4594252!16s%2Fg%2F11fn79k3vx',
-    keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Best Arabic Sweets in Doha, Best Arabic Sweets in Qatar, Where to buy authentic Baklava in Qatar, Arabic sweets Salwa Road, CATHAREi Bakery Doha, buy Arabic sweets Doha, traditional Arabic desserts Doha'
+    keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Best Arabic Sweets in Doha, Arabic sweets Salwa Road, CATHAREi Bakery Doha, كتري, مخبز كتري, salwa road bakery, traditional Arabic desserts Doha'
   },
   {
     id: 'al-wakrah',
@@ -26,7 +26,7 @@ const locations = [
     phone: '+974 4007 5555',
     plusCode: '5H7W+FW Al Wakrah',
     mapsUrl: 'https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45cd007ea1c319:0x66da9b23749a18c1!8m2!3d25.1639112!4d51.5974203!16s%2Fg%2F11yp0h_08s',
-    keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Arabic sweets Al Wakrah, bakery Al Wakrah, best arabic sweets in al wakrah, bakery near wakrah, premium sweet trays wakrah qatar, custom birthday cakes wakrah, pastry delivery in al wakrah'
+    keywords: 'Best Bakery in Qatar, Arabic sweets Al Wakrah, bakery Al Wakrah, best arabic sweets in al wakrah, كتري الوكرة, cake shop wakra, cake shop in wakra, custom birthday cakes wakrah'
   },
   {
     id: 'al-kharaitiyat',
@@ -39,7 +39,7 @@ const locations = [
     phone: '+974 5539 2255',
     plusCode: '',
     mapsUrl: 'https://share.google/otBX5VPPoHUPctZgy',
-    keywords: 'Best Bakery in Qatar, Best Bakery in Doha, Arabic sweets Al Kharaitiyat, Umm Salal bakery, best arabic sweets in al kharaitiyat, bakery near umm salal muhammed, premium sweet trays al kharaitiyat qatar, custom birthday cakes izghawa doha, pastry delivery in al kharaitiyat'
+    keywords: 'Best Bakery in Qatar, Arabic sweets Al Kharaitiyat, كتري الخريطيات, كتري للحلويات الخريطيات, Umm Salal bakery, best arabic sweets in al kharaitiyat, bakery near umm salal muhammed'
   }
 ];
 
