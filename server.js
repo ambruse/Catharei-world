@@ -75,6 +75,61 @@ app.use((req, res, next) => {
   next();
 });
 
+// ── SEO 301 Redirects — Legacy URL cleanup ──
+// Maps legacy query-param and old paths to canonical clean URLs
+const SEO_REDIRECTS = {
+  // Homepage ?lang= params
+  '/?lang=en': '/',
+  '/?lang=ar': '/',
+  '/?lang=en-QA': '/',
+  '/?lang=ar-QA': '/',
+  // Menu
+  '/menu.html?lang=en': '/menu.html',
+  '/menu.html?lang=ar': '/menu.html',
+  // FAQ
+  '/faq.html?lang=en': '/faq.html',
+  '/faq.html?lang=ar': '/faq.html',
+  // Location pages — old ?lang= params
+  '/locations/al-wakrah.html?lang=en': '/locations/al-wakrah.html',
+  '/locations/al-wakrah.html?lang=ar': '/locations/al-wakrah.html',
+  '/locations/al-aziziya.html?lang=en': '/locations/al-aziziya.html',
+  '/locations/al-aziziya.html?lang=ar': '/locations/al-aziziya.html',
+  '/locations/al-kharaitiyat.html?lang=en': '/locations/al-kharaitiyat.html',
+  '/locations/al-kharaitiyat.html?lang=ar': '/locations/al-kharaitiyat.html',
+  // Navigation category ?lang= params
+  '/navigation/Arabic_sweets.html?lang=en': '/navigation/Arabic_sweets.html',
+  '/navigation/Arabic_sweets.html?lang=ar': '/navigation/Arabic_sweets.html',
+  '/navigation/customized_cakes.html?lang=en': '/navigation/customized_cakes.html',
+  '/navigation/customized_cakes.html?lang=ar': '/navigation/customized_cakes.html',
+  '/navigation/cakes.html?lang=en': '/navigation/cakes.html',
+  '/navigation/cakes.html?lang=ar': '/navigation/cakes.html',
+  '/navigation/savories.html?lang=en': '/navigation/savories.html',
+  '/navigation/savories.html?lang=ar': '/navigation/savories.html',
+  // About, Catering, Contact
+  '/about.html?lang=en': '/about.html',
+  '/about.html?lang=ar': '/about.html',
+  '/catering.html?lang=en': '/catering.html',
+  '/catering.html?lang=ar': '/catering.html',
+  '/contact.html?lang=en': '/contact.html',
+  '/contact.html?lang=ar': '/contact.html',
+};
+
+app.use((req, res, next) => {
+  // Check full path+query against redirect table
+  const qStr = Object.keys(req.query).length
+    ? '?' + new URLSearchParams(req.query).toString()
+    : '';
+  const fullPath = req.path + qStr;
+
+  if (SEO_REDIRECTS[fullPath]) {
+    return res.redirect(301, SEO_REDIRECTS[fullPath]);
+  }
+
+  next();
+});
+
+
+
 // ── Auth Middleware ──
 function requireAdmin(req, res, next) {
   if (req.session && req.session.user && req.session.user.role === 'admin') {
@@ -477,7 +532,7 @@ function initializeDatabase() {
               newArrival: {
                 enabled: 1,
                 badge: "Just In",
-                title: "Royal Pistachio Kunafa Box",
+                title: "Royal Pistachio Baklava Box",
                 subtitle: "Artisanal Middle Eastern Indulgence",
                 description: "Generously layered with freshly ground Antep pistachios, sweet clotted cream, and golden shredded pastry. Beautifully presented in our signature gift box.",
                 videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-pouring-syrup-on-a-sweet-pastry-42796-large.mp4",
@@ -814,7 +869,7 @@ const defaultShowcaseSettings = {
   newArrival: {
     enabled: 1,
     badge: "Just In",
-    title: "Royal Pistachio Kunafa Box",
+    title: "Royal Pistachio Baklava Box",
     subtitle: "Artisanal Middle Eastern Indulgence",
     description: "Generously layered with freshly ground Antep pistachios, sweet clotted cream, and golden shredded pastry. Beautifully presented in our signature gift box.",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-pouring-syrup-on-a-sweet-pastry-42796-large.mp4",

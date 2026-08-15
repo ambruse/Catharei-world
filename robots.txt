@@ -1,11 +1,28 @@
 User-agent: *
 Allow: /
+
+# Block admin and backend
 Disallow: /admin.html
+Disallow: /admin
 Disallow: /api/
+Disallow: /login.html
+Disallow: /checkout.html
+Disallow: /thankyou.html
+Disallow: /account.html
+Disallow: /Account/
+
+# Block database and session files
 Disallow: /database.sqlite
 Disallow: /sessions.sqlite
+
+# Block server-side files
 Disallow: /node_modules/
 Disallow: /temp_fetch.json
+Disallow: /posts.json
+
+# Block all scratch and utility scripts
+Disallow: /scratch_*.js
+Disallow: /scratch_*.json
 Disallow: /dump_db.js
 Disallow: /check_db.js
 Disallow: /check_orders.js
@@ -13,6 +30,30 @@ Disallow: /check_products.js
 Disallow: /check_categories.js
 Disallow: /list_tables.js
 Disallow: /seed_products.js
+Disallow: /add_*.js
+Disallow: /append_*.js
+Disallow: /build_*.js
+Disallow: /gemini_*.js
+Disallow: /enhance_*.js
+Disallow: /update_*.js
+Disallow: /seo_fixes.js
+Disallow: /fix_menu.js
+Disallow: /replace.js
+Disallow: /convert.js
+Disallow: /reroute_*.js
+Disallow: /test.js
+Disallow: /temp_script.js
+
+# Allow core public assets
+Allow: /script.js
+Allow: /styles.css
+Allow: /toasts.css
+Allow: /images/
+Allow: /navigation/
+Allow: /locations/
+Allow: /sitemap.xml
+
+# Crawl-delay to be polite to crawlers
+Crawl-delay: 2
 
 Sitemap: https://www.catharei.com/sitemap.xml
-

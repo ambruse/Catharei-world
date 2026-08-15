@@ -4,15 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catharei Bakery & Sweets | Best Arabic Sweets & Bakery in Qatar</title>
-  <meta name="description" content="Premium Arabic sweets, custom cakes, baklava, and fresh baked goods in Qatar. Order online or visit our Salwa Road, Al Wakrah, and Al Kharaitiyat branches.">
-  <meta name="keywords" content="Best Bakery in Qatar, Arabic Sweets Doha, مخبز في قطر, حلويات عربية الدوحة, custom cakes Doha, baklava Qatar">
-  <meta property="og:title" content="Catharei Bakery & Sweets | Best Arabic Sweets & Bakery in Qatar">
-  <meta property="og:description" content="Premium Arabic sweets, custom cakes, baklava, and fresh baked goods in Qatar. Order online or visit our Salwa Road, Al Wakrah, and Al Kharaitiyat branches.">
+  <title>CATHAREi — Best Arabic Sweets & Custom Cakes in Qatar | Doha Bakery</title>
+  <meta name="description" content="CATHAREi crafts Qatar's finest Arabic sweets, luxury Baklava, Maamoul, and bespoke custom cakes. Order online for same-day delivery across Doha, Al Wakrah & Al Kharaitiyat.">
+  <meta name="keywords" content="Best Arabic Sweets Qatar, Baklava Qatar, Custom Cakes Doha, Maamoul Qatar, مخبز في قطر, حلويات عربية الدوحة, بقلاوة قطر, كيكة مخصصة الدوحة">
+  <meta property="og:title" content="CATHAREi — Premium Arabic Sweets & Luxury Cakes in Qatar">
+  <meta property="og:description" content="Handcrafted Baklava, Maamoul, and custom celebration cakes. Qatar's luxury bakery with branches in Doha (Salwa Road), Al Wakrah & Al Kharaitiyat.">
   <meta property="og:image" content="https://www.catharei.com/images/background/hero_spread.webp">
   <meta property="og:url" content="https://www.catharei.com/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_QA">
+  <meta property="og:locale:alternate" content="ar_QA">
+  <meta property="og:site_name" content="CATHAREi">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CATHAREi — Best Arabic Sweets & Custom Cakes in Qatar">
+  <meta name="twitter:description" content="Premium Baklava, Maamoul & bespoke cakes. Qatar's luxury bakery with 3 branches. Order online for same-day delivery.">
+  <meta name="twitter:image" content="https://www.catharei.com/images/background/hero_spread.webp">
   <link rel="icon" type="image/png" href="images/misc/Catharei_logo.webp">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,34 +31,84 @@
   <link rel="stylesheet" href="styles.css?v=3">
   <link rel="canonical" href="https://www.catharei.com/" />
 
-  <!-- LocalBusiness / Bakery Schema (Including 3 Qatar branches) -->
+  <!-- Multi-Branch Bakery Schema — @graph with 3 Qatar locations -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Bakery",
-    "name": "Catharei Bakery & Sweets",
-    "image": "https://www.catharei.com/images/logo.webp",
-    "url": "https://www.catharei.com",
-    "telephone": "+97440075555",
-    "priceRange": "$$",
-    "address": [
+    "@graph": [
       {
-        "@type": "PostalAddress",
-        "streetAddress": "Salwa Road, Zone 55",
-        "addressLocality": "Doha",
-        "addressCountry": "QA"
+        "@type": "Bakery",
+        "@id": "https://www.catharei.com/locations/al-aziziya.html#branch",
+        "name": "CATHAREi Bakery & Sweets — Salwa Road (Doha)",
+        "alternateName": "كاثاري - طريق سلوى، الدوحة",
+        "image": "https://www.catharei.com/images/background/hero_spread.webp",
+        "url": "https://www.catharei.com/locations/al-aziziya.html",
+        "telephone": "+97450942255",
+        "priceRange": "QAR 15–350",
+        "servesCuisine": ["Arabic Sweets", "Custom Cakes", "Baklava", "Maamoul"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Building 384, Street 340, Salwa Road, Al Waab / Al Aziziya",
+          "addressLocality": "Doha",
+          "addressRegion": "Ad Dawhah",
+          "addressCountry": "QA"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 25.2425559, "longitude": 51.4594252 },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Saturday","Sunday"], "opens": "08:00", "closes": "22:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday"], "opens": "13:00", "closes": "23:00" }
+        ],
+        "hasMap": "https://www.google.com/maps/place/Catharei/@25.2427661,51.4571838,17.35z",
+        "parentOrganization": { "@id": "https://www.catharei.com/#organization" }
       },
       {
-        "@type": "PostalAddress",
-        "streetAddress": "Al Wakrah Main Street, Zone 90",
-        "addressLocality": "Al Wakrah",
-        "addressCountry": "QA"
+        "@type": "Bakery",
+        "@id": "https://www.catharei.com/locations/al-wakrah.html#branch",
+        "name": "CATHAREi Bakery & Sweets — Al Wakrah",
+        "alternateName": "كاثاري - الوكرة",
+        "image": "https://www.catharei.com/images/background/hero_spread.webp",
+        "url": "https://www.catharei.com/locations/al-wakrah.html",
+        "telephone": "+97440075555",
+        "priceRange": "QAR 15–350",
+        "servesCuisine": ["Arabic Sweets", "Custom Cakes", "Baklava", "Maamoul"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Al Wakra Main St",
+          "addressLocality": "Al Wakrah",
+          "addressRegion": "Al Wakrah",
+          "addressCountry": "QA"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 25.1639112, "longitude": 51.5974203 },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Saturday","Sunday"], "opens": "08:00", "closes": "22:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday"], "opens": "13:00", "closes": "23:00" }
+        ],
+        "hasMap": "https://www.google.com/maps/place/Catharei+Wakrah/@25.163916,51.59484",
+        "parentOrganization": { "@id": "https://www.catharei.com/#organization" }
       },
       {
-        "@type": "PostalAddress",
-        "streetAddress": "Al Kharaitiyat Commercial Street, Zone 71",
-        "addressLocality": "Al Kharaitiyat",
-        "addressCountry": "QA"
+        "@type": "Bakery",
+        "@id": "https://www.catharei.com/locations/al-kharaitiyat.html#branch",
+        "name": "CATHAREi Bakery & Sweets — Al Kharaitiyat (Umm Salal Mohammed)",
+        "alternateName": "كاثاري - الخريطيات، أم صلال محمد",
+        "image": "https://www.catharei.com/images/background/hero_spread.webp",
+        "url": "https://www.catharei.com/locations/al-kharaitiyat.html",
+        "telephone": "+97455392255",
+        "priceRange": "QAR 15–350",
+        "servesCuisine": ["Arabic Sweets", "Custom Cakes", "Baklava", "Maamoul"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Al Kharaitiyat Commercial Street, Zone 71",
+          "addressLocality": "Al Kharaitiyat",
+          "addressRegion": "Umm Salal Mohammed",
+          "addressCountry": "QA"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 25.397421, "longitude": 51.425266 },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Saturday","Sunday"], "opens": "08:00", "closes": "22:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday"], "opens": "13:00", "closes": "23:00" }
+        ],
+        "parentOrganization": { "@id": "https://www.catharei.com/#organization" }
       }
     ]
   }
@@ -128,10 +184,10 @@
   }
   </script>
 
-  <link rel="preload" href="images/background/hero_spread.webp" as="image">
+  <link rel="preload" href="images/background/hero_spread.webp" as="image" fetchpriority="high">
 
-  <link rel="alternate" hreflang="en" href="https://www.catharei.com/?lang=en" />
-  <link rel="alternate" hreflang="ar" href="https://www.catharei.com/?lang=ar" />
+  <link rel="alternate" hreflang="en-QA" href="https://www.catharei.com/" />
+  <link rel="alternate" hreflang="ar-QA" href="https://www.catharei.com/" />
   <link rel="alternate" hreflang="x-default" href="https://www.catharei.com/" />
 </head>
 
