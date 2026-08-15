@@ -22,10 +22,14 @@ const DATA_DIR = IS_RENDER ? '/opt/render/project/src/data' : __dirname;
 // Point the database and uploads to the DATA_DIR
 const DB_PATH = path.join(DATA_DIR, 'database.sqlite');
 const UPLOAD_DIR = path.join(DATA_DIR, 'images', 'products');
+const SHOWCASE_UPLOAD_DIR = path.join(DATA_DIR, 'images', 'showcase');
 
 // ── Directory Initialization (Updated from server2) ──
 if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+}
+if (!fs.existsSync(SHOWCASE_UPLOAD_DIR)) {
+    fs.mkdirSync(SHOWCASE_UPLOAD_DIR, { recursive: true });
 }
 
 // ── Trust Proxy (Required for secure cookies on Render) ──
@@ -96,8 +100,9 @@ app.get('/admin.html', requireAdmin, (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-// ── Serve Images from the Persistent Disk (Added from server2) ──
+// ── Serve Images & Showcase Media from Persistent Disk ──
 app.use('/images/products', express.static(UPLOAD_DIR));
+app.use('/images/showcase', express.static(SHOWCASE_UPLOAD_DIR));
 
 // ── Dynamic Blog System ──
 // Redirect old legacy static paths first
@@ -306,6 +311,27 @@ const upload = multer({
   }
 });
 
+// ── Showcase Media Upload Configuration ──
+const showcaseStorage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, SHOWCASE_UPLOAD_DIR),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, 'showcase-' + unique + ext);
+  }
+});
+const uploadShowcase = multer({
+  storage: showcaseStorage,
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB for video/image uploads
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/') || file.originalname.match(/\.(mp4|webm|mov|ogg|m4v|avi|mkv)$/i)) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only image and video files are allowed'));
+    }
+  }
+});
+
 // ── Database (Updated from server2) ──
 const db = new sqlite3.Database(DB_PATH, (err) => {
   if (err) {
@@ -421,6 +447,52 @@ function initializeDatabase() {
         });
       } else {
         console.log('Admin account exists.');
+      }
+    });
+
+    // ── Showcase Settings Table ──
+    db.run(`
+      CREATE TABLE IF NOT EXISTS showcase_settings (
+        key TEXT PRIMARY KEY,
+        value TEXT
+      )
+    `, (err) => {
+      if (!err) {
+        db.get("SELECT value FROM showcase_settings WHERE key = 'showcase_config'", (err, row) => {
+          if (!err && !row) {
+            const defaultShowcaseSettings = {
+              enabled: 1,
+              trending: {
+                enabled: 1,
+                badge: "Trending Now",
+                title: "Signature Hot Cheese Baklava",
+                subtitle: "Freshly Baked & Drizzled with Pure Honey",
+                description: "Crispy, golden layers of handmade phyllo pastry stuffed with warm, gooey cheese and soaked in aromatic blossom syrup. Served piping hot for an unmatched sensory experience.",
+                videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-chef-plating-a-gourmet-dessert-42795-large.mp4",
+                posterUrl: "/images/products/1775115029250-903191392.webp",
+                ctaText: "Order Hot Baklava",
+                ctaUrl: "navigation/Arabic_sweets.html",
+                price: "QR 65.00"
+              },
+              newArrival: {
+                enabled: 1,
+                badge: "Just In",
+                title: "Royal Pistachio Kunafa Box",
+                subtitle: "Artisanal Middle Eastern Indulgence",
+                description: "Generously layered with freshly ground Antep pistachios, sweet clotted cream, and golden shredded pastry. Beautifully presented in our signature gift box.",
+                videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-pouring-syrup-on-a-sweet-pastry-42796-large.mp4",
+                posterUrl: "/images/products/1775125327728-831885018.webp",
+                ctaText: "Explore Product",
+                ctaUrl: "navigation/Arabic_sweets.html",
+                price: "QR 95.00"
+              }
+            };
+            db.run("INSERT INTO showcase_settings (key, value) VALUES ('showcase_config', ?)",
+              [JSON.stringify(defaultShowcaseSettings)], (err) => {
+                if (!err) console.log("✓ Seeded default showcase settings.");
+              });
+          }
+        });
       }
     });
   });
@@ -719,6 +791,82 @@ app.get('/api/orders', requireAdmin, (req, res) => {
     if (err) return res.status(500).json({ error: 'Server error.' });
     res.json(rows);
   });
+});
+
+// ═══════════════════════════════════════════
+// SHOWCASE CMS API ROUTES
+// ═══════════════════════════════════════════
+
+const defaultShowcaseSettings = {
+  enabled: 1,
+  trending: {
+    enabled: 1,
+    badge: "Trending Now",
+    title: "Signature Hot Cheese Baklava",
+    subtitle: "Freshly Baked & Drizzled with Pure Honey",
+    description: "Crispy, golden layers of handmade phyllo pastry stuffed with warm, gooey cheese and soaked in aromatic blossom syrup. Served piping hot for an unmatched sensory experience.",
+    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-chef-plating-a-gourmet-dessert-42795-large.mp4",
+    posterUrl: "/images/products/1775115029250-903191392.webp",
+    ctaText: "Order Hot Baklava",
+    ctaUrl: "navigation/Arabic_sweets.html",
+    price: "QR 65.00"
+  },
+  newArrival: {
+    enabled: 1,
+    badge: "Just In",
+    title: "Royal Pistachio Kunafa Box",
+    subtitle: "Artisanal Middle Eastern Indulgence",
+    description: "Generously layered with freshly ground Antep pistachios, sweet clotted cream, and golden shredded pastry. Beautifully presented in our signature gift box.",
+    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-pouring-syrup-on-a-sweet-pastry-42796-large.mp4",
+    posterUrl: "/images/products/1775125327728-831885018.webp",
+    ctaText: "Explore Product",
+    ctaUrl: "navigation/Arabic_sweets.html",
+    price: "QR 95.00"
+  }
+};
+
+// GET active showcase config for frontend
+app.get('/api/showcase', (req, res) => {
+  db.get("SELECT value FROM showcase_settings WHERE key = 'showcase_config'", (err, row) => {
+    if (err || !row) return res.json(defaultShowcaseSettings);
+    try {
+      res.json(JSON.parse(row.value));
+    } catch (e) {
+      res.json(defaultShowcaseSettings);
+    }
+  });
+});
+
+// GET showcase config for admin
+app.get('/api/admin/showcase', requireAdmin, (req, res) => {
+  db.get("SELECT value FROM showcase_settings WHERE key = 'showcase_config'", (err, row) => {
+    if (err || !row) return res.json(defaultShowcaseSettings);
+    try {
+      res.json(JSON.parse(row.value));
+    } catch (e) {
+      res.json(defaultShowcaseSettings);
+    }
+  });
+});
+
+// POST save showcase config from admin
+app.post('/api/admin/showcase', requireAdmin, (req, res) => {
+  const settings = req.body;
+  if (!settings || typeof settings !== 'object') {
+    return res.status(400).json({ error: 'Invalid settings payload.' });
+  }
+  db.run("INSERT OR REPLACE INTO showcase_settings (key, value) VALUES ('showcase_config', ?)",
+    [JSON.stringify(settings)], function(err) {
+      if (err) return res.status(500).json({ error: 'Failed to save showcase settings.' });
+      res.json({ success: true, settings });
+    });
+});
+
+// POST upload showcase media (video/poster image)
+app.post('/api/admin/showcase/upload', requireAdmin, uploadShowcase.single('mediaFile'), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No media file provided.' });
+  const mediaUrl = '/images/showcase/' + req.file.filename;
+  res.json({ success: true, url: mediaUrl, mimetype: req.file.mimetype });
 });
 
 // Added network binding for Render from server2

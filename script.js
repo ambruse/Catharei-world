@@ -23,6 +23,8 @@ const translations = {
     "btn.explore": "Explore Now",
     "btn.discover": "Discover Deals",
     "btn.orderCustom": "Order Your Cake",
+    "showcase.title": "Handcrafted Highlights",
+    "showcase.subtitle": "Experience our signature trending & newly arrived artisanal creations",
     "hero.title": "CATHAREi",
     "hero.subtitle": "The Art of Traditional Arabic Sweets.",
     "hero.discover": "Indulge in the Artisanal Collection",
@@ -166,6 +168,8 @@ const translations = {
     "btn.explore": "تصفح الآن",
     "btn.discover": "اكتشف العروض",
     "btn.orderCustom": "اطلب كيكتك",
+    "showcase.title": "إبداعاتنا المتميزة",
+    "showcase.subtitle": "استكشف أحدث ابتكاراتنا والأصناف الأكثر طلباً طازجة يومياً",
     "hero.title": "كاثاري",
     "hero.subtitle": "نصنع لحظات من الدلال الخالص.",
     "hero.discover": "اكتشف المجموعة الحرفية",
@@ -301,6 +305,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initLanguage();
   updateCartBadgeUI();
   renderCartDropdown(); // Initially render the hover dropdown if it exists
+  initShowcaseSection(); // Dynamic showcase section renderer
   
   // Render based on what page we are on
   const grid = document.getElementById('product-grid');
@@ -699,6 +704,220 @@ function updateCartQuantity(id, delta) {
   renderCartDropdown();
   if(document.getElementById('cart-page-body')) {
     renderCartPage();
+  }
+}
+
+async function initShowcaseSection() {
+  const container = document.getElementById('showcase-section');
+  if (!container) return;
+
+  try {
+    const res = await fetch('/api/showcase');
+    if (!res.ok) return;
+    const cfg = await res.json();
+    if (!cfg || cfg.enabled === 0) {
+      container.style.display = 'none';
+      return;
+    }
+
+    const items = [];
+    if (cfg.trending && cfg.trending.enabled !== 0) items.push({ type: 'trending', ...cfg.trending });
+    if (cfg.newArrival && cfg.newArrival.enabled !== 0) items.push({ type: 'newArrival', ...cfg.newArrival });
+
+    if (items.length === 0) {
+      container.style.display = 'none';
+      return;
+    }
+
+    const isAr = currentLang === 'ar';
+    const sectionTitle = translations[currentLang]?.["showcase.title"] || (isAr ? "إبداعاتنا المتميزة" : "Handcrafted Highlights");
+    const sectionSubtitle = translations[currentLang]?.["showcase.subtitle"] || (isAr ? "استكشف أحدث ابتكاراتنا والأصناف الأكثر طلباً طازجة يومياً" : "Experience our signature trending & newly arrived artisanal creations");
+
+    let cardsHtml = '';
+    const schemaGraph = [];
+
+    items.forEach(item => {
+      const badgeText = item.badge || (item.type === 'trending' ? (isAr ? 'الأكثر طلباً' : 'Trending Now') : (isAr ? 'وصل حديثاً' : 'Just In'));
+      const videoSrc = item.videoUrl || '';
+      const posterSrc = item.posterUrl || '';
+      const ctaText = item.ctaText || (isAr ? 'اطلب الآن' : 'Order Now');
+      const ctaUrl = item.ctaUrl || 'navigation/Arabic_sweets.html';
+      const priceText = item.price || '';
+
+      cardsHtml += `
+        <div class="showcase-card showcase-card-${item.type}">
+          <div class="showcase-badge-wrap">
+            <span class="showcase-badge badge-${item.type}">${badgeText}</span>
+            ${priceText ? `<span class="showcase-price-tag">${priceText}</span>` : ''}
+          </div>
+          
+          <div class="showcase-media-container">
+            ${videoSrc ? `
+              <video class="showcase-video"
+                     src="${videoSrc}"
+                     preload="auto"
+                     muted
+                     playsinline
+                     loop
+                     autoplay
+                     aria-label="${item.title || 'Product Showcase Video'}">
+                <source src="${videoSrc}">
+                Your browser does not support video playback.
+              </video>
+              <img loading="lazy" src="${posterSrc || 'images/background/hero_spread.webp'}" alt="${item.title}" class="showcase-poster-img" style="display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+              <button class="showcase-video-toggle" onclick="toggleShowcaseVideoPlay(this)" aria-label="Toggle Play Pause">
+                <svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                <svg class="icon-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+            ` : `
+              <img loading="lazy" src="${posterSrc || 'images/background/hero_spread.webp'}" alt="${item.title}" class="showcase-poster-img">
+            `}
+          </div>
+
+          <div class="showcase-card-body">
+            <h3 class="showcase-item-title">${item.title}</h3>
+            ${item.subtitle ? `<p class="showcase-item-subtitle">${item.subtitle}</p>` : ''}
+            ${item.description ? `<p class="showcase-item-desc">${item.description}</p>` : ''}
+            <div class="showcase-card-footer">
+              <a href="${ctaUrl}" class="btn-solid-gold showcase-cta-btn">
+                <span>${ctaText}</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Build JSON-LD Schema
+      if (videoSrc) {
+        schemaGraph.push({
+          "@type": "VideoObject",
+          "name": item.title,
+          "description": item.description || item.subtitle || item.title,
+          "thumbnailUrl": posterSrc ? (posterSrc.startsWith('http') ? posterSrc : ("https://www.catharei.com" + (posterSrc.startsWith('/') ? posterSrc : '/' + posterSrc))) : "https://www.catharei.com/images/misc/Catharei_logo.webp",
+          "uploadDate": "2026-08-15T00:00:00Z",
+          "contentUrl": videoSrc.startsWith('http') ? videoSrc : ("https://www.catharei.com" + (videoSrc.startsWith('/') ? videoSrc : '/' + videoSrc))
+        });
+      }
+
+      schemaGraph.push({
+        "@type": "Product",
+        "name": item.title,
+        "description": item.description || item.subtitle || item.title,
+        "image": posterSrc ? (posterSrc.startsWith('http') ? posterSrc : ("https://www.catharei.com" + (posterSrc.startsWith('/') ? posterSrc : '/' + posterSrc))) : "",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "QAR",
+          "price": priceText.replace(/[^0-9.]/g, '') || "0.00",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.catharei.com/" + ctaUrl
+        }
+      });
+    });
+
+    container.innerHTML = `
+      <div class="container section-padding" style="padding-top: 40px; padding-bottom: 60px;">
+        <div class="section-head text-center" style="margin-bottom: 2.5rem;">
+          <h2>${sectionTitle}</h2>
+          <p>${sectionSubtitle}</p>
+        </div>
+        <div class="showcase-grid count-${items.length}">
+          ${cardsHtml}
+        </div>
+      </div>
+    `;
+    container.style.display = 'block';
+
+    // Programmatically trigger continuous autoplay on loaded videos
+    container.querySelectorAll('video').forEach(video => {
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      
+      const mediaBox = video.closest('.showcase-media-container');
+      const fallbackImg = mediaBox ? mediaBox.querySelector('.showcase-poster-img') : null;
+      const toggleBtn = mediaBox ? mediaBox.querySelector('.showcase-video-toggle') : null;
+
+      const triggerPlayback = () => {
+        if (!video.src || video.src.endsWith('/')) return;
+        video.load();
+        const p = video.play();
+        if (p !== undefined) {
+          p.then(() => {
+            video.style.display = 'block';
+            if (fallbackImg) fallbackImg.style.display = 'none';
+          }).catch(err => {
+            console.warn("Video play failed (unsupported codec or autoplay restriction):", err);
+            if (fallbackImg && (!video.videoWidth || video.readyState < 2)) {
+              video.style.display = 'none';
+              if (toggleBtn) toggleBtn.style.display = 'none';
+              fallbackImg.style.display = 'block';
+            }
+          });
+        }
+      };
+
+      video.addEventListener('error', () => {
+        console.warn("Video load error for:", video.src);
+        if (fallbackImg) {
+          video.style.display = 'none';
+          if (toggleBtn) toggleBtn.style.display = 'none';
+          fallbackImg.style.display = 'block';
+        }
+      });
+
+      triggerPlayback();
+
+      // Ensure continuous looping
+      video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        triggerPlayback();
+      });
+
+      video.addEventListener('pause', () => {
+        if (!video.dataset.userPaused && video.style.display !== 'none') {
+          triggerPlayback();
+        }
+      });
+    });
+
+    // Inject SEO JSON-LD
+    const oldSchema = document.getElementById('showcase-seo-schema');
+    if (oldSchema) oldSchema.remove();
+    const scriptEl = document.createElement('script');
+    scriptEl.id = 'showcase-seo-schema';
+    scriptEl.type = 'application/ld+json';
+    scriptEl.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": schemaGraph
+    });
+    document.head.appendChild(scriptEl);
+
+  } catch (err) {
+    console.error("Failed to load showcase section:", err);
+  }
+}
+
+function toggleShowcaseVideoPlay(btn) {
+  const container = btn.closest('.showcase-media-container');
+  if (!container) return;
+  const video = container.querySelector('video');
+  if (!video) return;
+
+  const pauseIcon = btn.querySelector('.icon-pause');
+  const playIcon = btn.querySelector('.icon-play');
+
+  if (video.paused) {
+    delete video.dataset.userPaused;
+    video.muted = true;
+    video.play().then(() => {
+      if (pauseIcon) pauseIcon.style.display = 'inline-block';
+      if (playIcon) playIcon.style.display = 'none';
+    }).catch(err => console.error("Play error:", err));
+  } else {
+    video.dataset.userPaused = 'true';
+    video.pause();
+    if (pauseIcon) pauseIcon.style.display = 'none';
+    if (playIcon) playIcon.style.display = 'inline-block';
   }
 }
 

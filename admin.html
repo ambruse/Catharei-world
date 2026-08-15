@@ -744,6 +744,10 @@
           <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
           Manage Orders <span class="count" id="cnt-orders-pending">0</span>
         </button>
+        <button class="sidebar-item" onclick="switchTab('showcase')" id="tab-showcase">
+          <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          Showcase CMS
+        </button>
 
         <div id="product-cats" style="margin-top: 20px;">
           <div class="sidebar-label">Product Categories</div>
@@ -897,6 +901,140 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Showcase CMS View -->
+      <div id="showcase-view" style="display:none;">
+        <form id="showcase-form" onsubmit="saveShowcaseAdmin(event)">
+          <div class="page-header">
+            <div>
+              <div class="page-title">Trending &amp; New Showcase CMS</div>
+              <div class="page-subtitle">Configure the dynamic highlight section rendered below the Hero Banner</div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="checkbox-group" style="padding: 8px 16px;">
+                <input type="checkbox" id="sc-master-enabled" checked>
+                <label for="sc-master-enabled" style="font-weight: 600;">Enable Showcase Globally</label>
+              </div>
+              <button type="submit" class="btn btn-gold" id="save-showcase-btn">
+                <svg viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                Save Settings
+              </button>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
+            <!-- Trending Item Card -->
+            <div class="stat-card" style="padding: 24px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+                <h3 style="color: var(--accent); font-family: var(--serif); font-size: 1.25rem;">🔥 Trending Item Slot</h3>
+                <label class="toggle-label">
+                  <span style="font-size: 0.8rem; color: var(--muted); margin-right: 6px;">Active</span>
+                  <input type="checkbox" id="sc-tr-enabled" checked>
+                  <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                </label>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">Badge Label</label>
+                  <input class="form-input" type="text" id="sc-tr-badge" placeholder="Trending Now">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Price Indicator</label>
+                  <input class="form-input" type="text" id="sc-tr-price" placeholder="QR 65.00">
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Product Title *</label>
+                  <input class="form-input" type="text" id="sc-tr-title" placeholder="Signature Hot Cheese Baklava" required>
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Subtitle</label>
+                  <input class="form-input" type="text" id="sc-tr-subtitle" placeholder="Freshly Baked & Drizzled with Pure Honey">
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Product Description</label>
+                  <textarea class="form-textarea" id="sc-tr-desc" rows="3" placeholder="Detailed product description..."></textarea>
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Video Source (Upload or URL)</label>
+                  <input class="form-input" type="text" id="sc-tr-video" placeholder="https://... or upload file below" style="margin-bottom: 8px;">
+                  <input type="file" id="sc-tr-video-file" accept="video/*" class="form-input" style="padding: 6px; font-size: 0.8rem;" onchange="handleShowcaseFileUpload(this, 'sc-tr-video', 'sc-tr-video-prev')">
+                  <video id="sc-tr-video-prev" controls style="width: 100%; max-height: 160px; margin-top: 8px; border-radius: 8px; background: #000; display: none;" muted playsinline></video>
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Fallback Poster Image (Upload or URL)</label>
+                  <input class="form-input" type="text" id="sc-tr-poster" placeholder="https://... or upload file below" style="margin-bottom: 8px;">
+                  <input type="file" id="sc-tr-poster-file" accept="image/*" class="form-input" style="padding: 6px; font-size: 0.8rem;" onchange="handleShowcaseFileUpload(this, 'sc-tr-poster', 'sc-tr-poster-prev')">
+                  <img id="sc-tr-poster-prev" style="width: 100%; max-height: 140px; object-fit: cover; margin-top: 8px; border-radius: 8px; display: none;" alt="Poster preview">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CTA Button Text</label>
+                  <input class="form-input" type="text" id="sc-tr-ctatext" placeholder="Order Hot Baklava">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CTA Target Link</label>
+                  <input class="form-input" type="text" id="sc-tr-ctaurl" placeholder="navigation/Arabic_sweets.html">
+                </div>
+              </div>
+            </div>
+
+            <!-- New Arrival Item Card -->
+            <div class="stat-card" style="padding: 24px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+                <h3 style="color: var(--accent); font-family: var(--serif); font-size: 1.25rem;">✨ New Arrival Item Slot</h3>
+                <label class="toggle-label">
+                  <span style="font-size: 0.8rem; color: var(--muted); margin-right: 6px;">Active</span>
+                  <input type="checkbox" id="sc-new-enabled" checked>
+                  <div class="toggle-track"><div class="toggle-thumb"></div></div>
+                </label>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">Badge Label</label>
+                  <input class="form-input" type="text" id="sc-new-badge" placeholder="Just In">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Price Indicator</label>
+                  <input class="form-input" type="text" id="sc-new-price" placeholder="QR 95.00">
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Product Title *</label>
+                  <input class="form-input" type="text" id="sc-new-title" placeholder="Royal Pistachio Kunafa Box" required>
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Subtitle</label>
+                  <input class="form-input" type="text" id="sc-new-subtitle" placeholder="Artisanal Middle Eastern Indulgence">
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Product Description</label>
+                  <textarea class="form-textarea" id="sc-new-desc" rows="3" placeholder="Detailed product description..."></textarea>
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Video Source (Upload or URL)</label>
+                  <input class="form-input" type="text" id="sc-new-video" placeholder="https://... or upload file below" style="margin-bottom: 8px;">
+                  <input type="file" id="sc-new-video-file" accept="video/*" class="form-input" style="padding: 6px; font-size: 0.8rem;" onchange="handleShowcaseFileUpload(this, 'sc-new-video', 'sc-new-video-prev')">
+                  <video id="sc-new-video-prev" controls style="width: 100%; max-height: 160px; margin-top: 8px; border-radius: 8px; background: #000; display: none;" muted playsinline></video>
+                </div>
+                <div class="form-group full">
+                  <label class="form-label">Fallback Poster Image (Upload or URL)</label>
+                  <input class="form-input" type="text" id="sc-new-poster" placeholder="https://... or upload file below" style="margin-bottom: 8px;">
+                  <input type="file" id="sc-new-poster-file" accept="image/*" class="form-input" style="padding: 6px; font-size: 0.8rem;" onchange="handleShowcaseFileUpload(this, 'sc-new-poster', 'sc-new-poster-prev')">
+                  <img id="sc-new-poster-prev" style="width: 100%; max-height: 140px; object-fit: cover; margin-top: 8px; border-radius: 8px; display: none;" alt="Poster preview">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CTA Button Text</label>
+                  <input class="form-input" type="text" id="sc-new-ctatext" placeholder="Explore Product">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CTA Target Link</label>
+                  <input class="form-input" type="text" id="sc-new-ctaurl" placeholder="navigation/Arabic_sweets.html">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
 
     </main>
@@ -1272,16 +1410,23 @@
       currentTab = tab;
       const pView = document.getElementById('products-view');
       const oView = document.getElementById('orders-view');
+      const sView = document.getElementById('showcase-view');
+      const statsRow = document.getElementById('stats-row');
       
       if(pView) pView.style.display = tab === 'products' ? 'block' : 'none';
       if(oView) oView.style.display = tab === 'orders' ? 'block' : 'none';
+      if(sView) sView.style.display = tab === 'showcase' ? 'block' : 'none';
+      if(statsRow) statsRow.style.display = tab === 'products' ? 'grid' : 'none';
       
       const tProd = document.getElementById('tab-products');
       const tOrd = document.getElementById('tab-orders');
+      const tShow = document.getElementById('tab-showcase');
       if(tProd) tProd.classList.toggle('active', tab === 'products');
       if(tOrd) tOrd.classList.toggle('active', tab === 'orders');
+      if(tShow) tShow.classList.toggle('active', tab === 'showcase');
       
       if(tab === 'orders') fetchOrders();
+      if(tab === 'showcase') loadShowcaseAdmin();
     }
 
     async function loadProducts() {
@@ -2060,6 +2205,169 @@
         toast.classList.add('fade-out');
         setTimeout(() => toast.remove(), 400);
       }, 4000);
+    }
+
+    let showcaseSettings = null;
+
+    async function loadShowcaseAdmin() {
+      try {
+        const res = await fetch('/api/admin/showcase');
+        if (!res.ok) throw new Error("Failed to load showcase config");
+        showcaseSettings = await res.json();
+        populateShowcaseForm(showcaseSettings);
+      } catch (err) {
+        showToast('Failed to load showcase settings.', 'error');
+      }
+    }
+
+    function populateShowcaseForm(cfg) {
+      if (!cfg) return;
+      document.getElementById('sc-master-enabled').checked = cfg.enabled !== 0;
+
+      // Trending Item
+      const tr = cfg.trending || {};
+      document.getElementById('sc-tr-enabled').checked = tr.enabled !== 0;
+      document.getElementById('sc-tr-badge').value = tr.badge || '';
+      document.getElementById('sc-tr-price').value = tr.price || '';
+      document.getElementById('sc-tr-title').value = tr.title || '';
+      document.getElementById('sc-tr-subtitle').value = tr.subtitle || '';
+      document.getElementById('sc-tr-desc').value = tr.description || '';
+      document.getElementById('sc-tr-video').value = tr.videoUrl || '';
+      document.getElementById('sc-tr-poster').value = tr.posterUrl || '';
+      document.getElementById('sc-tr-ctatext').value = tr.ctaText || '';
+      document.getElementById('sc-tr-ctaurl').value = tr.ctaUrl || '';
+
+      if (tr.videoUrl) {
+        const vp = document.getElementById('sc-tr-video-prev');
+        if(vp) { vp.src = tr.videoUrl; vp.style.display = 'block'; }
+      }
+      if (tr.posterUrl) {
+        const pp = document.getElementById('sc-tr-poster-prev');
+        if(pp) { pp.src = tr.posterUrl; pp.style.display = 'block'; }
+      }
+
+      // New Arrival Item
+      const nw = cfg.newArrival || {};
+      document.getElementById('sc-new-enabled').checked = nw.enabled !== 0;
+      document.getElementById('sc-new-badge').value = nw.badge || '';
+      document.getElementById('sc-new-price').value = nw.price || '';
+      document.getElementById('sc-new-title').value = nw.title || '';
+      document.getElementById('sc-new-subtitle').value = nw.subtitle || '';
+      document.getElementById('sc-new-desc').value = nw.description || '';
+      document.getElementById('sc-new-video').value = nw.videoUrl || '';
+      document.getElementById('sc-new-poster').value = nw.posterUrl || '';
+      document.getElementById('sc-new-ctatext').value = nw.ctaText || '';
+      document.getElementById('sc-new-ctaurl').value = nw.ctaUrl || '';
+
+      if (nw.videoUrl) {
+        const vp = document.getElementById('sc-new-video-prev');
+        if(vp) { vp.src = nw.videoUrl; vp.style.display = 'block'; }
+      }
+      if (nw.posterUrl) {
+        const pp = document.getElementById('sc-new-poster-prev');
+        if(pp) { pp.src = nw.posterUrl; pp.style.display = 'block'; }
+      }
+    }
+
+    async function handleShowcaseFileUpload(inputEl, textInputId, previewElId) {
+      const file = inputEl.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('mediaFile', file);
+
+      try {
+        showToast('Uploading media file...', 'warning');
+        const res = await fetch('/api/admin/showcase/upload', {
+          method: 'POST',
+          body: formData
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error || 'Upload failed');
+        }
+        const data = await res.json();
+        
+        document.getElementById(textInputId).value = data.url;
+        const prev = document.getElementById(previewElId);
+        if (prev) {
+          prev.src = data.url;
+          prev.style.display = 'block';
+          if (typeof prev.load === 'function') prev.load();
+        }
+        showToast('✓ Media file uploaded successfully!', 'success');
+      } catch (err) {
+        showToast('Failed to upload media file: ' + (err.message || 'Unknown error'), 'error');
+      }
+    }
+
+    async function saveShowcaseAdmin(e) {
+      if (e) e.preventDefault();
+      const btn = document.getElementById('save-showcase-btn');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<div class="spinner"></div> Saving...';
+      }
+
+      // Automatically upload any pending file inputs first
+      const fileInputs = [
+        { inputId: 'sc-tr-video-file', textId: 'sc-tr-video', prevId: 'sc-tr-video-prev' },
+        { inputId: 'sc-tr-poster-file', textId: 'sc-tr-poster', prevId: 'sc-tr-poster-prev' },
+        { inputId: 'sc-new-video-file', textId: 'sc-new-video', prevId: 'sc-new-video-prev' },
+        { inputId: 'sc-new-poster-file', textId: 'sc-new-poster', prevId: 'sc-new-poster-prev' }
+      ];
+
+      for (const item of fileInputs) {
+        const el = document.getElementById(item.inputId);
+        if (el && el.files && el.files.length > 0) {
+          await handleShowcaseFileUpload(el, item.textId, item.prevId);
+        }
+      }
+
+      const payload = {
+        enabled: document.getElementById('sc-master-enabled').checked ? 1 : 0,
+        trending: {
+          enabled: document.getElementById('sc-tr-enabled').checked ? 1 : 0,
+          badge: document.getElementById('sc-tr-badge').value.trim(),
+          price: document.getElementById('sc-tr-price').value.trim(),
+          title: document.getElementById('sc-tr-title').value.trim(),
+          subtitle: document.getElementById('sc-tr-subtitle').value.trim(),
+          description: document.getElementById('sc-tr-desc').value.trim(),
+          videoUrl: document.getElementById('sc-tr-video').value.trim(),
+          posterUrl: document.getElementById('sc-tr-poster').value.trim(),
+          ctaText: document.getElementById('sc-tr-ctatext').value.trim(),
+          ctaUrl: document.getElementById('sc-tr-ctaurl').value.trim()
+        },
+        newArrival: {
+          enabled: document.getElementById('sc-new-enabled').checked ? 1 : 0,
+          badge: document.getElementById('sc-new-badge').value.trim(),
+          price: document.getElementById('sc-new-price').value.trim(),
+          title: document.getElementById('sc-new-title').value.trim(),
+          subtitle: document.getElementById('sc-new-subtitle').value.trim(),
+          description: document.getElementById('sc-new-desc').value.trim(),
+          videoUrl: document.getElementById('sc-new-video').value.trim(),
+          posterUrl: document.getElementById('sc-new-poster').value.trim(),
+          ctaText: document.getElementById('sc-new-ctatext').value.trim(),
+          ctaUrl: document.getElementById('sc-new-ctaurl').value.trim()
+        }
+      };
+
+      try {
+        const res = await fetch('/api/admin/showcase', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('Save failed');
+        showToast('✓ Showcase settings saved successfully!', 'success');
+      } catch (err) {
+        showToast('Error saving showcase settings.', 'error');
+      }
+
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg> Save Settings';
+      }
     }
 
     loadProducts();
