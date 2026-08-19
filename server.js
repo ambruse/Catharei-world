@@ -789,8 +789,8 @@ app.get('/', (req, res) => {
 // ═══════════════════════════════════════════
 
 // ── CallMeBot Credentials ──
-const ADMIN_PHONE       = process.env.ADMIN_PHONE       || '+97450942255';
-const CALLMEBOT_API_KEY = process.env.CALLMEBOT_API_KEY || '9699041';
+const ADMIN_PHONE       = process.env.ADMIN_PHONE       || '+97471551200';
+const CALLMEBOT_API_KEY = process.env.CALLMEBOT_API_KEY || '4145976';
 
 /**
  * Sends a WhatsApp message + automated voice call to the store owner
