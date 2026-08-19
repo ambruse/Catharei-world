@@ -788,6 +788,78 @@ app.get('/', (req, res) => {
 //   ORDERS API
 // ═══════════════════════════════════════════
 
+// ── CallMeBot Credentials ──
+const ADMIN_PHONE       = process.env.ADMIN_PHONE       || '+97450942255';
+const CALLMEBOT_API_KEY = process.env.CALLMEBOT_API_KEY || '9699041';
+
+/**
+ * Sends a WhatsApp message + automated voice call to the store owner
+ * via CallMeBot. Runs entirely in the background — never blocks the
+ * customer's checkout response and never throws to the caller.
+ *
+ * @param {string} orderNumber  Human-readable order ID (e.g. "12345678")
+ * @param {object} orderData    { name, total, items, address }
+ */
+async function notifyAdminNewOrder(orderNumber, orderData) {
+  try {
+    const { name, total, items, address } = orderData;
+
+    // Build a readable item list
+    let itemList = '';
+    try {
+      const parsed = typeof items === 'string' ? JSON.parse(items) : items;
+      itemList = Array.isArray(parsed)
+        ? parsed.map(i => `${i.name || i.nameKey || 'Item'} x${i.quantity || 1}`).join(', ')
+        : String(parsed);
+    } catch { itemList = String(items); }
+
+    // ── WhatsApp message (detailed breakdown) ──
+    const waText = [
+      `🛎️ NEW ORDER #${orderNumber}`,
+      `👤 Customer : ${name || 'N/A'}`,
+      `📦 Items    : ${itemList}`,
+      `💰 Total    : QR ${total}`,
+      `📍 Address  : ${address}`,
+    ].join('%0A'); // %0A = URL-encoded newline for CallMeBot
+
+    const waUrl = `https://api.callmebot.com/whatsapp.php` +
+      `?phone=${encodeURIComponent(ADMIN_PHONE)}` +
+      `&text=${waText}` +
+      `&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
+
+    // ── Voice call (short spoken alert) ──
+    const callText = encodeURIComponent(
+      `Urgent Alert: A new order numbered ${orderNumber} for ${total} Qatari Riyals has just been placed on your website.`
+    );
+    const callUrl = `https://api.callmebot.com/call.php` +
+      `?phone=${encodeURIComponent(ADMIN_PHONE)}` +
+      `&text=${callText}` +
+      `&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
+
+    // Fire both concurrently; log individual results without throwing
+    const [waResult, callResult] = await Promise.allSettled([
+      fetch(waUrl),
+      fetch(callUrl),
+    ]);
+
+    if (waResult.status === 'fulfilled') {
+      console.log(`[Notify] WhatsApp sent for order #${orderNumber} — HTTP ${waResult.value.status}`);
+    } else {
+      console.error(`[Notify] WhatsApp FAILED for order #${orderNumber}:`, waResult.reason);
+    }
+
+    if (callResult.status === 'fulfilled') {
+      console.log(`[Notify] Voice call triggered for order #${orderNumber} — HTTP ${callResult.value.status}`);
+    } else {
+      console.error(`[Notify] Voice call FAILED for order #${orderNumber}:`, callResult.reason);
+    }
+
+  } catch (err) {
+    // Safety net — notification failure must NEVER affect the customer
+    console.error(`[Notify] Unexpected error for order #${orderNumber}:`, err);
+  }
+}
+
 function generateOrderNumber() {
   return Math.floor(10000000 + Math.random() * 90000000).toString();
 }
@@ -813,12 +885,16 @@ app.post('/api/orders', (req, res) => {
          const newNum = generateOrderNumber();
          db.run(query, [newNum, ...params.slice(1)], function(err2) {
            if(err2) return res.status(500).json({ error: 'Failed to place order.' });
+           // Notify admin in background — do not await
+           notifyAdminNewOrder(newNum, { name, total, items: JSON.stringify(items), address });
            res.json({ success: true, orderId: this.lastID, orderNumber: newNum });
          });
          return;
       }
       return res.status(500).json({ error: 'Failed to place order.' });
     }
+    // Notify admin in background — do not await
+    notifyAdminNewOrder(orderNumber, { name, total, items: JSON.stringify(items), address });
     res.json({ success: true, orderId: this.lastID, orderNumber });
   });
 });
