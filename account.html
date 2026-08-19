@@ -232,7 +232,7 @@
     // Note: translations and currentLang now come from script.js
     let user = null;
 
-    window.onload = async () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       const res = await fetch('/api/auth/me');
       const data = await res.json();
       if (!data.loggedIn) {
@@ -244,7 +244,7 @@
         document.getElementById('details-email').value = data.email || ''; 
         loadOrders();
       }
-    };
+    });
 
     async function loadOrders() {
       try {

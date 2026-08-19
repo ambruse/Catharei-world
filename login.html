@@ -392,13 +392,17 @@
           body: JSON.stringify({ username: document.getElementById('login-username').value.trim(), password: document.getElementById('login-password').value })
         });
         const data = await res.json();
-        if (!res.ok) { showAlert('login-alert', data.error || 'Login failed', 'error'); }
-        else {
+        if (!res.ok) { 
+          showAlert('login-alert', data.error || 'Login failed', 'error'); 
+        } else {
           showAlert('login-alert', `Welcome back, ${data.username}!`, 'success');
-          setTimeout(() => {
-            if (data.role === 'admin' && redirect === 'admin') window.location.href = '/admin.html';
-            else window.location.href = '/index.html';
-          }, 800);
+          let target = '/account.html';
+          if (data.role === 'admin') {
+            target = (redirect && redirect !== 'admin') ? redirect : '/admin.html';
+          } else if (redirect) {
+            target = redirect === 'account' ? '/account.html' : redirect;
+          }
+          window.location.href = target;
         }
       } catch { showAlert('login-alert', 'Cannot connect to server. Is it running?', 'error'); }
       btn.innerHTML = 'Sign In'; btn.disabled = false;
@@ -420,7 +424,10 @@
         });
         const data = await res.json();
         if (!res.ok) showAlert('register-alert', data.error || 'Registration failed', 'error');
-        else { showAlert('register-alert', `Account created! Welcome, ${data.username}!`, 'success'); setTimeout(() => { window.location.href = '/index.html'; }, 1000); }
+        else { 
+          showAlert('register-alert', `Account created! Welcome, ${data.username}!`, 'success'); 
+          window.location.href = redirect || '/account.html'; 
+        }
       } catch { showAlert('register-alert', 'Cannot connect to server. Is it running?', 'error'); }
       btn.innerHTML = 'Create Account'; btn.disabled = false;
     }
