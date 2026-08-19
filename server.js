@@ -38,6 +38,9 @@ if (IS_RENDER) {
 }
 
 // ── Session Configuration (Updated from server2) ──
+const ONE_YEAR_MS = 1000 * 60 * 60 * 24 * 365; // 1 year — for persistent admin sessions
+const EIGHT_HOURS_MS = 1000 * 60 * 60 * 8;      // 8 hours — for regular user sessions
+
 app.use(session({
   store: new SQLiteStore({
       db: 'sessions.sqlite',
@@ -46,11 +49,12 @@ app.use(session({
   secret: 'catharei_super_secret_session_key_2026',
   resave: false,
   saveUninitialized: false,
+  rolling: true, // Refresh cookie expiry on every request
   cookie: {
     httpOnly: true,
     secure: IS_RENDER, // set to true in production with HTTPS
     sameSite: 'lax',
-    maxAge: 1000 * 60 * 60 * 8  // 8 hours
+    maxAge: EIGHT_HOURS_MS // Default; overridden to 1 year for admin on login
   }
 }));
 
@@ -606,6 +610,14 @@ app.post('/api/auth/login', (req, res) => {
       if (!match) return res.status(401).json({ error: 'Invalid username or password.' });
 
       req.session.user = { id: user.id, username: user.username, email: user.email, role: user.role };
+
+      // Admin gets a 1-year persistent cookie so they are never auto-logged-out.
+      // The session is stored in sessions.sqlite and survives server/PC restarts.
+      // Only an explicit logout will end the admin session.
+      if (user.role === 'admin') {
+        req.session.cookie.maxAge = ONE_YEAR_MS;
+      }
+
       res.json({ success: true, username: user.username, role: user.role });
     }
   );
