@@ -789,8 +789,8 @@ app.get('/', (req, res) => {
 // ═══════════════════════════════════════════
 
 // ── CallMeBot Credentials ──
-const ADMIN_PHONE       = process.env.ADMIN_PHONE       || '+97471551200';
-const CALLMEBOT_API_KEY = process.env.CALLMEBOT_API_KEY || '4145976';
+const ADMIN_PHONE       = process.env.ADMIN_PHONE       || '+97450942255';
+const CALLMEBOT_API_KEY = process.env.CALLMEBOT_API_KEY || '9699041';
 
 /**
  * Sends a WhatsApp message + automated voice call to the store owner
@@ -814,42 +814,42 @@ async function notifyAdminNewOrder(orderNumber, orderData) {
     } catch { itemList = String(items); }
 
     // ── WhatsApp message (detailed breakdown) ──
-    const waText = [
+    const waMessage = [
       `🛎️ NEW ORDER #${orderNumber}`,
       `👤 Customer : ${name || 'N/A'}`,
       `📦 Items    : ${itemList}`,
       `💰 Total    : QR ${total}`,
       `📍 Address  : ${address}`,
-    ].join('%0A'); // %0A = URL-encoded newline for CallMeBot
+    ].join('\n');
+
+    const cleanPhone = ADMIN_PHONE.replace(/[\s-]/g, '');
 
     const waUrl = `https://api.callmebot.com/whatsapp.php` +
-      `?phone=${encodeURIComponent(ADMIN_PHONE)}` +
-      `&text=${waText}` +
+      `?phone=${encodeURIComponent(cleanPhone)}` +
+      `&text=${encodeURIComponent(waMessage)}` +
       `&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
 
     // ── Voice call (short spoken alert) ──
-    const callText = encodeURIComponent(
-      `Urgent Alert: A new order numbered ${orderNumber} for ${total} Qatari Riyals has just been placed on your website.`
-    );
+    const callText = `Urgent Alert: A new order numbered ${orderNumber} for ${total} Qatari Riyals has just been placed on your website.`;
     const callUrl = `https://api.callmebot.com/call.php` +
-      `?phone=${encodeURIComponent(ADMIN_PHONE)}` +
-      `&text=${callText}` +
+      `?phone=${encodeURIComponent(cleanPhone)}` +
+      `&text=${encodeURIComponent(callText)}` +
       `&apikey=${encodeURIComponent(CALLMEBOT_API_KEY)}`;
 
     // Fire both concurrently; log individual results without throwing
     const [waResult, callResult] = await Promise.allSettled([
-      fetch(waUrl),
-      fetch(callUrl),
+      fetch(waUrl).then(async res => ({ status: res.status, body: await res.text() })),
+      fetch(callUrl).then(async res => ({ status: res.status, body: await res.text() })),
     ]);
 
     if (waResult.status === 'fulfilled') {
-      console.log(`[Notify] WhatsApp sent for order #${orderNumber} — HTTP ${waResult.value.status}`);
+      console.log(`[Notify] WhatsApp response for order #${orderNumber} [HTTP ${waResult.value.status}]: ${waResult.value.body}`);
     } else {
       console.error(`[Notify] WhatsApp FAILED for order #${orderNumber}:`, waResult.reason);
     }
 
     if (callResult.status === 'fulfilled') {
-      console.log(`[Notify] Voice call triggered for order #${orderNumber} — HTTP ${callResult.value.status}`);
+      console.log(`[Notify] Voice call response for order #${orderNumber} [HTTP ${callResult.value.status}]: ${callResult.value.body}`);
     } else {
       console.error(`[Notify] Voice call FAILED for order #${orderNumber}:`, callResult.reason);
     }
