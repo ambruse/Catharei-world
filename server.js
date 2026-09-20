@@ -1,4 +1,5 @@
 const express = require('express');
+const { escapeHtml, postMetadata } = require('./seo');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
@@ -17,7 +18,7 @@ const IS_RENDER = process.env.RENDER === 'true';
 
 // Define the master data directory. 
 // If on Render, use the Persistent Disk. If local, use the current folder.
-const DATA_DIR = IS_RENDER ? '/opt/render/project/src/data' : __dirname;
+const DATA_DIR = process.env.DATA_DIR || (IS_RENDER ? '/opt/render/project/src/data' : __dirname);
 
 // Point the database and uploads to the DATA_DIR
 const DB_PATH = path.join(DATA_DIR, 'database.sqlite');
@@ -63,13 +64,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  const host = req.headers.host || '';
+  const host = req.hostname;
   const proto = req.headers['x-forwarded-proto'];
   const isProd = IS_RENDER || process.env.NODE_ENV === 'production';
   
-  if (isProd && (!host.startsWith('www.') || proto === 'http')) {
-    const targetHost = host.startsWith('www.') ? host : `www.${host}`;
-    return res.redirect(301, `https://${targetHost}${req.url}`);
+  if (isProd && (host !== 'www.catharei.com' || proto === 'http')) {
+    return res.redirect(301, `https://www.catharei.com${req.originalUrl}`);
   }
   next();
 });
@@ -79,60 +79,18 @@ app.use((req, res, next) => {
   next();
 });
 
-// ── SEO 301 Redirects — Legacy URL cleanup ──
-// Maps legacy query-param and old paths to canonical clean URLs
-const SEO_REDIRECTS = {
-  // Homepage ?lang= params
-  '/?lang=en': '/',
-  '/?lang=ar': '/',
-  '/?lang=en-QA': '/',
-  '/?lang=ar-QA': '/',
-  // Menu
-  '/menu.html?lang=en': '/menu.html',
-  '/menu.html?lang=ar': '/menu.html',
-  // FAQ
-  '/faq.html?lang=en': '/faq.html',
-  '/faq.html?lang=ar': '/faq.html',
-  // Location pages — old ?lang= params
-  '/locations/al-wakrah.html?lang=en': '/locations/al-wakrah.html',
-  '/locations/al-wakrah.html?lang=ar': '/locations/al-wakrah.html',
-  '/locations/al-aziziya.html?lang=en': '/locations/al-aziziya.html',
-  '/locations/al-aziziya.html?lang=ar': '/locations/al-aziziya.html',
-  '/locations/al-kharaitiyat.html?lang=en': '/locations/al-kharaitiyat.html',
-  '/locations/al-kharaitiyat.html?lang=ar': '/locations/al-kharaitiyat.html',
-  // Navigation category ?lang= params
-  '/navigation/Arabic_sweets.html?lang=en': '/navigation/Arabic_sweets.html',
-  '/navigation/Arabic_sweets.html?lang=ar': '/navigation/Arabic_sweets.html',
-  '/navigation/customized_cakes.html?lang=en': '/navigation/customized_cakes.html',
-  '/navigation/customized_cakes.html?lang=ar': '/navigation/customized_cakes.html',
-  '/navigation/cakes.html?lang=en': '/navigation/cakes.html',
-  '/navigation/cakes.html?lang=ar': '/navigation/cakes.html',
-  '/navigation/savories.html?lang=en': '/navigation/savories.html',
-  '/navigation/savories.html?lang=ar': '/navigation/savories.html',
-  // About, Catering, Contact
-  '/about.html?lang=en': '/about.html',
-  '/about.html?lang=ar': '/about.html',
-  '/catering.html?lang=en': '/catering.html',
-  '/catering.html?lang=ar': '/catering.html',
-  '/contact.html?lang=en': '/contact.html',
-  '/contact.html?lang=ar': '/contact.html',
-};
-
-app.use((req, res, next) => {
-  // Check full path+query against redirect table
-  const qStr = Object.keys(req.query).length
-    ? '?' + new URLSearchParams(req.query).toString()
-    : '';
-  const fullPath = req.path + qStr;
-
-  if (SEO_REDIRECTS[fullPath]) {
-    return res.redirect(301, SEO_REDIRECTS[fullPath]);
-  }
-
-  next();
+// Keep language query parameters: the client uses them to select Arabic or English.
+app.get('/index.html', (req, res) => {
+  const query = req.originalUrl.slice(req.path.length);
+  res.redirect(301, '/' + query);
 });
 
-
+app.use((req, res, next) => {
+  if (/^\/(?:api(?:\/|$)|admin(?:\.html)?$|account\.html$|login\.html$|checkout\.html$|thankyou\.html$|navigation\/cart\.html$)/i.test(req.path)) {
+    res.set('X-Robots-Tag', 'noindex, follow');
+  }
+  next();
+});
 
 // ── Auth Middleware ──
 function requireAdmin(req, res, next) {
@@ -186,10 +144,10 @@ app.get('/blog', (req, res) => {
         <div style="background: url('${post.cover}') center center / cover; height: 200px; border-radius: 6px;"></div>
         <div>
           <h3 style="font-family: var(--font-serif); margin-bottom: 8px; font-size: 1.5rem;">
-            <a href="/blog/${post.slug}" style="color: #fff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='#fff'">${post.title}</a>
+            <a href="/blog/${post.slug}" style="color: #fff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='#fff'">${escapeHtml(post.title)}</a>
           </h3>
           <p style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">📅 Published on ${post.date}</p>
-          <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6;">${post.desc}</p>
+          <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6;">${escapeHtml(post.desc)}</p>
           <a href="/blog/${post.slug}" style="display: inline-block; margin-top: 10px; color: var(--color-accent); font-weight: 600; text-decoration: underline; font-size: 0.95rem;">Read Full Post &rarr;</a>
         </div>
       </article>
@@ -226,95 +184,14 @@ app.get('/blog/:slug', (req, res) => {
 
     let blogTemplate = fs.readFileSync(path.join(__dirname, 'blog.html'), 'utf8');
 
-    // Dynamic metadata replacements
-    blogTemplate = blogTemplate.replace(/<title>.*?<\/title>/i, `<title>${post.title} | CATHAREI</title>`);
-    
-    // Description replacements
-    const descRegex = /<meta\s+name=["']description["']\s+content=["'][\s\S]*?["']\s*\/?>/i;
-    blogTemplate = blogTemplate.replace(descRegex, `<meta name="description" content="${post.desc}">`);
-    
-    // OpenGraph Title & Description
-    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:title["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:title" content="${post.title}">`);
-    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:description["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:description" content="${post.desc}">`);
-    
-    // OpenGraph URL and Canonical Link
-    blogTemplate = blogTemplate.replace(/<meta\s+property=["']og:url["']\s+content=["'][\s\S]*?["']\s*\/?>/i, `<meta property="og:url" content="https://www.catharei.com/blog/${post.slug}">`);
-    blogTemplate = blogTemplate.replace(/<link\s+rel=["']canonical["']\s+href=["'][\s\S]*?["']\s*\/?>/i, `<link rel="canonical" href="https://www.catharei.com/blog/${post.slug}">`);
-
-    // Replace alternate links for the post page to point to dynamic slug
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/www\.catharei\.com\/blog\.html\?lang=en["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=en"`);
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/www\.catharei\.com\/blog\.html\?lang=ar["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=ar"`);
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/www\.catharei\.com\/blog\.html["']/g, `href="https://www.catharei.com/blog/${post.slug}"`);
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei\.com\/blog\.html\?lang=en["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=en"`);
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei\.com\/blog\.html\?lang=ar["']/g, `href="https://www.catharei.com/blog/${post.slug}?lang=ar"`);
-    blogTemplate = blogTemplate.replace(/href=["']https:\/\/catharei\.com\/blog\.html["']/g, `href="https://www.catharei.com/blog/${post.slug}"`);
-
-    // Dynamic Breadcrumbs & BlogPosting Schema block
-    const schemaBlock = `
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "${post.title}",
-      "description": "${post.desc}",
-      "image": "https://www.catharei.com/${post.cover}",
-      "datePublished": "${post.date}",
-      "author": {
-        "@type": "Organization",
-        "name": "CATHAREI",
-        "url": "https://www.catharei.com"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "CATHAREI",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.catharei.com/images/misc/Catharei_logo.webp"
-        }
-      },
-      "mainEntityOfPage": "https://www.catharei.com/blog/${post.slug}"
-    }
-    </script>
-    `;
-
-    let faqSchema = '';
-    if (slug === 'history-of-luqaimat') {
-      faqSchema = `
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Where did Luqaimat originate?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Luqaimat (meaning 'bite-sized morsels' in Arabic) originated in the ancient Arab world and Middle East, tracing back centuries as a staple celebratory dessert during Ramadan, Eid, and family gatherings across Qatar and the Gulf region."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is Qatari Luqaimat?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Qatari Luqaimat are crisp, golden fried dough balls drizzled with date syrup (Dibs) or honey and sprinkled with sesame seeds or cardamom, served fresh as Qatar's favourite traditional sweet."
-          }
-        }
-      ]
-    }
-    </script>
-      `;
-    }
-
-    blogTemplate = blogTemplate.replace('</head>', `${schemaBlock}\n${faqSchema}\n</head>`);
+    blogTemplate = postMetadata(blogTemplate, post);
 
     // Dynamic main section replacement for individual blog post
     const individualPostHtml = `
     <main class="menu-page">
       <section class="menu-hero" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('../${post.cover}') center center / cover;">
         <div class="container" style="text-align: center;">
-          <h1 style="font-family: var(--font-serif); font-size: 2.8rem; color: var(--color-accent); margin-bottom: 20px;">${post.title}</h1>
+          <h1 style="font-family: var(--font-serif); font-size: 2.8rem; color: var(--color-accent); margin-bottom: 20px;">${escapeHtml(post.title)}</h1>
           <p style="font-size: 1rem; color: #fff;">📅 Published on ${post.date}</p>
         </div>
       </section>
@@ -332,16 +209,6 @@ app.get('/blog/:slug', (req, res) => {
 
     blogTemplate = blogTemplate.replace(/<main[\s\S]*?<\/main>/i, individualPostHtml);
 
-    // Adjust relative assets path since this is 1 folder deep (/blog/:slug)
-    blogTemplate = blogTemplate.replace(/href="([^"h]*.css.*)"/g, 'href="../$1"');
-    blogTemplate = blogTemplate.replace(/src=["'](images\/[^"']*)["']/g, 'src="../$1"');
-    blogTemplate = blogTemplate.replace(/src=["'](script.js)["']/g, 'src="../$1"');
-    
-    // Adjust header and footer relative links to navigate back to root folder
-    blogTemplate = blogTemplate.replace(/href=["'](index.html|menu.html|catering.html|about.html|contact.html|faq.html|privacy.html|terms.html)["']/g, 'href="../$1"');
-    blogTemplate = blogTemplate.replace(/href=["'](navigation\/[^"']*)["']/g, 'href="../$1"');
-    blogTemplate = blogTemplate.replace(/href=["'](locations\/[^"']*)["']/g, 'href="../$1"');
-
     res.send(blogTemplate);
   } catch (err) {
     console.error(err);
@@ -349,8 +216,45 @@ app.get('/blog/:slug', (req, res) => {
   }
 });
 
-// ── Static Files (after admin guard & dynamic routes) ──
-app.use(express.static(__dirname));
+// Serve only public assets; never expose source, dependencies, databases or sessions.
+const publicFiles = new Set([
+  'index.html', 'about.html', 'account.html', 'login.html', 'checkout.html',
+  'thankyou.html', 'menu.html', 'catering.html', 'contact.html', 'faq.html',
+  'privacy.html', 'terms.html', 'delivery.html', 'corporate-gifting.html',
+  'ramadan-eid.html', 'script.js', 'styles.css', 'toasts.css', 'robots.txt',
+  'sitemap.xml', 'llms.txt'
+]);
+const publicStatic = express.static(__dirname);
+// Put real catalogue text in the initial HTML, before the interactive cart loads.
+app.get(['/','/menu.html','/navigation/:category.html'], (req, res, next) => {
+  const file = req.path === '/' ? 'index.html' : req.path.slice(1);
+  if (!/^(?:(?:index|menu)\.html|navigation\/[a-zA-Z_-]+\.html)$/.test(file)) return next();
+  const filename = path.join(__dirname, file);
+  if (!fs.existsSync(filename)) return next();
+  const template = fs.readFileSync(filename, 'utf8');
+  const grid = template.match(/<div\b[^>]*id="(?:product-grid|menu-content)"[^>]*>\s*(?:<!--[^]*?-->)?\s*<\/div>/);
+  if (!grid) return next();
+  const category = grid[0].match(/data-category="([^"]+)"/)?.[1];
+  const featured = grid[0].includes('data-type="featured"');
+  const query = 'SELECT * FROM products WHERE active = 1' +
+    (category ? ' AND category = ?' : featured ? ' AND featured = 1' : '') + ' ORDER BY name';
+  const render = (err, products) => {
+    if (err) return next(err);
+    const cards = products.map(product => `<article class="product-card" style="padding:24px;"><h2>${escapeHtml(product.name || '')}</h2><p>${escapeHtml(product.description || '')}</p>${product.name_ar ? `<p lang="ar" dir="rtl">${escapeHtml(product.name_ar)}</p>` : ''}<a href="/contact.html">Ask about this item</a></article>`).join('');
+    const content = file === 'menu.html' ? `<div class="menu-grid">${cards}</div>` : cards;
+    res.send(template.replace(grid[0], grid[0].replace('</div>', content + '</div>')));
+  };
+  db.all(query, category ? [category] : [], render);
+});
+app.use((req, res, next) => {
+  const pathname = req.path;
+  if (pathname === '/' || publicFiles.has(pathname.slice(1)) ||
+      /^\/(navigation|locations)\/[a-zA-Z_-]+\.html$/.test(pathname) ||
+      /^\/(images|Rings)\/[a-zA-Z0-9_ /.-]+\.(?:webp|png|jpe?g|gif|svg|ico|mp4|webm|mp3)$/i.test(pathname)) {
+    return publicStatic(req, res, next);
+  }
+  next();
+});
 
 // ── File Upload Configuration (Updated from server2) ──
 const storage = multer.diskStorage({
@@ -420,7 +324,6 @@ function initializeDatabase() {
 
     // Helper to safely add columns
     const addColumn = (table, col, def) => {
-      db.get(`PRAGMA table_info(${table})`, (err, rows) => {
         db.all(`PRAGMA table_info(${table})`, (err, cols) => {
            if (!err && cols) {
              if (!cols.find(c => c.name === col)) {
@@ -430,7 +333,6 @@ function initializeDatabase() {
              }
            }
         });
-      });
     };
 
     addColumn('products', 'active', 'INTEGER DEFAULT 1');
@@ -779,10 +681,6 @@ app.post('/api/products', requireAdmin, upload.single('image'), (req, res) => {
   });
 });
 
-// ── Root ──
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
 
 // ═══════════════════════════════════════════
 //   ORDERS API

@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CATHAREi — Admin Panel</title>
-  <link rel="icon" type="image/png" href="images/misc/Catharei_logo.webp">
+  <link rel="icon" type="image/webp" href="/images/misc/Catharei_logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="toasts.css">
+  <link rel="stylesheet" href="/toasts.css">
   <style>
     :root {
       --bg: #0d0d0d;
@@ -698,19 +698,26 @@
       .stats { grid-template-columns: 1fr 1fr; }
     }
   </style>
-  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah & Al Kharaitiyat.">
-  <meta name="robots" content="noindex, nofollow">
-
-  <link rel="alternate" hreflang="en" href="https://www.catharei.com/admin.html?lang=en" />
-  <link rel="alternate" hreflang="ar" href="https://www.catharei.com/admin.html?lang=ar" />
-  <link rel="alternate" hreflang="x-default" href="https://www.catharei.com/admin.html" />
+  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <link rel="canonical" href="https://www.catharei.com/admin.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CATHAREi">
+  <meta property="og:title" content="CATHAREi — Admin Panel">
+  <meta property="og:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta property="og:url" content="https://www.catharei.com/admin.html">
+  <meta property="og:image" content="https://www.catharei.com/images/background/hero_spread.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CATHAREi — Admin Panel">
+  <meta name="twitter:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta name="twitter:image" content="https://www.catharei.com/images/background/hero_spread.webp">
 </head>
 <body class="blurred-hero-bg">
 
   <!-- Top Bar -->
   <div class="topbar">
     <div class="topbar-brand">
-      <img loading="lazy" src="images/misc/Catharei_logo.webp" alt="CATHAREi Logo" onerror="this.style.display='none'">
+      <img loading="lazy" src="/images/misc/Catharei_logo.webp" alt="CATHAREi Logo" onerror="this.style.display='none'">
       <span class="brand-name">CATHAREi</span>
       <span class="topbar-badge">Admin</span>
     </div>
@@ -719,7 +726,7 @@
         <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:var(--accent);"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         <span id="admin-username">Admin</span>
       </span>
-      <a href="index.html">
+      <a href="/">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         View Site
       </a>
@@ -1244,7 +1251,7 @@
         </div>
         <button class="modal-close" onclick="closeVariantVisibilityModal()">&times;</button>
       </div>
-      
+
       <div class="modal-body">
         <div class="form-group full" style="margin-top: 10px;">
           <label class="form-label">Overall Product Visibility</label>
@@ -1321,13 +1328,13 @@
       if (!dateString) return '—';
       const d = new Date(dateString);
       if (isNaN(d.getTime())) return '—';
-      
+
       const dd = String(d.getDate()).padStart(2, '0');
       const mm = String(d.getMonth() + 1).padStart(2, '0');
       const yy = String(d.getFullYear()).slice(-2);
       const hh = String(d.getHours()).padStart(2, '0');
       const min = String(d.getMinutes()).padStart(2, '0');
-      
+
       return `${dd}/${mm}/${yy} - ${hh}:${min}`;
     }
 
@@ -1387,7 +1394,7 @@
       if (overlay) {
         overlay.classList.remove('active');
       }
-      
+
       // Acknowledge all currently pending orders (dismisses overlay but keeps sound active until accepted/declined)
       allOrders.filter(o => o.status === 'pending').forEach(o => {
         acknowledgedOrderIds.add(o.id);
@@ -1412,19 +1419,19 @@
       const oView = document.getElementById('orders-view');
       const sView = document.getElementById('showcase-view');
       const statsRow = document.getElementById('stats-row');
-      
+
       if(pView) pView.style.display = tab === 'products' ? 'block' : 'none';
       if(oView) oView.style.display = tab === 'orders' ? 'block' : 'none';
       if(sView) sView.style.display = tab === 'showcase' ? 'block' : 'none';
       if(statsRow) statsRow.style.display = tab === 'products' ? 'grid' : 'none';
-      
+
       const tProd = document.getElementById('tab-products');
       const tOrd = document.getElementById('tab-orders');
       const tShow = document.getElementById('tab-showcase');
       if(tProd) tProd.classList.toggle('active', tab === 'products');
       if(tOrd) tOrd.classList.toggle('active', tab === 'orders');
       if(tShow) tShow.classList.toggle('active', tab === 'showcase');
-      
+
       if(tab === 'orders') fetchOrders();
       if(tab === 'showcase') loadShowcaseAdmin();
     }
@@ -1446,14 +1453,14 @@
         const res = await fetch('/api/orders');
         if (!res.ok) return;
         const orders = await res.json();
-        
+
         allOrders = orders;
         renderOrders();
         updatePendingCount();
         handleAudioLoop();
 
         const pendingOrders = allOrders.filter(o => o.status === 'pending');
-        
+
         // If there are absolutely no pending orders left, stop the alarm
         if (pendingOrders.length === 0) {
           stopNewOrderAlarm();
@@ -1483,7 +1490,7 @@
     }
 
     let audioEnabled = true;
-    
+
     // Auto-unlock audio on first click or touch interaction
     function autoUnlockAudio() {
       const chime = document.getElementById('chime-sound');
@@ -1495,7 +1502,7 @@
           if (btn) btn.style.display = 'none';
           const statusText = document.getElementById('audio-status-text');
           if (statusText) statusText.textContent = 'Audio notifications active.';
-          
+
           document.removeEventListener('click', autoUnlockAudio);
           document.removeEventListener('touchstart', autoUnlockAudio);
         }).catch(e => console.log("Autoplay context not yet unlocked:", e));
@@ -1553,7 +1560,7 @@
         const items = JSON.parse(o.items || '[]');
         const itemsList = items.map(i => `${i.qty}x ${i.name}`).join(', ');
         const mapUrl = `https://www.google.com/maps?q=${o.lat},${o.lng}`;
-        
+
         let statusBadge = `<span class="category-pill" style="background:${getStatusColor(o.status)}; color:#000; font-weight:700;">${o.status.toUpperCase()}</span>`;
         if (o.status === 'completed') {
            statusBadge = `<span style="font-weight:700; color:var(--green); font-size:0.85rem;">Order Delivered</span>`;
@@ -1624,12 +1631,12 @@
        document.getElementById('s-cust-phone').textContent = o.customer_phone;
        document.getElementById('s-cust-email').textContent = o.customer_email || 'N/A';
        document.getElementById('s-cust-addr').textContent = o.address;
-       
+
        document.getElementById('s-order-num').textContent = `#${o.order_number || o.id}`;
        document.getElementById('s-order-date').textContent = new Date(o.created_at).toLocaleString();
        document.getElementById('s-order-pay').textContent = o.payment_method.toUpperCase();
        document.getElementById('s-order-status').textContent = o.status.toUpperCase();
-       
+
        const items = JSON.parse(o.items || '[]');
        let itemsHtml = '';
        items.forEach(i => {
@@ -1642,7 +1649,7 @@
        });
        document.getElementById('s-order-items').innerHTML = itemsHtml;
        document.getElementById('s-order-total').textContent = `Qr ${parseFloat(o.total).toFixed(2)}`;
-       
+
        document.getElementById('summary-modal').classList.add('open');
     }
 
@@ -1689,7 +1696,7 @@
         '<div style="font-size:30px; margin-top:10px; font-weight:bold;">Payment: ' + o.payment_method.toUpperCase() + '</div>' +
         '<div class="footer">Thank you for choosing CATHAREi!<br>www.catharei.com</div>' +
         '<script>window.onload = () => { window.print(); setTimeout(() => window.close(), 1500); }</scr' + 'ipt></body></html>';
-      
+
       printWindow.document.write(html);
       printWindow.document.close();
     }
@@ -1729,7 +1736,7 @@
       document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
       const catEl = document.getElementById('cat-' + cat);
       if(catEl) catEl.classList.add('active');
-      
+
       const titleEl = document.getElementById('page-title');
       const subEl = document.getElementById('page-subtitle');
       if(titleEl) titleEl.textContent = (CATEGORY_LABELS[cat] || cat) + ' Products';
@@ -1778,7 +1785,7 @@
             const disabled = variants._disabled || [];
             const allSizes = ['small', 'medium', 'large'];
             const presentSizes = allSizes.filter(s => variants[s] !== undefined);
-            
+
             if (presentSizes.length > 0) {
               const labelParts = presentSizes.map(s => {
                 const char = s.charAt(0).toUpperCase();
@@ -1859,7 +1866,7 @@
         const variants = JSON.parse(product.variants);
         const disabled = variants._disabled || [];
         const allSizes = ['small', 'medium', 'large'];
-        
+
         allSizes.forEach(size => {
           if (variants[size] !== undefined) {
             const isEnabled = !disabled.includes(size);
@@ -1902,7 +1909,7 @@
 
       const productActive = document.getElementById('v-product-active').checked;
       const sizeToggles = document.querySelectorAll('.v-size-toggle');
-      
+
       try {
         // 1. Handle main product visibility if changed
         if (product.active !== (productActive ? 1 : 0)) {
@@ -1924,12 +1931,12 @@
            headers: { 'Content-Type': 'application/json' },
            body: JSON.stringify({ variants: JSON.stringify(variants) })
         });
-        
+
         if (!resVar.ok) {
            const errData = await resVar.json();
            throw new Error(errData.error || `Server responded with ${resVar.status}`);
         }
-        
+
         const updatedVar = await resVar.json();
         product.variants = updatedVar.variants;
 
@@ -1967,7 +1974,7 @@
       const id = pendingDeleteId;
       const product = allProducts.find(p => p.id === id);
       const name = product ? product.name : 'this item';
-      
+
       const btn = document.getElementById('confirm-delete-btn');
       if(btn) btn.disabled = true;
 
@@ -1980,11 +1987,11 @@
       if(overlay) {
         if(overlayText) overlayText.textContent = "Deleting Product...";
         overlay.classList.add('active');
-        
+
         // Wait exactly 3 seconds as requested
         await new Promise(r => setTimeout(r, 3000));
       }
-      
+
       try {
         await fetch(`/api/products/${id}`, { method: 'DELETE' });
         allProducts = allProducts.filter(p => p.id !== id);
@@ -1994,7 +2001,7 @@
       } catch (e) {
         showToast('Failed to delete product.', 'error');
       }
-      
+
       // Hide the overlay
       if(overlay) overlay.classList.remove('active');
       if(btn) btn.disabled = false;
@@ -2085,7 +2092,7 @@
       document.getElementById('standard-price-wrap').style.display = enabled ? 'none' : 'block';
       document.getElementById('variant-price-wrap').style.display = enabled ? 'block' : 'none';
       document.getElementById('f-price').required = !enabled;
-      
+
       if(enabled) {
         toggleSizeInput('s', document.getElementById('f-variant-s-enable').checked);
         toggleSizeInput('m', document.getElementById('f-variant-m-enable').checked);
@@ -2110,7 +2117,7 @@
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
       if(!btn) return;
-      
+
       const name = document.getElementById('f-name').value.trim();
       const name_ar = document.getElementById('f-name-ar').value.trim();
       const category = document.getElementById('f-category').value;
@@ -2124,7 +2131,7 @@
         const sEnabled = document.getElementById('f-variant-s-enable').checked;
         const mEnabled = document.getElementById('f-variant-m-enable').checked;
         const lEnabled = document.getElementById('f-variant-l-enable').checked;
-        
+
         if (!sEnabled && !mEnabled && !lEnabled) {
           showToast("Please enable at least one size variant.", "error");
           return;
@@ -2287,7 +2294,7 @@
           throw new Error(err.error || 'Upload failed');
         }
         const data = await res.json();
-        
+
         document.getElementById(textInputId).value = data.url;
         const prev = document.getElementById(previewElId);
         if (prev) {

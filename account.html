@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CATHAREi — My Account</title>
-  <link rel="icon" type="image/png" href="images/misc/Catharei_logo.webp">
+  <link rel="icon" type="image/webp" href="/images/misc/Catharei_logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="toasts.css">
+  <link rel="stylesheet" href="/toasts.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -109,27 +109,34 @@
     /* Dropdown Styling */
     .has-dropdown { position: relative; }
     .has-dropdown:hover .dropdown-menu { display: block !important; }
-    .dropdown-menu { 
-      min-width: 150px; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    .dropdown-menu {
+      min-width: 150px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
   </style>
-  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah & Al Kharaitiyat.">
-  <meta name="robots" content="noindex, nofollow">
-
-  <link rel="alternate" hreflang="en" href="https://www.catharei.com/account.html?lang=en" />
-  <link rel="alternate" hreflang="ar" href="https://www.catharei.com/account.html?lang=ar" />
-  <link rel="alternate" hreflang="x-default" href="https://www.catharei.com/account.html" />
+  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <link rel="canonical" href="https://www.catharei.com/account.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CATHAREi">
+  <meta property="og:title" content="CATHAREi — My Account">
+  <meta property="og:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta property="og:url" content="https://www.catharei.com/account.html">
+  <meta property="og:image" content="https://www.catharei.com/images/background/hero_spread.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CATHAREi — My Account">
+  <meta name="twitter:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta name="twitter:image" content="https://www.catharei.com/images/background/hero_spread.webp">
 </head>
 <body class="blurred-hero-bg">
 
   <header class="account-header">
-    <a href="index.html" class="brand-link">
-      <img loading="lazy" src="images/misc/Catharei_logo.webp" alt="Catharei logo - Custom Cake and Arabic Sweets Doha" class="brand-logo" onerror="this.style.display='none'">
+    <a href="/" class="brand-link">
+      <img loading="lazy" src="/images/misc/Catharei_logo.webp" alt="Catharei logo - Custom Cake and Arabic Sweets Doha" class="brand-logo" onerror="this.style.display='none'">
       <div class="brand-name">CATHAREi</div>
     </a>
     <div class="header-right">
-      <a href="menu.html" class="nav-link">Main Menu</a>
+      <a href="/menu.html" class="nav-link">Main Menu</a>
       <div class="nav-item has-dropdown" style="list-style:none; margin:0 15px;">
         <button id="lang-btn" class="nav-link" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:5px; color:var(--text); font-family:var(--font);">
           <span data-i18n="nav.language">Language</span>
@@ -167,7 +174,7 @@
       <div class="panel active" id="dashboard">
         <h2 class="welcome-title">Hello, <span id="welcome-username">Member</span>!</h2>
         <p class="welcome-text">From your account dashboard, you can view your recent orders and manage your account details.</p>
-        
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
           <div style="background:var(--bg3); padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
             <h4 style="color:var(--accent); font-size: 0.8rem; text-transform: uppercase;">Total Orders</h4>
@@ -220,14 +227,14 @@
           <div style="text-align: center; padding: 60px 20px; color: var(--muted); background: var(--bg3); border-radius: 12px;">
             <svg viewBox="0 0 24 24" style="width: 48px; height: 48px; fill: #252525; margin-bottom: 20px;"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
             <p>No orders have been placed yet.</p>
-            <a href="menu.html" style="color:var(--accent); text-decoration: none; font-size: 0.9rem; margin-top: 10px; display: inline-block;">Browse Our Menu</a>
+            <a href="/menu.html" style="color:var(--accent); text-decoration: none; font-size: 0.9rem; margin-top: 10px; display: inline-block;">Browse Our Menu</a>
           </div>
         </div>
       </div>
     </main>
   </div>
 
-  <script src="script.js"></script>
+  <script src="/script.js"></script>
   <script>
     // Note: translations and currentLang now come from script.js
     let user = null;
@@ -241,7 +248,7 @@
         user = data.user;
         document.getElementById('welcome-username').textContent = user.username;
         document.getElementById('details-username').value = user.username;
-        document.getElementById('details-email').value = data.email || ''; 
+        document.getElementById('details-email').value = data.email || '';
         loadOrders();
       }
     });
@@ -250,7 +257,7 @@
       try {
         const res = await fetch('/api/orders/me');
         const orders = await res.json();
-        
+
         document.getElementById('total-orders-count').textContent = orders.length;
 
         const list = document.getElementById('orders-list');
@@ -259,7 +266,7 @@
         list.innerHTML = orders.map(order => {
           let items = [];
           try { items = JSON.parse(order.items); } catch(e) {}
-          
+
           const date = new Date(order.created_at).toLocaleDateString('en-GB', {
             day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
           });
@@ -337,8 +344,8 @@
     async function changePassword(e) {
       e.preventDefault();
       const btn = document.getElementById('change-pass-btn');
-      
-      
+
+
       const oldPassword = document.getElementById('current-password').value;
       const newPassword = document.getElementById('new-password').value;
       const confirm = document.getElementById('confirm-password').value;

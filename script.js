@@ -29,13 +29,13 @@ const translations = {
     "hero.subtitle": "The Art of Traditional Arabic Sweets.",
     "hero.discover": "Indulge in the Artisanal Collection",
     "home.aboutTitle": "Doha's Finest Cake Shop & Bakery",
-    "home.aboutText": "Welcome to CATHAREi – The Best Arabic Bakery & Pastry Shop. Craving authentic Middle Eastern desserts? At CATHAREi, we combine tradition with culinary artistry to bring you fresh Arabic pastries daily. From our signature hot cheese Baklava delivery to our perfectly layered, authentic pistachio Baklava, every bite is crafted using premium ingredients. Whether you are searching for the best Arabic sweets near you or looking to order a luxury Arabic sweets gift box online, CATHAREi brings the rich heritage of Arabic sweets directly to your doorstep.",
+    "home.aboutText": "Discover Arabic sweets and cakes at CATHAREi in Qatar. Browse baklava, maamoul and desserts for family gatherings and gifts, or visit our branches in Doha, Al Wakrah and Al Kharaitiyat.",
     "home.promoTitle": "CATHAREi Bakery & Sweets",
-    "home.promoText": "At CATHAREi, we believe that traditional Arabic desserts are more than just food—they are a celebration of culture, hospitality, and timeless heritage. As a premier Arabic bakery, we take pride in serving an exquisite selection of freshly baked delicacies, from savory staples like traditional Ka'ak bread and freshly baked pita bread to perfectly spiced Manakish Zaatar and cheese. For those with a sweet tooth, our pastry chefs specialize in authentic, heavy-hitting classics. We are renowned for our signature cheese Baklava / Baklava, standard-setting pistachio Baklava, melts-in-your-mouth Maamoul cookies with dates, and rich Basbousa. Whether you are looking for a casual weekend treat or searching for a Middle Eastern dessert shop open now, CATHAREi guarantees an unparalleled premium experience.",
+    "home.promoText": "Share traditional sweets with family and friends. Explore our Arabic sweets, oriental desserts and savouries, and ask your nearest CATHAREi branch about the current selection.",
     "home.exploreTitle": "Explore Our Delicious varieties!",
     "home.exploreText": "Crafting joy at midnight cravings on a feast is nothing that CATHAREi ensures in every bite.",
     "home.customTitle": "Custom cakes for Every Occasion",
-    "home.customText": "Elevate Your Events with CATHAREi Luxury Dessert Catering. Make your next celebration unforgettable with the finest Middle Eastern dessert tables from CATHAREi. We specialize in premium catering for all occasions—offering beautifully curated Ramadan sweets boxes, bespoke Eid dessert catering, luxury Iftar dessert platters, and stunning corporate gifting options. From fresh, hot-delivered cheese Baklava to elegantly packaged Arabic sweets gift boxes, our artisanal pastries add a touch of sophisticated tradition to weddings, family gatherings, and corporate events. Contact us today to customize your premium dessert box delivery.",
+    "home.customText": "Plan dessert catering with CATHAREi for weddings, family gatherings and business events. Contact us to discuss sweets, gift boxes, quantities and collection or delivery arrangements.",
     "cat.savories": "Savouries",
     "cat.arabic": "Arabic Sweets",
     "cat.oriental": "Oriental Sweets",
@@ -103,7 +103,7 @@ const translations = {
     "menu.selectSize": "Select Size",
     "partner.title": "Our Delivery Partners",
     "cake.scrollTitle": "The Finest Custom Cake",
-    "cake.scrollText": "Handcrafted to perfection, this exclusive creation stands out as the absolute best custom cake in all of Doha. Delicate textures layered with rich flavors promise an unforgettable celebration.",
+    "cake.scrollText": "A custom cake for your celebration. Contact CATHAREi to discuss your preferred design, flavours and serving size.",
     "cart.product": "Product",
     "cart.qty": "Quantity",
     "cart.subtotal": "Subtotal",
@@ -132,18 +132,6 @@ const translations = {
     "stores.kharaitiyatAddress": "Al Kharaitiyat Commercial Street, Zone 71, Al Kharaitiyat, Qatar",
     "brand.name": "CATHAREi",
     "brand.sub": "كاثاري",
-    "home.title": "CATHAREI | Premium Arabic Sweets & Custom Cakes Qatar",
-    "home.desc": "Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah & Al Kharaitiyat.",
-    "customized_cakes.title": "Custom Celebration & Wedding Cakes Doha | CATHAREI",
-    "customized_cakes.desc": "Order luxury custom cakes in Qatar. From premium wedding designs to eggless birthday cakes, CATHAREI crafts bespoke cakes for delivery across Doha.",
-    "special_cakes.title": "Premium Specialty Cakes & Birthday Cakes | CATHAREI",
-    "special_cakes.desc": "Explore CATHAREI’s signature specialty cakes. Handcrafted daily with premium ingredients, perfect for birthdays, anniversaries, and luxury gatherings.",
-    "arabic_sweets.title": "Best Arabic Sweets, Baklava & Baklava in Doha | CATHAREI",
-    "arabic_sweets.desc": "Savor authentic Arabic sweets at CATHAREI. Fresh cheese Baklava, premium Baklava trays, and luxury gifting boxes for Ramadan and Eid delivered across Qatar.",
-    "oriental_sweets.title": "Artisanal Oriental Sweets & Pastries Doha | CATHAREI",
-    "oriental_sweets.desc": "Indulge in premium oriental pastries, Maamoul, and gourmet pistachio desserts. Handcrafted traditional sweets beautifully packaged for luxury gifting.",
-    "savories.title": "Fresh Savories, Fatayer & Catering Trays Doha | CATHAREI",
-    "savories.desc": "Order fresh local savories, traditional mini fatayer, and premium gathering platters from CATHAREI. Perfect catering options for events and VIP gatherings."
   },
   ar: {
     "nav.savories": "موالح",
@@ -277,18 +265,6 @@ const translations = {
     "stores.kharaitiyatAddress": "شارع الخريطيات التجاري، منطقة 71، الخريطيات، قطر",
     "brand.name": "كاثاري",
     "brand.sub": "",
-    "home.title": "كاثاري | حلويات عربية فاخرة وكيك مخصص قطر",
-    "home.desc": "اكتشف أفخر الحلويات العربية، المعجنات الشرقية، وكيك المناسبات المخصص من كاثاري. زوروا فروعنا في طريق سلوى، الوكرة، والخريطيات. اطلب أونلاين الآن!",
-    "customized_cakes.title": "كيك مخصص واحتفالات فاخرة في الدوحة | كاثاري",
-    "customized_cakes.desc": "اطلب كيك مخصص فاخر لجميع مناسباتك في قطر. كعكات زفاف وأعياد ميلاد راقية ومصممة حسب الطلب مع خدمة التوصيل في الدوحة. صمم كعكتك الآن!",
-    "special_cakes.title": "كعكات خاصة فاخرة وأعياد ميلاد | كاثاري",
-    "special_cakes.desc": "تصفح تشكيلة كاثاري المميزة من الكعكات الخاصة. طازجة يومياً بأجود المكونات، مثالية لأعياد الميلاد، المناسبات، والتجمعات الفاخرة في قطر.",
-    "arabic_sweets.title": "أفضل حلويات عربية، بقلاوة وبقلاوة في الدوحة | كاثاري",
-    "arabic_sweets.desc": "تذوق أصالة الحلويات العربية من كاثاري. بقلاوة بالفستق طازجة، صواني بقلاوة فاخرة، وعلب هدايا راقية للأعياد والمناسبات مع التوصيل في قطر.",
-    "oriental_sweets.title": "حلويات ومعجنات شرقية فاخرة في الدوحة | كاثاري",
-    "oriental_sweets.desc": "استمتع بأفخر المعجنات الشرقية، المعمول التقليدي، وحلويات الفستق الفاخرة من كاثاري. حلويات تراثية مصنعة يدوياً ومثالية للهدايا الراقية في قطر.",
-    "savories.title": "فطائر وموالح طازجة وصواني ضيافة الدوحة | كاثاري",
-    "savories.desc": "اطلب موالح طازجة، فطائر صغيرة تقليدية، وأطباق تجمعات فاخرة من كاثاري. خيارات ضيافة مثالية للمناسبات والجمعات العائلية في قطر."
   }
 };
 
@@ -297,7 +273,7 @@ const langParam = urlParams.get('lang');
 if (langParam === 'en' || langParam === 'ar') {
   localStorage.setItem('catharei-lang', langParam);
 }
-let currentLang = localStorage.getItem('catharei-lang') || 'en';
+let currentLang = localStorage.getItem('catharei-lang') === 'ar' ? 'ar' : 'en';
 let cartItems = JSON.parse(localStorage.getItem('catharei-cart-data') || '[]');
 // Fallback array for empty cart scenario
 
@@ -329,7 +305,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     } catch (err) {
       console.error("Failed to load products:", err);
-      grid.innerHTML = `<p style='text-align:center;width:100%;grid-column:1/-1;color:#999;'>Server offline. Please run <code>node server.js</code></p>`;
+      grid.innerHTML = `<p style='text-align:center;width:100%;grid-column:1/-1;color:#999;'>Products are temporarily unavailable. Please refresh the page or contact your nearest branch.</p>`;
     }
   }
 
@@ -1114,30 +1090,8 @@ function applyTranslations() {
     }
   });
 
-  // Translate document title and meta description dynamically
-  function getPageKey() {
-    const path = window.location.pathname;
-    if (path.endsWith('/') || path.endsWith('index.html') || path === '' || (!path.includes('.html') && !path.includes('/navigation/') && !path.includes('/blog/') && !path.includes('/locations/'))) return 'home';
-    if (path.includes('customized_cakes.html')) return 'customized_cakes';
-    if (path.includes('special_cakes.html')) return 'special_cakes';
-    if (path.includes('Arabic_sweets.html')) return 'arabic_sweets';
-    if (path.includes('oriental_sweets.html')) return 'oriental_sweets';
-    if (path.includes('savories.html')) return 'savories';
-    return '';
-  }
+  // Metadata stays aligned with the canonical server-rendered page.
 
-  const pageKey = getPageKey();
-  if (pageKey) {
-    if (dictionary[`${pageKey}.title`]) {
-      document.title = dictionary[`${pageKey}.title`];
-    }
-    if (dictionary[`${pageKey}.desc`]) {
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', dictionary[`${pageKey}.desc`]);
-      }
-    }
-  }
 }
 
 
@@ -1269,8 +1223,7 @@ async function checkLoginStatus() {
 }
 
 function handleAccountClick() {
-  const isSubPage = window.location.pathname.includes('/navigation/');
-  const root = isSubPage ? '../' : '';
+  const root = '/';
   
   if (currentUser) {
     if (currentUser.role === 'admin') {

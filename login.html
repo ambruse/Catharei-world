@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CATHAREi — Sign In</title>
-  <link rel="icon" type="image/png" href="images/misc/Catharei_logo.webp">
+  <link rel="icon" type="image/webp" href="/images/misc/Catharei_logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="toasts.css">
+  <link rel="stylesheet" href="/toasts.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -123,18 +123,26 @@
       .panel-right { width: 100%; padding: 40px 24px; }
     }
   </style>
-  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah & Al Kharaitiyat.">
-
-  <link rel="alternate" hreflang="en" href="https://www.catharei.com/login.html?lang=en" />
-  <link rel="alternate" hreflang="ar" href="https://www.catharei.com/login.html?lang=ar" />
-  <link rel="alternate" hreflang="x-default" href="https://www.catharei.com/login.html" />
+  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <link rel="canonical" href="https://www.catharei.com/login.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CATHAREi">
+  <meta property="og:title" content="CATHAREi — Sign In">
+  <meta property="og:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta property="og:url" content="https://www.catharei.com/login.html">
+  <meta property="og:image" content="https://www.catharei.com/images/background/hero_spread.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CATHAREi — Sign In">
+  <meta name="twitter:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta name="twitter:image" content="https://www.catharei.com/images/background/hero_spread.webp">
 </head>
 <body class="blurred-hero-bg">
 
   <!-- Left decorative panel -->
   <div class="panel-left">
     <div class="tagline">
-      <img loading="lazy" src="images/misc/Catharei_logo.webp" alt="CATHAREi Logo" class="logo-img" onerror="this.style.display='none'">
+      <img loading="lazy" src="/images/misc/Catharei_logo.webp" alt="CATHAREi Logo" class="logo-img" onerror="this.style.display='none'">
       <h1>CATHAREi</h1>
       <p class="sub">Premium Sweets & Bakery — Doha</p>
       <div class="decorative-line"></div>
@@ -148,7 +156,7 @@
 
   <!-- Right form panel -->
   <div class="panel-right">
-    <a href="index.html" class="back-link">
+    <a href="/" class="back-link">
       <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
       Back to store
     </a>
@@ -392,8 +400,8 @@
           body: JSON.stringify({ username: document.getElementById('login-username').value.trim(), password: document.getElementById('login-password').value })
         });
         const data = await res.json();
-        if (!res.ok) { 
-          showAlert('login-alert', data.error || 'Login failed', 'error'); 
+        if (!res.ok) {
+          showAlert('login-alert', data.error || 'Login failed', 'error');
         } else {
           showAlert('login-alert', `Welcome back, ${data.username}!`, 'success');
           let target = '/account.html';
@@ -424,9 +432,9 @@
         });
         const data = await res.json();
         if (!res.ok) showAlert('register-alert', data.error || 'Registration failed', 'error');
-        else { 
-          showAlert('register-alert', `Account created! Welcome, ${data.username}!`, 'success'); 
-          window.location.href = redirect || '/account.html'; 
+        else {
+          showAlert('register-alert', `Account created! Welcome, ${data.username}!`, 'success');
+          window.location.href = redirect || '/account.html';
         }
       } catch { showAlert('register-alert', 'Cannot connect to server. Is it running?', 'error'); }
       btn.innerHTML = 'Create Account'; btn.disabled = false;

@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CATHAREi — Thank You</title>
-  <link rel="icon" type="image/png" href="images/misc/Catharei_logo.webp">
+  <link rel="icon" type="image/webp" href="/images/misc/Catharei_logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="toasts.css">
+  <link rel="stylesheet" href="/toasts.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -29,7 +29,7 @@
       color: #4ade80; animation: scaleIn 0.5s ease-out;
     }
     .check-icon svg { width: 40px; height: 40px; fill: currentColor; }
-    
+
     h1 { font-family: var(--serif); font-size: 2.2rem; color: var(--accent); margin-bottom: 15px; }
     p { color: var(--muted); line-height: 1.6; margin-bottom: 30px; }
 
@@ -51,11 +51,19 @@
     /* Floating particles for flair */
     .particle { position: absolute; background: var(--accent); border-radius: 50%; pointer-events: none; opacity: 0.4; }
   </style>
-  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah & Al Kharaitiyat.">
-
-  <link rel="alternate" hreflang="en" href="https://www.catharei.com/thankyou.html?lang=en" />
-  <link rel="alternate" hreflang="ar" href="https://www.catharei.com/thankyou.html?lang=ar" />
-  <link rel="alternate" hreflang="x-default" href="https://www.catharei.com/thankyou.html" />
+  <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <link rel="canonical" href="https://www.catharei.com/thankyou.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CATHAREi">
+  <meta property="og:title" content="CATHAREi — Thank You">
+  <meta property="og:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta property="og:url" content="https://www.catharei.com/thankyou.html">
+  <meta property="og:image" content="https://www.catharei.com/images/background/hero_spread.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CATHAREi — Thank You">
+  <meta name="twitter:description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
+  <meta name="twitter:image" content="https://www.catharei.com/images/background/hero_spread.webp">
 </head>
 <body class="blurred-hero-bg">
 
@@ -65,16 +73,16 @@
     </div>
     <h1 id="status-title" data-i18n="thank.title">Thank You!</h1>
     <p id="status-msg">Your order has been accepted and is being prepared with love. We'll notify you once it's on the way.</p>
-    
+
     <div class="order-card">
       <span class="label">Order Number</span>
       <span class="number" id="ord-num"># ———</span>
     </div>
 
-    <a href="index.html" class="btn" data-i18n="nav.home">Back to Menu</a>
+    <a href="/" class="btn" data-i18n="nav.home">Back to Menu</a>
   </div>
 
-  <script src="script.js"></script>
+  <script src="/script.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const orderNum = urlParams.get('num');
@@ -93,13 +101,13 @@
 
       title.textContent = translations[currentLang]["status.sorryTitle"] || "Order Update";
       title.removeAttribute('data-i18n'); // prevent override
-      
+
       msg.textContent = translations[currentLang]["status.sorryBody"] || "We are sorry, but your order couldn't be accepted.";
-      
+
       icon.style.color = 'var(--red)';
       icon.style.background = 'rgba(248,113,113,0.1)';
       iconPath.innerHTML = '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>'; // Warning/Info icon
-      
+
       document.documentElement.style.setProperty('--accent', 'var(--red)');
     } else {
        // Success Message (ensure translations)
