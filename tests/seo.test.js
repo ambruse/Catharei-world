@@ -65,6 +65,20 @@ test('all pages have unique canonical metadata, valid schema and compilable inli
   }
 });
 
+test('Google Tag Manager appears once in each page head and body', () => {
+  for (const page of pages) {
+    const html = fs.readFileSync(path.join(root, page), 'utf8');
+    const head = html.match(/<head>[\s\S]*?<\/head>/i)?.[0];
+    const body = html.match(/<body(?:\s[^>]*)?>[\s\S]*?<\/body>/i)?.[0];
+    assert.ok(head && body, page);
+    assert.equal((head.match(/googletagmanager\.com\/gtm\.js\?id=/g) || []).length, 1, page);
+    assert.equal((head.match(/GTM-NQ5NWZC4/g) || []).length, 1, page);
+    assert.equal((body.match(/googletagmanager\.com\/ns\.html\?id=GTM-NQ5NWZC4/g) || []).length, 1, page);
+    assert.ok(head.indexOf('GTM-NQ5NWZC4') < head.indexOf('<meta'), page);
+    assert.match(body, /^<body(?:\s[^>]*)?>\s*<!-- Google Tag Manager \(noscript\) -->/, page);
+  }
+});
+
 test('public local assets and links resolve', async () => {
   const urls = new Set();
   for (const page of pages) {
