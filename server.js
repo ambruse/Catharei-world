@@ -1,5 +1,6 @@
 const express = require('express');
 const { escapeHtml, postMetadata } = require('./seo');
+const { registerCatalogueSeo } = require('./catalogue-seo');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
@@ -65,24 +66,28 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   const host = req.hostname;
-  const proto = req.headers['x-forwarded-proto'];
+  const proto = String(req.headers['x-forwarded-proto'] || req.protocol).split(',')[0].trim();
   const isProd = IS_RENDER || process.env.NODE_ENV === 'production';
-  
+  const aliases = {
+    '/index.html': '/',
+    '/blog.html': '/blog',
+    '/blog/history-of-luqaimat.html': '/blog/history-of-luqaimat',
+    '/blog/best-arabic-sweets-gifting.html': '/blog/best-arabic-sweets-gifting'
+  };
+  const canonicalPath = ['GET', 'HEAD'].includes(req.method) ? aliases[req.path] : undefined;
+  // Resolve hostname, protocol and known legacy path aliases in one redirect.
+  // Preserve language and tracking parameters used by the existing frontend.
+  const target = canonicalPath ? canonicalPath + req.originalUrl.slice(req.path.length) : req.originalUrl;
   if (isProd && (host !== 'www.catharei.com' || proto === 'http')) {
-    return res.redirect(301, `https://www.catharei.com${req.originalUrl}`);
+    return res.redirect(301, `https://www.catharei.com${target}`);
   }
+  if (canonicalPath) return res.redirect(301, target);
   next();
 });
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
-});
-
-// Keep language query parameters: the client uses them to select Arabic or English.
-app.get('/index.html', (req, res) => {
-  const query = req.originalUrl.slice(req.path.length);
-  res.redirect(301, '/' + query);
 });
 
 app.use((req, res, next) => {
@@ -122,17 +127,6 @@ app.use('/images/products', express.static(UPLOAD_DIR));
 app.use('/images/showcase', express.static(SHOWCASE_UPLOAD_DIR));
 
 // ── Dynamic Blog System ──
-// Redirect old legacy static paths first
-app.get('/blog.html', (req, res) => {
-  res.redirect(301, '/blog');
-});
-app.get('/blog/history-of-luqaimat.html', (req, res) => {
-  res.redirect(301, '/blog/history-of-luqaimat');
-});
-app.get('/blog/best-arabic-sweets-gifting.html', (req, res) => {
-  res.redirect(301, '/blog/best-arabic-sweets-gifting');
-});
-
 // Dynamic Blog Feed / Directory
 app.get('/blog', (req, res) => {
   try {
@@ -225,27 +219,8 @@ const publicFiles = new Set([
   'sitemap.xml', 'llms.txt'
 ]);
 const publicStatic = express.static(__dirname);
-// Put real catalogue text in the initial HTML, before the interactive cart loads.
-app.get(['/','/menu.html','/navigation/:category.html'], (req, res, next) => {
-  const file = req.path === '/' ? 'index.html' : req.path.slice(1);
-  if (!/^(?:(?:index|menu)\.html|navigation\/[a-zA-Z_-]+\.html)$/.test(file)) return next();
-  const filename = path.join(__dirname, file);
-  if (!fs.existsSync(filename)) return next();
-  const template = fs.readFileSync(filename, 'utf8');
-  const grid = template.match(/<div\b[^>]*id="(?:product-grid|menu-content)"[^>]*>\s*(?:<!--[^]*?-->)?\s*<\/div>/);
-  if (!grid) return next();
-  const category = grid[0].match(/data-category="([^"]+)"/)?.[1];
-  const featured = grid[0].includes('data-type="featured"');
-  const query = 'SELECT * FROM products WHERE active = 1' +
-    (category ? ' AND category = ?' : featured ? ' AND featured = 1' : '') + ' ORDER BY name';
-  const render = (err, products) => {
-    if (err) return next(err);
-    const cards = products.map(product => `<article class="product-card" style="padding:24px;"><h2>${escapeHtml(product.name || '')}</h2><p>${escapeHtml(product.description || '')}</p>${product.name_ar ? `<p lang="ar" dir="rtl">${escapeHtml(product.name_ar)}</p>` : ''}<a href="/contact.html">Ask about this item</a></article>`).join('');
-    const content = file === 'menu.html' ? `<div class="menu-grid">${cards}</div>` : cards;
-    res.send(template.replace(grid[0], grid[0].replace('</div>', content + '</div>')));
-  };
-  db.all(query, category ? [category] : [], render);
-});
+// Read-only SEO rendering uses the same active records as the menu API.
+registerCatalogueSeo(app, () => db, __dirname);
 app.use((req, res, next) => {
   const pathname = req.path;
   if (pathname === '/' || publicFiles.has(pathname.slice(1)) ||

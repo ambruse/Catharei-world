@@ -1,5 +1,7 @@
 # CATHAREi code and SEO review
 
+Historical review. See [27 September implementation and validation](SEO-IMPLEMENTATION-2026-09-27.md) for the current changes, test results and launch tasks.
+
 Updated 20 September 2026. Changes are local and have not been deployed.
 
 ## Research and keyword mapping

@@ -127,7 +127,7 @@ const translations = {
     "stores.aziziya": "Catharei Bakery - Doha (Salwa Road)",
     "stores.aziziyaAddress": "Building 384, Street 340 (Salwa Road), Al Waab / Al Aziziya, Doha, Qatar",
     "stores.wakrah": "Catharei Bakery - Al Wakrah",
-    "stores.wakrahAddress": "Al Wakra Main St, Al Wakrah, Qatar",
+    "stores.wakrahAddress": "720, Al Wakrah, Qatar",
     "stores.kharaitiyat": "Catharei Bakery - Al Kharaitiyat",
     "stores.kharaitiyatAddress": "Al Kharaitiyat Commercial Street, Zone 71, Al Kharaitiyat, Qatar",
     "brand.name": "CATHAREi",
@@ -260,7 +260,7 @@ const translations = {
     "stores.aziziya": "مخبز كاثاري - الدوحة (طريق سلوى)",
     "stores.aziziyaAddress": "مبنى 384، شارع 340 (طريق سلوى)، الوعب / العزيزية، الدوحة، قطر",
     "stores.wakrah": "مخبز كاثاري - الوكرة",
-    "stores.wakrahAddress": "شارع الوكرة العام، الوكرة، قطر",
+    "stores.wakrahAddress": "720، الوكرة، قطر",
     "stores.kharaitiyat": "مخبز كاثاري - الخريطيات",
     "stores.kharaitiyatAddress": "شارع الخريطيات التجاري، منطقة 71، الخريطيات، قطر",
     "brand.name": "كاثاري",
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateCartBadgeUI();
   renderCartDropdown(); // Initially render the hover dropdown if it exists
   initShowcaseSection(); // Dynamic showcase section renderer
-  
+
   // Render based on what page we are on
   const grid = document.getElementById('product-grid');
   if(grid) {
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
       grid.innerHTML = Array(4).fill('<div class="product-card skeleton" style="height:350px; border-color:transparent;"></div>').join('');
-      
+
       let url = '/api/products';
       if (category) url += `?category=${encodeURIComponent(category)}`;
 
@@ -457,11 +457,12 @@ function renderProducts(productsList) {
     </div>`;
     return;
   }
-  let schemaData = [];
+
   productsList.forEach(product => {
     const card = document.createElement('div');
     card.className = 'menu-item';
-    
+    card.id = `product-${product.id}`;
+
     // Dynamic naming handling for database
     let titleText = product.name;
     let titleI18nAttr = '';
@@ -491,7 +492,7 @@ function renderProducts(productsList) {
         if (variants) {
           const disabled = variants._disabled || [];
           const allSizes = ['small', 'medium', 'large'];
-          
+
           const activeVariants = allSizes
             .filter(s => variants[s] !== undefined && !disabled.includes(s))
             .map(s => {
@@ -523,40 +524,16 @@ function renderProducts(productsList) {
     `;
     grid.appendChild(card);
 
-    // Build Product Schema
-    schemaData.push({
-      "@type": "Product",
-      "name": titleText,
-      "image": imgSrc ? ("https://www.catharei.com" + imgSrc) : "",
-      "description": descriptionText || titleText,
-      "offers": {
-        "@type": "Offer",
-        "url": "https://www.catharei.com/",
-        "priceCurrency": "QAR",
-        "price": product.price || "0.00",
-        "availability": "https://schema.org/InStock"
-      }
-    });
   });
 
-  // Inject Schema into DOM
-  const oldSchema = document.getElementById('dynamic-product-schema');
-  if (oldSchema) oldSchema.remove();
-  const script = document.createElement('script');
-  script.id = 'dynamic-product-schema';
-  script.type = 'application/ld+json';
-  script.text = JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": schemaData
-  });
-  document.head.appendChild(script);
+
 }
 
 let pendingVariantItem = null;
 
 function addToCart(e, id, name, price, image, variantsData) {
   if(e) e.preventDefault();
-  
+
   if (variantsData && variantsData !== 'null' && variantsData !== '') {
     try {
       const variants = JSON.parse(variantsData);
@@ -585,7 +562,7 @@ function openVariantModal(id, name, price, image, variants) {
   let html = '';
   const disabled = variants._disabled || [];
   const availableSizes = Object.keys(variants).filter(key => key !== '_disabled' && !disabled.includes(key));
-  
+
   availableSizes.forEach((size, index) => {
     const label = size.charAt(0).toUpperCase() + size.slice(1);
     html += `
@@ -611,7 +588,7 @@ function closeVariantModal() {
 
 function confirmVariantAddToCart() {
   if (!pendingVariantItem) return;
-  
+
   const selectedRadio = document.querySelector('input[name="product-size"]:checked');
   if (!selectedRadio) return;
 
@@ -642,7 +619,7 @@ function confirmVariantAddToCart() {
 function finalizeCartAddition() {
   // Save to persistent storage
   localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
-  
+
   // Update UI Elements
   updateCartBadgeUI();
   const badge = document.getElementById('cart-badge');
@@ -710,7 +687,7 @@ async function initShowcaseSection() {
     const sectionSubtitle = translations[currentLang]?.["showcase.subtitle"] || (isAr ? "استكشف أحدث ابتكاراتنا والأصناف الأكثر طلباً طازجة يومياً" : "Experience our signature trending & newly arrived artisanal creations");
 
     let cardsHtml = '';
-    const schemaGraph = [];
+
 
     items.forEach(item => {
       const badgeText = item.badge || (item.type === 'trending' ? (isAr ? 'الأكثر طلباً' : 'Trending Now') : (isAr ? 'وصل حديثاً' : 'Just In'));
@@ -726,7 +703,7 @@ async function initShowcaseSection() {
             <span class="showcase-badge badge-${item.type}">${badgeText}</span>
             ${priceText ? `<span class="showcase-price-tag">${priceText}</span>` : ''}
           </div>
-          
+
           <div class="showcase-media-container">
             ${videoSrc ? `
               <video class="showcase-video"
@@ -763,31 +740,6 @@ async function initShowcaseSection() {
         </div>
       `;
 
-      // Build JSON-LD Schema
-      if (videoSrc) {
-        schemaGraph.push({
-          "@type": "VideoObject",
-          "name": item.title,
-          "description": item.description || item.subtitle || item.title,
-          "thumbnailUrl": posterSrc ? (posterSrc.startsWith('http') ? posterSrc : ("https://www.catharei.com" + (posterSrc.startsWith('/') ? posterSrc : '/' + posterSrc))) : "https://www.catharei.com/images/misc/Catharei_logo.webp",
-          "uploadDate": "2026-08-15T00:00:00Z",
-          "contentUrl": videoSrc.startsWith('http') ? videoSrc : ("https://www.catharei.com" + (videoSrc.startsWith('/') ? videoSrc : '/' + videoSrc))
-        });
-      }
-
-      schemaGraph.push({
-        "@type": "Product",
-        "name": item.title,
-        "description": item.description || item.subtitle || item.title,
-        "image": posterSrc ? (posterSrc.startsWith('http') ? posterSrc : ("https://www.catharei.com" + (posterSrc.startsWith('/') ? posterSrc : '/' + posterSrc))) : "",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "QAR",
-          "price": priceText.replace(/[^0-9.]/g, '') || "0.00",
-          "availability": "https://schema.org/InStock",
-          "url": "https://www.catharei.com/" + ctaUrl
-        }
-      });
     });
 
     container.innerHTML = `
@@ -808,7 +760,7 @@ async function initShowcaseSection() {
       video.muted = true;
       video.loop = true;
       video.playsInline = true;
-      
+
       const mediaBox = video.closest('.showcase-media-container');
       const fallbackImg = mediaBox ? mediaBox.querySelector('.showcase-poster-img') : null;
       const toggleBtn = mediaBox ? mediaBox.querySelector('.showcase-video-toggle') : null;
@@ -856,17 +808,7 @@ async function initShowcaseSection() {
       });
     });
 
-    // Inject SEO JSON-LD
-    const oldSchema = document.getElementById('showcase-seo-schema');
-    if (oldSchema) oldSchema.remove();
-    const scriptEl = document.createElement('script');
-    scriptEl.id = 'showcase-seo-schema';
-    scriptEl.type = 'application/ld+json';
-    scriptEl.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": schemaGraph
-    });
-    document.head.appendChild(scriptEl);
+
 
   } catch (err) {
     console.error("Failed to load showcase section:", err);
@@ -900,7 +842,7 @@ function toggleShowcaseVideoPlay(btn) {
 function renderCartDropdown() {
   const dropdown = document.getElementById('cart-dropdown');
   if(!dropdown) return;
-  
+
   const emptyText = translations[currentLang]?.['cart.empty'] || "Your cart is empty";
   const totalText = translations[currentLang]?.['cart.total'] || "Total:";
   const viewCartText = currentLang === 'ar' ? 'عرض السلة' : 'View Cart';
@@ -909,7 +851,7 @@ function renderCartDropdown() {
     dropdown.innerHTML = `<div style="padding:15px;text-align:center;color:#999;font-size:0.9rem;">${emptyText}</div>`;
     return;
   }
-  
+
   let html = '<div class="cart-dropdown-list">';
   let total = 0;
   cartItems.forEach(item => {
@@ -920,7 +862,7 @@ function renderCartDropdown() {
     if (window.location.pathname.includes('/navigation/') && !imgPath.startsWith('http') && !imgPath.startsWith('data:')) {
       imgPath = '../' + imgPath.replace('../', '');
     }
-    
+
     html += `
       <div class="cart-dropdown-item">
         <img loading="lazy" src="${imgPath}" alt="${item.name}">
@@ -933,10 +875,10 @@ function renderCartDropdown() {
     `;
   });
   html += '</div>';
-  
+
   // Calculate relative URL to cart page correctly depending on current directory
   let cartUrl = window.location.pathname.includes('/navigation/') ? 'cart.html' : 'navigation/cart.html';
-  
+
   html += `
     <div class="cart-dropdown-footer">
       <div class="cart-dropdown-total">
@@ -954,7 +896,7 @@ function renderCartPage() {
   const totalsBox = document.getElementById('cart-page-totals');
   const headerRow = document.getElementById('cart-table-header-row');
   const couponArea = document.getElementById('cart-coupon-area');
-  
+
   if(!container || !totalsBox) return;
 
   if(cartItems.length === 0) {
@@ -1016,7 +958,7 @@ function renderCartPage() {
   // Render totals
   totalsBox.innerHTML = `
     <h3 style="margin-bottom:20px; font-size:1.2rem; border-bottom:1px solid #e0e0e0; padding-bottom:15px;">Cart totals</h3>
-    
+
     <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size:0.95rem;">
       <span>Subtotal</span>
       <span>Qr ${subtotal.toFixed(2)}</span>
@@ -1029,7 +971,7 @@ function renderCartPage() {
          <span>Qr ${subtotal.toFixed(2)} <small style="display:block;font-size:0.7rem;font-weight:normal;color:#999;">(includes Qr 0.00 VAT)</small></span>
       </div>
     </div>
-    
+
     <button class="btn" style="width:100%; background-color:#D4AF37; color:white; border-radius:5px; padding:12px;" onclick="window.location.href='../checkout.html'">Proceed to checkout</button>
   `;
 }
@@ -1073,7 +1015,7 @@ window.setLanguage = function(langCode) {
 
 function applyTranslations() {
   const dictionary = translations[currentLang];
-  
+
   const elements = document.querySelectorAll('[data-i18n]');
   elements.forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -1100,16 +1042,16 @@ function initCakeAnimation() {
   const canvas = document.getElementById('cake-canvas');
   const section = document.getElementById('cake-scroll-section');
   const textOverlay = document.getElementById('cake-scroll-text');
-  
+
   if (!canvas || !section) return;
 
   const context = canvas.getContext('2d');
-  
+
   const frameCount = 240;
   // Compute image path depending on depth
   const isNav = window.location.pathname.includes('/navigation/');
   const prefix = isNav ? '../images/herosection_1/' : 'images/herosection_1/';
-  
+
   const currentFrame = index => {
     // ezgif-frame-001.webp
     const paddedIndex = index.toString().padStart(3, '0');
@@ -1117,15 +1059,13 @@ function initCakeAnimation() {
   };
 
   const images = [];
-  let loadedImages = 0;
-  
+
   const preloadImages = () => {
     for (let i = 1; i <= frameCount; i++) {
       images[i] = new Image();
       images[i].onerror = () => { console.error("Failed to load frame", i, currentFrame(i)) };
       images[i].src = currentFrame(i);
       images[i].onload = () => {
-        loadedImages++;
         if(i === 1) {
           updateImage(1);
         }
@@ -1135,7 +1075,7 @@ function initCakeAnimation() {
 
   const updateImage = index => {
     if(!images[index]) return;
-    
+
     // Fit image to canvas maintaining aspect ratio
     const img = images[index];
     if (!img.complete || img.naturalWidth === 0) return;
@@ -1175,29 +1115,40 @@ function initCakeAnimation() {
   setCanvasSize();
   window.addEventListener('resize', setCanvasSize);
 
-  preloadImages();
+  // Defer the 240 animation frames until the visitor approaches this section.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        observer.disconnect();
+        preloadImages();
+      }
+    }, { rootMargin: '600px' });
+    observer.observe(section);
+  } else {
+    preloadImages();
+  }
 
   window.addEventListener('scroll', () => {
     const scrollTop = html.scrollTop;
-    
+
     // Check if section is in view
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
     const sectionBottom = sectionTop + sectionHeight;
-    
+
     if (scrollTop + window.innerHeight < sectionTop || scrollTop > sectionBottom) {
       return; // out of view
     }
 
     const maxScrollObj = sectionHeight - window.innerHeight;
     const scrollFraction = (scrollTop - sectionTop) / maxScrollObj;
-    
+
     let frameIndex = Math.floor(scrollFraction * frameCount) + 1;
     if (frameIndex < 1) frameIndex = 1;
     if (frameIndex > frameCount) frameIndex = frameCount;
 
     requestAnimationFrame(() => updateImage(frameIndex));
-    
+
     // Evaluate overlay text fading. Fade in between 20% and 80% scroll
     if(textOverlay) {
       if(scrollFraction > 0.1 && scrollFraction < 0.9) {
@@ -1224,7 +1175,7 @@ async function checkLoginStatus() {
 
 function handleAccountClick() {
   const root = '/';
-  
+
   if (currentUser) {
     if (currentUser.role === 'admin') {
       window.location.href = root + 'admin.html';
