@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
+  <script>document.documentElement.classList.add('js');</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -23,6 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="/toasts.css">
 
   <link rel="stylesheet" href="/styles.css?v=3">
+  <link rel="stylesheet" href="/homepage.css?v=1">
 
   <!-- Multi-Branch Bakery Schema — @graph with 3 Qatar locations -->
   <script type="application/ld+json">
@@ -247,16 +249,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <!-- Header -->
   <header class="site-header">
     <div class="brand">
-      <div class="menu-toggle" id="mobile-menu-toggle">
+      <button class="menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-controls="nav-list" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
-      </div>
-      <a href="/" class="brand-link" style="display:flex; align-items:center; gap:10px;">
-        <img loading="lazy" src="/images/misc/Catharei_logo.webp" alt="CATHAREi Logo" style="height: 32px; width: auto;">
+      </button>
+      <a href="/" class="brand-link" aria-label="CATHAREi home" style="display:flex; align-items:center; gap:10px;">
+        <img src="/images/misc/Catharei_logo.webp" alt="" style="height: 32px; width: auto;">
         <div class="brand-name-container" style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; line-height:1.1;">
           <span class="brand-name-big" style="font-weight:700; font-size:1.15rem; letter-spacing:1px;" data-i18n="brand.name">CATHAREi</span>
           <span class="brand-name-sub" style="font-size:0.65rem; color:var(--color-accent); font-weight:500; letter-spacing:1px; margin-top:1px;" data-i18n="brand.sub">كاثاري</span>
@@ -286,19 +290,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </ul>
         </li>
         <!-- 3. Special -->
-        <li class="nav-item">
-          <a href="/navigation/special.html" data-i18n="nav.special">Special</a>
-        </li>
+        
         <!-- 4. Cakes (Dropdown) -->
-        <li class="nav-item has-dropdown">
-          <button id="cakes-btn"><span data-i18n="nav.cakes">CAKES</span>
-            <svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="/navigation/special_cakes.html" class="dropdown-item" data-i18n="nav.specialCakes">Special Cakes</a></li>
-            <li><a href="/navigation/customized_cakes.html" class="dropdown-item" data-i18n="nav.customizedCakes">Customized Cakes</a></li>
-            <li><a href="/navigation/cakes.html" class="dropdown-item" data-i18n="nav.cakesPlain">CAKES</a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="/navigation/cakes.html" data-i18n="nav.cakes">CAKES</a>
         </li>
         <!-- 5. About Us -->
         <li class="nav-item">
@@ -364,117 +359,120 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </header>
 
   <!-- Homepage Content -->
-  <main>
+  <main id="main-content">
     <!-- 1. Hero Banner (Hero Spread Concept) -->
-    <section class="hero-banner">
+    <section class="hero-banner" aria-labelledby="hero-title">
+      <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+      <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+      <div class="hero-spread-bg" aria-hidden="true"></div>
       <div class="hero-spread-layout">
         <div class="hero-spread-text">
-          <h1 class="hero-title">CATHAREi<span class="hero-title-detail">Bakery &amp; Sweets in Qatar</span></h1>
-          <p class="hero-subtitle" data-i18n="hero.subtitle">The Art of Traditional Arabic Sweets.</p>
-          <a href="/menu.html" class="btn-solid-gold">
-            <span data-i18n="hero.discover">Indulge in the Artisanal Collection</span>
-          </a>
+          <p class="eyebrow hero-eyebrow" data-i18n="home.heroEyebrow">Doha · Al Wakrah · Al Kharaitiyat</p>
+          <h1 class="hero-title" id="hero-title">
+            <span data-i18n="home.heroLineOne">Sweets, shaped</span>
+            <em data-i18n="home.heroLineTwo">into celebration.</em>
+          </h1>
+          <p class="hero-subtitle" data-i18n="home.heroLead">Traditional Arabic sweets, contemporary cakes and generous gifting—handcrafted in Qatar for the moments worth remembering.</p>
+          <div class="hero-actions">
+            <a href="/menu.html" class="btn-solid-gold"><span data-i18n="home.exploreMenu">Explore the menu</span><span aria-hidden="true">↗</span></a>
+            <a href="/contact.html" class="btn-text"><span data-i18n="home.visitBoutique">Visit a boutique</span><span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="hero-note" aria-label="CATHAREi signature">
+          <span class="hero-note-number">01</span>
+          <span data-i18n="home.heroNote">Made daily.<br>Shared generously.</span>
         </div>
       </div>
-      <div class="hero-spread-bg"></div>
+      <div class="hero-scroll-cue" aria-hidden="true"><span></span><small>Scroll to discover</small></div>
     </section>
 
     <!-- Dynamic Trending & New Showcase Showcase Section -->
-    <section class="showcase-section" id="showcase-section" style="display:none;"></section>
+    <section class="showcase-section" id="showcase-section" style="display:none;" aria-label="Seasonal highlights"></section>
 
     <!-- 2. Story/About Block -->
-    <section class="section-padding text-center container">
-      <div class="section-head">
-        <h2>Your bakery for cakes and sweets in Qatar</h2>
-        <p data-i18n="home.aboutText">Discover Arabic sweets and cakes at CATHAREi in Qatar. Browse baklava, maamoul and desserts for family gatherings and gifts, or visit our branches in Doha, Al Wakrah and Al Kharaitiyat.</p>
+    <section class="home-trust-strip" aria-label="CATHAREi at a glance">
+      <div class="container trust-grid">
+        <div class="trust-intro"><span data-i18n="home.trustLabel">A Qatar tradition, made contemporary</span></div>
+        <div class="trust-stat"><strong>03</strong><span data-i18n="home.branches">Boutiques across Qatar</span></div>
+        <div class="trust-stat"><strong>07</strong><span data-i18n="home.luqaimat">Days of fresh luqaimat</span></div>
+        <div class="trust-stat"><strong>∞</strong><span data-i18n="home.occasions">Reasons to celebrate</span></div>
       </div>
-      <a href="/navigation/cakes.html" class="btn btn-primary" data-i18n="btn.explore">Explore Now</a>
     </section>
 
     <!-- 3. Promo Banner -->
-    <section class="promo-banner section-padding">
-      <div class="promo-banner-inner">
-        <div class="promo-text">
-          <h2 style="font-size: 2rem; margin-bottom: 15px; color: var(--color-accent);" data-i18n="home.promoTitle">
-            CATHAREi Bakery & Sweets</h2>
-          <p style="color: var(--color-text-secondary); margin-bottom: 25px;" data-i18n="home.promoText">Share traditional sweets with family and friends. Explore our Arabic sweets, oriental desserts and savouries, and ask your nearest CATHAREi branch about the current selection.</p>
-          <a href="/menu.html" class="btn btn-primary" data-i18n="btn.discover">Discover Deals</a>
-        </div>
-
+    <section class="home-intro section-padding container reveal-section" aria-labelledby="intro-title">
+      <div class="home-intro-heading">
+        <p class="eyebrow" data-i18n="home.introEyebrow">The CATHAREi way</p>
+        <h2 id="intro-title"><span data-i18n="home.introLineOne">Rooted in tradition.</span><br><em data-i18n="home.introLineTwo">Finished with imagination.</em></h2>
+      </div>
+      <div class="home-intro-copy">
+        <p data-i18n="home.aboutText">Discover Arabic sweets and cakes at CATHAREi in Qatar. Browse baklava, maamoul and desserts for family gatherings and gifts, or visit our branches in Doha, Al Wakrah and Al Kharaitiyat.</p>
+        <a href="/about.html" class="text-link"><span data-i18n="home.ourStory">Our story</span><span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
-    <!-- Scroll Animation Section -->
-    <section class="cake-scroll-animation" id="cake-scroll-section">
-      <div class="sticky-canvas-wrapper">
-        <canvas id="cake-canvas"></canvas>
-        <div class="scroll-overlay-text" id="cake-scroll-text">
-          <h2 data-i18n="cake.scrollTitle">The Finest Custom Cake</h2>
-          <p data-i18n="cake.scrollText">A custom cake for your celebration. Contact CATHAREi to discuss your preferred design, flavours and serving size.</p>
+    <section class="craft-stage reveal-section" aria-labelledby="craft-title">
+      <div class="craft-stage-inner container">
+        <div class="craft-visual">
+          <span class="craft-index" aria-hidden="true">فن الضيافة</span>
+          <img src="/images/products/1775138850586-203824645.webp" alt="A curated CATHAREi tray of Arabic sweets" width="1200" height="800" loading="lazy">
+        </div>
+        <div class="craft-copy">
+          <p class="eyebrow" data-i18n="home.craftEyebrow">The art of hospitality</p>
+          <h2 id="craft-title" data-i18n="home.craftTitle">A beautiful table begins with a generous gesture.</h2>
+          <p data-i18n="home.craftText">Our collections bring together delicate layers, roasted nuts and balanced sweetness—presented with the precision every gathering deserves.</p>
+          <ul class="craft-points">
+            <li><span>01</span><span data-i18n="home.craftPointOne">Hand-finished daily</span></li>
+            <li><span>02</span><span data-i18n="home.craftPointTwo">Curated for gifting</span></li>
+            <li><span>03</span><span data-i18n="home.craftPointThree">Made for every occasion</span></li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- 4. Category Circles (Explore) -->
-    <section class="section-padding container text-center">
-      <div class="section-head">
-        <h2 data-i18n="home.exploreTitle">Explore Our Delicious varieties!</h2>
-        <p data-i18n="home.exploreText">Crafting joy at midnight cravings on a feast is nothing that CATHAREi ensures in
-          every bite.</p>
+    <section class="home-categories section-padding container reveal-section" aria-labelledby="categories-title">
+      <div class="section-head section-head-split">
+        <div>
+          <p class="eyebrow" data-i18n="home.collectionEyebrow">The collection</p>
+          <h2 id="categories-title" data-i18n="home.exploreTitle">Made for every kind of craving.</h2>
+        </div>
+        <p data-i18n="home.exploreText">From crisp savouries to intricate Arabic sweets and cakes designed around your celebration.</p>
       </div>
 
       <div class="category-circles">
         <!-- 1 -->
         <div class="category-circle-item" data-category="savories"
           onclick="window.location.href='navigation/savories.html'">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1544294406-0567eade9dce?auto=format&fit=crop&q=80&w=200"
+          <img loading="lazy" src="/images/products/1775146563418-538236780.webp"
             alt="Savouries" class="category-img">
           <span data-i18n="cat.savories" style="font-weight: 600;">Savouries</span>
         </div>
         <!-- 2 -->
         <div class="category-circle-item" data-category="arabic_sweets"
           onclick="window.location.href='navigation/Arabic_sweets.html'">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1596450514735-a131b2c403ce?auto=format&fit=crop&q=80&w=200"
+          <img loading="lazy" src="/images/products/1775138850586-203824645.webp"
             alt="Arabic Sweets" class="category-img">
           <span data-i18n="cat.arabic" style="font-weight: 600;">Arabic Sweets</span>
         </div>
         <!-- 3 -->
         <div class="category-circle-item" data-category="oriental_sweets"
           onclick="window.location.href='navigation/oriental_sweets.html'">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=80&w=200"
+          <img loading="lazy" src="/images/products/1775125327728-831885018.webp"
             alt="Oriental Sweets" class="category-img">
           <span data-i18n="cat.oriental" style="font-weight: 600;">Oriental Sweets</span>
-        </div>
-        <!-- 4 -->
-        <div class="category-circle-item" data-category="special"
-          onclick="window.location.href='navigation/special.html'">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=200"
-            alt="Special Desserts" class="category-img">
-          <span data-i18n="cat.specialDes" style="font-weight: 600;">Special Desserts</span>
-        </div>
-        <!-- 5 -->
-        <div class="category-circle-item" data-category="special_cakes"
-          onclick="window.location.href='navigation/special_cakes.html'">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&q=80&w=200"
-            alt="Special Cakes" class="category-img">
-          <span data-i18n="cat.specialCake" style="font-weight: 600;">Special Cakes</span>
-        </div>
-        <!-- 6 -->
-        <div class="category-circle-item" data-category="customized_cakes"
-          onclick="window.location.href='navigation/customized_cakes.html'">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=200"
-            alt="Customised Cakes" class="category-img">
-          <span data-i18n="cat.customCake" style="font-weight: 600;">Customised Cakes</span>
         </div>
       </div>
     </section>
 
     <!-- 5. Featured Products (Our Sweet Selections) -->
-    <section class="section-padding container text-center">
-      <div class="section-head">
-        <h2><span data-i18n="section.subtitle"
-            style="display:inline; margin-right:5px; color:var(--color-text-secondary); font-size:1rem; font-family:var(--font-sans);"></span>
-          <span data-i18n="section.title">Featured Sweets and Savories</span></h2>
+    <section class="home-featured section-padding container reveal-section" aria-labelledby="featured-title">
+      <div class="section-head section-head-split">
+        <div>
+          <p class="eyebrow" data-i18n="section.subtitle">Handcrafted selection</p>
+          <h2 id="featured-title" data-i18n="section.title">Featured Sweets and Savories</h2>
+        </div>
+        <a href="/menu.html" class="text-link"><span data-i18n="home.viewAll">View full menu</span><span aria-hidden="true">↗</span></a>
       </div>
 
       <!-- Script.js will populate only "featured" items here -->
@@ -482,28 +480,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- 6. Custom Cakes Banner -->
-    <section class="section-padding">
-      <div class="custom-cakes-banner">
+    <section class="home-custom section-padding reveal-section">
+      <div class="custom-cakes-banner container">
         <div class="promo-text">
-          <h2 style="font-size: 2rem; margin-bottom: 15px; color: var(--color-accent);" data-i18n="home.customTitle">
-            Custom cakes for Every Occasion</h2>
-          <p style="color: var(--color-text-primary); margin-bottom: 25px;" data-i18n="home.customText">Plan dessert catering with CATHAREi for weddings, family gatherings and business events. Contact us to discuss sweets, gift boxes, quantities and collection or delivery arrangements.</p>
-          <a href="/navigation/customized_cakes.html" class="btn"
-            style="background: white; color: var(--color-bg-primary);" data-i18n="btn.orderCustom">Order Your Cake</a>
+          <p class="eyebrow" data-i18n="home.customEyebrow">Made around your moment</p>
+          <h2 data-i18n="home.customTitle">A cake that belongs only to your celebration.</h2>
+          <p data-i18n="home.customText">Plan dessert catering with CATHAREi for weddings, family gatherings and business events. Contact us to discuss sweets, gift boxes, quantities and collection or delivery arrangements.</p>
+          <a href="/contact.html" class="btn-solid-gold"><span data-i18n="btn.orderCustom">Order Your Cake</span><span aria-hidden="true">↗</span></a>
         </div>
-        <img loading="lazy" id="promo-slideshow" src="./images/products/1775115029250-903191392.webp" alt="Custom Cake"
-          class="promo-image" style="max-width: 40%">
+        <div class="custom-visual">
+          <span class="custom-ring" aria-hidden="true"></span>
+          <img loading="lazy" id="promo-slideshow" src="./images/products/1775115029250-903191392.webp" alt="A custom celebration cake by CATHAREi" class="promo-image">
+          <span class="custom-caption" data-i18n="home.customCaption">Designed in Qatar · Finished by hand</span>
+        </div>
       </div>
     </section>
 
     <!-- 7. FAQs -->
-    <section class="section-padding container text-center">
-      <div class="section-head">
-        <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+    <section class="home-faq section-padding container reveal-section" aria-labelledby="faq-title">
+      <div class="section-head section-head-split">
+        <div>
+          <p class="eyebrow">Concierge</p>
+          <h2 id="faq-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+        </div>
+        <p data-i18n="home.faqLead">Everything you need to plan a sweeter occasion.</p>
       </div>
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-question"><span data-i18n="faq.q1">Do you offer in Doha delivery?</span> <svg width="24"
+          <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq.q1">Do you offer in Doha delivery?</span> <svg width="24"
               height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M7 10l5 5 5-5z" />
             </svg></button>
@@ -512,7 +516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question"><span data-i18n="faq.q2">Can I order cakes online?</span> <svg width="24"
+          <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq.q2">Can I order cakes online?</span> <svg width="24"
               height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M7 10l5 5 5-5z" />
             </svg></button>
@@ -521,7 +525,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question"><span data-i18n="faq.q3">Do you make custom cakes?</span> <svg width="24"
+          <button class="faq-question" type="button" aria-expanded="false"><span data-i18n="faq.q3">Do you make custom cakes?</span> <svg width="24"
               height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M7 10l5 5 5-5z" />
             </svg></button>
@@ -533,23 +537,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- 8. Delivery Partners -->
-    <section class="section-padding container text-center" style="padding-top: 20px;">
-      <h3 style="color: var(--color-text-secondary); font-size: 1rem; margin-bottom: 20px; text-transform: uppercase;" data-i18n="partner.title">
+    <section class="home-partners section-padding container text-center reveal-section">
+      <h3 data-i18n="partner.title">
         Our Delivery Partners</h3>
       <div class="partners-list">
         <!-- Delivery partner links -->
         <a href="https://www.talabat.com/qatar/catharei-bakery-and-sweets" target="_blank" class="partner-logo"
-          style="font-weight:bold; color: #ff5a00;">Talabat</a>
-        <span class="partner-logo" style="font-weight:bold; color: yellow;">Keeta</span>
+          >Talabat</a>
+        <span class="partner-logo">Keeta</span>
         <a href="https://www.gorafeeq.com/en/home/restaurants/catharei-bakery-1170" target="_blank" class="partner-logo"
-          style="font-weight:bold; color: purple;">Rafeeq</a>
+          >Rafeeq</a>
         <a href="https://snoonu.com/restaurants/catharei-bakery-and-sweets" target="_blank" class="partner-logo"
-          style="font-weight:bold; color: red;">Snoonu</a>
+          >Snoonu</a>
       </div>
     </section>
 
-  <section class="container section-padding" lang="ar" dir="rtl" aria-label="حلويات وكيك في قطر"><h2>حلويات وكيك في قطر</h2><p>اكتشف تشكيلة كاثاري من الحلويات العربية والبقلاوة والمعمول والكيك للمناسبات. تصفح القائمة وتواصل مع فروعنا في الدوحة والوكرة والخريطيات.</p><p><a href="/menu.html">قائمة المنتجات</a> · <a href="/contact.html">تواصل مع فروعنا</a></p></section>
-<section class="container seo-copy"><h2>Find the right bakery for your occasion</h2><p>Choosing the best bakery in Qatar starts with the occasion: a cake to share, sweets for guests or something for a family gathering. Browse our current menu, compare descriptions and prices, and contact a branch for help with your selection.</p><p><a href="/navigation/cakes.html">Cakes in Qatar</a> · <a href="/navigation/Arabic_sweets.html">Arabic sweets</a> · <a href="/menu.html">Full menu</a></p><!-- luqaimat-link --><h2>Visit CATHAREi</h2><p><a href="/locations/al-aziziya.html">Salwa Road</a> · <a href="/locations/al-wakrah.html">Al Wakrah</a> · <a href="/locations/al-kharaitiyat.html">Al Kharaitiyat</a></p><div lang="ar" dir="rtl"><h2>مخبز وحلويات كاثاري في قطر</h2><p>اختيار أفضل مخبز لمناسبتك يبدأ بالتعرف على الأصناف والأحجام والأسعار. تصفح قائمتنا الحالية للكيك والحلويات، وتواصل مع فروعنا في طريق سلوى والوكرة والخريطيات للاستفسار عن طلبك.</p></div></section></main>
+  <section class="home-locations section-padding" aria-labelledby="locations-title">
+    <div class="container locations-layout">
+      <div><p class="eyebrow" data-i18n="home.locationsEyebrow">Find your nearest boutique</p><h2 id="locations-title">Three addresses.<br><em>One warm welcome.</em></h2></div>
+      <div class="location-list">
+        <a href="/locations/al-aziziya.html"><span>01</span><strong>Salwa Road</strong><small>Doha · Al Waab / Al Aziziya</small><b aria-hidden="true">↗</b></a>
+        <a href="/locations/al-wakrah.html"><span>02</span><strong>Al Wakrah</strong><small>Al Wakrah Main Street</small><b aria-hidden="true">↗</b></a>
+        <a href="/locations/al-kharaitiyat.html"><span>03</span><strong>Al Kharaitiyat</strong><small>Umm Salal Mohammed</small><b aria-hidden="true">↗</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container seo-copy home-seo-copy" lang="ar" dir="rtl" aria-label="حلويات وكيك في قطر"><h2>حلويات وكيك في قطر</h2><p>اكتشف تشكيلة كاثاري من الحلويات العربية والبقلاوة والمعمول والكيك للمناسبات. تصفح القائمة وتواصل مع فروعنا في الدوحة والوكرة والخريطيات.</p><p><a href="/menu.html">قائمة المنتجات</a> · <a href="/contact.html">تواصل مع فروعنا</a></p></section>
+  <section class="container seo-copy home-seo-copy"><h2>Find the right bakery for your occasion</h2><p>Choosing the best bakery in Qatar starts with the occasion: a cake to share, sweets for guests or something for a family gathering. Browse our current menu, compare descriptions and prices, and contact a branch for help with your selection.</p><p><a href="/navigation/cakes.html">Cakes in Qatar</a> · <a href="/navigation/Arabic_sweets.html">Arabic sweets</a> · <a href="/menu.html">Full menu</a></p><!-- luqaimat-link --></section></main>
 
 
   <!-- 9. Footer (Matching bottom_of_pg.webp) -->
@@ -656,7 +671,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const promoImgElement = document.getElementById('promo-slideshow');
     let currentIdx = 0;
 
-    setInterval(() => {
+    if (promoImgElement && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => {
       let nextIdx;
       do {
         nextIdx = Math.floor(Math.random() * promoImages.length);
@@ -670,7 +685,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         promoImgElement.src = promoImages[currentIdx];
         promoImgElement.style.opacity = 1;
       }, 500);
-    }, 3000);
+    }, 4200);
   </script>
   <script src="/script.js"></script>
 </body>

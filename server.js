@@ -215,7 +215,7 @@ const publicFiles = new Set([
   'index.html', 'about.html', 'account.html', 'login.html', 'checkout.html',
   'thankyou.html', 'menu.html', 'catering.html', 'contact.html', 'faq.html',
   'privacy.html', 'terms.html', 'delivery.html', 'corporate-gifting.html',
-  'ramadan-eid.html', 'script.js', 'styles.css', 'toasts.css', 'robots.txt',
+  'ramadan-eid.html', 'script.js', 'menu.js', 'styles.css', 'homepage.css', 'menu.css', 'toasts.css', 'robots.txt',
   'sitemap.xml', 'llms.txt'
 ]);
 const publicStatic = express.static(__dirname);

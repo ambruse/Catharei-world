@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>document.documentElement.classList.add('js');</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -18,6 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/toasts.css">
   <link rel="stylesheet" href="/styles.css?v=3">
+  <link rel="stylesheet" href="/menu.css?v=1">
   <link rel="preload" href="/images/background/hero_spread.webp" as="image">
   <script type="application/ld+json">
 {
@@ -46,25 +48,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="twitter:description" content="Browse CATHAREi’s menu of Arabic sweets, oriental desserts, cakes and savouries in Qatar. Choose your favourites and contact your nearest branch.">
   <meta name="twitter:image" content="https://www.catharei.com/images/background/hero_spread.webp">
 </head>
-<body class="blurred-hero-bg">
+<body class="menu-page">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQ5NWZC4"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+  <a class="skip-link" href="#menu-content">Skip to menu</a>
+
   <!-- Header -->
   <header class="site-header">
     <div class="brand">
-      <div class="menu-toggle" id="mobile-menu-toggle"><span></span><span></span><span></span></div>
-      <a href="/" class="brand-link" style="display:flex; align-items:center; gap:10px;">
-        <img loading="lazy" src="/images/misc/Catharei_logo.webp" alt="Logo" style="height: 32px;">
+      <button class="menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-controls="nav-list" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a href="/" class="brand-link" aria-label="CATHAREi home" style="display:flex; align-items:center; gap:10px;">
+        <img src="/images/misc/Catharei_logo.webp" alt="" style="height: 32px;">
         <div class="brand-name-container" style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; line-height:1.1;">
           <span class="brand-name-big" style="font-weight:700; font-size:1.15rem; letter-spacing:1px;" data-i18n="brand.name">CATHAREi</span>
           <span class="brand-name-sub" style="font-size:0.65rem; color:var(--color-accent); font-weight:500; letter-spacing:1px; margin-top:1px;" data-i18n="brand.sub">كاثاري</span>
         </div>
       </a>
     </div>
-    <nav class="nav">
+    <nav class="nav" id="main-nav" aria-label="Primary navigation">
       <ul class="nav-list" id="nav-list">
         <!-- 0. Menu -->
         <li class="nav-item">
@@ -85,19 +89,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </ul>
         </li>
         <!-- 3. Special -->
-        <li class="nav-item">
-          <a href="/navigation/special.html" data-i18n="nav.special">Special</a>
-        </li>
+        
         <!-- 4. Cakes (Dropdown) -->
-        <li class="nav-item has-dropdown">
-          <button id="cakes-btn"><span data-i18n="nav.cakes">CAKES</span>
-            <svg class="icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="/navigation/special_cakes.html" class="dropdown-item" data-i18n="nav.specialCakes">Special Cakes</a></li>
-            <li><a href="/navigation/customized_cakes.html" class="dropdown-item" data-i18n="nav.customizedCakes">Customized Cakes</a></li>
-            <li><a href="/navigation/cakes.html" class="dropdown-item" data-i18n="nav.cakesPlain">CAKES</a></li>
-          </ul>
+        <li class="nav-item">
+          <a href="/navigation/cakes.html" data-i18n="nav.cakes">CAKES</a>
         </li>
         <!-- 5. About Us -->
         <li class="nav-item">
@@ -129,9 +124,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </li>
       </ul>
       <div class="action-icons">
-        <div class="nav-item"><button id="account-btn"><svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></button></div>
+        <div class="nav-item"><button id="account-btn" aria-label="Account"><svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></button></div>
         <div class="nav-item cart-icon-wrapper">
-          <button id="cart-btn"><svg class="icon" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="cart-badge" id="cart-badge">0</span></button>
+          <button id="cart-btn" aria-label="Cart"><svg class="icon" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="cart-badge" id="cart-badge">0</span></button>
           <div class="cart-dropdown" id="cart-dropdown"></div>
         </div>
       </div>
@@ -139,18 +134,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </header>
 
   <main>
-    <section class="menu-hero">
-      <h1 data-i18n="nav.menu">Menu</h1>
-      <p data-i18n="menu.discover">Discover our full collection of premium treats, from traditional Arabic sweets to modern designer cakes. Handcrafted daily in Doha.</p>
+    <section class="menu-stage" id="menu-stage" aria-labelledby="menu-title">
+      <div class="menu-stage-orbit" aria-hidden="true"></div>
+      <div class="menu-light-field" aria-hidden="true"></div>
+      <div class="menu-stage-copy">
+        <p class="menu-kicker">CATHAREi · The edible collection</p>
+        <h1 id="menu-title"><span>Explore</span><em>our menu</em></h1>
+        <p data-i18n="menu.discover">Discover our full collection of premium treats, from traditional Arabic sweets to modern designer cakes. Handcrafted daily in Doha.</p>
+        <a class="stage-scroll-link" href="#menu-browser"><span>Enter the collection</span><i aria-hidden="true">↓</i></a>
+      </div>
+      <div class="menu-constellation" id="menu-constellation" aria-label="Featured menu products"></div>
     </section>
 
-    <div class="menu-container" id="menu-content">
-      <!-- Dynamic categories will be inserted here -->
-    </div>
-  <section class="container section-padding" lang="ar" dir="rtl" aria-label="قائمة الحلويات والكيك والمعجنات"><h2>قائمة الحلويات والكيك والمعجنات في قطر</h2><p>تصفح قائمة كاثاري الحالية للاطلاع على أصناف الحلويات والكيك والموالح والأسعار والأحجام المتاحة. تواصل مع الفرع للاستفسار عن المكونات ومسببات الحساسية وتفاصيل الطلب.</p><p><a href="/menu.html">قائمة المنتجات</a> · <a href="/contact.html">تواصل مع فروعنا</a></p></section>
+    <section class="menu-browser" id="menu-browser" aria-labelledby="collection-title">
+      <div class="category-rail-shell">
+        <nav class="category-rail" id="category-rail" aria-label="Menu categories">
+          <div class="category-rail-track" id="category-rail-track"></div>
+          <span class="category-indicator" id="category-indicator" aria-hidden="true"></span>
+        </nav>
+        <label class="menu-search">
+          <span class="sr-only">Search menu</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+          <input id="menu-search" type="search" placeholder="Search menu…" autocomplete="off">
+        </label>
+      </div>
+
+      <div class="menu-universe container">
+        <header class="menu-collection-head">
+          <div>
+            <p class="menu-kicker" id="collection-kicker">The complete collection</p>
+            <h2 id="collection-title"><span id="active-category-title">All creations</span><sup id="visible-count">00</sup></h2>
+          </div>
+          <p id="collection-description">From delicate Arabic sweets to celebration cakes and savouries, each piece is made to turn sharing into an occasion.</p>
+        </header>
+
+        <div class="menu-container" id="menu-content">
+          <!-- Server-rendered catalogue content is injected here for SEO; menu.js progressively enhances it. -->
+        </div>
+
+        <aside class="signature-moment" id="signature-moment" aria-labelledby="signature-title"></aside>
+        <p class="menu-empty" id="menu-empty" hidden>No creations match your search.</p>
+      </div>
+    </section>
+
+    <section class="container menu-seo-copy" lang="ar" dir="rtl" aria-label="قائمة الحلويات والكيك والمعجنات"><h2>قائمة الحلويات والكيك والمعجنات في قطر</h2><p>تصفح قائمة كاثاري الحالية للاطلاع على أصناف الحلويات والكيك والموالح والأسعار والأحجام المتاحة. تواصل مع الفرع للاستفسار عن المكونات ومسببات الحساسية وتفاصيل الطلب.</p><p><a href="/menu.html">قائمة المنتجات</a> · <a href="/contact.html">تواصل مع فروعنا</a></p></section>
 </main>
 
   <script src="/script.js"></script>
+  <script src="/menu.js"></script>
   <script>
     async function initMenu() {
       const container = document.getElementById('menu-content');
@@ -163,10 +194,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         { id: 'savories', label: 'Savouries', i18n: 'cat.savories' },
         { id: 'arabic_sweets', label: 'Arabic Sweets', i18n: 'cat.arabic' },
         { id: 'oriental_sweets', label: 'Oriental Sweets', i18n: 'cat.oriental' },
-        { id: 'special', label: 'Special Selection', i18n: 'cat.specialDes' },
-        { id: 'cakes', label: 'Traditional Cakes', i18n: 'cat.cakesPlain' },
-        { id: 'special_cakes', label: 'Special Occasion Cakes', i18n: 'cat.specialCake' },
-        { id: 'customized_cakes', label: 'Custom Creations', i18n: 'cat.customCake' }
+        { id: 'cakes', label: 'Traditional Cakes', i18n: 'cat.cakesPlain' }
       ];
 
       container.innerHTML = '';
@@ -244,7 +272,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        console.log("Showing details for product", id);
     }
 
-    initMenu();
+    initCinematicMenu();
   </script>
   <footer class="site-footer">
     <div class="container">

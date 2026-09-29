@@ -13,7 +13,7 @@ const translations = {
     "nav.cakesPlain": "CAKES",
     "nav.language": "English",
     "section.title": "Featured Sweets and Savories",
-    "section.subtitle": "Discover Our",
+    "section.subtitle": "Handcrafted selection",
     "modal.login": "Login to your account",
     "modal.signIn": "Sign In",
     "modal.email": "Email Address",
@@ -32,10 +32,37 @@ const translations = {
     "home.aboutText": "Discover Arabic sweets and cakes at CATHAREi in Qatar. Browse baklava, maamoul and desserts for family gatherings and gifts, or visit our branches in Doha, Al Wakrah and Al Kharaitiyat.",
     "home.promoTitle": "CATHAREi Bakery & Sweets",
     "home.promoText": "Share traditional sweets with family and friends. Explore our Arabic sweets, oriental desserts and savouries, and ask your nearest CATHAREi branch about the current selection.",
-    "home.exploreTitle": "Explore Our Delicious varieties!",
-    "home.exploreText": "Crafting joy at midnight cravings on a feast is nothing that CATHAREi ensures in every bite.",
-    "home.customTitle": "Custom cakes for Every Occasion",
+    "home.exploreTitle": "Made for every kind of craving.",
+    "home.exploreText": "From crisp savouries to intricate Arabic sweets and cakes designed around your celebration.",
+    "home.customTitle": "A cake that belongs only to your celebration.",
     "home.customText": "Plan dessert catering with CATHAREi for weddings, family gatherings and business events. Contact us to discuss sweets, gift boxes, quantities and collection or delivery arrangements.",
+    "home.heroEyebrow": "Doha · Al Wakrah · Al Kharaitiyat",
+    "home.heroLineOne": "Sweets, shaped",
+    "home.heroLineTwo": "into celebration.",
+    "home.heroLead": "Traditional Arabic sweets, contemporary cakes and generous gifting—handcrafted in Qatar for the moments worth remembering.",
+    "home.exploreMenu": "Explore the menu",
+    "home.visitBoutique": "Visit a boutique",
+    "home.heroNote": "Made daily. Shared generously.",
+    "home.trustLabel": "A Qatar tradition, made contemporary",
+    "home.branches": "Boutiques across Qatar",
+    "home.luqaimat": "Days of fresh luqaimat",
+    "home.occasions": "Reasons to celebrate",
+    "home.introEyebrow": "The CATHAREi way",
+    "home.introLineOne": "Rooted in tradition.",
+    "home.introLineTwo": "Finished with imagination.",
+    "home.ourStory": "Our story",
+    "home.craftEyebrow": "The art of hospitality",
+    "home.craftTitle": "A beautiful table begins with a generous gesture.",
+    "home.craftText": "Our collections bring together delicate layers, roasted nuts and balanced sweetness—presented with the precision every gathering deserves.",
+    "home.craftPointOne": "Hand-finished daily",
+    "home.craftPointTwo": "Curated for gifting",
+    "home.craftPointThree": "Made for every occasion",
+    "home.collectionEyebrow": "The collection",
+    "home.viewAll": "View full menu",
+    "home.customEyebrow": "Made around your moment",
+    "home.customCaption": "Designed in Qatar · Finished by hand",
+    "home.faqLead": "Everything you need to plan a sweeter occasion.",
+    "home.locationsEyebrow": "Find your nearest boutique",
     "cat.savories": "Savouries",
     "cat.arabic": "Arabic Sweets",
     "cat.oriental": "Oriental Sweets",
@@ -146,7 +173,7 @@ const translations = {
     "nav.cakesPlain": "كيك",
     "nav.language": "العربية",
     "section.title": "حلوياتنا وموالحنا المميزة",
-    "section.subtitle": "اكتشف",
+    "section.subtitle": "تشكيلة مصنوعة يدوياً",
     "modal.login": "تسجيل الدخول",
     "modal.signIn": "دخول",
     "modal.email": "البريد الإلكتروني",
@@ -165,10 +192,37 @@ const translations = {
     "home.aboutText": "نقدم لكم أرقى تشكيلة من الحلويات العربية التقليدية والمعجنات الشرقية والكعك المخصص الحديث. مصنوعة بحب وأنقى المكونات.",
     "home.promoTitle": "حلويات ومعجنات كاثاري",
     "home.promoText": "سواء للاحتفال بالنجاح بفخر، دع مخبز الكعك الطازج في متجر الحلويات الخاص بنا في الدوحة يجلب إبداعاتنا المذهلة إليك مباشرة.",
-    "home.exploreTitle": "استكشف أصنافنا اللذيذة!",
-    "home.exploreText": "صنع الفرح في رغبات منتصف الليل أو في وليمة لا شيء سوى ما تضمنه كاثاري في كل قضمة.",
-    "home.customTitle": "كعكات مخصصة لكل مناسبة",
+    "home.exploreTitle": "لكل رغبة مذاقها.",
+    "home.exploreText": "من الموالح المقرمشة إلى الحلويات العربية المتقنة والكيك المصمم لاحتفالك.",
+    "home.customTitle": "كيكة تنتمي إلى احتفالك وحده.",
     "home.customText": "اجعل الاحتفال مميزاً. أعطنا المخطط لما تحتاجه الكعكة لتعكسه ودعنا نجعل حلمك حقيقة.",
+    "home.heroEyebrow": "الدوحة · الوكرة · الخريطيات",
+    "home.heroLineOne": "حلويات نصوغها",
+    "home.heroLineTwo": "لتصبح احتفالاً.",
+    "home.heroLead": "حلويات عربية أصيلة وكيك معاصر وهدايا سخية، نصنعها في قطر للحظات التي تستحق أن تُحفظ في الذاكرة.",
+    "home.exploreMenu": "استكشف القائمة",
+    "home.visitBoutique": "زر أحد فروعنا",
+    "home.heroNote": "نصنعها يومياً ونقدمها بسخاء.",
+    "home.trustLabel": "تقاليد قطرية بروح معاصرة",
+    "home.branches": "فروع في أنحاء قطر",
+    "home.luqaimat": "أيام من اللقيمات الطازجة",
+    "home.occasions": "أسباب لا تنتهي للاحتفال",
+    "home.introEyebrow": "أسلوب كاثاري",
+    "home.introLineOne": "جذور أصيلة.",
+    "home.introLineTwo": "ولمسة من الخيال.",
+    "home.ourStory": "قصتنا",
+    "home.craftEyebrow": "فن الضيافة",
+    "home.craftTitle": "كل مائدة جميلة تبدأ بلفتة كريمة.",
+    "home.craftText": "تجمع تشكيلاتنا بين الطبقات الرقيقة والمكسرات المحمصة والحلاوة المتوازنة، بتقديم يليق بكل لقاء.",
+    "home.craftPointOne": "لمسات نهائية يومية",
+    "home.craftPointTwo": "مختارة بعناية للهدايا",
+    "home.craftPointThree": "مصنوعة لكل مناسبة",
+    "home.collectionEyebrow": "التشكيلة",
+    "home.viewAll": "عرض القائمة كاملة",
+    "home.customEyebrow": "مصممة للحظتك",
+    "home.customCaption": "صُممت في قطر · أُنجزت يدوياً",
+    "home.faqLead": "كل ما تحتاجه لتخطط لمناسبة أكثر حلاوة.",
+    "home.locationsEyebrow": "اعثر على أقرب فرع",
     "cat.savories": "موالح",
     "cat.arabic": "حلويات عربية",
     "cat.oriental": "حلويات شرقية",
@@ -299,7 +353,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       const products = await response.json();
 
       if (isFeatured) {
-        renderProducts(products.filter(p => p.featured === 1).sort((a, b) => a.name.localeCompare(b.name)));
+        const featuredProducts = products
+          .filter(p => p.featured === 1)
+          .sort((a, b) => a.name.localeCompare(b.name));
+        const fallbackProducts = products
+          .filter(p => p.image && !p.image.includes('placeholder'))
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .slice(0, 4);
+        renderProducts(featuredProducts.length ? featuredProducts : fallbackProducts);
       } else {
         renderProducts(products.sort((a, b) => a.name.localeCompare(b.name)));
       }
@@ -314,6 +375,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupFAQ();
   syncCategoryCircleImages();
   initCakeAnimation();
+  initHomeEnhancements();
   checkLoginStatus();
 
 
@@ -345,7 +407,10 @@ function setupEventListeners() {
   const navList = document.getElementById('nav-list');
   if(menuToggle && navList) {
     menuToggle.addEventListener('click', () => {
-      navList.classList.toggle('active');
+      const isOpen = navList.classList.toggle('active');
+      menuToggle.classList.toggle('is-active', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
     });
   }
 
@@ -437,12 +502,45 @@ function setupFAQ() {
       question.addEventListener('click', () => {
         // close others (optional, but requested accordion style often implements this)
         faqItems.forEach(otherItem => {
-          if(otherItem !== item) otherItem.classList.remove('active');
+          if(otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherQuestion = otherItem.querySelector('.faq-question');
+            if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
+          }
         });
         item.classList.toggle('active');
+        question.setAttribute('aria-expanded', String(item.classList.contains('active')));
       });
     }
   });
+}
+
+function initHomeEnhancements() {
+  const header = document.querySelector('.home-page .site-header');
+  if (header) {
+    const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
+
+  const sections = document.querySelectorAll('.reveal-section');
+  if (!sections.length) return;
+
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    sections.forEach(section => section.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  sections.forEach(section => observer.observe(section));
 }
 
 function renderProducts(productsList) {
