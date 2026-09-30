@@ -287,7 +287,7 @@
 
   function detailMarkup(product) {
     return `<div class="product-detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
-      <button class="product-detail-close" type="button" aria-label="Close product details">×</button>
+      <button class="product-detail-close" type="button" aria-label="Close product details"><i class=ui-icon data-icon=close aria-hidden=true></i></button>
       <div class="product-detail-media"><img src="${escapeHTML(safeImage(product.image, Number(product.id)))}" alt="${escapeHTML(titleFor(product))}"></div>
       <div class="product-detail-content"><p class="product-detail-category">${escapeHTML(categoryLabel(product.category))}</p><h2 id="detail-title">${escapeHTML(titleFor(product))}</h2><p class="product-detail-description">${escapeHTML(descriptionFor(product))}</p><p class="product-detail-price">${escapeHTML(priceFor(product))}</p><button class="product-detail-add" type="button">Add to cart</button><p class="product-detail-note">Prepared by CATHAREi. Contact your nearest boutique for ingredient and allergen guidance.</p></div>
     </div>`;

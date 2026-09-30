@@ -281,7 +281,7 @@ html { scroll-behavior: smooth; }
 .home-categories .category-img { position: absolute; inset: 0; display: block; width: 100%; max-width: none; height: 100%; object-fit: cover; object-position: center; border: 0; border-radius: 0; filter: brightness(.57) saturate(.75); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
 .home-categories .category-circle-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(4,4,3,.92), rgba(4,4,3,.08) 72%); }
 .home-categories .category-circle-item span { position: relative; z-index: 2; width: 100%; padding: 25px 28px; color: var(--home-ivory); font-family: var(--font-serif); font-size: 1.42rem; font-weight: 400 !important; border-top: 1px solid rgba(255,255,255,.15); }
-.home-categories .category-circle-item span::after { content: '↗'; float: right; color: var(--home-gold); font-family: var(--font-sans); font-size: 1rem; }
+.home-categories .category-circle-item span::after { content: ''; float: right; width: 1em; height: 1em; background-color: var(--home-gold); -webkit-mask: url('/images/icons/arrow.svg') center / contain no-repeat; mask: url('/images/icons/arrow.svg') center / contain no-repeat; font-size: 1rem; }
 .home-categories .category-circle-item:hover { color: inherit; }
 .home-categories .category-circle-item:hover .category-img { transform: scale(1.045); filter: brightness(.73) saturate(.9); }
 

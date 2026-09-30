@@ -1,3 +1,5 @@
+@import url('/icons.css');
+
 /* --- Shared Toast Notification System --- */
 #toast-container {
   position: fixed;

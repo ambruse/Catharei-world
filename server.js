@@ -216,7 +216,7 @@ const publicFiles = new Set([
   'thankyou.html', 'menu.html', 'catering.html', 'contact.html', 'faq.html',
   'privacy.html', 'terms.html', 'delivery.html', 'corporate-gifting.html',
   'ramadan-eid.html', 'script.js', 'menu.js', 'styles.css', 'homepage.css', 'menu.css', 'toasts.css', 'robots.txt',
-  'sitemap.xml', 'llms.txt'
+  'sitemap.xml', 'llms.txt', 'icons.css'
 ]);
 const publicStatic = express.static(__dirname);
 // Read-only SEO rendering uses the same active records as the menu API.

@@ -1,0 +1,28 @@
+/* Fixed SVG artwork: no operating-system emoji or icon fonts. */
+.ui-icon { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; vertical-align: -.125em; background-color: currentColor; -webkit-mask: var(--ui-icon) center / contain no-repeat; mask: var(--ui-icon) center / contain no-repeat; }
+.ui-icon[data-icon="bell"] { --ui-icon: url('/images/icons/bell.svg'); }
+.ui-icon[data-icon="flame"] { --ui-icon: url('/images/icons/flame.svg'); }
+.ui-icon[data-icon="sparkle"] { --ui-icon: url('/images/icons/sparkle.svg'); }
+.ui-icon[data-icon="close"] { --ui-icon: url('/images/icons/close.svg'); }
+.ui-icon[data-icon="folder"] { --ui-icon: url('/images/icons/folder.svg'); }
+.ui-icon[data-icon="link"] { --ui-icon: url('/images/icons/link.svg'); }
+.ui-icon[data-icon="pin"] { --ui-icon: url('/images/icons/pin.svg'); }
+.ui-icon[data-icon="star"] { --ui-icon: url('/images/icons/star.svg'); }
+.ui-icon[data-icon="edit"] { --ui-icon: url('/images/icons/edit.svg'); }
+.ui-icon[data-icon="arrow"] { --ui-icon: url('/images/icons/arrow.svg'); }
+.ui-icon[data-icon="down"] { --ui-icon: url('/images/icons/down.svg'); }
+.ui-icon[data-icon="moon"] { --ui-icon: url('/images/icons/moon.svg'); }
+.ui-icon[data-icon="ring"] { --ui-icon: url('/images/icons/ring.svg'); }
+.ui-icon[data-icon="building"] { --ui-icon: url('/images/icons/building.svg'); }
+.ui-icon[data-icon="cake"] { --ui-icon: url('/images/icons/cake.svg'); }
+.ui-icon[data-icon="phone"] { --ui-icon: url('/images/icons/phone.svg'); }
+.ui-icon[data-icon="mail"] { --ui-icon: url('/images/icons/mail.svg'); }
+.ui-icon[data-icon="rocket"] { --ui-icon: url('/images/icons/rocket.svg'); }
+.ui-icon[data-icon="scooter"] { --ui-icon: url('/images/icons/scooter.svg'); }
+.ui-icon[data-icon="bird"] { --ui-icon: url('/images/icons/bird.svg'); }
+.ui-icon[data-icon="box"] { --ui-icon: url('/images/icons/box.svg'); }
+.ui-icon[data-icon="globe"] { --ui-icon: url('/images/icons/globe.svg'); }
+.ui-icon[data-icon="clock"] { --ui-icon: url('/images/icons/clock.svg'); }
+.ui-icon[data-icon="check"] { --ui-icon: url('/images/icons/check.svg'); }
+.ui-icon[data-icon="plus"] { --ui-icon: url('/images/icons/plus.svg'); }
+.ui-icon[data-icon="star-outline"] { --ui-icon: url('/images/icons/star-outline.svg'); }

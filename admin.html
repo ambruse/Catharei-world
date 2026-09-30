@@ -896,7 +896,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div id="audio-banner" style="display: none;">
           <div style="display: flex; align-items: center; gap: 10px;">
-             <span style="font-size: 1.2rem;">🔔</span>
+             <span style="font-size: 1.2rem;"><i class=ui-icon data-icon=bell aria-hidden=true></i></span>
              <span id="audio-status-text">New pending orders! Audio notification active.</span>
           </div>
           <button class="btn btn-sm btn-gold" id="enable-audio-btn" onclick="enableAudio()">Enable Sound</button>
@@ -945,7 +945,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- Trending Item Card -->
             <div class="stat-card" style="padding: 24px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-                <h3 style="color: var(--accent); font-family: var(--serif); font-size: 1.25rem;">🔥 Trending Item Slot</h3>
+                <h3 style="color: var(--accent); font-family: var(--serif); font-size: 1.25rem;"><i class=ui-icon data-icon=flame aria-hidden=true></i> Trending Item Slot</h3>
                 <label class="toggle-label">
                   <span style="font-size: 0.8rem; color: var(--muted); margin-right: 6px;">Active</span>
                   <input type="checkbox" id="sc-tr-enabled" checked>
@@ -1000,7 +1000,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- New Arrival Item Card -->
             <div class="stat-card" style="padding: 24px; background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
-                <h3 style="color: var(--accent); font-family: var(--serif); font-size: 1.25rem;">✨ New Arrival Item Slot</h3>
+                <h3 style="color: var(--accent); font-family: var(--serif); font-size: 1.25rem;"><i class=ui-icon data-icon=sparkle aria-hidden=true></i> New Arrival Item Slot</h3>
                 <label class="toggle-label">
                   <span style="font-size: 0.8rem; color: var(--muted); margin-right: 6px;">Active</span>
                   <input type="checkbox" id="sc-new-enabled" checked>
@@ -1065,7 +1065,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="modal">
       <div class="modal-header">
         <div class="modal-title" id="product-modal-title">Add New Product</div>
-        <button class="modal-close" onclick="closeAddModal()">✕</button>
+        <button class="modal-close" aria-label="Close product editor" onclick="closeAddModal()"><i class=ui-icon data-icon=close aria-hidden=true></i></button>
       </div>
       <div class="modal-body">
         <form id="add-form" onsubmit="submitProduct(event)">
@@ -1158,8 +1158,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="form-group full">
               <label class="form-label">Product Image</label>
               <div class="img-tabs">
-                <button type="button" class="img-tab active" onclick="switchImgTab('upload', this)">📁 Upload File</button>
-                <button type="button" class="img-tab" onclick="switchImgTab('url', this)">🔗 Image URL</button>
+                <button type="button" class="img-tab active" onclick="switchImgTab('upload', this)"><i class=ui-icon data-icon=folder aria-hidden=true></i> Upload File</button>
+                <button type="button" class="img-tab" onclick="switchImgTab('url', this)"><i class=ui-icon data-icon=link aria-hidden=true></i> Image URL</button>
               </div>
               <div class="img-panel show" id="panel-upload">
                 <div class="image-upload-area" id="drop-zone">
@@ -1180,7 +1180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <label class="form-label">Options</label>
               <div class="checkbox-group">
                 <input type="checkbox" id="f-featured">
-                <label for="f-featured">⭐ Feature this product on the homepage</label>
+                <label for="f-featured"><i class=ui-icon data-icon=star aria-hidden=true></i> Feature this product on the homepage</label>
               </div>
             </div>
           </div>
@@ -1300,7 +1300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Full Screen New Order Notification Overlay -->
   <div class="full-loading-overlay" id="new-order-overlay" style="background: rgba(0, 0, 0, 0.95); z-index: 100000;">
-    <div style="font-size: 5rem; margin-bottom: 20px; animation: pulse 1s infinite alternate;">🔔</div>
+    <div style="font-size: 5rem; margin-bottom: 20px; animation: pulse 1s infinite alternate;"><i class=ui-icon data-icon=bell aria-hidden=true></i></div>
     <h1 style="color: var(--accent); font-family: var(--serif); font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">New Order Received!</h1>
     <div style="color: var(--text); font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; line-height: 1.6; text-align: left; width: 100%; max-height: 50vh; overflow-y: auto; padding: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;" id="new-order-details">
       Order details will appear here...
@@ -1550,7 +1550,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function notifyNewOrder() {
       const chime = document.getElementById('chime-sound');
       if (chime) chime.play().catch(e => console.log("Audio skipped: needs interaction"));
-      showToast("🔔 New Pending Order Received!", "success");
+      showToast("New Pending Order Received!", "success");
     }
 
     function updatePendingCount() {
@@ -1588,7 +1588,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="font-size:0.8rem; line-height:1.4;">
                <div><strong>Items:</strong> ${itemsList}</div>
                <div style="color:var(--muted)"><strong>Addr:</strong> ${o.address}</div>
-               <a href="${mapUrl}" target="_blank" style="color:var(--accent); text-decoration:none; font-size:0.75rem;">📍 View on Map</a>
+               <a href="${mapUrl}" target="_blank" style="color:var(--accent); text-decoration:none; font-size:0.75rem;"><i class=ui-icon data-icon=pin aria-hidden=true></i> View on Map</a>
             </div>
             <div style="font-size:0.85rem;">
                <div style="font-weight:600;">Qr ${parseFloat(o.total).toFixed(2)}</div>
@@ -1819,7 +1819,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="price-cell">${p.variants ? variantLabel : 'QR ' + parseFloat(p.price).toFixed(2)}</div>
           <div><span class="category-pill">${CATEGORY_LABELS[p.category] || p.category}</span></div>
-          <div>${p.featured === 1 ? '<span class="featured-star">★</span>' : '<span class="featured-none">☆</span>'}</div>
+          <div>${p.featured === 1 ? '<span class="featured-star" role="img" aria-label="Featured"><i class=ui-icon data-icon=star aria-hidden=true></i></span>' : '<span class="featured-none" role="img" aria-label="Not featured"><i class=ui-icon data-icon=star-outline aria-hidden=true></i></span>'}</div>
           <div>
             <label class="toggle-label" title="${p.active === 1 ? 'Click to hide' : 'Click to show'}">
               <input type="checkbox" ${p.active === 1 ? 'checked' : ''} onchange="toggleProduct(${p.id}, this)">
@@ -1827,7 +1827,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </label>
           </div>
           <div class="row-actions">
-            <button class="icon-btn" type="button" aria-label="Edit product" title="Edit product" onclick="openEditModal(${p.id})">✎</button>
+            <button class="icon-btn" type="button" aria-label="Edit product" title="Edit product" onclick="openEditModal(${p.id})"><i class=ui-icon data-icon=edit aria-hidden=true></i></button>
             <button class="icon-btn" onclick="openDeleteModal(${p.id}, '${p.name.replace(/'/g, "\\'")}')">
               <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
             </button>
@@ -1855,7 +1855,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         product.active = updated.active;
         if (row) row.classList.toggle('inactive', updated.active !== 1);
         updateStats();
-        showToast(updated.active === 1 ? '✓ Product visible' : '✓ Product hidden', 'success');
+        showToast(updated.active === 1 ? 'Product visible' : 'Product hidden', 'success');
       } catch (e) {
         checkbox.checked = !checkbox.checked;
         showToast('Failed to update product.', 'error');
@@ -1955,7 +1955,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         renderTable();
         updateStats();
-        showToast('✓ Metadata updated', 'success');
+        showToast('Metadata updated', 'success');
         closeVariantVisibilityModal();
       } catch(e) {
         showToast(`Save Error: ${e.message}`, 'error');
@@ -2010,7 +2010,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         allProducts = allProducts.filter(p => p.id !== id);
         updateStats();
         renderTable();
-        showToast(`✓ "${name}" deleted`);
+        showToast(`"${name}" deleted`);
       } catch (e) {
         showToast('Failed to delete product.', 'error');
       }
@@ -2247,7 +2247,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         updateStats();
         renderTable();
         closeAddModal();
-        showToast(`✓ "${name}" ${editId === null ? 'added' : 'updated'} successfully`, 'success');
+        showToast(`"${name}" ${editId === null ? 'added' : 'updated'} successfully`, 'success');
       } catch (err) {
         showToast('Error: ' + (err.message || 'Failed to save product'), 'error');
       }
@@ -2366,7 +2366,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           prev.style.display = 'block';
           if (typeof prev.load === 'function') prev.load();
         }
-        showToast('✓ Media file uploaded successfully!', 'success');
+        showToast('Media file uploaded successfully!', 'success');
       } catch (err) {
         showToast('Failed to upload media file: ' + (err.message || 'Unknown error'), 'error');
       }
@@ -2430,7 +2430,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error('Save failed');
-        showToast('✓ Showcase settings saved successfully!', 'success');
+        showToast('Showcase settings saved successfully!', 'success');
       } catch (err) {
         showToast('Error saving showcase settings.', 'error');
       }

@@ -126,7 +126,7 @@ html { scroll-behavior: smooth; }
 .menu-item-actions { grid-column: 1/-1; display: flex; align-items: center; gap: 22px; margin-top: 10px; }
 .menu-open-button { color: var(--menu-ivory); font-size: .66rem; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,.25); padding-block: 8px; }
 .menu-add-button { margin-left: auto; color: var(--menu-gold); font-size: .65rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
-.menu-add-button::before { content: '+'; margin-right: 7px; font-size: 1rem; font-weight: 300; }
+.menu-add-button::before { content: ''; display: inline-block; width: 1em; height: 1em; vertical-align: -.125em; margin-right: 7px; background-color: currentColor; -webkit-mask: url('/images/icons/plus.svg') center / contain no-repeat; mask: url('/images/icons/plus.svg') center / contain no-repeat; font-size: 1rem; }
 .menu-item.is-leaving { pointer-events: none; }
 .menu-item[hidden] { display: none !important; }
 .menu-empty { padding: 100px 0; color: var(--menu-muted); text-align: center; }
