@@ -405,7 +405,7 @@ html { scroll-behavior: smooth; }
   .home-page .section-padding { padding-block: 86px; }
   .home-page .hero-banner { min-height: 820px; padding-top: 70px; align-items: stretch; }
   .home-page .hero-banner::after { background: linear-gradient(0deg, rgba(4,4,3,.98) 4%, rgba(4,4,3,.68) 48%, rgba(4,4,3,.1) 86%); }
-  .home-page .hero-spread-bg { background-position: 61% center; }
+  .home-page .hero-spread-bg { background-image: url('/images/background/hero_spread_phone.webp'); background-position: center; background-size: cover; }
   .home-page .hero-spread-layout { min-height: 750px; padding: 280px 24px 95px; align-items: flex-end; }
   .home-page .hero-spread-text { width: 100%; max-width: 590px; text-align: left; padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none; backdrop-filter: none; }
   .home-page .hero-title { font-size: clamp(3.6rem, 16vw, 5.6rem); line-height: .88; }
