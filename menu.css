@@ -272,11 +272,43 @@ body.has-product-open .site-header { opacity: 0; pointer-events: none; }
   .menu-page .brand-name-big { font-size: .86rem !important; }
   .menu-page .action-icons { right: 61px; gap: 9px; }
   [dir="rtl"] .menu-page .action-icons { left: 61px; }
-  .menu-page .menu-container > .menu-grid, .menu-page .menu-grid { grid-template-columns: 1fr; gap: 62px; }
-  .menu-page .menu-item-name { font-size: 1.35rem; }
+  .menu-page .menu-container > .menu-grid, .menu-page .menu-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 44px 10px; }
+  .menu-page .menu-item-name { font-size: 1rem; }
   .menu-page .menu-item-desc { -webkit-line-clamp: 2; }
   .signature-story-media { min-height: 350px; }
   .menu-page .site-footer .footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+}
+
+/* Individual collections share the editorial language of the full menu. */
+.category-page main { min-height: 70vh; background: radial-gradient(circle at 50% 5%,rgba(var(--ambient-rgb),.1),transparent 34%),var(--menu-ink); }
+.category-page .seo-breadcrumb { padding-top: 116px; color: #777168; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+.category-page .seo-breadcrumb a { color: var(--menu-gold); }
+.category-page .menu-hero { position: relative; padding: clamp(90px,10vw,145px) 5% clamp(65px,8vw,105px); background: transparent; overflow: hidden; }
+.category-page .menu-hero::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(70vw,780px); aspect-ratio: 1; border: 1px solid rgba(199,167,99,.14); border-radius: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+.category-page .menu-hero::after { content: 'CATHAREi · THE EDIBLE COLLECTION'; display: block; margin: 28px auto 0; color: var(--menu-gold); font-size: .64rem; font-weight: 600; letter-spacing: .22em; }
+.category-page .menu-hero h1 { position: relative; margin: 0 auto 24px; color: var(--menu-ivory); font-size: clamp(3.8rem,9vw,8rem); font-weight: 400; letter-spacing: -.055em; line-height: .88; text-transform: none !important; }
+.category-page .menu-hero p { position: relative; max-width: 540px; color: var(--menu-muted); line-height: 1.8; }
+.category-page .menu-container { max-width: 1380px; margin-top: 0 !important; margin-bottom: 130px; padding-inline: clamp(24px,6vw,86px); }
+.category-page .seo-copy, .category-page .section-padding[lang="ar"] { padding-block: 60px 90px; color: #777168; font-size: .84rem; }
+.category-page .seo-copy h2, .category-page .section-padding[lang="ar"] h2 { color: #9e8f6b; font-family: var(--font-sans); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; }
+.category-page .seo-copy a, .category-page .section-padding[lang="ar"] a { color: var(--menu-gold); text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 768px) {
+  .category-page .seo-breadcrumb { padding-top: 96px; padding-bottom: 0; }
+  .category-page .menu-hero { padding: 72px 20px 64px; }
+  .category-page .menu-hero h1 { font-size: clamp(3rem,16vw,5rem); }
+  .category-page .menu-container { padding: 0 16px 90px; margin-bottom: 0; }
+  .category-page .menu-item-info { min-width: 0; }
+  .category-page .menu-item-price { overflow-wrap: anywhere; }
+  .category-page .menu-item-actions { justify-content: flex-start; }
+  .category-page .menu-add-button { margin-left: 0; }
+}
+
+@media (max-width: 480px) {
+  .category-page .menu-container { padding-inline: 12px; }
+  .category-page .menu-item-desc { font-size: .72rem; line-height: 1.5; }
+  .category-page .menu-item-actions { margin-top: 8px; }
+  .category-page .menu-add-button { font-size: .58rem; letter-spacing: .1em; }
 }
 
 @media (hover: none), (pointer: coarse) {

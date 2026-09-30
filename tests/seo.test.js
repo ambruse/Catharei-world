@@ -73,6 +73,41 @@ test('all pages have unique canonical metadata, valid schema and compilable inli
   }
 });
 
+test('admin can edit product details, feature status, variants and images without changing visibility', async () => {
+  const login = await fetch(origin + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: 'test', password: 'fixture-password' }) });
+  const cookie = login.headers.get('set-cookie').split(';')[0];
+  const create = new FormData();
+  create.set('name', 'Edit fixture'); create.set('price', '20'); create.set('imageUrl', '/images/original.webp');
+  const product = await (await fetch(origin + '/api/products', { method: 'POST', headers: { Cookie: cookie }, body: create })).json();
+  await fetch(origin + `/api/products/${product.id}/toggle`, { method: 'PATCH', headers: { Cookie: cookie } });
+  const edit = new FormData();
+  for (const [key, value] of Object.entries({ name: 'Updated cake', name_ar: 'كيك', price: '35.50', description: 'Updated description', description_ar: 'وصف', featured: '1', category: 'cakes', variants: '' })) edit.set(key, value);
+  const save = () => fetch(origin + `/api/products/${product.id}`, { method: 'PUT', headers: { Cookie: cookie }, body: edit });
+  assert.equal((await fetch(origin + `/api/products/${product.id}`, { method: 'PUT', body: edit })).status, 401);
+  let response = await save();
+  assert.equal(response.status, 200);
+  let updated = await response.json();
+  assert.equal(updated.name, 'Updated cake'); assert.equal(updated.name_ar, 'كيك');
+  assert.equal(Number(updated.price), 35.5); assert.equal(updated.description, 'Updated description');
+  assert.equal(updated.featured, 1); assert.equal(updated.active, 0); assert.equal(updated.image, '/images/original.webp');
+  edit.set('featured', '0'); edit.set('variants', JSON.stringify({small: 10, large: 30, _disabled: ['large']}));
+  edit.set('imageUrl', '/images/replacement.webp');
+  updated = await (await save()).json();
+  assert.equal(updated.featured, 0); assert.equal(updated.image, '/images/replacement.webp');
+  assert.deepEqual(JSON.parse(updated.variants), {small: 10, large: 30, _disabled: ['large']});
+  edit.set('image', new Blob([Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=', 'base64')], { type: 'image/png' }), 'replacement.png');
+  updated = await (await save()).json();
+  assert.match(updated.image, /^\/images\/products\/.+\.png$/);
+  assert.equal((await fetch(origin + updated.image)).status, 200);
+  edit.delete('image'); edit.set('variants', ''); edit.set('price', '-1');
+  assert.equal((await save()).status, 400);
+  edit.set('price', '40');
+  updated = await (await save()).json();
+  assert.equal(updated.variants, null); assert.equal(Number(updated.price), 40);
+  assert.equal((await fetch(origin + '/api/products/999999', { method: 'PUT', headers: { Cookie: cookie }, body: edit })).status, 404);
+  await fetch(origin + `/api/products/${product.id}`, { method: 'DELETE', headers: { Cookie: cookie } });
+});
+
 test('Google Tag Manager appears once in each page head and body', () => {
   for (const page of pages) {
     const html = fs.readFileSync(path.join(root, page), 'utf8');

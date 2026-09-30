@@ -313,6 +313,8 @@ function initializeDatabase() {
     addColumn('products', 'active', 'INTEGER DEFAULT 1');
     addColumn('products', 'category', "TEXT DEFAULT 'savories'");
     addColumn('products', 'variants', 'TEXT'); // KEPT FROM SERVER1!
+    addColumn('products', 'name_ar', 'TEXT');
+    addColumn('products', 'description_ar', 'TEXT');
 
     db.get("SELECT COUNT(*) AS count FROM products", (err, row) => {
       if (!err && row) {
@@ -638,6 +640,35 @@ app.patch('/api/products/:id/variants', requireAdmin, (req, res) => {
   db.run(query, [variants, id], function(err) {
     if (err) { res.status(500).json({ error: err.message }); return; }
     res.json({ success: true, id, variants });
+  });
+});
+
+// Edit a product while retaining its image and visibility unless explicitly changed.
+app.put('/api/products/:id', requireAdmin, upload.single('image'), (req, res) => {
+  const { name, name_ar, price, description, description_ar, featured, category, variants } = req.body;
+  if (!name || !name.trim()) return res.status(400).json({ error: 'Product name is required.' });
+  let parsedVariants = null;
+  try {
+    parsedVariants = variants ? JSON.parse(variants) : null;
+    if (parsedVariants) {
+      const sizes = ['small', 'medium', 'large'].filter(size => parsedVariants[size] !== undefined);
+      if (!sizes.length || sizes.some(size => !Number.isFinite(Number(parsedVariants[size])) || Number(parsedVariants[size]) <= 0)) throw new Error();
+    } else if (price === undefined || price === '' || !Number.isFinite(Number(price)) || Number(price) < 0) throw new Error();
+  } catch {
+    return res.status(400).json({ error: 'Provide a valid price or size prices.' });
+  }
+  db.get('SELECT * FROM products WHERE id = ?', [req.params.id], (err, existing) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!existing) return res.status(404).json({ error: 'Product not found.' });
+    const image = req.file ? '/images/products/' + req.file.filename : (req.body.imageUrl === undefined ? existing.image : req.body.imageUrl);
+    db.run(`UPDATE products SET name = ?, name_ar = ?, price = ?, description = ?, description_ar = ?, featured = ?, category = ?, variants = ?, image = ? WHERE id = ?`,
+      [name.trim(), name_ar ?? existing.name_ar, parsedVariants ? null : Number(price), description ?? existing.description, description_ar ?? existing.description_ar, featured === undefined ? existing.featured : (featured === '1' ? 1 : 0), category || existing.category, parsedVariants ? JSON.stringify(parsedVariants) : null, image, existing.id], function(error) {
+        if (error) return res.status(500).json({ error: error.message });
+        db.get('SELECT * FROM products WHERE id = ?', [existing.id], (readError, product) => {
+          if (readError) return res.status(500).json({ error: readError.message });
+          res.json(product);
+        });
+      });
   });
 });
 

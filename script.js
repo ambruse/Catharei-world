@@ -605,21 +605,36 @@ function renderProducts(productsList) {
       } catch (e) { console.error("Error parsing variants", e); }
     }
 
-    // Premium card structure matching menu.html
-    card.innerHTML = `
-      <img loading="lazy" src="${imgSrc || 'https://via.placeholder.com/400x300?text=' + product.name}" class="menu-item-img" alt="${titleText}">
-      <div class="menu-item-info">
-        <div>
-          <div class="menu-item-name" ${titleI18nAttr}>${titleText}</div>
-          <div class="menu-item-price">${priceHTML}</div>
-          <div class="menu-item-desc">${descriptionText}</div>
+    const variantsData = (typeof product.variants === 'string' ? product.variants : JSON.stringify(product.variants) || '').replace(/'/g, "&#39;");
+    const addButton = `<button class="menu-add-button add-to-cart" type="button"
+      data-variants='${variantsData}'
+      onclick="addToCart(event, '${product.id}', '${product.name.replace(/'/g, "\\'")}', ${product.price || 0}, '${(product.image || '').replace(/'/g, "\\'")}', this.dataset.variants)"
+      data-i18n="btn.addCart">Add to cart</button>`;
+
+    // Category pages use the same editorial card language as the full menu.
+    if (document.body.classList.contains('menu-page')) {
+      card.innerHTML = `
+        <div class="menu-product-media">
+          <img loading="lazy" decoding="async" src="${imgSrc || 'https://via.placeholder.com/400x500?text=' + product.name}" alt="${titleText}">
         </div>
-        <button class="btn btn-primary add-to-cart" style="width:100%; margin-top:15px; padding:10px; font-size:0.85rem;" 
-          data-variants='${(typeof product.variants === 'string' ? product.variants : JSON.stringify(product.variants) || '').replace(/'/g, "&#39;")}'
-          onclick="addToCart(event, '${product.id}', '${product.name.replace(/'/g, "\\'")}', ${product.price || 0}, '${(product.image || '').replace(/'/g, "\\'")}', this.dataset.variants)" 
-          data-i18n="btn.addCart">Add to Cart</button>
-      </div>
-    `;
+        <div class="menu-item-info">
+          <h2 class="menu-item-name" ${titleI18nAttr}>${titleText}</h2>
+          <div class="menu-item-price">${priceHTML}</div>
+          <p class="menu-item-desc">${descriptionText}</p>
+          <div class="menu-item-actions">${addButton}</div>
+        </div>`;
+    } else {
+      card.innerHTML = `
+        <img loading="lazy" src="${imgSrc || 'https://via.placeholder.com/400x300?text=' + product.name}" class="menu-item-img" alt="${titleText}">
+        <div class="menu-item-info">
+          <div>
+            <div class="menu-item-name" ${titleI18nAttr}>${titleText}</div>
+            <div class="menu-item-price">${priceHTML}</div>
+            <div class="menu-item-desc">${descriptionText}</div>
+          </div>
+          ${addButton}
+        </div>`;
+    }
     grid.appendChild(card);
 
   });

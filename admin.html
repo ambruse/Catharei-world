@@ -1064,7 +1064,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="modal-bg" id="add-modal">
     <div class="modal">
       <div class="modal-header">
-        <div class="modal-title">Add New Product</div>
+        <div class="modal-title" id="product-modal-title">Add New Product</div>
         <button class="modal-close" onclick="closeAddModal()">✕</button>
       </div>
       <div class="modal-body">
@@ -1172,7 +1172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
               </div>
               <div class="img-panel" id="panel-url">
-                <input class="form-input" type="url" id="f-image-url" placeholder="https://example.com/image.webp" oninput="previewUrl(this)">
+                <input class="form-input" type="text" id="f-image-url" placeholder="https://example.com/image.webp or /images/products/example.webp" oninput="previewUrl(this)">
                 <img loading="lazy" id="url-preview" style="width:100%;max-height:150px;object-fit:contain;border-radius:8px;margin-top:10px;display:none" alt="URL Preview">
               </div>
             </div>
@@ -1422,6 +1422,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     let seenOrderIds = new Set();
     let currentCategory = 'all';
     let currentImgTab = 'upload';
+    let editingProductId = null;
     let currentTab = 'products';
 
     function switchTab(tab) {
@@ -1810,7 +1811,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           } catch(e) { variantLabel = 'Variants (Err)'; }
         }
 
-        return `<div class="table-row ${p.active !== 1 ? 'inactive' : ''}" id="row-${p.id}">
+        return `<div class="table-row ${p.active !== 1 ? 'inactive' : ''}" id="row-${p.id}" title="Double-click to edit product" ondblclick="if (!event.target.closest('button, input, label')) openEditModal(${p.id})">
           <div>${thumb}${thumbFallback}</div>
           <div class="product-meta">
             <div class="name">${p.name} ${p.name_ar ? `<span style="font-size:0.75rem; color:var(--accent); margin-left:8px;">(${p.name_ar})</span>` : ''}</div>
@@ -1826,6 +1827,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </label>
           </div>
           <div class="row-actions">
+            <button class="icon-btn" type="button" aria-label="Edit product" title="Edit product" onclick="openEditModal(${p.id})">✎</button>
             <button class="icon-btn" onclick="openDeleteModal(${p.id}, '${p.name.replace(/'/g, "\\'")}')">
               <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
             </button>
@@ -2019,10 +2021,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     function openAddModal() {
+      editingProductId = null;
+      document.getElementById('product-modal-title').textContent = 'Add New Product';
+      document.getElementById('submit-btn').textContent = 'Add Product';
       const modal = document.getElementById('add-modal');
       if(modal) modal.classList.add('open');
       const form = document.getElementById('add-form');
       if(form) form.reset();
+      switchImgTab('upload', document.querySelector('.img-tab'));
+      toggleVariantPricing(false);
       const ip = document.getElementById('img-preview');
       const up = document.getElementById('url-preview');
       if(ip) ip.style.display = 'none';
@@ -2031,6 +2038,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const catS = document.getElementById('f-category');
         if(catS) catS.value = currentCategory;
       }
+    }
+    function openEditModal(id) {
+      const product = allProducts.find(p => p.id === id);
+      if (!product) return;
+      openAddModal();
+      editingProductId = id;
+      document.getElementById('product-modal-title').textContent = 'Edit Product';
+      document.getElementById('submit-btn').textContent = 'Save Changes';
+      for (const [field, value] of Object.entries({name: product.name, 'name-ar': product.name_ar, price: product.price, category: product.category, desc: product.description, 'desc-ar': product.description_ar})) {
+        document.getElementById('f-' + field).value = value ?? '';
+      }
+      document.getElementById('f-featured').checked = product.featured === 1;
+      let variants = null;
+      try { variants = typeof product.variants === 'string' ? JSON.parse(product.variants) : product.variants; } catch {}
+      document.getElementById('f-has-variants').checked = !!variants;
+      toggleVariantPricing(!!variants);
+      if (variants) {
+        for (const [size, short] of [['small','s'], ['medium','m'], ['large','l']]) {
+          const enabled = variants[size] !== undefined && !(variants._disabled || []).includes(size);
+          document.getElementById(`f-variant-${short}-enable`).checked = enabled;
+          toggleSizeInput(short, enabled);
+          document.getElementById(`f-price-${short}`).value = variants[size] ?? '';
+        }
+      }
+      document.getElementById('f-image-url').value = product.image || '';
+      const preview = document.getElementById('img-preview');
+      preview.src = product.image || '';
+      preview.style.display = product.image ? 'block' : 'none';
+      document.getElementById('f-name').focus();
     }
     function closeAddModal() {
       const modal = document.getElementById('add-modal');
@@ -2121,7 +2157,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       input.disabled = !enabled;
       input.required = enabled;
       input.style.opacity = enabled ? '1' : '0.3';
-      if (!enabled) input.value = '';
     }
 
     async function submitProduct(e) {
@@ -2152,8 +2187,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (mEnabled) variants.medium = parseFloat(document.getElementById('f-price-m').value) || 0;
         if (lEnabled) variants.large = parseFloat(document.getElementById('f-price-l').value) || 0;
 
+        // Retain prices for temporarily unavailable sizes when editing.
+        if (editingProductId !== null) {
+          const disabled = [];
+          for (const [size, short, enabled] of [['small','s',sEnabled], ['medium','m',mEnabled], ['large','l',lEnabled]]) {
+            const amount = Number(document.getElementById(`f-price-${short}`).value);
+            if (!enabled && Number.isFinite(amount) && amount > 0) {
+              variants[size] = amount;
+              disabled.push(size);
+            }
+          }
+          if (disabled.length) variants._disabled = disabled;
+        }
+
         // Final sanity check for prices
         for (const [key, value] of Object.entries(variants)) {
+           if (key === '_disabled') continue;
            if (value <= 0) {
              showToast(`Please provide a valid price for ${key.charAt(0).toUpperCase() + key.slice(1)}.`, "error");
              return;
@@ -2161,7 +2210,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       }
 
-      btn.innerHTML = '<div class="spinner"></div> Adding…';
+      const editId = editingProductId;
+      const buttonLabel = editId === null ? 'Add Product' : 'Save Changes';
+      btn.innerHTML = '<div class="spinner"></div> Saving…';
       btn.disabled = true;
 
       const formData = new FormData();
@@ -2176,6 +2227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         formData.append('variants', JSON.stringify(variants));
       } else {
         formData.append('price', document.getElementById('f-price').value);
+        formData.append('variants', '');
       }
 
       if (currentImgTab === 'upload') {
@@ -2187,19 +2239,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
 
       try {
-        const res = await fetch('/api/products', { method: 'POST', body: formData });
+        const res = await fetch(editId === null ? '/api/products' : `/api/products/${editId}`, { method: editId === null ? 'POST' : 'PUT', body: formData });
         if (!res.ok) { const err = await res.json(); throw new Error(err.error); }
         const newProduct = await res.json();
-        allProducts.unshift(newProduct);
+        if (editId === null) allProducts.unshift(newProduct);
+        else allProducts = allProducts.map(p => p.id === editId ? newProduct : p);
         updateStats();
         renderTable();
         closeAddModal();
-        showToast(`✓ "${name}" added successfully`, 'success');
+        showToast(`✓ "${name}" ${editId === null ? 'added' : 'updated'} successfully`, 'success');
       } catch (err) {
-        showToast('Error: ' + (err.message || 'Failed to add product'), 'error');
+        showToast('Error: ' + (err.message || 'Failed to save product'), 'error');
       }
 
-      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg> Add Product';
+      btn.textContent = buttonLabel;
       btn.disabled = false;
     }
 
