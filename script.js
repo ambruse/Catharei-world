@@ -1,3 +1,44 @@
+// BEGIN COMMERCE ANALYTICS
+// Use the existing GA4 installation. Never let optional measurement interrupt checkout.
+window.cathareiAnalytics = (() => {
+  const events = new Set(['view_item', 'add_to_cart', 'remove_from_cart', 'begin_checkout', 'order_submitted']);
+  function track(event, products) {
+    try {
+      if (!events.has(event) || !['catharei.com', 'www.catharei.com'].includes(window.location.hostname) ||
+          typeof window.gtag !== 'function' || window['ga-disable-G-RYKLR11ZQT']) return;
+      const items = (Array.isArray(products) ? products : []).slice(0, 200).map(product => {
+        if (!product || product.id == null || !String(product.id).trim()) return null;
+        const quantity = Number(product.qty ?? 1);
+        const price = Number(product.price);
+        let unselectedVariant = false;
+        if (event === 'view_item') {
+          try { unselectedVariant = Boolean(typeof product.variants === 'string' ? JSON.parse(product.variants) : product.variants); } catch (_) { /* Base-price fallback matches the menu. */ }
+        }
+        if (!Number.isInteger(quantity) || quantity < 1 || (!unselectedVariant && (product.price == null || product.price === '' || !Number.isFinite(price) || price < 0))) return null;
+        const variant = String(product.id).match(/^(\d+)_(.+)$/);
+        return {
+          item_id: variant ? variant[1] : String(product.id),
+          item_name: String(product.name || '').slice(0, 100),
+          ...(variant ? { item_variant: variant[2] } : {}),
+          ...(!unselectedVariant ? { price } : {}), quantity
+        };
+      }).filter(Boolean);
+      if (!items.length) return;
+      window.gtag('event', event, {
+        send_to: 'G-RYKLR11ZQT', currency: 'QAR',
+        ...(items.every(item => item.price !== undefined) ? { value: Math.round(items.reduce((sum, item) => sum + item.price * item.quantity, 0) * 100) / 100 } : {}),
+        items
+      });
+    } catch (_) { /* Analytics blockers or tag errors must not affect the order. */ }
+  }
+  return { track };
+})();
+document.addEventListener('DOMContentLoaded', () => {
+  const product = document.getElementById('product-page-add');
+  if (product) window.cathareiAnalytics.track('view_item', [product.dataset]);
+}, { once: true });
+// END COMMERCE ANALYTICS
+
 // Data structure for translations
 const translations = {
   en: {
@@ -993,6 +1034,7 @@ function addToCart(e, id, name, price, image, variantsData) {
   }
 
   finalizeCartAddition();
+  window.cathareiAnalytics.track('add_to_cart', [{ id, name, price, qty: 1 }]);
 }
 
 function openVariantModal(id, name, price, image, variants, returnFocus) {
@@ -1067,6 +1109,7 @@ function confirmVariantAddToCart() {
 
   closeVariantModal();
   finalizeCartAddition();
+  window.cathareiAnalytics.track('add_to_cart', [{ id: uniqueId, name: nameWithVariant, price, qty: 1 }]);
 }
 
 function finalizeCartAddition() {
@@ -1092,6 +1135,7 @@ function removeFromCart(id) {
   if (!removed) return;
   cartItems = cartItems.filter(item => item.id !== id);
   localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
+  window.cathareiAnalytics.track('remove_from_cart', [removed]);
   updateCartBadgeUI();
   renderCartDropdown();
   if(document.getElementById('cart-page-body')) {
@@ -1108,6 +1152,7 @@ function removeFromCart(id) {
     if (existing) existing.qty += removed.qty;
     else cartItems.splice(Math.min(index, cartItems.length), 0, removed);
     localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
+    window.cathareiAnalytics.track('add_to_cart', [removed]);
     updateCartBadgeUI();
     renderCartDropdown();
     renderCartPage();
@@ -1126,6 +1171,7 @@ function updateCartQuantity(id, delta) {
       return;
     }
     existingItem.qty += delta;
+    window.cathareiAnalytics.track(delta > 0 ? 'add_to_cart' : 'remove_from_cart', [{ ...existingItem, qty: Math.abs(delta) }]);
   }
   localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
   updateCartBadgeUI();

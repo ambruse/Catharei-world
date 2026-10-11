@@ -1,3 +1,9 @@
 node_modules/
 database.sqlite
 .env
+
+# Private analytics exports and ongoing SEO working records stay local.
+SEO_Files/
+SEO_MONITORING/
+SEO_INPUT/
+SEO_OPTIMIZATION_2026-10-11/

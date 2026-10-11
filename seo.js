@@ -14,7 +14,13 @@ function postMetadata(template, post) {
   // The feed's schema does not describe an individual article.
   html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
   const schema = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title, description: post.desc, image, datePublished: post.date, mainEntityOfPage: url, author: { '@type': 'Organization', name: 'CATHAREi', url: ORIGIN }, publisher: { '@type': 'Organization', name: 'CATHAREi', logo: { '@type': 'ImageObject', url: `${ORIGIN}/images/misc/Catharei_logo.webp` } } };
-  return html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>\n</head>`);
+  if (post.modified) schema.dateModified = post.modified;
+  const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: ORIGIN + '/' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: ORIGIN + '/blog' },
+    { '@type': 'ListItem', position: 3, name: post.title, item: url }
+  ] };
+  return html.replace('</head>', `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>\n<script type="application/ld+json">${JSON.stringify(breadcrumb).replace(/</g, '\\u003c')}</script>\n</head>`);
 }
 
 module.exports = { escapeHtml, postMetadata };

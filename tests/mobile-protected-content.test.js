@@ -5,6 +5,9 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const sqlite3 = require('sqlite3');
 const inventory = require('./mobile-route-inventory.json');
+// Explicitly reviewed exceptions from the subsequent, user-authorized SEO task.
+// All other original mobile protections remain exact comparisons.
+const seoApproved = require('./seo-optimization-approved.json');
 const root = path.resolve(__dirname, '..');
 
 function protectedContent(html) {
@@ -36,7 +39,7 @@ test('mobile refinements preserve all page metadata, heading text, schema and an
   for (const page of inventory.basePages) {
     const current = protectedContent(fs.readFileSync(path.join(root, page.file), 'utf8'));
     for (const key of ['title', 'meta', 'canonical', 'schema', 'headings', 'analytics']) {
-      assert.deepEqual(current[key], page.protectedContent[key], `${page.file}: protected ${key} changed`);
+      assert.deepEqual(current[key], seoApproved.pages[page.file]?.[key] ?? page.protectedContent[key], `${page.file}: protected ${key} changed`);
     }
   }
 });
@@ -45,6 +48,12 @@ test('original link destinations are preserved except documented delivery placeh
   for (const page of inventory.basePages) {
     const current = protectedContent(fs.readFileSync(path.join(root, page.file), 'utf8')).links;
     const expected = [...page.protectedContent.links];
+    if (page.file === 'navigation/special_cakes.html') {
+      for (let index = 0; index < expected.length; index++) {
+        if (expected[index] === '/navigation/special.html') expected[index] = '/menu.html';
+        if (expected[index] === '/navigation/customized_cakes.html') expected[index] = '/navigation/cakes.html';
+      }
+    }
     if (page.file === 'delivery.html') {
       let partner = 0;
       for (let index = 0; index < expected.length; index++) {
@@ -64,10 +73,10 @@ test('original link destinations are preserved except documented delivery placeh
   }
 });
 
-test('robots, sitemap, posts and SEO renderer source are unchanged', () => {
+test('protected SEO files match the baseline or exact approved one-time changes', () => {
   for (const [file, expected] of Object.entries(inventory.protectedFiles)) {
     const actual = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, file))).digest('hex');
-    assert.equal(actual, expected, file);
+    assert.equal(actual, seoApproved.files[file]?.sha256 ?? expected, file);
   }
 });
 

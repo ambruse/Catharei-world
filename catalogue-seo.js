@@ -104,10 +104,13 @@ function productPage(template, product, related) {
     <script>document.getElementById('product-page-add').addEventListener('click', function (event) { var b = this.dataset; addToCart(event, b.id, b.name, Number(b.price), b.image, b.variants); });</script>
   </main>`;
   html = html.replace(/<main>[\s\S]*?<\/main>/, () => main);
-  const range = priceRange(product);
-  const offer = !range ? undefined : range[0] === range[1]
-    ? { '@type': 'Offer', price: range[0].toFixed(2), priceCurrency: 'QAR', url: ORIGIN + pagePath }
-    : { '@type': 'AggregateOffer', lowPrice: range[0].toFixed(2), highPrice: range[1].toFixed(2), priceCurrency: 'QAR', url: ORIGIN + pagePath };
+  // Size variants do not have individually selectable URLs yet. AggregateOffer
+  // describes multiple offers, not size variants (Google Product guidelines).
+  // Keep their visible prices, but do not advertise a fabricated single offer.
+  let hasVariants = false;
+  try { hasVariants = Boolean(typeof product.variants === 'string' ? JSON.parse(product.variants) : product.variants); } catch { /* Same fallback as the menu. */ }
+  const range = hasVariants ? null : priceRange(product);
+  const offer = !range ? undefined : { '@type': 'Offer', price: range[0].toFixed(2), priceCurrency: 'QAR', url: ORIGIN + pagePath };
   const schema = [
     { '@context': 'https://schema.org', '@type': 'Product', name, url: ORIGIN + pagePath, sku: String(product.id), brand: { '@type': 'Brand', name: 'CATHAREi' }, ...(description ? { description } : {}), ...(image ? { image } : {}), ...(category ? { category: category.label } : {}), ...(offer ? { offers: offer } : {}) },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [

@@ -108,12 +108,16 @@ test('admin can edit product details, feature status, variants and images withou
   await fetch(origin + `/api/products/${product.id}`, { method: 'DELETE', headers: { Cookie: cookie } });
 });
 
-test('Google Tag Manager appears once in each page head and body', () => {
+test('Google Tag Manager appears once on public templates and is absent from admin', () => {
   for (const page of pages) {
     const html = fs.readFileSync(path.join(root, page), 'utf8');
     const head = html.match(/<head>[\s\S]*?<\/head>/i)?.[0];
     const body = html.match(/<body(?:\s[^>]*)?>[\s\S]*?<\/body>/i)?.[0];
     assert.ok(head && body, page);
+    if (page === 'admin.html') {
+      assert.doesNotMatch(html, /googletagmanager\.com|G-RYKLR11ZQT|GTM-NQ5NWZC4/);
+      continue;
+    }
     assert.equal((head.match(/googletagmanager\.com\/gtm\.js\?id=/g) || []).length, 1, page);
     assert.equal((head.match(/GTM-NQ5NWZC4/g) || []).length, 1, page);
     assert.equal((body.match(/googletagmanager\.com\/ns\.html\?id=GTM-NQ5NWZC4/g) || []).length, 1, page);
@@ -167,7 +171,7 @@ test('private pages are noindex and internal files cannot be fetched', async () 
     const response = await fetch(origin + route, { redirect: 'manual' });
     assert.match(response.headers.get('x-robots-tag'), /noindex/, route);
   }
-  for (const route of ['/server.js', '/seo.js', '/database.sqlite', '/sessions.sqlite', '/package.json', '/posts.json', '/node_modules/express/package.json', '/.git/config']) {
+  for (const route of ['/server.js', '/seo.js', '/database.sqlite', '/sessions.sqlite', '/package.json', '/posts.json', '/node_modules/express/package.json', '/.git/config', '/SEO_Files/Events_Event_name.csv', '/SEO_MONITORING/README.md', '/SEO_MONITORING/REPORTS/2026-10-11/parsed_exports.json']) {
     assert.equal((await fetch(origin + route)).status, 404, route);
   }
   for (const route of ['/catalogue-seo.js', '/templates/luqaimat-main.html']) assert.equal((await fetch(origin + route)).status, 404);
@@ -220,6 +224,30 @@ test('blog metadata escapes quotes and safely serializes JSON-LD', () => {
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema.headline, post.title);
   assert.equal(schema.image, 'https://www.catharei.com/images/hero/hero-sweets.webp');
+});
+
+test('variant product schema never invents AggregateOffer and Luqaimat links follow active inventory', async () => {
+  const db = new sqlite3.Database(path.join(dataDir, 'database.sqlite'));
+  const run = (sql, values=[]) => new Promise((resolve,reject)=>db.run(sql,values,error=>error?reject(error):resolve()));
+  try {
+    await run('INSERT INTO products (id,name,price,category,active,variants) VALUES (?,?,?,?,?,?)', [9901,'Luqaimat fixture','0','arabic_sweets',1,'{"small":40,"large":60}']);
+    const html = await (await fetch(origin+'/menu/luqaimat-fixture-9901')).text();
+    const entities = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(m=>JSON.parse(m[1]));
+    assert.equal(entities.find(e=>e['@type']==='Product').offers,undefined);
+    assert.doesNotMatch(html, /AggregateOffer/);
+    assert.match(html,/Small: 40, Large: 60/);
+    const article=await (await fetch(origin+'/blog/history-of-luqaimat')).text();
+    assert.match(article,/href="\/luqaimat-qatar.html"/);
+    assert.match(article,/"dateModified":"2026-10-11"/);
+    assert.match(article,/"@type":"BreadcrumbList"/);
+    await run('UPDATE products SET active=0 WHERE id=9901');
+    assert.doesNotMatch(await (await fetch(origin+'/blog/history-of-luqaimat')).text(),/href="\/luqaimat-qatar.html"/);
+    const ordinary=await (await fetch(origin+'/menu/test-cake-honey-1')).text();
+    assert.match(ordinary,/"@type":"Offer","price":"100.00","priceCurrency":"QAR"/);
+  } finally {
+    await run('DELETE FROM products WHERE id=9901');
+    await new Promise(resolve=>db.close(resolve));
+  }
 });
 
 test('SEO helpers escape product text, validate images and preserve variant prices', () => {

@@ -1,6 +1,6 @@
 const express = require('express');
 const { escapeHtml, postMetadata } = require('./seo');
-const { registerCatalogueSeo } = require('./catalogue-seo');
+const { registerCatalogueSeo, isLuqaimat } = require('./catalogue-seo');
 const { normalizeDelivery } = require('./delivery-location');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
@@ -141,9 +141,9 @@ app.get('/blog', (req, res) => {
       <article style="background: #111; padding: 25px; border-radius: 8px; border: 1px solid var(--color-accent); margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px;">
         <div style="background: url('${post.cover}') center center / cover; height: 200px; border-radius: 6px;"></div>
         <div>
-          <h3 style="font-family: var(--font-serif); margin-bottom: 8px; font-size: 1.5rem;">
+          <h2 style="font-family: var(--font-serif); margin-bottom: 8px; font-size: 1.5rem;">
             <a href="/blog/${post.slug}" style="color: #fff; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='#fff'">${escapeHtml(post.title)}</a>
-          </h3>
+          </h2>
           <p style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">📅 Published on ${post.date}</p>
           <p style="font-size: 0.95rem; color: #ccc; line-height: 1.6;">${escapeHtml(post.desc)}</p>
           <a href="/blog/${post.slug}" style="display: inline-block; margin-top: 10px; color: var(--color-accent); font-weight: 600; text-decoration: underline; font-size: 0.95rem;">Read Full Post &rarr;</a>
@@ -190,7 +190,7 @@ app.get('/blog/:slug', (req, res) => {
       <section class="menu-hero" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('../${post.cover}') center center / cover;">
         <div class="container" style="text-align: center;">
           <h1 style="font-family: var(--font-serif); font-size: 2.8rem; color: var(--color-accent); margin-bottom: 20px;">${escapeHtml(post.title)}</h1>
-          <p style="font-size: 1rem; color: #fff;">📅 Published on ${post.date}</p>
+          <p style="font-size: 1rem; color: #fff;">📅 Published on ${post.date}${post.modified ? ` · Updated ${escapeHtml(post.modified)}` : ''}</p>
         </div>
       </section>
 
@@ -207,6 +207,13 @@ app.get('/blog/:slug', (req, res) => {
 
     blogTemplate = blogTemplate.replace(/<main[\s\S]*?<\/main>/i, individualPostHtml);
 
+    if (blogTemplate.includes('<!-- luqaimat-link -->')) {
+      return db.all('SELECT name, name_ar FROM products WHERE active = 1', [], (error, products) => {
+        const link = !error && products.some(isLuqaimat)
+          ? '<p><a href="/luqaimat-qatar.html">Explore current Luqaimat products and prices in Qatar · اللقيمات وأسعارها الحالية في قطر</a></p>' : '';
+        res.send(blogTemplate.replace(/<!-- luqaimat-link -->/g, link));
+      });
+    }
     res.send(blogTemplate);
   } catch (err) {
     console.error(err);

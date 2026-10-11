@@ -1,0 +1,22 @@
+{
+  "authorization": "One-time SEO implementation requested 2026-10-11; exact reviewed exceptions only",
+  "pages": {
+    "admin.html": {
+      "analytics": []
+    }
+  },
+  "files": {
+    "posts.json": {
+      "sha256": "a454fe4846dd64067710fdd5ccacc8ef1a5ad47dd903b8668460675e34fd1ac8",
+      "reason": "Verified article content, descriptions and modification dates"
+    },
+    "seo.js": {
+      "sha256": "b3075467de59b3f9504cdf959c2c0ff7055c4bf4e59a8a9c30172a1da6c41c8d",
+      "reason": "Article breadcrumb schema and actual dateModified"
+    },
+    "catalogue-seo.js": {
+      "sha256": "7f2f9278f847de7291d755a0e8b82475d96290504e925f2e9b3d47357f8fe44a",
+      "reason": "Omit unsupported size-variant AggregateOffer without changing displayed prices"
+    }
+  }
+}

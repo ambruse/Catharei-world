@@ -397,6 +397,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     window.onload = () => {
       renderSummary();
+      window.cathareiAnalytics.track('begin_checkout', checkoutItems);
       checkAuth();
       selectPayment('cod');
       initFormListeners();
@@ -535,6 +536,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         if (res.ok) {
           const data = await res.json();
+          if (data.orderId) window.cathareiAnalytics.track('order_submitted', checkoutItems);
           document.getElementById('waiting-overlay').classList.add('active');
           cathareiModal.open(document.getElementById('waiting-overlay'), { onClose: () => {}, initialFocus: document.getElementById('waiting-overlay') });
           localStorage.removeItem('catharei-cart-data');

@@ -304,6 +304,7 @@
     wrapper.innerHTML = detailMarkup(product);
     const detail = wrapper.firstElementChild;
     activeDetail = { detail, product, card, source, closing: false };
+    window.cathareiAnalytics.track('view_item', [product]);
     detail.hidden = true;
     document.body.appendChild(detail);
     const detailImage = detail.querySelector('.product-detail-media img');
