@@ -26,27 +26,106 @@ function priceText(product) {
   const raw = product.price;
   return raw !== null && raw !== undefined && String(raw).trim() !== '' && Number.isFinite(Number(raw)) && Number(raw) >= 0 ? `QAR ${Number(raw).toFixed(2)}` : '';
 }
+const CATEGORIES = {
+  cakes: { label: 'Cakes', ar: 'كيك', path: '/navigation/cakes.html' },
+  arabic_sweets: { label: 'Arabic Sweets', ar: 'حلويات عربية', path: '/navigation/Arabic_sweets.html' },
+  oriental_sweets: { label: 'Oriental Sweets', ar: 'حلويات شرقية', path: '/navigation/oriental_sweets.html' },
+  savories: { label: 'Savouries', ar: 'موالح', path: '/navigation/savories.html' }
+};
+const BRANCHES = [
+  ['Salwa Road', '/locations/al-aziziya.html'],
+  ['Al Wakrah', '/locations/al-wakrah.html'],
+  ['Al Kharaitiyat', '/locations/al-kharaitiyat.html']
+];
+// The trailing id keeps product URLs unique and stable when a name is edited.
+function productPath(product) {
+  const slug = String(product.name || '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'item';
+  return `/menu/${slug}-${encodeURIComponent(product.id)}`;
+}
+function displayName(product) {
+  const name = String(product.name || '').trim();
+  return name === name.toLowerCase() ? name.replace(/\b[a-z]/g, c => c.toUpperCase()) : name;
+}
+function priceRange(product) {
+  try {
+    const variants = typeof product.variants === 'string' ? JSON.parse(product.variants) : product.variants;
+    if (variants) {
+      const disabled = Array.isArray(variants._disabled) ? variants._disabled : [];
+      const prices = ['small', 'medium', 'large'].filter(size => !disabled.includes(size)).map(size => Number(variants[size])).filter(n => Number.isFinite(n) && n > 0);
+      if (prices.length) return [Math.min(...prices), Math.max(...prices)];
+    }
+  } catch { /* Fall back to the base price, as the menu does. */ }
+  const price = Number(product.price);
+  return product.price !== null && product.price !== undefined && String(product.price).trim() !== '' && Number.isFinite(price) && price > 0 ? [price, price] : null;
+}
 function cards(products) {
   return products.map(product => {
     const image = imageUrl(product.image);
-    return `<article class="menu-item" id="product-${e(product.id)}">${image ? `<img class="menu-item-img" loading="lazy" width="400" height="300" src="${e(image)}" alt="${e(product.name || '')}">` : ''}<div class="menu-item-info"><div><h2 class="menu-item-name">${e(product.name || '')}</h2><p class="menu-item-price">${e(priceText(product))}</p><p class="menu-item-desc">${e(product.description || '')}</p>${product.name_ar ? `<p lang="ar" dir="rtl">${e(product.name_ar)}</p>` : ''}</div><a href="/menu.html">View menu &amp; order</a></div></article>`;
+    return `<article class="menu-item" id="product-${e(product.id)}">${image ? `<img class="menu-item-img" loading="lazy" width="400" height="300" src="${e(image)}" alt="${e(product.name || '')}">` : ''}<div class="menu-item-info"><div><h2 class="menu-item-name"><a href="${e(productPath(product))}">${e(product.name || '')}</a></h2><p class="menu-item-price">${e(priceText(product))}</p><p class="menu-item-desc">${e(product.description || '')}</p>${product.name_ar ? `<p lang="ar" dir="rtl">${e(product.name_ar)}</p>` : ''}</div><a href="/menu.html">View menu &amp; order</a></div></article>`;
   }).join('');
 }
 function catalogueSchema(products, pagePath) {
-  return { '@context': 'https://schema.org', '@type': 'ItemList', '@id': ORIGIN + pagePath + '#catalogue', itemListElement: products.map((product, i) => ({ '@type': 'ListItem', position: i + 1, name: product.name, url: ORIGIN + pagePath + '#product-' + encodeURIComponent(product.id), ...(product.description ? { description: product.description } : {}), ...(imageUrl(product.image) ? { image: imageUrl(product.image) } : {}) })) };
+  return { '@context': 'https://schema.org', '@type': 'ItemList', '@id': ORIGIN + pagePath + '#catalogue', itemListElement: products.map((product, i) => ({ '@type': 'ListItem', position: i + 1, name: product.name, url: ORIGIN + productPath(product), ...(product.description ? { description: product.description } : {}), ...(imageUrl(product.image) ? { image: imageUrl(product.image) } : {}) })) };
 }
 function metadata(html, title, description, pagePath) {
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${e(title)}</title>`).replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${ORIGIN + pagePath}">`);
   const values = { description, 'og:title': title, 'twitter:title': title, 'og:description': description, 'twitter:description': description, 'og:url': ORIGIN + pagePath };
   return html.replace(/<meta\s+(?:name|property)="([^"]+)"\s+content="[^"]*"\s*\/?>/g, (tag, key) => key in values ? tag.replace(/content="[^"]*"/, `content="${e(values[key])}"`) : tag);
 }
+function productPage(template, product, related) {
+  const name = displayName(product);
+  const category = CATEGORIES[product.category];
+  const pagePath = productPath(product);
+  const image = imageUrl(product.image);
+  const price = priceText(product);
+  const description = String(product.description || '').trim();
+  const where = category ? `${category.label} · Doha, Qatar` : 'Doha, Qatar';
+  const metaDescription = `${name}${description ? ` – ${description.replace(/\s+/g, ' ').slice(0, 90).replace(/\s+\S*$/, '')}` : ''}. ${price ? price.replace(/^(?!QAR)/, 'QAR ') + '. ' : ''}Order from CATHAREi Bakery & Sweets in Doha, Qatar.`;
+  let html = template.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+  html = metadata(html, `${name} in Doha, Qatar | CATHAREi`, metaDescription, pagePath);
+  if (image) html = html.replace(/<meta\s+(?:name|property)="(?:og|twitter):image"\s+content="[^"]*"\s*\/?>/g, tag => tag.replace(/content="[^"]*"/, `content="${e(image)}"`));
+  const variants = typeof product.variants === 'string' ? product.variants : (product.variants ? JSON.stringify(product.variants) : '');
+  const main = `<main><nav class="container seo-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / ${category ? `<a href="${category.path}">${e(category.label)}</a> / ` : ''}${e(name)}</nav>
+    <article class="container product-page" id="product-${e(product.id)}">
+      ${image ? `<img class="product-page-img" width="560" height="700" src="${e(image)}" alt="${e(name)}">` : ''}
+      <div class="product-page-info">
+        <h1>${e(name)}</h1>
+        <p class="product-page-where">${e(where)}</p>
+        ${price ? `<p class="menu-item-price">${e(price.replace(/^(?!QAR)/, 'QAR '))}</p>` : ''}
+        ${description ? `<p>${e(description)}</p>` : ''}
+        ${product.name_ar ? `<p lang="ar" dir="rtl">${e(product.name_ar)}</p>` : ''}
+        <p class="product-page-actions"><button class="menu-add-button" type="button" id="product-page-add" data-id="${e(product.id)}" data-name="${e(product.name || '')}" data-price="${e(Number(product.price) || 0)}" data-image="${e(product.image || '')}" data-variants="${e(variants)}">Add to cart</button> <a href="/menu.html#product-${e(product.id)}">View on full menu</a></p>
+      </div>
+    </article>
+    <section class="container seo-copy"><h2>Order ${e(name)} in Doha</h2><p>Order ${e(name)} online from CATHAREi Bakery &amp; Sweets, or contact one of our branches in Qatar to ask about sizes, ingredients, allergens and preparation time: ${BRANCHES.map(([label, href]) => `<a href="${href}">${label}</a>`).join(', ')}.</p>${category ? `<p>Browse all <a href="${category.path}">${e(category.label.toLowerCase())} in Doha, Qatar</a> or the <a href="/menu.html">full menu</a>.</p>` : ''}
+      <div lang="ar" dir="rtl"><h2>${e(product.name_ar || name)} في الدوحة، قطر</h2><p>اطلب ${e(product.name_ar || name)} من كاثاري للمخبوزات والحلويات عبر الموقع، أو تواصل مع أحد فروعنا في قطر للاستفسار عن الأحجام والمكونات ووقت التحضير.</p>${category ? `<a href="${category.path}">${category.ar} في قطر</a>` : ''}</div>
+    </section>
+    ${related.length ? `<section class="container"><h2>More ${e(category ? category.label.toLowerCase() : 'from our menu')}</h2><div class="menu-grid">${cards(related)}</div></section>` : ''}
+    <script>document.getElementById('product-page-add').addEventListener('click', function (event) { var b = this.dataset; addToCart(event, b.id, b.name, Number(b.price), b.image, b.variants); });</script>
+  </main>`;
+  html = html.replace(/<main>[\s\S]*?<\/main>/, () => main);
+  const range = priceRange(product);
+  const offer = !range ? undefined : range[0] === range[1]
+    ? { '@type': 'Offer', price: range[0].toFixed(2), priceCurrency: 'QAR', url: ORIGIN + pagePath }
+    : { '@type': 'AggregateOffer', lowPrice: range[0].toFixed(2), highPrice: range[1].toFixed(2), priceCurrency: 'QAR', url: ORIGIN + pagePath };
+  const schema = [
+    { '@context': 'https://schema.org', '@type': 'Product', name, url: ORIGIN + pagePath, sku: String(product.id), brand: { '@type': 'Brand', name: 'CATHAREi' }, ...(description ? { description } : {}), ...(image ? { image } : {}), ...(category ? { category: category.label } : {}), ...(offer ? { offers: offer } : {}) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: ORIGIN + '/' },
+      ...(category ? [{ '@type': 'ListItem', position: 2, name: category.label, item: ORIGIN + category.path }] : []),
+      { '@type': 'ListItem', position: category ? 3 : 2, name, item: ORIGIN + pagePath }
+    ] }
+  ];
+  return html.replace('</head>', () => `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script></head>`);
+}
 function registerCatalogueSeo(app, getDb, root) {
   app.get('/sitemap.xml', (req, res) => {
-    getDb().all('SELECT * FROM products WHERE active = 1', [], (err, products) => {
+    getDb().all('SELECT * FROM products WHERE active = 1 ORDER BY id', [], (err, products) => {
       if (err) return res.status(503).set('Retry-After', '300').type('text/plain').send('Sitemap temporarily unavailable');
       let xml = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
       if (products.some(isLuqaimat)) xml = xml.replace('</urlset>', `<url><loc>${ORIGIN + LUQ_PATH}</loc></url>\n</urlset>`);
-      res.type('application/xml').send(xml);
+      const productUrls = products.map(product => `  <url><loc>${e(ORIGIN + productPath(product))}</loc></url>\n`).join('');
+      res.type('application/xml').send(xml.replace('</urlset>', () => productUrls + '</urlset>'));
     });
   });
   app.get(['/', '/menu.html', '/navigation/:category.html', LUQ_PATH], (req, res, next) => {
@@ -90,5 +169,18 @@ function registerCatalogueSeo(app, getDb, root) {
       res.send(template);
     });
   });
+  app.get('/menu/:slug', (req, res, next) => {
+    const id = req.params.slug.match(/-(\d+)$/)?.[1];
+    if (!id) return next();
+    getDb().all('SELECT * FROM products WHERE active = 1 ORDER BY name', [], (err, products) => {
+      if (err) return res.status(503).set('Retry-After', '300').set('X-Robots-Tag', 'noindex, follow').type('text/plain').send('Menu temporarily unavailable. Please try again shortly.');
+      const product = products.find(p => String(p.id) === id);
+      if (!product) return next();
+      const canonical = productPath(product);
+      if (req.path !== canonical) return res.redirect(301, canonical + req.originalUrl.slice(req.path.length));
+      const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 6);
+      res.send(productPage(fs.readFileSync(path.join(root, 'navigation/cakes.html'), 'utf8'), product, related));
+    });
+  });
 }
-module.exports = { registerCatalogueSeo, isLuqaimat, imageUrl, priceText, cards, catalogueSchema };
+module.exports = { registerCatalogueSeo, isLuqaimat, imageUrl, priceText, cards, catalogueSchema, productPath };

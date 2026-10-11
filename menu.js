@@ -41,6 +41,8 @@
   };
   const titleFor = product => isArabic() && product.name_ar ? product.name_ar : product.name;
   const descriptionFor = product => isArabic() && product.description_ar ? product.description_ar : (product.description || 'Handcrafted daily by CATHAREi.');
+  // Mirrors productPath() in catalogue-seo.js.
+  const productPath = product => `/menu/${String(product.name || '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'item'}-${encodeURIComponent(product.id)}`;
   const categoryLabel = id => (categoryMeta[id] || categoryMeta.all)[isArabic() ? 'ar' : 'en'];
 
   function parseVariants(product) {
@@ -70,7 +72,7 @@
           <img loading="${index < 6 ? 'eager' : 'lazy'}" decoding="async" width="560" height="700" src="${escapeHTML(safeImage(product.image, index))}" alt="${escapeHTML(title)}">
         </div>
         <div class="menu-item-info">
-          <h3 class="menu-item-name">${escapeHTML(title)}</h3>
+          <h3 class="menu-item-name"><a href="${escapeHTML(productPath(product))}">${escapeHTML(title)}</a></h3>
           <p class="menu-item-price">${escapeHTML(priceFor(product))}</p>
           <p class="menu-item-desc">${escapeHTML(description)}</p>
           <div class="menu-item-actions">
@@ -103,7 +105,7 @@
         const variantsData = typeof product.variants === 'string' ? product.variants : (product.variants ? JSON.stringify(product.variants) : '');
         addToCart(event, String(product.id), product.name, Number(product.price || 0), product.image || '', variantsData);
       });
-      card.addEventListener('click', event => { if (!event.target.closest('button')) openProduct(product, card); });
+      card.addEventListener('click', event => { if (!event.target.closest('button, a')) openProduct(product, card); });
       card.addEventListener('keydown', event => { if ((event.key === 'Enter' || event.key === ' ') && !event.target.closest('button')) { event.preventDefault(); openProduct(product, card); } });
       if (finePointer.matches) addDepthWindow(card);
       if (index < 4) card.classList.add('is-constellation-target');

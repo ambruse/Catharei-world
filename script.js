@@ -543,6 +543,12 @@ function initHomeEnhancements() {
   sections.forEach(section => observer.observe(section));
 }
 
+// Mirrors productPath() in catalogue-seo.js.
+function productPath(product) {
+  const slug = String(product.name || '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'item';
+  return `/menu/${slug}-${encodeURIComponent(product.id)}`;
+}
+
 function renderProducts(productsList) {
   const grid = document.getElementById('product-grid');
   if(!grid) return;
@@ -618,7 +624,7 @@ function renderProducts(productsList) {
           <img loading="lazy" decoding="async" src="${imgSrc || 'https://via.placeholder.com/400x500?text=' + product.name}" alt="${titleText}">
         </div>
         <div class="menu-item-info">
-          <h2 class="menu-item-name" ${titleI18nAttr}>${titleText}</h2>
+          <h2 class="menu-item-name"><a href="${productPath(product)}" ${titleI18nAttr}>${titleText}</a></h2>
           <div class="menu-item-price">${priceHTML}</div>
           <p class="menu-item-desc">${descriptionText}</p>
           <div class="menu-item-actions">${addButton}</div>
@@ -628,7 +634,7 @@ function renderProducts(productsList) {
         <img loading="lazy" src="${imgSrc || 'https://via.placeholder.com/400x300?text=' + product.name}" class="menu-item-img" alt="${titleText}">
         <div class="menu-item-info">
           <div>
-            <div class="menu-item-name" ${titleI18nAttr}>${titleText}</div>
+            <div class="menu-item-name"><a href="${productPath(product)}" ${titleI18nAttr}>${titleText}</a></div>
             <div class="menu-item-price">${priceHTML}</div>
             <div class="menu-item-desc">${descriptionText}</div>
           </div>

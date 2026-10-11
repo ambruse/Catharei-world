@@ -155,6 +155,11 @@ test('language selection survives and homepage alias redirects', async () => {
   const response = await fetch(origin + '/index.html?lang=ar', { redirect: 'manual' });
   assert.equal(response.status, 301);
   assert.equal(response.headers.get('location'), '/?lang=ar');
+  for (const [retired, target] of [['/navigation/customized_cakes.html', '/navigation/cakes.html'], ['/navigation/special.html?lang=en', '/menu.html?lang=en']]) {
+    const redirect = await fetch(origin + retired, { redirect: 'manual' });
+    assert.equal(redirect.status, 301, retired);
+    assert.equal(redirect.headers.get('location'), target, retired);
+  }
 });
 
 test('private pages are noindex and internal files cannot be fetched', async () => {
@@ -180,6 +185,30 @@ test('catalogue content is in initial HTML and excludes inactive items', async (
     assert.match(page, /Test Cake &amp; Honey/, route);
     assert.ok(!page.includes('Inactive cake'), route);
   }
+});
+
+test('each active product has an indexable page linked from its category and the sitemap', async () => {
+  const category = await (await fetch(origin + '/navigation/cakes.html')).text();
+  assert.match(category, /<a href="\/menu\/test-cake-honey-1">Test Cake &amp; Honey<\/a>/);
+  const response = await fetch(origin + '/menu/test-cake-honey-1', { redirect: 'manual' });
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Test Cake &amp; Honey in Doha, Qatar \| CATHAREi<\/title>/);
+  assert.ok(html.includes('rel="canonical" href="https://www.catharei.com/menu/test-cake-honey-1"'));
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.ok(!html.includes('noindex'));
+  assert.match(html, /href="\/navigation\/cakes.html">cakes in Doha, Qatar<\/a>/);
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m => JSON.parse(m[1]));
+  const product = schemas.find(s => s['@type'] === 'Product');
+  assert.deepEqual(product.offers, { '@type': 'Offer', price: '100.00', priceCurrency: 'QAR', url: 'https://www.catharei.com/menu/test-cake-honey-1' });
+  assert.ok(schemas.some(s => s['@type'] === 'BreadcrumbList'));
+  const renamed = await fetch(origin + '/menu/old-name-1?lang=ar', { redirect: 'manual' });
+  assert.equal(renamed.status, 301);
+  assert.equal(renamed.headers.get('location'), '/menu/test-cake-honey-1?lang=ar');
+  assert.equal((await fetch(origin + '/menu/inactive-cake-2')).status, 404);
+  const sitemap = await (await fetch(origin + '/sitemap.xml')).text();
+  assert.ok(sitemap.includes('<loc>https://www.catharei.com/menu/test-cake-honey-1</loc>'));
+  assert.ok(!sitemap.includes('inactive-cake'));
 });
 
 test('blog metadata escapes quotes and safely serializes JSON-LD', () => {

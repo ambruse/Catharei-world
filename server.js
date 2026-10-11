@@ -72,7 +72,10 @@ app.use((req, res, next) => {
     '/index.html': '/',
     '/blog.html': '/blog',
     '/blog/history-of-luqaimat.html': '/blog/history-of-luqaimat',
-    '/blog/best-arabic-sweets-gifting.html': '/blog/best-arabic-sweets-gifting'
+    '/blog/best-arabic-sweets-gifting.html': '/blog/best-arabic-sweets-gifting',
+    // Retired pages: send their search traffic to the closest current page.
+    '/navigation/customized_cakes.html': '/navigation/cakes.html',
+    '/navigation/special.html': '/menu.html'
   };
   const canonicalPath = ['GET', 'HEAD'].includes(req.method) ? aliases[req.path] : undefined;
   // Resolve hostname, protocol and known legacy path aliases in one redirect.
