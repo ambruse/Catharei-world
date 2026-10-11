@@ -1,0 +1,32 @@
+{
+  "initialMapRequests": [],
+  "openToScreenshotMs": 1871,
+  "errors": [],
+  "failed": [
+    "https://www.googletagmanager.com/gtag/js?id=G-RYKLR11ZQT",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-NQ5NWZC4"
+  ],
+  "state": "selecting",
+  "status": "Search an area, use GPS, or move the map to your building.",
+  "options": "Doha\nBaladiyat ad Dawhah\nBaladiyat ad Dawhah — Municipality",
+  "attribution": [
+    "OpenFreeMap © OpenMapTiles Data from OpenStreetMap"
+  ],
+  "requests": [
+    "http://127.0.0.1:3118/vendor/maplibre/maplibre-gl.css?v=6.13.0",
+    "http://127.0.0.1:3118/vendor/maplibre/maplibre-gl.mjs?v=6.13.0",
+    "http://127.0.0.1:3118/vendor/maplibre/maplibre-gl-worker.mjs?v=6.13.0",
+    "http://127.0.0.1:3118/vendor/maplibre/maplibre-gl-worker.mjs?v=6.13.0",
+    "https://tiles.openfreemap.org/styles/liberty",
+    "https://tiles.openfreemap.org/planet",
+    "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.json",
+    "https://tiles.openfreemap.org/sprites/ofm_f384/ofm.png",
+    "https://tiles.openfreemap.org/planet/20261004_113936_pt/11/1316/875.pbf",
+    "https://tiles.openfreemap.org/planet/20261004_113936_pt/11/1317/875.pbf",
+    "https://tiles.openfreemap.org/planet/20261004_113936_pt/11/1317/874.pbf",
+    "https://tiles.openfreemap.org/planet/20261004_113936_pt/11/1316/874.pbf",
+    "https://tiles.openfreemap.org/fonts/Noto%20Sans%20Regular/0-255.pbf",
+    "https://tiles.openfreemap.org/fonts/Noto%20Sans%20Regular/65024-65279.pbf",
+    "https://tiles.openfreemap.org/fonts/Noto%20Sans%20Italic/0-255.pbf"
+  ]
+}

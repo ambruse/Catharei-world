@@ -1,0 +1,42 @@
+{
+  "browser": "Desktop Chrome with mobile/touch emulation; not a real device",
+  "results": [
+    {
+      "name": "Navigation responds while catalogue request is pending",
+      "passed": true
+    },
+    {
+      "name": "Drawer closes via backdrop and button, traps focus and restores scroll",
+      "passed": true
+    },
+    {
+      "name": "RTL drawer, language dropdown and breakpoint reset preserve navigation",
+      "passed": true
+    },
+    {
+      "name": "Shared search submits to existing menu and nested route cart uses correct destination",
+      "passed": true
+    },
+    {
+      "name": "Variant dialog supports size selection, Escape, outside close and focus restore",
+      "passed": true
+    },
+    {
+      "name": "Cart keeps quantity focus, restores removed item with Undo and reports unsupported coupon",
+      "passed": true
+    },
+    {
+      "name": "Current homepage does not load the dormant legacy cake sequence",
+      "passed": true
+    },
+    {
+      "name": "Short viewport drawer and dialog remain scrollable with enlarged text",
+      "passed": true
+    },
+    {
+      "name": "No unhandled browser errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

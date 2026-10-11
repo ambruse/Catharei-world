@@ -164,7 +164,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label class="menu-search">
           <span class="sr-only">Search menu</span>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
-          <input id="menu-search" type="search" placeholder="Search menu…" autocomplete="off">
+          <input id="menu-search" type="search" placeholder="Search menu…" autocomplete="off" enterkeyhint="search" aria-controls="menu-content">
         </label>
       </div>
 
@@ -177,6 +177,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p id="collection-description">From delicate Arabic sweets to celebration cakes and savouries, each piece is made to turn sharing into an occasion.</p>
         </header>
 
+        <p class="sr-only" id="menu-results-status" role="status" aria-live="polite"></p>
         <div class="menu-container" id="menu-content">
           <!-- Server-rendered catalogue content is injected here for SEO; menu.js progressively enhances it. -->
         </div>

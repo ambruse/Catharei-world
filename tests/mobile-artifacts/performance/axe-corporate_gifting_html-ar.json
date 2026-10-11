@@ -1,0 +1,162 @@
+{
+  "route": "/corporate-gifting.html",
+  "lang": "ar",
+  "status": 200,
+  "width": 390,
+  "height": 844,
+  "version": "4.14.0",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "8.4pt (11.2px)",
+                "fontWeight": "bold",
+                "messageKey": "shortTextContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<span class=\"cart-badge\" id=\"cart-badge\" data-count=\"2\">2</span>",
+                  "target": [
+                    "#cart-badge"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element content is too short to determine if it is actual text content"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"cart-badge\" id=\"cart-badge\" data-count=\"2\">2</span>",
+          "target": [
+            "#cart-badge"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "22.8pt (30.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"menu-hero\" style=\"background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)), url('images/background/hero_spread.webp') center/cover;\">",
+                  "target": [
+                    ".menu-hero"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h1 style=\"font-family: var(--font-serif); font-size: 2.8rem; color: var(--color-accent); margin-bottom: 16px;\">Corporate Gifting &amp; VIP Sweet Boxes</h1>",
+          "target": [
+            "h1"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "13.8pt (18.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"menu-hero\" style=\"background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)), url('images/background/hero_spread.webp') center/cover;\">",
+                  "target": [
+                    ".menu-hero"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p style=\"font-size: 1.15rem; color: #ddd; max-width: 650px; margin: 0 auto 24px;\">Exclusive Arabic sweets for VIP events. Gourmet chocolate and sweet trays, luxury Arabic sweet boxes, and premium gifting packages — crafted to impress the most discerning recipients in Qatar.</p>",
+          "target": [
+            ".menu-hero > .container > p:nth-child(3)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.8pt (14.4px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"menu-hero\" style=\"background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.8)), url('images/background/hero_spread.webp') center/cover;\">",
+                  "target": [
+                    ".menu-hero"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"/menu.html\" class=\"btn btn-outline\">View Products</a>",
+          "target": [
+            ".btn-outline.btn[href$=\"menu.html\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        }
+      ]
+    }
+  ],
+  "passes": 24,
+  "inapplicable": 40
+}

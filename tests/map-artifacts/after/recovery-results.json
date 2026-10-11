@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Style failure disables confirmation; local area search and manual address survive",
+    "passed": true
+  },
+  {
+    "name": "Map retry and keyboard pan/zoom recover after provider failure",
+    "passed": true
+  },
+  {
+    "name": "Address restoration is scoped to the unchanged cart",
+    "passed": true
+  },
+  {
+    "name": "Reduced keyboard viewport keeps search usable with no horizontal overflow",
+    "passed": true
+  },
+  {
+    "name": "Library failure still permits existing staff-reviewed manual checkout without invented coordinates",
+    "passed": true
+  },
+  {
+    "name": "Order API rejects invalid coordinates",
+    "passed": true
+  }
+]

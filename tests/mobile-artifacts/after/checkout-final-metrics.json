@@ -1,0 +1,50 @@
+[
+  {
+    "width": 320,
+    "scrollWidth": 320,
+    "prefixLines": 1,
+    "namePlaceholder": "John Doe",
+    "lang": "en",
+    "screenshot": "checkout_html-320-en.png"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "prefixLines": 1,
+    "namePlaceholder": "John Doe",
+    "lang": "en",
+    "screenshot": "checkout_html-390-en.png"
+  },
+  {
+    "width": 768,
+    "scrollWidth": 768,
+    "prefixLines": 1,
+    "namePlaceholder": "John Doe",
+    "lang": "en",
+    "screenshot": "checkout_html-768-en.png"
+  },
+  {
+    "width": 1440,
+    "scrollWidth": 1440,
+    "prefixLines": 1,
+    "namePlaceholder": "John Doe",
+    "lang": "en",
+    "screenshot": "checkout_html-1440-en.png"
+  },
+  {
+    "width": 320,
+    "scrollWidth": 320,
+    "prefixLines": 1,
+    "namePlaceholder": "الاسم الكامل",
+    "lang": "ar",
+    "screenshot": "checkout_html-320-ar.png"
+  },
+  {
+    "width": 390,
+    "scrollWidth": 390,
+    "prefixLines": 1,
+    "namePlaceholder": "الاسم الكامل",
+    "lang": "ar",
+    "screenshot": "checkout_html-390-ar.png"
+  }
+]

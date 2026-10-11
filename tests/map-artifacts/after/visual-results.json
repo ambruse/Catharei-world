@@ -1,0 +1,17 @@
+[
+  {
+    "name": "desktopHeader",
+    "changedPixels": 0,
+    "totalPixels": 112320
+  },
+  {
+    "name": "billingAndAddress",
+    "changedPixels": 0,
+    "totalPixels": 132000
+  },
+  {
+    "name": "orderSummary",
+    "changedPixels": 0,
+    "totalPixels": 132000
+  }
+]

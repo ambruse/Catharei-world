@@ -1,0 +1,2160 @@
+{
+  "generatedAt": "2026-10-11",
+  "scope": "Source inventory. Active product records read from local database using SQLITE_OPEN_READONLY. No production reads or writes.",
+  "basePages": [
+    {
+      "route": "/about.html",
+      "file": "about.html",
+      "public": true,
+      "access": "public",
+      "template": "editorial",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "beb84bd840ffc252a61d9c367e926462b956504090181c5fc0c0753ee21332f3",
+      "protectedContent": {
+        "title": "<title>Our Story — Qatar's Finest Arabic Bakery Heritage | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover the story of CATHAREi Bakery — Doha's premier destination for authentic Arabic sweets, handcrafted Baklava, Baklava, and artisan cakes. Three locations across Qatar.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Our Story — Qatar's Finest Arabic Bakery Heritage | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Discover the story of CATHAREi Bakery — Doha's premier destination for authentic Arabic sweets, handcrafted Baklava, Baklava, and artisan cakes. Three locations across Qatar.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/about.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Our Story — Qatar's Finest Arabic Bakery Heritage | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Discover the story of CATHAREi Bakery — Doha's premier destination for authentic Arabic sweets, handcrafted Baklava, Baklava, and artisan cakes. Three locations across Qatar.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/about.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"AboutPage\",\n  \"name\": \"About CATHAREi — Our Story\",\n  \"description\": \"CATHAREi Bakery is Doha's premier Arabic sweets shop, handcrafting authentic Baklava, Baklava, Maamoul and custom cakes across three locations in Qatar.\",\n  \"url\": \"https://www.catharei.com/about.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\",\n    \"logo\": \"https://www.catharei.com/images/misc/Catharei_logo.webp\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Our Story\",\n        \"item\": \"https://www.catharei.com/about.html\"\n      }\n    ]\n  }\n}\n"
+        ],
+        "headings": [
+          "Our Story",
+          "Welcome to CATHAREi",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/menu.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/account.html",
+      "file": "account.html",
+      "public": true,
+      "access": "client redirects anonymous visitors to login",
+      "template": "account",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 2,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "f972f67a0b52644fec01a44be04e34d3f691175de63d01050dbdf0aa4f1ca50a",
+      "protectedContent": {
+        "title": "<title>CATHAREi — My Account</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"robots\" content=\"noindex, follow\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"CATHAREi — My Account\">",
+          "<meta property=\"og:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/account.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"CATHAREi — My Account\">",
+          "<meta name=\"twitter:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/account.html\">",
+        "schema": [],
+        "headings": [
+          "Hello, Member!",
+          "Total Orders",
+          "Membership",
+          "Primary Details",
+          "Change Password",
+          "Recent Orders"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/menu.html"
+        ],
+        "analytics": [
+          "<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-RYKLR11ZQT');\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/admin.html",
+      "file": "admin.html",
+      "public": false,
+      "access": "admin authentication",
+      "template": "admin",
+      "language": {
+        "initial": "en",
+        "sharedScript": false,
+        "translationAttributes": 0,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "6772f5c8e1ee686b16c726117cf896cadad1cad3b673a67c5d9c6c11a335fe2a",
+      "protectedContent": {
+        "title": "<title>CATHAREi — Admin Panel</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"robots\" content=\"noindex, follow\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"CATHAREi — Admin Panel\">",
+          "<meta property=\"og:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/admin.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"CATHAREi — Admin Panel\">",
+          "<meta name=\"twitter:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/admin.html\">",
+        "schema": [],
+        "headings": [
+          "Trending Item Slot",
+          "New Arrival Item Slot",
+          "Confirm Deletion",
+          "Order Summary",
+          "Customer Details",
+          "Order Info",
+          "Order Items",
+          "Manage Visibility",
+          "Processing...",
+          "New Order Received!",
+          "CATHAREi"
+        ],
+        "links": [
+          "/",
+          "${mapUrl}"
+        ],
+        "analytics": [
+          "<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-RYKLR11ZQT');\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/blog",
+      "file": "blog.html",
+      "public": true,
+      "access": "public",
+      "template": "blog feed",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "c8c00fc14a388f5555c4e410972d9aa45dbc18aab967ec9ffe2d1bb500a0b2cb",
+      "protectedContent": {
+        "title": "<title>Arabic Sweets &amp; Gifting Guides | CATHAREi Qatar</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Read CATHAREi’s guides to Arabic sweets, Qatari dessert traditions and gifting ideas for family celebrations and corporate occasions.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Arabic Sweets &amp; Gifting Guides | CATHAREi Qatar\">",
+          "<meta property=\"og:description\" content=\"Read CATHAREi’s guides to Arabic sweets, Qatari dessert traditions and gifting ideas for family celebrations and corporate occasions.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/blog\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Arabic Sweets &amp; Gifting Guides | CATHAREi Qatar\">",
+          "<meta name=\"twitter:description\" content=\"Read CATHAREi’s guides to Arabic sweets, Qatari dessert traditions and gifting ideas for family celebrations and corporate occasions.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/blog\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Full Menu — CATHAREi Arabic Sweets & Cakes\",\n  \"description\": \"Browse all of CATHAREi's handcrafted products: Arabic sweets, Baklava, Baklava, custom cakes, and premium savouries.\",\n  \"url\": \"https://www.catharei.com/menu.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  }\n}\n"
+        ],
+        "headings": [
+          "CATHAREi Bakery Blog",
+          "The Sweet History of Luqaimat: A Qatari Tradition",
+          "The Ultimate Guide to Arabic Sweets for Corporate Gifting",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "blog/history-of-luqaimat.html",
+          "blog/best-arabic-sweets-gifting.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/catering.html",
+      "file": "catering.html",
+      "public": true,
+      "access": "public",
+      "template": "campaign / editorial cards",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "51682818bdf969ac5bd66acb5505ea2507d0be8c7a597948fba3e294c70d1e00",
+      "protectedContent": {
+        "title": "<title>Dessert Catering in Doha, Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Plan sweets and dessert catering for weddings, family gatherings and business events in Qatar. Contact CATHAREi to discuss your menu and guest count.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Dessert Catering in Doha, Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Plan sweets and dessert catering for weddings, family gatherings and business events in Qatar. Contact CATHAREi to discuss your menu and guest count.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/catering.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Dessert Catering in Doha, Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Plan sweets and dessert catering for weddings, family gatherings and business events in Qatar. Contact CATHAREi to discuss your menu and guest count.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/catering.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Service\",\n  \"name\": \"Arabic Sweets Catering & Corporate Gifting\",\n  \"description\": \"Premium Arabic sweets catering for weddings, Ramadan Iftar, Eid celebrations, and corporate gifting events across Doha and Qatar.\",\n  \"provider\": {\n    \"@type\": \"Bakery\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\",\n    \"telephone\": \"+974-5094-2255\",\n    \"areaServed\": \"Doha, Qatar\"\n  },\n  \"url\": \"https://www.catharei.com/catering.html\",\n  \"serviceType\": [\n    \"Event Catering\",\n    \"Corporate Gifting\",\n    \"Ramadan Gift Boxes\",\n    \"Wedding Dessert Tables\"\n  ],\n  \"areaServed\": {\n    \"@type\": \"City\",\n    \"name\": \"Doha\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Catering & Occasions\",\n        \"item\": \"https://www.catharei.com/catering.html\"\n      }\n    ]\n  }\n}\n"
+        ],
+        "headings": [
+          "Catering & Occasions",
+          "Premium Catering for All Occasions",
+          "Ramadan &amp; Eid Gifting",
+          "Wedding Dessert Catering &amp; Cakes",
+          "Corporate &amp; VIP Gifting",
+          "National Day, Graduations &amp; Celebrations",
+          "Contact Us to Customize Your Order",
+          "حلويات وضيافة للمناسبات في قطر",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "tel:+97450942255",
+          "mailto:info@catharei.com",
+          "/menu.html",
+          "/contact.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/checkout.html",
+      "file": "checkout.html",
+      "public": true,
+      "access": "public",
+      "template": "checkout",
+      "language": {
+        "initial": "en",
+        "sharedScript": false,
+        "translationAttributes": 19,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "519a950d1617280a3bb89773e816b1a149c4ad369159c89fed713a1f37076659",
+      "protectedContent": {
+        "title": "<title>Checkout — CATHAREi Premium Sweets</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"robots\" content=\"noindex, follow\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Checkout — CATHAREi Premium Sweets\">",
+          "<meta property=\"og:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/checkout.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Checkout — CATHAREi Premium Sweets\">",
+          "<meta name=\"twitter:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/checkout.html\">",
+        "schema": [],
+        "headings": [
+          "Awaiting Confirmation",
+          "Verify Phone Number",
+          "Billing & Delivery",
+          "Payment Method",
+          "Order Summary",
+          "Request Timeout"
+        ],
+        "links": [
+          "/",
+          "/navigation/cart.html"
+        ],
+        "analytics": [
+          "<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-RYKLR11ZQT');\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/contact.html",
+      "file": "contact.html",
+      "public": true,
+      "access": "public",
+      "template": "editorial",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "db00629c817894b2cc1213f145cf6b6f010d96966db84b4a2f985247ed8a90e7",
+      "protectedContent": {
+        "title": "<title>Contact Us - Locations, Phone &amp; Email | CATHAREI</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Contact CATHAREI Bakery. Visit our boutiques on Salwa Road, Al Wakrah, and Al Kharaitiyat, or get in touch for custom cake ordering and VIP catering.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Contact Us - Locations, Phone &amp; Email | CATHAREI\">",
+          "<meta property=\"og:description\" content=\"Contact CATHAREI Bakery. Visit our boutiques on Salwa Road, Al Wakrah, and Al Kharaitiyat, or get in touch for custom cake ordering and VIP catering.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/contact.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Contact Us - Locations, Phone &amp; Email | CATHAREI\">",
+          "<meta name=\"twitter:description\" content=\"Contact CATHAREI Bakery. Visit our boutiques on Salwa Road, Al Wakrah, and Al Kharaitiyat, or get in touch for custom cake ordering and VIP catering.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/contact.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Full Menu — CATHAREi Arabic Sweets & Cakes\",\n  \"description\": \"Browse all of CATHAREi's handcrafted products: Arabic sweets, Baklava, Baklava, custom cakes, and premium savouries.\",\n  \"url\": \"https://www.catharei.com/menu.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  }\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Bakery\",\n      \"@id\": \"https://www.catharei.com/#salwaroad\",\n      \"name\": \"CATHAREi Bakery & Sweets - Salwa Road\",\n      \"url\": \"https://www.catharei.com\",\n      \"telephone\": \"+97450942255\",\n      \"priceRange\": \"$\",\n      \"image\": \"https://www.catharei.com/images/salwa-storefront.jpg\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Building 384, Street 340 (Salwa Road), Al Waab / Al Aziziya\",\n        \"addressLocality\": \"Doha\",\n        \"addressCountry\": \"QA\"\n      },\n      \"openingHoursSpecification\": {\n        \"@type\": \"OpeningHoursSpecification\",\n        \"dayOfWeek\": [\n          \"Monday\",\n          \"Tuesday\",\n          \"Wednesday\",\n          \"Thursday\",\n          \"Friday\",\n          \"Saturday\",\n          \"Sunday\"\n        ],\n        \"opens\": \"06:00\",\n        \"closes\": \"23:00\"\n      }\n    },\n    {\n      \"@type\": \"Bakery\",\n      \"@id\": \"https://www.catharei.com/#alwakrah\",\n      \"name\": \"CATHAREi Bakery & Sweets - Al Wakrah\",\n      \"url\": \"https://www.catharei.com\",\n      \"telephone\": \"+97440075555\",\n      \"priceRange\": \"$\",\n      \"image\": \"https://www.catharei.com/images/wakrah-storefront.jpg\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Al Wakra Main St\",\n        \"addressLocality\": \"Al Wakrah\",\n        \"addressCountry\": \"QA\"\n      },\n      \"openingHoursSpecification\": {\n        \"@type\": \"OpeningHoursSpecification\",\n        \"dayOfWeek\": [\n          \"Monday\",\n          \"Tuesday\",\n          \"Wednesday\",\n          \"Thursday\",\n          \"Friday\",\n          \"Saturday\",\n          \"Sunday\"\n        ],\n        \"opens\": \"07:00\",\n        \"closes\": \"23:00\"\n      }\n    },\n    {\n      \"@type\": \"Bakery\",\n      \"@id\": \"https://www.catharei.com/#alkharaitiyat\",\n      \"name\": \"CATHAREi Bakery & Sweets - Al Kharaitiyat\",\n      \"url\": \"https://www.catharei.com\",\n      \"telephone\": \"+97455392255\",\n      \"priceRange\": \"$\",\n      \"image\": \"https://www.catharei.com/images/kharaitiyat-storefront.jpg\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Al Kharaitiyat Commercial Street, Zone 71\",\n        \"addressLocality\": \"Al Kharaitiyat Area\",\n        \"addressCountry\": \"QA\"\n      },\n      \"hasMap\": \"https://share.google/otBX5VPPoHUPctZgy\",\n      \"openingHoursSpecification\": {\n        \"@type\": \"OpeningHoursSpecification\",\n        \"dayOfWeek\": [\n          \"Monday\",\n          \"Tuesday\",\n          \"Wednesday\",\n          \"Thursday\",\n          \"Friday\",\n          \"Saturday\",\n          \"Sunday\"\n        ],\n        \"opens\": \"07:00\",\n        \"closes\": \"23:00\"\n      }\n    }\n  ]\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"CATHAREI\",\n  \"alternateName\": [\n    \"Catharei Bakery & Sweets\",\n    \"كاثاري\"\n  ],\n  \"url\": \"https://www.catharei.com\",\n  \"logo\": \"https://www.catharei.com/images/misc/Catharei_logo.webp\",\n  \"description\": \"Doha's finest Arabic bakery, specializing in handcrafted Baklava, Baklava, Maamoul, and bespoke custom cakes.\",\n  \"foundingLocation\": \"Doha, Qatar\",\n  \"areaServed\": [\n    {\n      \"@type\": \"City\",\n      \"name\": \"Doha\"\n    },\n    {\n      \"@type\": \"City\",\n      \"name\": \"Al Wakrah\"\n    },\n    {\n      \"@type\": \"City\",\n      \"name\": \"Umm Salal\"\n    }\n  ],\n  \"contactPoint\": {\n    \"@type\": \"ContactPoint\",\n    \"telephone\": \"+974-5094-2255\",\n    \"contactType\": \"customer service\",\n    \"availableLanguage\": [\n      \"English\",\n      \"Arabic\"\n    ]\n  },\n  \"sameAs\": [\n    \"https://www.instagram.com/catharei_bakery_sweets/\",\n    \"https://www.talabat.com/qatar/catharei-bakery-and-sweets\",\n    \"https://snoonu.com/restaurants/catharei-bakery-and-sweets\"\n  ],\n  \"@id\": \"https://www.catharei.com/#organization\"\n}\n"
+        ],
+        "headings": [
+          "Contact Us",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/corporate-gifting.html",
+      "file": "corporate-gifting.html",
+      "public": true,
+      "access": "public",
+      "template": "campaign / editorial cards",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 17,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "5c01f7203e8ec20e8690bc196ab93b17d442a45366e3d509511a50078f7efb81",
+      "protectedContent": {
+        "title": "<title>Corporate Sweet Gifts in Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Explore Arabic sweets for corporate gifting in Qatar. Ask CATHAREi about gift boxes for clients, colleagues, business events and seasonal occasions.\">",
+          "<meta name=\"keywords2\" content=\", Best Bakery in Qatar, Best Bakery in Doha, Best Arabic Sweets in Doha, Best Baklava in Doha, Fresh Luqaimat delivery Doha, Ramadan desserts Doha, Eid sweet boxes Qatar, Corporate gifting Arabic sweets, Luxury Arabic sweet boxes, Gourmet dessert gifting Qatar, Wedding dessert catering Qatar, Online Arabic sweets delivery Qatar, Eggless custom cakes Doha, Gluten-free Arabic sweets Qatar, أفضل مخبز في قطر, أفضل حلويات عربية في الدوحة, أفضل بقلاوة في الدوحة, توصيل لقيمات طازجة, هدايا حلويات فاخرة للشركات, علب حلويات عيد الفطر\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Corporate Sweet Gifts in Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Explore Arabic sweets for corporate gifting in Qatar. Ask CATHAREi about gift boxes for clients, colleagues, business events and seasonal occasions.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/corporate-gifting.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Corporate Sweet Gifts in Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Explore Arabic sweets for corporate gifting in Qatar. Ask CATHAREi about gift boxes for clients, colleagues, business events and seasonal occasions.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/corporate-gifting.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Service\",\n  \"name\": \"Corporate Gifting & VIP Arabic Sweets — CATHAREi\",\n  \"description\": \"Premium gourmet Arabic sweet boxes, luxury chocolate and sweet trays, and exclusive gifting packages for corporate events and VIP occasions in Qatar.\",\n  \"provider\": {\n    \"@type\": \"Bakery\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\",\n    \"telephone\": \"+974-5094-2255\"\n  },\n  \"url\": \"https://www.catharei.com/corporate-gifting.html\",\n  \"serviceType\": [\n    \"Corporate Gifting\",\n    \"VIP Sweet Boxes\",\n    \"Luxury Gift Trays\",\n    \"Premium Chocolate Trays\"\n  ],\n  \"areaServed\": {\n    \"@type\": \"Country\",\n    \"name\": \"Qatar\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Catering & Occasions\",\n        \"item\": \"https://www.catharei.com/catering.html\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 3,\n        \"name\": \"Corporate Gifting\",\n        \"item\": \"https://www.catharei.com/corporate-gifting.html\"\n      }\n    ]\n  }\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Do you offer corporate gifting with Arabic sweets in Qatar?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes! CATHAREi specializes in premium corporate gifting across Qatar. We offer luxuriously packaged Arabic sweet boxes, gourmet pistachio pastry trays, premium chocolate and sweet trays, and fully branded custom packaging for corporate events, National Day, and VIP gifting.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What are the best Arabic sweet gift boxes for VIP events in Doha?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"CATHAREi's luxury Arabic sweet boxes are the top choice for VIP gifting in Doha. Our premium selections include assorted Baklava trays, Maamoul boxes, date and pistachio collections, and bespoke gourmet sweet trays — all beautifully packaged and customizable with your company branding.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Can you customize packaging for corporate Arabic sweet gifts?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Absolutely! CATHAREi offers customized packaging and branding for corporate gifting orders. Contact us at +974 5094 2255 to discuss your corporate sweet gift requirements, quantities, and branding specifications.\"\n      }\n    }\n  ]\n}\n"
+        ],
+        "headings": [
+          "Corporate Gifting & VIP Sweet Boxes",
+          "Qatar's Premier Gourmet Dessert Gifting Brand",
+          "Corporate Sweet Boxes &amp; Hampers",
+          "Gourmet Pistachio Pastry Trays",
+          "Stuffed Medjool Dates &amp; Chocolates",
+          "VIP Event Dessert Arrangements",
+          "Why Corporates Choose CATHAREi",
+          "Request Your Corporate Gifting Package",
+          "هدايا حلويات للشركات في قطر",
+          "Login",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "tel:+97450942255",
+          "/menu.html",
+          "tel:+97450942255",
+          "mailto:info@catharei.com",
+          "/menu.html",
+          "/contact.html",
+          "/",
+          "/catering.html",
+          "/faq.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/delivery.html",
+      "file": "delivery.html",
+      "public": true,
+      "access": "public",
+      "template": "campaign / editorial cards",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 17,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "f547438319bd17bba59f668d7417e67e22489cf91419c6f08b397b35b2ad66ea",
+      "protectedContent": {
+        "title": "<title>Sweets &amp; Cake Delivery in Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Find information about ordering sweets and cakes from CATHAREi in Qatar. Contact your nearest branch to confirm delivery coverage, fees and timing.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Sweets &amp; Cake Delivery in Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Find information about ordering sweets and cakes from CATHAREi in Qatar. Contact your nearest branch to confirm delivery coverage, fees and timing.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/delivery.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Sweets &amp; Cake Delivery in Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Find information about ordering sweets and cakes from CATHAREi in Qatar. Contact your nearest branch to confirm delivery coverage, fees and timing.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/delivery.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Service\",\n  \"name\": \"Arabic Sweets Online Delivery — CATHAREi Qatar\",\n  \"description\": \"Order fresh Baklava, crispy Kunafa, Luqaimat, Maamoul, custom cakes, and authentic Arabic sweets online in Qatar. Fast same day delivery across Doha, Al Wakrah, and Umm Salal.\",\n  \"provider\": {\n    \"@type\": \"Bakery\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\",\n    \"telephone\": \"+974-5094-2255\",\n    \"areaServed\": \"Qatar\"\n  },\n  \"url\": \"https://www.catharei.com/delivery.html\",\n  \"serviceType\": [\n    \"Online Food Delivery\",\n    \"Arabic Sweets Delivery\",\n    \"Bakery Delivery\",\n    \"Online Cake Delivery\",\n    \"Same Day Cake Delivery\"\n  ],\n  \"areaServed\": {\n    \"@type\": \"Country\",\n    \"name\": \"Qatar\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Order Online\",\n        \"item\": \"https://www.catharei.com/delivery.html\"\n      }\n    ]\n  }\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"How do I order Arabic sweets online in Qatar?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"You can order CATHAREi's Arabic sweets online through our website, or via delivery apps: Talabat, Snoonu, and Rafeeq. We deliver across Doha, Al Wakrah, and Umm Salal.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Do you offer midnight dessert delivery in Doha?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Our stores are open until 10PM daily. For later orders, please check Talabat and Snoonu for extended delivery availability based on your location in Doha.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Do you offer eggless and gluten-free options?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes! CATHAREi can accommodate eggless custom cake requests. For gluten-free options, please contact us directly at +974 5094 2255 to discuss what's available and ensure your dietary requirements are safely met.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Where can I find fresh Luqaimat delivery in Doha?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"CATHAREi's signature fresh Luqaimat — crispy golden dough balls with date syrup — are available at all three Qatar locations and for delivery via Talabat, Snoonu, and Rafeeq.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is the best bakery with drive-through in Doha?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"CATHAREi's three branches in Al Aziziya (Salwa Road), Al Wakrah, and Al Kharaitiyat all offer easy walk-in access. Our Salwa Road location is particularly convenient for passing customers. All branches are open daily 8AM–10PM.\"\n      }\n    }\n  ]\n}\n"
+        ],
+        "headings": [
+          "Online Arabic Sweets Delivery — Qatar",
+          "Order via Your Favourite App",
+          "What We Deliver",
+          "Best Kunafa &amp; Baklava in Doha",
+          "Authentic Baklava Delivery",
+          "Online Cake Delivery Qatar",
+          "Fresh Luqaimat Delivery",
+          "Best Umm Ali in Doha",
+          "Traditional Maamoul Cookies",
+          "Eggless, Sugar-Free &amp; Dietary Options",
+          "Delivery Areas in Qatar",
+          "توصيل حلويات وكيك في قطر",
+          "Login",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/menu.html",
+          "/faq.html",
+          "#",
+          "#",
+          "#",
+          "/menu.html",
+          "/menu.html",
+          "/contact.html",
+          "/",
+          "/menu.html",
+          "/faq.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/faq.html",
+      "file": "faq.html",
+      "public": true,
+      "access": "public",
+      "template": "editorial",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "0860155c7ec09808369a11c5d8c780c7aaf2621ea0abd51ad2438cf2c4a2ac7c",
+      "protectedContent": {
+        "title": "<title>Frequently Asked Questions | CATHAREi Bakery &amp; Sweets Qatar</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Find answers about ordering, custom wedding &amp; birthday cakes, same-day delivery across Qatar, Arabic sweet gifting trays, halal certification, and Ramadan/Eid packages from CATHAREi.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Frequently Asked Questions | CATHAREi Bakery &amp; Sweets Qatar\">",
+          "<meta property=\"og:description\" content=\"Find answers about ordering, custom wedding &amp; birthday cakes, same-day delivery across Qatar, Arabic sweet gifting trays, halal certification, and Ramadan/Eid packages from CATHAREi.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/faq.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Frequently Asked Questions | CATHAREi Bakery &amp; Sweets Qatar\">",
+          "<meta name=\"twitter:description\" content=\"Find answers about ordering, custom wedding &amp; birthday cakes, same-day delivery across Qatar, Arabic sweet gifting trays, halal certification, and Ramadan/Eid packages from CATHAREi.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/faq.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does CATHAREi offer delivery across Doha and Qatar?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes. CATHAREi offers same-day delivery across Doha, Al Wakrah, Al Kharaitiyat, and surrounding areas. Orders placed before 3:00 PM qualify for same-day delivery. We also partner with Talabat and Snoonu for express 45-minute delivery.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Can I order custom cakes for weddings and events in Qatar?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Absolutely. We specialise in bespoke custom cakes for weddings, engagement parties, birthday celebrations, and corporate events across Qatar. Orders require a minimum of 72 hours notice. Contact us via WhatsApp at +974 4007 5555 to discuss your design.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What Arabic sweets does CATHAREi sell?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"CATHAREi offers an extensive selection of premium Arabic sweets including Baklava (pistachio, walnut, and cashew), Maamoul, Luqaimat, Basbousa, Hareeseh, Warbat, and seasonal specialities for Ramadan and Eid. All products are handcrafted fresh daily.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Where are CATHAREi's branches located in Qatar?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"CATHAREi has three branches in Qatar: (1) Salwa Road — Building 384, Street 340, Al Waab/Al Aziziya, Doha; (2) Al Wakrah — Al Wakra Main St, Al Wakrah; (3) Al Kharaitiyat — Al Kharaitiyat Commercial Street, Zone 71, Umm Salal Mohammed. All branches are open Saturday–Thursday 8:00 AM–10:00 PM and Friday 1:00 PM–11:00 PM.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Do you offer corporate gifting and bulk sweet boxes in Qatar?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes. CATHAREi provides premium corporate gifting packages including branded Baklava gift boxes, customised sweet trays, and event catering for corporate occasions. Bulk orders receive special pricing. Call +974 4007 5555 for corporate enquiries.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does CATHAREi offer special Ramadan and Eid sweet packages?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes. Every Ramadan and Eid season, CATHAREi launches exclusive sweet gift boxes and Iftar trays featuring Luqaimat, Qatayef, Basbousa, and luxury Baklava collections. These can be pre-ordered online or collected from any of our three Qatar branches.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"How do I place an order for CATHAREi sweets online?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"You can place orders directly on catharei.com by browsing our menu, selecting your items, and completing checkout with delivery to your location in Qatar. Alternatively, order via Talabat or Snoonu for express delivery, or call us at +974 4007 5555.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Are CATHAREi products halal certified?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes. All CATHAREi products are 100% halal-certified. Our kitchen uses no alcohol, pork-derived ingredients, or non-halal additives. We source premium halal-certified dairy, nuts, and pastry ingredients from trusted suppliers.\"\n      }\n    }\n  ]\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"Home\",\n      \"item\": \"https://www.catharei.com/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"FAQ\",\n      \"item\": \"https://www.catharei.com/faq.html\"\n    }\n  ]\n}\n"
+        ],
+        "headings": [
+          "FAQ",
+          "Do you offer cake and sweets delivery in Doha?",
+          "Can I order fresh Kunafa and Baklava online?",
+          "Do you offer eggless custom cakes, vegan, or sugar-free desserts?",
+          "Do you customize cakes for weddings, graduations, and celebrations?",
+          "How can I place an order or get a custom cake quote?",
+          "أسئلة شائعة حول التوصيل والحلويات والكيك",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/",
+      "file": "index.html",
+      "public": true,
+      "access": "public",
+      "template": "homepage",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 85,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "3eedc1dbebe297986f80cd1ed3d79980c3eb384cb0c80ed7a845fadf7787bb6d",
+      "protectedContent": {
+        "title": "<title>Bakery &amp; Sweets in Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover CATHAREi bakery, cakes and Arabic sweets in Qatar. Browse the current menu and visit our Salwa Road, Al Wakrah and Al Kharaitiyat branches.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Bakery &amp; Sweets in Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Discover CATHAREi bakery, cakes and Arabic sweets in Qatar. Browse the current menu and visit our Salwa Road, Al Wakrah and Al Kharaitiyat branches.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Bakery &amp; Sweets in Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Discover CATHAREi bakery, cakes and Arabic sweets in Qatar. Browse the current menu and visit our Salwa Road, Al Wakrah and Al Kharaitiyat branches.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"Bakery\",\n      \"@id\": \"https://www.catharei.com/locations/al-aziziya.html#branch\",\n      \"name\": \"CATHAREi Bakery & Sweets — Salwa Road (Doha)\",\n      \"alternateName\": \"كاثاري - طريق سلوى، الدوحة\",\n      \"image\": \"https://www.catharei.com/images/background/hero_spread.webp\",\n      \"url\": \"https://www.catharei.com/locations/al-aziziya.html\",\n      \"telephone\": \"+97450942255\",\n      \"servesCuisine\": [\n        \"Arabic Sweets\",\n        \"Custom Cakes\",\n        \"Baklava\",\n        \"Maamoul\"\n      ],\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Building 384, Street 340, Salwa Road, Al Waab / Al Aziziya, Doha\",\n        \"addressLocality\": \"Doha\",\n        \"addressRegion\": \"Ad Dawhah\",\n        \"addressCountry\": \"QA\"\n      },\n      \"geo\": {\n        \"@type\": \"GeoCoordinates\",\n        \"latitude\": 25.2425559,\n        \"longitude\": 51.4594252\n      },\n      \"hasMap\": \"https://maps.app.goo.gl/JrVdhNaCqzmBcGeZ8\",\n      \"parentOrganization\": {\n        \"@id\": \"https://www.catharei.com/#organization\"\n      },\n      \"description\": \"CATHAREi bakery and sweets in Qatar. Fresh Luqaimat is available year-round at this branch. See the current menu for products and prices.\"\n    },\n    {\n      \"@type\": \"Bakery\",\n      \"@id\": \"https://www.catharei.com/locations/al-wakrah.html#branch\",\n      \"name\": \"CATHAREi Bakery & Sweets — Al Wakrah\",\n      \"alternateName\": \"كاثاري - الوكرة\",\n      \"image\": \"https://www.catharei.com/images/background/hero_spread.webp\",\n      \"url\": \"https://www.catharei.com/locations/al-wakrah.html\",\n      \"telephone\": \"+97440075555\",\n      \"servesCuisine\": [\n        \"Arabic Sweets\",\n        \"Custom Cakes\",\n        \"Baklava\",\n        \"Maamoul\"\n      ],\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"720, Al Wakrah\",\n        \"addressLocality\": \"Al Wakrah\",\n        \"addressRegion\": \"Al Wakrah\",\n        \"addressCountry\": \"QA\"\n      },\n      \"geo\": {\n        \"@type\": \"GeoCoordinates\",\n        \"latitude\": 25.1639112,\n        \"longitude\": 51.5974203\n      },\n      \"hasMap\": \"https://maps.app.goo.gl/ahWNVCNotAK1U8L78\",\n      \"parentOrganization\": {\n        \"@id\": \"https://www.catharei.com/#organization\"\n      },\n      \"description\": \"CATHAREi bakery and sweets in Qatar. Fresh Luqaimat is available year-round at this branch. See the current menu for products and prices.\"\n    },\n    {\n      \"@type\": \"Bakery\",\n      \"@id\": \"https://www.catharei.com/locations/al-kharaitiyat.html#branch\",\n      \"name\": \"CATHAREi Bakery & Sweets — Al Kharaitiyat (Umm Salal Mohammed)\",\n      \"alternateName\": \"كاثاري - الخريطيات، أم صلال محمد\",\n      \"image\": \"https://www.catharei.com/images/background/hero_spread.webp\",\n      \"url\": \"https://www.catharei.com/locations/al-kharaitiyat.html\",\n      \"telephone\": \"+97455392255\",\n      \"servesCuisine\": [\n        \"Arabic Sweets\",\n        \"Custom Cakes\",\n        \"Baklava\",\n        \"Maamoul\"\n      ],\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Al Kharaitiyat\",\n        \"addressLocality\": \"Al Kharaitiyat\",\n        \"addressRegion\": \"Umm Salal Mohammed\",\n        \"addressCountry\": \"QA\"\n      },\n      \"geo\": {\n        \"@type\": \"GeoCoordinates\",\n        \"latitude\": 25.397421,\n        \"longitude\": 51.425266\n      },\n      \"parentOrganization\": {\n        \"@id\": \"https://www.catharei.com/#organization\"\n      },\n      \"hasMap\": \"https://maps.app.goo.gl/Ecc9mMtrrMRQBNmL8\",\n      \"description\": \"CATHAREi bakery and sweets in Qatar. Fresh Luqaimat is available year-round at this branch. See the current menu for products and prices.\"\n    }\n  ]\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"name\": \"CATHAREi\",\n  \"alternateName\": [\n    \"Catharei Bakery & Sweets\",\n    \"كاثاري\"\n  ],\n  \"url\": \"https://www.catharei.com\",\n  \"logo\": \"https://www.catharei.com/images/misc/Catharei_logo.webp\",\n  \"description\": \"Doha's finest Arabic bakery, specializing in handcrafted Baklava, crispy Kunafa, Maamoul, and bespoke custom cakes. Premium sweets for gifting, catering, and everyday indulgence in Qatar.\",\n  \"foundingLocation\": \"Doha, Qatar\",\n  \"areaServed\": [\n    {\n      \"@type\": \"City\",\n      \"name\": \"Doha\"\n    },\n    {\n      \"@type\": \"City\",\n      \"name\": \"Al Wakrah\"\n    },\n    {\n      \"@type\": \"City\",\n      \"name\": \"Umm Salal\"\n    },\n    {\n      \"@type\": \"AdministrativeArea\",\n      \"name\": \"Lusail\"\n    },\n    {\n      \"@type\": \"AdministrativeArea\",\n      \"name\": \"The Pearl-Qatar\"\n    },\n    {\n      \"@type\": \"AdministrativeArea\",\n      \"name\": \"West Bay\"\n    },\n    {\n      \"@type\": \"AdministrativeArea\",\n      \"name\": \"Al Sadd\"\n    },\n    {\n      \"@type\": \"AdministrativeArea\",\n      \"name\": \"Al Waab\"\n    },\n    {\n      \"@type\": \"AdministrativeArea\",\n      \"name\": \"Al Rayyan\"\n    }\n  ],\n  \"contactPoint\": {\n    \"@type\": \"ContactPoint\",\n    \"telephone\": \"+974-4007-5555\",\n    \"contactType\": \"customer service\",\n    \"availableLanguage\": [\n      \"English\",\n      \"Arabic\"\n    ]\n  },\n  \"sameAs\": [\n    \"https://www.instagram.com/catharei_bakery_sweets/\",\n    \"https://www.talabat.com/qatar/catharei-bakery-and-sweets\",\n    \"https://snoonu.com/restaurants/catharei-bakery-and-sweets\"\n  ],\n  \"@id\": \"https://www.catharei.com/#organization\"\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebSite\",\n  \"name\": \"CATHAREi\",\n  \"url\": \"https://www.catharei.com\",\n  \"description\": \"Premium Arabic sweets, Baklava, and custom cakes in Doha, Qatar.\",\n  \"inLanguage\": [\n    \"en\",\n    \"ar\"\n  ],\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\"\n  },\n  \"potentialAction\": {\n    \"@type\": \"SearchAction\",\n    \"target\": {\n      \"@type\": \"EntryPoint\",\n      \"urlTemplate\": \"https://www.catharei.com/menu.html?q={search_term_string}\"\n    },\n    \"query-input\": \"required name=search_term_string\"\n  }\n}\n"
+        ],
+        "headings": [
+          "Sweets, shaped\n            into celebration.",
+          "Rooted in tradition.Finished with imagination.",
+          "A beautiful table begins with a generous gesture.",
+          "Made for every kind of craving.",
+          "Featured Sweets and Savories",
+          "A cake that belongs only to your celebration.",
+          "Frequently Asked Questions",
+          "Our Delivery Partners",
+          "Three addresses.One warm welcome.",
+          "حلويات وكيك في قطر",
+          "Find the right bakery for your occasion",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Select Size"
+        ],
+        "links": [
+          "#main-content",
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/menu.html",
+          "/contact.html",
+          "/about.html",
+          "/menu.html",
+          "/contact.html",
+          "https://www.talabat.com/qatar/catharei-bakery-and-sweets",
+          "https://www.gorafeeq.com/en/home/restaurants/catharei-bakery-1170",
+          "https://snoonu.com/restaurants/catharei-bakery-and-sweets",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html",
+          "/menu.html",
+          "/contact.html",
+          "/navigation/cakes.html",
+          "/navigation/Arabic_sweets.html",
+          "/menu.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/login.html",
+      "file": "login.html",
+      "public": true,
+      "access": "public",
+      "template": "authentication",
+      "language": {
+        "initial": "en",
+        "sharedScript": false,
+        "translationAttributes": 0,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "c2e864875a4cf27a4c07eb63d840287ad804fefe2132e1cb2d59ef239a721da8",
+      "protectedContent": {
+        "title": "<title>CATHAREi — Sign In</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"robots\" content=\"noindex, follow\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"CATHAREi — Sign In\">",
+          "<meta property=\"og:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/login.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"CATHAREi — Sign In\">",
+          "<meta name=\"twitter:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/login.html\">",
+        "schema": [],
+        "headings": [
+          "CATHAREi"
+        ],
+        "links": [
+          "/"
+        ],
+        "analytics": [
+          "<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-RYKLR11ZQT');\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/menu.html",
+      "file": "menu.html",
+      "public": true,
+      "access": "public",
+      "template": "menu catalogue",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 43,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "f8ac20a6ab65d3eede180a2341341a3d9e600ad30ea4474245f07158ff7ff975",
+      "protectedContent": {
+        "title": "<title>Sweets, Cakes &amp; Savouries Menu | CATHAREi Qatar</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Browse CATHAREi’s menu of Arabic sweets, oriental desserts, cakes and savouries in Qatar. Choose your favourites and contact your nearest branch.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Sweets, Cakes &amp; Savouries Menu | CATHAREi Qatar\">",
+          "<meta property=\"og:description\" content=\"Browse CATHAREi’s menu of Arabic sweets, oriental desserts, cakes and savouries in Qatar. Choose your favourites and contact your nearest branch.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/menu.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Sweets, Cakes &amp; Savouries Menu | CATHAREi Qatar\">",
+          "<meta name=\"twitter:description\" content=\"Browse CATHAREi’s menu of Arabic sweets, oriental desserts, cakes and savouries in Qatar. Choose your favourites and contact your nearest branch.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/menu.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Full Menu — CATHAREi Arabic Sweets & Cakes\",\n  \"description\": \"Browse all of CATHAREi's handcrafted products: Arabic sweets, Baklava, Baklava, custom cakes, and premium savouries.\",\n  \"url\": \"https://www.catharei.com/menu.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  }\n}\n"
+        ],
+        "headings": [
+          "Exploreour menu",
+          "All creations00",
+          "قائمة الحلويات والكيك والمعجنات في قطر",
+          "${translations[currentLang]?.[cat.i18n] || cat.label}",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "#menu-content",
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "#menu-browser",
+          "/menu.html",
+          "/contact.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/privacy.html",
+      "file": "privacy.html",
+      "public": true,
+      "access": "public",
+      "template": "editorial",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "cd9b4b9f09c6102cba3379bc53fb74b78bdd95b07e09059e4f57318f6be0f3f3",
+      "protectedContent": {
+        "title": "<title>Privacy Policy | CATHAREI</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Read the privacy policy of CATHAREI Bakery &amp; Sweets to understand how we collect, protect, and handle your personal data.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Privacy Policy | CATHAREI\">",
+          "<meta property=\"og:description\" content=\"Read the privacy policy of CATHAREI Bakery &amp; Sweets to understand how we collect, protect, and handle your personal data.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/privacy.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Privacy Policy | CATHAREI\">",
+          "<meta name=\"twitter:description\" content=\"Read the privacy policy of CATHAREI Bakery &amp; Sweets to understand how we collect, protect, and handle your personal data.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/privacy.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Full Menu — CATHAREi Arabic Sweets & Cakes\",\n  \"description\": \"Browse all of CATHAREi's handcrafted products: Arabic sweets, Baklava, Baklava, custom cakes, and premium savouries.\",\n  \"url\": \"https://www.catharei.com/menu.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  }\n}\n"
+        ],
+        "headings": [
+          "Privacy Policy",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/ramadan-eid.html",
+      "file": "ramadan-eid.html",
+      "public": true,
+      "access": "public",
+      "template": "campaign / editorial cards",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 20,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "8a4af8b0cfb3e6535617263a79dd2c676c8863139d304629b19cdcea978f93d9",
+      "protectedContent": {
+        "title": "<title>Ramadan Sweets &amp; Eid Gift Boxes Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Explore Arabic sweets for Ramadan gatherings and Eid gifts in Qatar. Contact CATHAREi about seasonal selections, gift boxes and order availability.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Ramadan Sweets &amp; Eid Gift Boxes Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Explore Arabic sweets for Ramadan gatherings and Eid gifts in Qatar. Contact CATHAREi about seasonal selections, gift boxes and order availability.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/ramadan-eid.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Ramadan Sweets &amp; Eid Gift Boxes Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Explore Arabic sweets for Ramadan gatherings and Eid gifts in Qatar. Contact CATHAREi about seasonal selections, gift boxes and order availability.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/ramadan-eid.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What are the best Ramadan desserts in Doha?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"CATHAREi offers Doha's finest Ramadan desserts: premium Iftar platters featuring fresh cheese Baklava, pistachio Baklava, Luqaimat with date syrup, Umm Ali, and assorted Arabic sweets. Order online or visit our Al Aziziya, Al Wakrah, or Al Kharaitiyat branches.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Do you offer Eid al-Fitr sweet boxes in Qatar?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes! CATHAREi offers beautifully packaged Eid al-Fitr sweet boxes and luxury gifting trays. Our Eid collections feature Maamoul with dates, assorted Baklava, Baklava boxes, and premium chocolate trays — perfect for Eid gifting in Qatar.\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Can I order Ramadan Iftar dessert platters for delivery in Doha?\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"Yes! CATHAREi delivers Ramadan Iftar dessert platters across Doha, Al Wakrah, and Umm Salal. Order via our website, Talabat, Snoonu, or Rafeeq. For large Iftar gathering orders, contact us at +974 5094 2255.\"\n      }\n    }\n  ]\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Service\",\n  \"name\": \"Ramadan & Eid Dessert Boxes — CATHAREi\",\n  \"description\": \"Premium Ramadan Iftar platters, Eid al-Fitr sweet gift boxes, and luxury Arabic sweets for the holy season. Delivered across Qatar.\",\n  \"provider\": {\n    \"@type\": \"Bakery\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\",\n    \"telephone\": \"+974-5094-2255\"\n  },\n  \"url\": \"https://www.catharei.com/ramadan-eid.html\",\n  \"serviceType\": [\n    \"Ramadan Gift Boxes\",\n    \"Eid Sweet Boxes\",\n    \"Iftar Dessert Platters\",\n    \"Ramadan Catering\"\n  ],\n  \"areaServed\": {\n    \"@type\": \"Country\",\n    \"name\": \"Qatar\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Catering & Occasions\",\n        \"item\": \"https://www.catharei.com/catering.html\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 3,\n        \"name\": \"Ramadan & Eid\",\n        \"item\": \"https://www.catharei.com/ramadan-eid.html\"\n      }\n    ]\n  }\n}\n"
+        ],
+        "headings": [
+          "Ramadan & Eid Gifting",
+          "Best Ramadan Desserts in Doha",
+          "Eid al-Fitr &amp; Eid Al-Adha Sweet Boxes Qatar",
+          "National Day Custom Cakes Doha",
+          "Order Your Ramadan or Eid Sweet Box",
+          "حلويات رمضان وعلب هدايا العيد في قطر",
+          "Occasions",
+          "Our Stores",
+          "Help",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/menu.html",
+          "tel:+97450942255",
+          "tel:+97450942255",
+          "/catering.html",
+          "/menu.html",
+          "/contact.html",
+          "/",
+          "/ramadan-eid.html",
+          "/catering.html",
+          "/corporate-gifting.html",
+          "/catering.html",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html",
+          "/faq.html",
+          "/contact.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/terms.html",
+      "file": "terms.html",
+      "public": true,
+      "access": "public",
+      "template": "editorial",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "9d32239e0335b28e4f2732c4bd774c23c7a68b2d334a8cc4b4832076de4d9b02",
+      "protectedContent": {
+        "title": "<title>Terms of Service | CATHAREI</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Read CATHAREI Bakery's terms of service regarding ordering policies, custom design changes, and delivery terms.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Terms of Service | CATHAREI\">",
+          "<meta property=\"og:description\" content=\"Read CATHAREI Bakery's terms of service regarding ordering policies, custom design changes, and delivery terms.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/terms.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Terms of Service | CATHAREI\">",
+          "<meta name=\"twitter:description\" content=\"Read CATHAREI Bakery's terms of service regarding ordering policies, custom design changes, and delivery terms.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/terms.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Full Menu — CATHAREi Arabic Sweets & Cakes\",\n  \"description\": \"Browse all of CATHAREi's handcrafted products: Arabic sweets, Baklava, Baklava, custom cakes, and premium savouries.\",\n  \"url\": \"https://www.catharei.com/menu.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  }\n}\n"
+        ],
+        "headings": [
+          "Terms of Service",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/thankyou.html",
+      "file": "thankyou.html",
+      "public": true,
+      "access": "public",
+      "template": "order status",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 2,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "062ed89f72ac1dc97c5dcefa3629253ecdec1862797cd32932952e36458f5b17",
+      "protectedContent": {
+        "title": "<title>CATHAREi — Thank You</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"robots\" content=\"noindex, follow\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"CATHAREi — Thank You\">",
+          "<meta property=\"og:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/thankyou.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"CATHAREi — Thank You\">",
+          "<meta name=\"twitter:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/thankyou.html\">",
+        "schema": [],
+        "headings": [
+          "Thank You!"
+        ],
+        "links": [
+          "/"
+        ],
+        "analytics": [
+          "<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-RYKLR11ZQT');\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/navigation/Arabic_sweets.html",
+      "file": "navigation/Arabic_sweets.html",
+      "public": true,
+      "access": "public",
+      "template": "category catalogue",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 43,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "e971bee2f6df4d4ca4a4e82d479c1a2da6192d6522e2d549b99eb7995009a55a",
+      "protectedContent": {
+        "title": "<title>Baklava &amp; Arabic Sweets in Doha, Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Order baklava, maamoul, basbousa, Luqaimat and other Arabic sweets in Doha, Qatar from CATHAREi. See current prices and visit our three branches.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Baklava &amp; Arabic Sweets in Doha, Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Order baklava, maamoul, basbousa, Luqaimat and other Arabic sweets in Doha, Qatar from CATHAREi. See current prices and visit our three branches.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/navigation/Arabic_sweets.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Baklava &amp; Arabic Sweets in Doha, Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Order baklava, maamoul, basbousa, Luqaimat and other Arabic sweets in Doha, Qatar from CATHAREi. See current prices and visit our three branches.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/navigation/Arabic_sweets.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Arabic Sweets\",\n  \"description\": \"Browse Catharei Bakery's full selection of handcrafted Arabic sweets: Baklava, Maamoul, Luqaimat, and more.\",\n  \"url\": \"https://www.catharei.com/navigation/Arabic_sweets.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Catharei Bakery & Sweets\",\n    \"url\": \"https://www.catharei.com\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Arabic Sweets\",\n        \"item\": \"https://www.catharei.com/navigation/Arabic_sweets.html\"\n      }\n    ]\n  }\n}\n"
+        ],
+        "headings": [
+          "Baklava &amp; Arabic Sweets in Doha, Qatar",
+          "Baklava and Arabic sweets in Doha",
+          "Choosing sweets for guests and gatherings",
+          "بقلاوة وحلويات عربية في الدوحة وقطر",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/admin.html",
+          "/",
+          "/menu.html",
+          "/navigation/cart.html",
+          "/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html",
+          "/menu.html",
+          "/contact.html",
+          "/menu.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/navigation/cakes.html",
+      "file": "navigation/cakes.html",
+      "public": true,
+      "access": "public",
+      "template": "category catalogue",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 31,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "da4cfd58265e3e71d030cd4a37847f870454bf389e959a842b313c04cebac9e8",
+      "protectedContent": {
+        "title": "<title>Cakes in Doha, Qatar | Order Celebration Cakes | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Order birthday and celebration cakes in Doha, Qatar from CATHAREi. Browse current flavours and prices, then order online or from our Salwa Road, Al Wakrah or Al Kharaitiyat branch.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Cakes in Doha, Qatar | Order Celebration Cakes | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Order birthday and celebration cakes in Doha, Qatar from CATHAREi. Browse current flavours and prices, then order online or from our Salwa Road, Al Wakrah or Al Kharaitiyat branch.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/navigation/cakes.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Cakes in Doha, Qatar | Order Celebration Cakes | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Order birthday and celebration cakes in Doha, Qatar from CATHAREi. Browse current flavours and prices, then order online or from our Salwa Road, Al Wakrah or Al Kharaitiyat branch.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/navigation/cakes.html\">",
+        "schema": [
+          "\n  {\n    \"@context\": \"https://schema.org\",\n    \"@type\": \"CollectionPage\",\n    \"name\": \"Cakes in Doha, Qatar\",\n    \"description\": \"Browse CATHAREi's cakes in Doha, Qatar, with current flavours and prices for birthdays and celebrations.\",\n    \"url\": \"https://www.catharei.com/navigation/cakes.html\",\n    \"publisher\": {\n      \"@type\": \"Organization\",\n      \"name\": \"CATHAREi\",\n      \"url\": \"https://www.catharei.com\"\n    },\n    \"breadcrumb\": {\n      \"@type\": \"BreadcrumbList\",\n      \"itemListElement\": [\n        {\"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"https://www.catharei.com/\"},\n        {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"Cakes\", \"item\": \"https://www.catharei.com/navigation/cakes.html\"}\n      ]\n    }\n  }\n  "
+        ],
+        "headings": [
+          "Cakes in Doha, Qatar",
+          "Order a cake in Doha",
+          "Choosing a cake for your celebration",
+          "كيك في الدوحة وقطر",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/admin.html",
+          "/",
+          "/menu.html",
+          "/navigation/cart.html",
+          "/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html",
+          "/delivery.html",
+          "/catering.html",
+          "/corporate-gifting.html",
+          "/menu.html",
+          "/contact.html",
+          "/menu.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/navigation/cart.html",
+      "file": "navigation/cart.html",
+      "public": true,
+      "access": "public",
+      "template": "cart",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 46,
+        "hasExplicitArabic": false
+      },
+      "protectedHash": "05145a2a875829035ca975878f52f3a12114d9a6e8e3ab5ab9fc05a32e6e9b34",
+      "protectedContent": {
+        "title": "<title>Your Cart — CATHAREi Premium Sweets</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"robots\" content=\"noindex, follow\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Your Cart — CATHAREi Premium Sweets\">",
+          "<meta property=\"og:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/navigation/cart.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Your Cart — CATHAREi Premium Sweets\">",
+          "<meta name=\"twitter:description\" content=\"Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/navigation/cart.html\">",
+        "schema": [],
+        "headings": [
+          "Shopping Cart",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/navigation/oriental_sweets.html",
+      "file": "navigation/oriental_sweets.html",
+      "public": true,
+      "access": "public",
+      "template": "category catalogue",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 36,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "c4406b97bd86ed2ccc1aedde6c1be6bd71912697ef73c83c611f0fefccd4d532",
+      "protectedContent": {
+        "title": "<title>Oriental Sweets &amp; Desserts in Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Discover oriental sweets and traditional desserts at CATHAREi in Qatar. Browse the menu for gatherings and celebrations in Doha and beyond.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Oriental Sweets &amp; Desserts in Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Discover oriental sweets and traditional desserts at CATHAREi in Qatar. Browse the menu for gatherings and celebrations in Doha and beyond.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/navigation/oriental_sweets.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Oriental Sweets &amp; Desserts in Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Discover oriental sweets and traditional desserts at CATHAREi in Qatar. Browse the menu for gatherings and celebrations in Doha and beyond.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/navigation/oriental_sweets.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Oriental Sweets\",\n  \"description\": \"Explore CATHAREi's handcrafted Oriental desserts: Basbousa, Umm Ali, Halawet el Jibn, and more Middle Eastern classics.\",\n  \"url\": \"https://www.catharei.com/navigation/oriental_sweets.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Oriental Sweets\",\n        \"item\": \"https://www.catharei.com/navigation/oriental_sweets.html\"\n      }\n    ]\n  }\n}\n"
+        ],
+        "headings": [
+          "ORIENTAL SWEETS",
+          "حلويات شرقية في قطر",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/admin.html",
+          "/",
+          "/menu.html",
+          "/navigation/cart.html",
+          "/menu.html",
+          "/contact.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/navigation/savories.html",
+      "file": "navigation/savories.html",
+      "public": true,
+      "access": "public",
+      "template": "category catalogue",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 44,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "ed438e92a05e983cd59660837474b5f1a92aee46198b47d11217e402216d610b",
+      "protectedContent": {
+        "title": "<title>Savouries &amp; Pastries in Doha, Qatar | CATHAREi</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Browse savouries and pastries at CATHAREi in Qatar. Find options for sharing, family gatherings and events, and ask your branch about availability.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"Savouries &amp; Pastries in Doha, Qatar | CATHAREi\">",
+          "<meta property=\"og:description\" content=\"Browse savouries and pastries at CATHAREi in Qatar. Find options for sharing, family gatherings and events, and ask your branch about availability.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/navigation/savories.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"Savouries &amp; Pastries in Doha, Qatar | CATHAREi\">",
+          "<meta name=\"twitter:description\" content=\"Browse savouries and pastries at CATHAREi in Qatar. Find options for sharing, family gatherings and events, and ask your branch about availability.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/navigation/savories.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"Savouries\",\n  \"description\": \"Order freshly baked savouries from CATHAREi: Fatayer, Manakish, Ka'ak bread, and premium Middle Eastern pastries.\",\n  \"url\": \"https://www.catharei.com/navigation/savories.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  },\n  \"breadcrumb\": {\n    \"@type\": \"BreadcrumbList\",\n    \"itemListElement\": [\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 1,\n        \"name\": \"Home\",\n        \"item\": \"https://www.catharei.com/\"\n      },\n      {\n        \"@type\": \"ListItem\",\n        \"position\": 2,\n        \"name\": \"Savouries\",\n        \"item\": \"https://www.catharei.com/navigation/savories.html\"\n      }\n    ]\n  }\n}\n"
+        ],
+        "headings": [
+          "SAVORIES",
+          "معجنات وموالح في قطر",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/admin.html",
+          "/",
+          "/menu.html",
+          "/navigation/cart.html",
+          "/menu.html",
+          "/contact.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/menu.html",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/locations/al-aziziya.html",
+      "file": "locations/al-aziziya.html",
+      "public": true,
+      "access": "public",
+      "template": "branch",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "880871dac13bda2ce3b88c807a7c043fe9fe5e0641a6a98d34b24f4a03bb33b9",
+      "protectedContent": {
+        "title": "<title>CATHAREi Salwa Road, Doha | Bakery &amp; Sweets in Qatar</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Visit CATHAREi in Salwa Road, Doha for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"CATHAREi Salwa Road, Doha | Bakery &amp; Sweets in Qatar\">",
+          "<meta property=\"og:description\" content=\"Visit CATHAREi in Salwa Road, Doha for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/locations/al-aziziya.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"CATHAREi Salwa Road, Doha | Bakery &amp; Sweets in Qatar\">",
+          "<meta name=\"twitter:description\" content=\"Visit CATHAREi in Salwa Road, Doha for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/locations/al-aziziya.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Bakery\",\n  \"@id\": \"https://www.catharei.com/locations/al-aziziya.html#branch\",\n  \"name\": \"CATHAREi Bakery & Sweets — Salwa Road (Doha)\",\n  \"alternateName\": \"كاثاري - طريق سلوى، الدوحة\",\n  \"description\": \"CATHAREi bakery and sweets in Qatar. Fresh Luqaimat is available year-round at this branch. See the current menu for products and prices.\",\n  \"image\": \"https://www.catharei.com/images/background/hero_spread.webp\",\n  \"url\": \"https://www.catharei.com/locations/al-aziziya.html\",\n  \"telephone\": \"+97450942255\",\n  \"servesCuisine\": [\n    \"Arabic Sweets\",\n    \"Custom Cakes\",\n    \"Baklava\",\n    \"Maamoul\"\n  ],\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"Building 384, Street 340, Salwa Road, Al Waab / Al Aziziya, Doha\",\n    \"addressLocality\": \"Doha\",\n    \"addressRegion\": \"Ad Dawhah\",\n    \"addressCountry\": \"QA\"\n  },\n  \"geo\": {\n    \"@type\": \"GeoCoordinates\",\n    \"latitude\": 25.2425559,\n    \"longitude\": 51.4594252\n  },\n  \"hasMap\": \"https://maps.app.goo.gl/JrVdhNaCqzmBcGeZ8\",\n  \"parentOrganization\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  }\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"Home\",\n      \"item\": \"https://www.catharei.com/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"Our Branches\",\n      \"item\": \"https://www.catharei.com/locations/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 3,\n      \"name\": \"Salwa Road Branch\",\n      \"item\": \"https://www.catharei.com/locations/al-aziziya.html\"\n    }\n  ]\n}\n"
+        ],
+        "headings": [
+          "CATHAREi Bakery - Al Aziziya (Salwa Road)",
+          "Visit Our Al Aziziya (Salwa Road) Branch",
+          "Visit this branch",
+          "زوروا فرعنا في طريق سلوى",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://maps.app.goo.gl/JrVdhNaCqzmBcGeZ8",
+          "/menu.html",
+          "https://maps.app.goo.gl/JrVdhNaCqzmBcGeZ8",
+          "/menu.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/locations/al-kharaitiyat.html",
+      "file": "locations/al-kharaitiyat.html",
+      "public": true,
+      "access": "public",
+      "template": "branch",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "084f15c9492e05fe74dbf9b1fff4f4fef79a3f2edd007c5e7204ada60160cd23",
+      "protectedContent": {
+        "title": "<title>CATHAREi Al Kharaitiyat | Bakery &amp; Sweets in Qatar</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Visit CATHAREi in Al Kharaitiyat for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"CATHAREi Al Kharaitiyat | Bakery &amp; Sweets in Qatar\">",
+          "<meta property=\"og:description\" content=\"Visit CATHAREi in Al Kharaitiyat for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/locations/al-kharaitiyat.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"CATHAREi Al Kharaitiyat | Bakery &amp; Sweets in Qatar\">",
+          "<meta name=\"twitter:description\" content=\"Visit CATHAREi in Al Kharaitiyat for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/locations/al-kharaitiyat.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Bakery\",\n  \"@id\": \"https://www.catharei.com/locations/al-kharaitiyat.html#branch\",\n  \"name\": \"CATHAREi Bakery & Sweets — Al Kharaitiyat (Umm Salal Mohammed)\",\n  \"alternateName\": \"كاثاري - الخريطيات، أم صلال محمد\",\n  \"description\": \"CATHAREi bakery and sweets in Qatar. Fresh Luqaimat is available year-round at this branch. See the current menu for products and prices.\",\n  \"image\": \"https://www.catharei.com/images/background/hero_spread.webp\",\n  \"url\": \"https://www.catharei.com/locations/al-kharaitiyat.html\",\n  \"telephone\": \"+97455392255\",\n  \"servesCuisine\": [\n    \"Arabic Sweets\",\n    \"Custom Cakes\",\n    \"Baklava\",\n    \"Maamoul\"\n  ],\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"Al Kharaitiyat\",\n    \"addressLocality\": \"Al Kharaitiyat\",\n    \"addressRegion\": \"Umm Salal Mohammed\",\n    \"addressCountry\": \"QA\"\n  },\n  \"geo\": {\n    \"@type\": \"GeoCoordinates\",\n    \"latitude\": 25.397421,\n    \"longitude\": 51.425266\n  },\n  \"parentOrganization\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  },\n  \"hasMap\": \"https://maps.app.goo.gl/Ecc9mMtrrMRQBNmL8\"\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"Home\",\n      \"item\": \"https://www.catharei.com/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"Our Branches\",\n      \"item\": \"https://www.catharei.com/locations/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 3,\n      \"name\": \"Al Kharaitiyat Branch\",\n      \"item\": \"https://www.catharei.com/locations/al-kharaitiyat.html\"\n    }\n  ]\n}\n"
+        ],
+        "headings": [
+          "CATHAREi Bakery - Al Kharaitiyat",
+          "Visit Our Al Kharaitiyat Branch",
+          "Visit this branch",
+          "زوروا فرعنا في الخريطيات",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://share.google/otBX5VPPoHUPctZgy",
+          "/menu.html",
+          "https://maps.app.goo.gl/Ecc9mMtrrMRQBNmL8",
+          "/menu.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    },
+    {
+      "route": "/locations/al-wakrah.html",
+      "file": "locations/al-wakrah.html",
+      "public": true,
+      "access": "public",
+      "template": "branch",
+      "language": {
+        "initial": "en",
+        "sharedScript": true,
+        "translationAttributes": 40,
+        "hasExplicitArabic": true
+      },
+      "protectedHash": "a6c2b2ec58ade90eaa705b83e502b002a6a47c6d766ede54e7ff0dcfa622c7f5",
+      "protectedContent": {
+        "title": "<title>CATHAREi Al Wakrah | Bakery &amp; Sweets in Qatar</title>",
+        "meta": [
+          "<meta charset=\"UTF-8\">",
+          "<meta name=\"description\" content=\"Visit CATHAREi in Al Wakrah for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+          "<meta property=\"og:type\" content=\"website\">",
+          "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+          "<meta property=\"og:title\" content=\"CATHAREi Al Wakrah | Bakery &amp; Sweets in Qatar\">",
+          "<meta property=\"og:description\" content=\"Visit CATHAREi in Al Wakrah for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta property=\"og:url\" content=\"https://www.catharei.com/locations/al-wakrah.html\">",
+          "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+          "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+          "<meta name=\"twitter:title\" content=\"CATHAREi Al Wakrah | Bakery &amp; Sweets in Qatar\">",
+          "<meta name=\"twitter:description\" content=\"Visit CATHAREi in Al Wakrah for bakery products, cakes and fresh Luqaimat. Browse the current menu and find branch directions and contact details.\">",
+          "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+        ],
+        "canonical": "<link rel=\"canonical\" href=\"https://www.catharei.com/locations/al-wakrah.html\">",
+        "schema": [
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Bakery\",\n  \"@id\": \"https://www.catharei.com/locations/al-wakrah.html#branch\",\n  \"name\": \"CATHAREi Bakery & Sweets — Al Wakrah\",\n  \"alternateName\": \"كاثاري - الوكرة\",\n  \"description\": \"CATHAREi bakery and sweets in Qatar. Fresh Luqaimat is available year-round at this branch. See the current menu for products and prices.\",\n  \"image\": \"https://www.catharei.com/images/background/hero_spread.webp\",\n  \"url\": \"https://www.catharei.com/locations/al-wakrah.html\",\n  \"telephone\": \"+97440075555\",\n  \"servesCuisine\": [\n    \"Arabic Sweets\",\n    \"Custom Cakes\",\n    \"Baklava\",\n    \"Maamoul\"\n  ],\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"streetAddress\": \"720, Al Wakrah\",\n    \"addressLocality\": \"Al Wakrah\",\n    \"addressRegion\": \"Al Wakrah\",\n    \"addressCountry\": \"QA\"\n  },\n  \"geo\": {\n    \"@type\": \"GeoCoordinates\",\n    \"latitude\": 25.1639112,\n    \"longitude\": 51.5974203\n  },\n  \"hasMap\": \"https://maps.app.goo.gl/ahWNVCNotAK1U8L78\",\n  \"parentOrganization\": {\n    \"@type\": \"Organization\",\n    \"name\": \"CATHAREi\",\n    \"url\": \"https://www.catharei.com\"\n  }\n}\n",
+          "\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"Home\",\n      \"item\": \"https://www.catharei.com/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"Our Branches\",\n      \"item\": \"https://www.catharei.com/locations/\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 3,\n      \"name\": \"Al Wakrah Branch\",\n      \"item\": \"https://www.catharei.com/locations/al-wakrah.html\"\n    }\n  ]\n}\n"
+        ],
+        "headings": [
+          "CATHAREi Bakery - Al Wakrah",
+          "Visit Our Al Wakrah Branch",
+          "Visit this branch",
+          "زوروا فرعنا في الوكرة",
+          "Links",
+          "Help",
+          "Follow Us",
+          "Our Stores",
+          "Login to your account",
+          "Select Size"
+        ],
+        "links": [
+          "/",
+          "/menu.html",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/oriental_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://maps.app.goo.gl/ahWNVCNotAK1U8L78",
+          "/menu.html",
+          "https://maps.app.goo.gl/ahWNVCNotAK1U8L78",
+          "/menu.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/",
+          "/navigation/savories.html",
+          "/navigation/Arabic_sweets.html",
+          "/navigation/cakes.html",
+          "/about.html",
+          "/catering.html",
+          "/blog",
+          "/contact.html",
+          "/faq.html",
+          "/privacy.html",
+          "/terms.html",
+          "https://www.instagram.com/catharei_bakery_sweets/",
+          "/locations/al-aziziya.html",
+          "/locations/al-wakrah.html",
+          "/locations/al-kharaitiyat.html"
+        ],
+        "analytics": [
+          "<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-RYKLR11ZQT');\r\n</script>",
+          "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','GTM-NQ5NWZC4');</script>"
+        ]
+      }
+    }
+  ],
+  "dynamicRoutes": [
+    {
+      "route": "/blog/history-of-luqaimat",
+      "template": "blog article",
+      "source": "posts.json + server.js",
+      "language": "shared navigation and RTL; article prose English only"
+    },
+    {
+      "route": "/blog/best-arabic-sweets-gifting",
+      "template": "blog article",
+      "source": "posts.json + server.js",
+      "language": "shared navigation and RTL; article prose English only"
+    },
+    {
+      "route": "/luqaimat-qatar.html",
+      "template": "Luqaimat catalogue",
+      "source": "templates/luqaimat-main.html + navigation/cakes.html + catalogue-seo.js",
+      "availableProducts": 0,
+      "indexed": false
+    },
+    {
+      "route": "/menu/cake-crunchy-choclate-17",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 17,
+      "category": "cakes",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "3fbd1891e62a51f8b9b20e0c664819171ed748280b9b1fb5f3218c5d07c1fa29"
+    },
+    {
+      "route": "/menu/mini-sandwich-20",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 20,
+      "category": "savories",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "ad3eb175307c1bbca8b65dcfc60cd916cb75a2f08958739d4292a8cebc374dd4"
+    },
+    {
+      "route": "/menu/variant-test-cake-36",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 36,
+      "category": "cakes",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "ecba5ae56a9e5c1bd4e4ed99962b016f933e6310fcd90d79d1c21a7bbff49389"
+    },
+    {
+      "route": "/menu/variant-test-cake-37",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 37,
+      "category": "cakes",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "8f5ea60ecb52713ac2e2acdd6b513ceff795891f6a002e91dd47580564b99834"
+    },
+    {
+      "route": "/menu/hot-cheese-kunafa-38",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 38,
+      "category": "arabic_sweets",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "278aba015e172834ceae1e9c16a50efef6c89281c1b23d8150fbfdab689e0edf"
+    },
+    {
+      "route": "/menu/pistachio-baklava-1kg-box-39",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 39,
+      "category": "arabic_sweets",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "9ca9ef25855852e9ac66a594d05555a77af1e9be3bffbb2bbe716d6f903357a8"
+    },
+    {
+      "route": "/menu/date-maamoul-12-pcs-40",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 40,
+      "category": "arabic_sweets",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "660432a5e6bd1ac0d0977c834c6c68b10b0573805be02d648bc8e464eaedd9a1"
+    },
+    {
+      "route": "/menu/basbousa-slice-41",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 41,
+      "category": "arabic_sweets",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "4fe0d8eef3dddfdd2e2be0678311e95b71c020eb7994c715e3b3122510287aee"
+    },
+    {
+      "route": "/menu/zaatar-manakeesh-42",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 42,
+      "category": "savories",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "ac87b76b06ce35be1ab4256b1f25331221799e2e6385f7f98659a9d449903800"
+    },
+    {
+      "route": "/menu/spinach-fatayer-dozen-43",
+      "template": "product detail",
+      "source": "catalogue-seo.js + navigation/cakes.html",
+      "productId": 43,
+      "category": "savories",
+      "hasArabicName": false,
+      "hasArabicDescription": false,
+      "productContentHash": "e42d5a9c46ee1ae6fe83decdb5ad60e9294d06846212637d4a9b76545712c1a9"
+    }
+  ],
+  "redirects": [
+    [
+      "/index.html",
+      "/"
+    ],
+    [
+      "/blog.html",
+      "/blog"
+    ],
+    [
+      "/blog/history-of-luqaimat.html",
+      "/blog/history-of-luqaimat"
+    ],
+    [
+      "/blog/best-arabic-sweets-gifting.html",
+      "/blog/best-arabic-sweets-gifting"
+    ],
+    [
+      "/navigation/customized_cakes.html",
+      "/navigation/cakes.html"
+    ],
+    [
+      "/navigation/special.html",
+      "/menu.html"
+    ]
+  ],
+  "errorStates": [
+    {
+      "route": "/blog/missing-article",
+      "status": 404,
+      "behavior": "bare Post not found h1; no site shell or viewport"
+    },
+    {
+      "route": "/menu/missing-999999999",
+      "status": 404,
+      "behavior": "Express final 404; no branded error template"
+    },
+    {
+      "route": "/not-a-real-route",
+      "status": 404,
+      "behavior": "Express final 404; no branded error template"
+    },
+    {
+      "route": "/admin.html",
+      "status": 302,
+      "behavior": "anonymous visitors redirect to /login.html?redirect=admin"
+    },
+    {
+      "route": "database read failure",
+      "status": 503,
+      "behavior": "catalogue, product and sitemap preserve Retry-After and noindex as defined"
+    }
+  ],
+  "dataEndpoints": [
+    "/api/products",
+    "/api/showcase",
+    "/api/auth/me",
+    "/api/orders/me",
+    "/api/orders/:id/status"
+  ],
+  "protectedFiles": {
+    "robots.txt": "581309abbc7fae6273bdbd88fce192413add574e81a55ea30cb9b144c765f749",
+    "sitemap.xml": "67bde4361036399459b0df118ae17d0a1e5c3397767ac37adcf8589f7edca761",
+    "posts.json": "d21449541db69ce52862611b041ac5e19f7ea8e3c67994061918fc86dc496b14",
+    "seo.js": "95e1e90ad9578dae02fd47639b79a8ab33170aecc88f71af7052011e55debb02",
+    "catalogue-seo.js": "810dc0e340bf9a17181c18c650970b9e15bbee0419f7d2ea064fa883fc7fbedf"
+  }
+}

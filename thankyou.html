@@ -29,7 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --bg: #0b0b0b; --bg2: #131313; --bg3: #1c1c1c; --border: #252525;
-      --accent: #D4AF37; --accent2: #C5A028; --text: #f0ede8; --muted: #888;
+      --accent: #D4AF37; --accent2: #C5A028; --text: #f0ede8; --muted: #888; --red: #f87171;
       --font: 'Outfit', sans-serif; --serif: 'Playfair Display', serif;
     }
     body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -66,6 +66,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* Floating particles for flair */
     .particle { position: absolute; background: var(--accent); border-radius: 50%; pointer-events: none; opacity: 0.4; }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    @media (max-width: 768px), (max-height: 650px) {
+      body { overflow-y: auto; min-height: 100svh; padding-block: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-bottom)); }
+      .thankview { padding: 32px 24px; }
+      .order-card .number { overflow-wrap: anywhere; }
+      .btn { min-height: 48px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
   </style>
   <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
   <link rel="canonical" href="https://www.catharei.com/thankyou.html">
@@ -104,9 +114,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <script src="/script.js"></script>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const orderNum = urlParams.get('num');
-    const status = urlParams.get('status');
+    const statusParams = new URLSearchParams(window.location.search);
+    const orderNum = statusParams.get('num');
+    const status = statusParams.get('status');
 
     if (orderNum) {
       document.getElementById('ord-num').textContent = '#' + orderNum;

@@ -1,0 +1,683 @@
+{
+  "route": "/",
+  "lang": "en",
+  "status": 200,
+  "width": 390,
+  "height": 844,
+  "version": "4.14.0",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.3pt (13.76px)",
+                "fontWeight": "bold",
+                "messageKey": "bgImage",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<header class=\"site-header\">",
+                  "target": [
+                    "header"
+                  ]
+                },
+                {
+                  "html": "<div class=\"hero-spread-bg\" aria-hidden=\"true\"></div>",
+                  "target": [
+                    ".hero-spread-bg"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background image"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"brand-name-big\" style=\"font-weight:700; font-size:1.15rem; letter-spacing:1px;\" data-i18n=\"brand.name\">CATHAREi</span>",
+          "target": [
+            "a[aria-label=\"CATHAREi home\"] > .brand-name-container > .brand-name-big[data-i18n=\"brand.name\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background image"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"hero-banner\" aria-labelledby=\"hero-title\">",
+                  "target": [
+                    ".hero-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow hero-eyebrow\" data-i18n=\"home.heroEyebrow\">Doha · Al Wakrah · Al Kharaitiyat</p>",
+          "target": [
+            ".hero-eyebrow"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "36.6pt (48.75px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"hero-banner\" aria-labelledby=\"hero-title\">",
+                  "target": [
+                    ".hero-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"home.heroLineOne\">Sweets, shaped</span>",
+          "target": [
+            "span[data-i18n=\"home.heroLineOne\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "36.6pt (48.75px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"hero-banner\" aria-labelledby=\"hero-title\">",
+                  "target": [
+                    ".hero-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<em data-i18n=\"home.heroLineTwo\">into celebration.</em>",
+          "target": [
+            "em[data-i18n=\"home.heroLineTwo\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"hero-banner\" aria-labelledby=\"hero-title\">",
+                  "target": [
+                    ".hero-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"hero-subtitle\" data-i18n=\"home.heroLead\">Traditional Arabic sweets, contemporary cakes and generous gifting—handcrafted in Qatar for the moments worth remembering.</p>",
+          "target": [
+            ".hero-subtitle"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "9.1pt (12.16px)",
+                "fontWeight": "bold",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"hero-banner\" aria-labelledby=\"hero-title\">",
+                  "target": [
+                    ".hero-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"home.exploreMenu\">Explore the menu</span>",
+          "target": [
+            "span[data-i18n=\"home.exploreMenu\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "9.4pt (12.48px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<section class=\"hero-banner\" aria-labelledby=\"hero-title\">",
+                  "target": [
+                    ".hero-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"home.visitBoutique\">Visit a boutique</span>",
+          "target": [
+            "span[data-i18n=\"home.visitBoutique\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span aria-hidden=\"true\">→</span>",
+          "target": [
+            ".btn-text > span[aria-hidden=\"true\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<span class=\"showcase-badge badge-trending\">Trending Now</span>",
+                  "target": [
+                    ".showcase-badge"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"showcase-badge badge-trending\">Trending Now</span>",
+          "target": [
+            ".showcase-badge"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.6pt (14.08px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<span class=\"showcase-price-tag\">QR 65.00</span>",
+                  "target": [
+                    ".showcase-price-tag"
+                  ]
+                },
+                {
+                  "html": "<video class=\"showcase-video\" src=\"/images/showcase/showcase-1786776829203-868207384.mp4\" preload=\"metadata\" poster=\"/images/products/1775115029250-903191392.webp\" muted=\"\" playsinline=\"\" loop=\"\" aria-label=\"Signature Hot Cheese Baklava\">",
+                  "target": [
+                    "video"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"showcase-price-tag\">QR 65.00</span>",
+          "target": [
+            ".showcase-price-tag"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"navigation/Arabic_sweets.html\" class=\"btn-solid-gold showcase-cta-btn\">\n                <span>Order Hot Baklava</span> →\n              </a>",
+          "target": [
+            ".showcase-cta-btn"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>∞</strong>",
+          "target": [
+            ".trust-stat:nth-child(4) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "11.0pt (14.72px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"category-circle-item\" data-category=\"savories\" onclick=\"window.location.href='navigation/savories.html'\">",
+                  "target": [
+                    "div[data-category=\"savories\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"cat.savories\" style=\"font-weight: 600;\">Savouries</span>",
+          "target": [
+            "span[data-i18n=\"cat.savories\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "11.0pt (14.72px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"category-circle-item\" data-category=\"arabic_sweets\" onclick=\"window.location.href='navigation/Arabic_sweets.html'\">",
+                  "target": [
+                    "div[data-category=\"arabic_sweets\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"cat.arabic\" style=\"font-weight: 600;\">Arabic Sweets</span>",
+          "target": [
+            "span[data-i18n=\"cat.arabic\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "11.0pt (14.72px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"category-circle-item\" data-category=\"oriental_sweets\" onclick=\"window.location.href='navigation/oriental_sweets.html'\">",
+                  "target": [
+                    "div[data-category=\"oriental_sweets\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"cat.oriental\" style=\"font-weight: 600;\">Oriental Sweets</span>",
+          "target": [
+            "span[data-i18n=\"cat.oriental\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "11.0pt (14.72px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"category-circle-item\" data-category=\"cakes\" onclick=\"window.location.href='navigation/cakes.html'\">",
+                  "target": [
+                    "div[data-category=\"cakes\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"cat.cakesPlain\" style=\"font-weight: 600;\">Cakes</span>",
+          "target": [
+            "span[data-i18n=\"cat.cakesPlain\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"custom-cakes-banner container\">",
+                  "target": [
+                    ".custom-cakes-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p class=\"eyebrow\" data-i18n=\"home.customEyebrow\">Made around your moment</p>",
+          "target": [
+            "p[data-i18n=\"home.customEyebrow\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "29.3pt (39px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"custom-cakes-banner container\">",
+                  "target": [
+                    ".custom-cakes-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 data-i18n=\"home.customTitle\">A cake that belongs only to your celebration.</h2>",
+          "target": [
+            "h2[data-i18n=\"home.customTitle\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"custom-cakes-banner container\">",
+                  "target": [
+                    ".custom-cakes-banner"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<p data-i18n=\"home.customText\">Plan dessert catering with CATHAREi for weddings, family gatherings and business events. Contact us to discuss sweets, gift boxes, quantities and collection or delivery arrangements.</p>",
+          "target": [
+            "p[data-i18n=\"home.customText\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "7.8pt (10.4px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"custom-visual\">",
+                  "target": [
+                    ".custom-visual"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"custom-caption\" data-i18n=\"home.customCaption\">Designed in Qatar · Finished by hand</span>",
+          "target": [
+            ".custom-caption"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        }
+      ]
+    },
+    {
+      "id": "video-caption",
+      "impact": "critical",
+      "tags": [
+        "cat.text-alternatives",
+        "wcag2a",
+        "wcag122",
+        "section508",
+        "section508.22.a",
+        "TTv5",
+        "TT17.a",
+        "EN-301-549",
+        "EN-9.1.2.2",
+        "RGAAv4",
+        "RGAA-4.3.1"
+      ],
+      "description": "Ensure <video> elements have captions",
+      "help": "<video> elements must have captions",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/video-caption?application=axeAPI",
+      "nodes": [
+        {
+          "any": [],
+          "all": [],
+          "none": [
+            {
+              "id": "caption",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Check that captions are available for the element"
+            }
+          ],
+          "impact": "critical",
+          "html": "<video class=\"showcase-video\" src=\"/images/showcase/showcase-1786776829203-868207384.mp4\" preload=\"metadata\" poster=\"/images/products/1775115029250-903191392.webp\" muted=\"\" playsinline=\"\" loop=\"\" aria-label=\"Signature Hot Cheese Baklava\">",
+          "target": [
+            "video"
+          ],
+          "failureSummary": "Fix all of the following:\n  Check that captions are available for the element"
+        }
+      ]
+    }
+  ],
+  "passes": 24,
+  "inapplicable": 39
+}

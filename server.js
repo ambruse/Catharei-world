@@ -1,6 +1,7 @@
 const express = require('express');
 const { escapeHtml, postMetadata } = require('./seo');
 const { registerCatalogueSeo } = require('./catalogue-seo');
+const { normalizeDelivery } = require('./delivery-location');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
@@ -219,9 +220,20 @@ const publicFiles = new Set([
   'thankyou.html', 'menu.html', 'catering.html', 'contact.html', 'faq.html',
   'privacy.html', 'terms.html', 'delivery.html', 'corporate-gifting.html',
   'ramadan-eid.html', 'script.js', 'menu.js', 'styles.css', 'homepage.css', 'menu.css', 'toasts.css', 'robots.txt',
-  'sitemap.xml', 'llms.txt', 'icons.css'
+  'sitemap.xml', 'llms.txt', 'icons.css', 'location-picker.js', 'location-picker.css'
 ]);
 const publicStatic = express.static(__dirname);
+// Free provider, replaceable with an operator-controlled style (including self hosting).
+app.get('/api/maps/config', (req, res) => {
+  res.set('Cache-Control', 'public, max-age=300');
+  res.json({ styleUrl: process.env.FREE_MAP_STYLE_URL || 'https://tiles.openfreemap.org/styles/liberty', version: require('maplibre-gl/package.json').version });
+});
+// Expose only MapLibre's browser distribution, not node_modules or server source.
+app.get('/vendor/maplibre/:file', (req, res, next) => {
+  if (!['maplibre-gl.mjs', 'maplibre-gl-shared.mjs', 'maplibre-gl-worker.mjs', 'maplibre-gl.css'].includes(req.params.file)) return next();
+  res.sendFile(path.join(__dirname, 'node_modules/maplibre-gl/dist', req.params.file), { maxAge: '1d' });
+});
+app.get('/data/qatar-areas.json', (req, res) => res.sendFile(path.join(__dirname, 'data/qatar-areas.json'), { maxAge: '1d' }));
 // Read-only SEO rendering uses the same active records as the menu API.
 registerCatalogueSeo(app, () => db, __dirname);
 app.use((req, res, next) => {
@@ -361,6 +373,7 @@ function initializeDatabase() {
         // Migrations for existing orders table
         addColumn('orders', 'order_number', 'TEXT UNIQUE');
         addColumn('orders', 'status', "TEXT DEFAULT 'pending'");
+        addColumn('orders', 'delivery_details', 'TEXT');
       }
     });
 
@@ -772,7 +785,11 @@ function generateOrderNumber() {
 }
 
 app.post('/api/orders', (req, res) => {
-  const { items, total, name, email, phone, address, lat, lng, paymentMethod } = req.body;
+  const { items, total, name, email, phone, paymentMethod } = req.body;
+  let delivery;
+  try { delivery = normalizeDelivery(req.body); }
+  catch (error) { return res.status(400).json({ error: error.message }); }
+  const { address, lat, lng } = delivery;
   const userId = req.session.user ? req.session.user.id : null;
   const orderNumber = generateOrderNumber();
 
@@ -780,9 +797,9 @@ app.post('/api/orders', (req, res) => {
     return res.status(400).json({ error: 'Missing required order details.' });
   }
 
-  const query = `INSERT INTO orders (order_number, user_id, items, total, customer_name, customer_email, customer_phone, address, lat, lng, payment_method) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-  const params = [orderNumber, userId, JSON.stringify(items), total, name, email, phone, address, lat, lng, paymentMethod];
+  const query = `INSERT INTO orders (order_number, user_id, items, total, customer_name, customer_email, customer_phone, address, lat, lng, payment_method, delivery_details) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  const params = [orderNumber, userId, JSON.stringify(items), total, name, email, phone, address, lat, lng, paymentMethod, JSON.stringify(delivery.details)];
 
   db.run(query, params, function(err) {
     if (err) {

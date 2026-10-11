@@ -129,6 +129,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       min-width: 150px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
+    :is(a, button, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .sidebar-nav button.nav-item { width: 100%; font: inherit; background: transparent; border: 1px solid transparent; text-align: start; }
+    .sidebar-nav button.nav-item.active { background: var(--bg3); color: var(--accent); border-color: var(--border); }
+    .has-dropdown.open .dropdown-menu { display: block !important; }
+    @media (max-width: 768px) {
+      .account-header { flex-direction: column; align-items: stretch; gap: 16px; padding: 20px 16px; }
+      .brand-link { align-self: flex-start; }
+      .header-right { justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+      .header-right > .has-dropdown { margin: 0 !important; padding: 0; }
+      .header-right .nav-link, .header-right button { min-height: 44px; display: inline-flex; align-items: center; }
+      .logout-btn { padding-inline: 12px; }
+      .container { width: calc(100% - 32px); margin-block: 24px; gap: 24px; }
+      .sidebar { min-width: 0; }
+      .sidebar-nav { gap: 8px; overscroll-behavior-inline: contain; }
+      .sidebar-nav > li { flex-shrink: 0; }
+      .panel { padding: 24px 18px; margin-bottom: 24px; overflow-wrap: anywhere; }
+      .welcome-title { font-size: clamp(1.75rem, 8vw, 2.2rem); }
+      .field label { font-size: .875rem; }
+      .field input { font-size: 16px; min-height: 48px; scroll-margin-block: 24px; }
+      .submit-btn { min-height: 48px; width: 100%; }
+      .order-card { padding: 16px; }
+      .order-header { flex-wrap: wrap; gap: 12px; }
+      .order-item, .order-footer { gap: 12px; }
+      .order-item > :first-child { min-width: 0; overflow-wrap: anywhere; }
+      .order-item > :last-child { flex-shrink: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+    @media (pointer: coarse), (max-width: 900px) and (max-height: 500px) {
+      .field input { font-size: 16px; min-height: 48px; }
+    }
   </style>
   <meta name="description" content="Discover luxury Arabic sweets, traditional pastries, and custom celebration cakes at CATHAREI. Visit our boutiques on Salwa Road, Al Wakrah &amp; Al Kharaitiyat.">
   <link rel="canonical" href="https://www.catharei.com/account.html">
@@ -174,18 +206,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <aside class="sidebar">
       <ul class="sidebar-nav">
-        <li class="nav-item active" onclick="showPanel('dashboard', this)">
+        <li><button type="button" class="nav-item active" aria-pressed="true" aria-controls="dashboard" onclick="showPanel('dashboard', this)">
           <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
           Dashboard
-        </li>
-        <li class="nav-item" onclick="showPanel('details', this)">
+        </button></li>
+        <li><button type="button" class="nav-item" aria-pressed="false" aria-controls="details" onclick="showPanel('details', this)">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
           Account Details
-        </li>
-        <li class="nav-item" onclick="showPanel('orders', this)">
+        </button></li>
+        <li><button type="button" class="nav-item" aria-pressed="false" aria-controls="orders" onclick="showPanel('orders', this)">
           <svg viewBox="0 0 24 24"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
           Orders
-        </li>
+        </button></li>
       </ul>
     </aside>
 
@@ -195,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="welcome-title">Hello, <span id="welcome-username">Member</span>!</h2>
         <p class="welcome-text">From your account dashboard, you can view your recent orders and manage your account details.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 20px;">
           <div style="background:var(--bg3); padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
             <h4 style="color:var(--accent); font-size: 0.8rem; text-transform: uppercase;">Total Orders</h4>
             <p style="font-size: 2rem; font-weight: 700;" id="total-orders-count">0</p>
@@ -212,12 +244,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Primary Details</h3>
         <form onsubmit="updateProfile(event)">
           <div class="field">
-            <label>Username</label>
-            <input type="text" id="details-username" required>
+            <label for="details-username">Username</label>
+            <input type="text" id="details-username" autocomplete="username" required>
           </div>
           <div class="field">
-            <label>Email Address</label>
-            <input type="email" id="details-email" required>
+            <label for="details-email">Email Address</label>
+            <input type="email" id="details-email" autocomplete="email" required>
           </div>
           <button type="submit" class="submit-btn" id="update-profile-btn">Save Changes</button>
         </form>
@@ -225,16 +257,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3 style="margin-top: 50px;">Change Password</h3>
         <form onsubmit="changePassword(event)">
           <div class="field">
-            <label>Current Password</label>
-            <input type="password" id="current-password" required>
+            <label for="current-password">Current Password</label>
+            <input type="password" id="current-password" autocomplete="current-password" required>
           </div>
           <div class="field">
-            <label>New Password</label>
-            <input type="password" id="new-password" required minlength="8">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" autocomplete="new-password" required minlength="8">
           </div>
           <div class="field">
-            <label>Confirm New Password</label>
-            <input type="password" id="confirm-password" required minlength="8">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password" autocomplete="new-password" required minlength="8">
           </div>
           <button type="submit" class="submit-btn" id="change-pass-btn">Update Password</button>
         </form>
@@ -299,14 +331,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div class="order-date">${date}</div>
                 </div>
                 <div class="order-status status-${order.status}" data-i18n="status.${order.status === 'completed' ? 'delivered' : order.status.toLowerCase()}">
-                  ${(window.translations && window.translations[window.currentLang] && window.translations[window.currentLang]["status." + (order.status === 'completed' ? 'delivered' : order.status.toLowerCase())]) || (order.status === 'completed' ? 'Delivered' : order.status)}
+                  ${translations[currentLang]?.["status." + (order.status === 'completed' ? 'delivered' : order.status.toLowerCase())] || (order.status === 'completed' ? 'Delivered' : order.status)}
                 </div>
               </div>
               <div class="order-items">
                 ${items.map(item => `
                   <div class="order-item">
-                    <span>${item.name} x ${item.quantity}</span>
-                    <span>QR ${(item.price * item.quantity).toFixed(2)}</span>
+                    <span>${item.name} x ${item.qty ?? item.quantity}</span>
+                    <span>QR ${(item.price * (item.qty ?? item.quantity)).toFixed(2)}</span>
                   </div>
                 `).join('')}
               </div>
@@ -324,9 +356,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     function showPanel(id, el) {
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      document.querySelectorAll('.sidebar-nav .nav-item').forEach(i => { i.classList.remove('active'); i.setAttribute('aria-pressed', 'false'); });
       document.getElementById(id).classList.add('active');
       el.classList.add('active');
+      el.setAttribute('aria-pressed', 'true');
     }
 
     async function doLogout() {

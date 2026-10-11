@@ -1,0 +1,56 @@
+[
+  {
+    "name": "checkout_html-1440-en.png",
+    "width": 1440,
+    "height": 844,
+    "pixels": 0,
+    "percentage": 0,
+    "beforeHeight": 1631,
+    "afterHeight": 1631
+  },
+  {
+    "name": "contact_html-1440-en.png",
+    "width": 1440,
+    "height": 844,
+    "pixels": 19,
+    "percentage": 0.0015633228014744602,
+    "beforeHeight": 1467,
+    "afterHeight": 1467
+  },
+  {
+    "name": "home-1440-en.png",
+    "width": 1440,
+    "height": 844,
+    "pixels": 0,
+    "percentage": 0,
+    "beforeHeight": 8838,
+    "afterHeight": 8838
+  },
+  {
+    "name": "menu_html-1440-en.png",
+    "width": 1440,
+    "height": 844,
+    "pixels": 22,
+    "percentage": 0.001810163243812533,
+    "beforeHeight": 6271,
+    "afterHeight": 6271
+  },
+  {
+    "name": "navigation_Arabic_sweets_html-1440-en.png",
+    "width": 1440,
+    "height": 844,
+    "pixels": 0,
+    "percentage": 0,
+    "beforeHeight": 3600,
+    "afterHeight": 3600
+  },
+  {
+    "name": "navigation_cart_html-1440-en.png",
+    "width": 1440,
+    "height": 844,
+    "pixels": 0,
+    "percentage": 0,
+    "beforeHeight": 1363,
+    "afterHeight": 1363
+  }
+]

@@ -1,0 +1,201 @@
+{
+  "scope": "Local file payloads, not page network transfer. No assets were changed or substituted.",
+  "count": 286,
+  "totalBytes": 57457669,
+  "groups": {
+    "background": {
+      "count": 7,
+      "bytes": 784916
+    },
+    "herosection_1": {
+      "count": 240,
+      "bytes": 7958892
+    },
+    "icons": {
+      "count": 26,
+      "bytes": 5859
+    },
+    "misc": {
+      "count": 5,
+      "bytes": 331982
+    },
+    "products": {
+      "count": 4,
+      "bytes": 741448
+    },
+    "showcase": {
+      "count": 4,
+      "bytes": 47634572
+    }
+  },
+  "largest": [
+    {
+      "path": "images/showcase/showcase-1786776814654-263795898.mp4",
+      "bytes": 13179504
+    },
+    {
+      "path": "images/showcase/showcase-1786776829203-868207384.mp4",
+      "bytes": 13179504
+    },
+    {
+      "path": "images/showcase/showcase-1786776824126-959840021.mp4",
+      "bytes": 10637782
+    },
+    {
+      "path": "images/showcase/showcase-1786776829334-442851824.mp4",
+      "bytes": 10637782
+    },
+    {
+      "path": "images/misc/IMG_1094.webp",
+      "bytes": 309890,
+      "width": 4096,
+      "height": 2730,
+      "format": "webp"
+    },
+    {
+      "path": "images/products/1775146563418-538236780.webp",
+      "bytes": 295714,
+      "width": 4096,
+      "height": 2730,
+      "format": "webp"
+    },
+    {
+      "path": "images/background/product 3.webp",
+      "bytes": 227006,
+      "width": 4096,
+      "height": 2730,
+      "format": "webp"
+    },
+    {
+      "path": "images/background/hero_spread.webp",
+      "bytes": 210402,
+      "width": 1672,
+      "height": 941,
+      "format": "webp"
+    },
+    {
+      "path": "images/background/hero_spread_phone.webp",
+      "bytes": 203320,
+      "width": 941,
+      "height": 1672,
+      "format": "webp"
+    },
+    {
+      "path": "images/products/1775125336887-558730937.webp",
+      "bytes": 201598,
+      "width": 4096,
+      "height": 2730,
+      "format": "webp"
+    },
+    {
+      "path": "images/products/1775115029250-903191392.webp",
+      "bytes": 158642,
+      "width": 2785,
+      "height": 2031,
+      "format": "webp"
+    },
+    {
+      "path": "images/products/1775138850586-203824645.webp",
+      "bytes": 85494,
+      "width": 1248,
+      "height": 832,
+      "format": "webp"
+    },
+    {
+      "path": "images/background/product 2.webp",
+      "bytes": 67124,
+      "width": 1248,
+      "height": 832,
+      "format": "webp"
+    },
+    {
+      "path": "images/herosection_1/ezgif-frame-086.webp",
+      "bytes": 49224,
+      "width": 1274,
+      "height": 666,
+      "format": "webp"
+    },
+    {
+      "path": "images/herosection_1/ezgif-frame-085.webp",
+      "bytes": 47598,
+      "width": 1274,
+      "height": 666,
+      "format": "webp"
+    },
+    {
+      "path": "images/herosection_1/ezgif-frame-084.webp",
+      "bytes": 47326,
+      "width": 1274,
+      "height": 666,
+      "format": "webp"
+    },
+    {
+      "path": "images/herosection_1/ezgif-frame-087.webp",
+      "bytes": 46768,
+      "width": 1274,
+      "height": 666,
+      "format": "webp"
+    },
+    {
+      "path": "images/herosection_1/ezgif-frame-088.webp",
+      "bytes": 46768,
+      "width": 1274,
+      "height": 666,
+      "format": "webp"
+    }
+  ],
+  "missing": [
+    {
+      "asset": "images/hero/hero-sweets.webp",
+      "sources": [
+        "about.html",
+        "blog.html",
+        "contact.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "locations/al-aziziya.html",
+        "locations/al-kharaitiyat.html",
+        "locations/al-wakrah.html",
+        "posts.json"
+      ]
+    },
+    {
+      "asset": "images/products/example.webp",
+      "sources": [
+        "admin.html"
+      ]
+    },
+    {
+      "asset": "images/hero/hero-cakes.webp",
+      "sources": [
+        "catering.html"
+      ]
+    },
+    {
+      "asset": "images/salwa-storefront.jpg",
+      "sources": [
+        "contact.html"
+      ]
+    },
+    {
+      "asset": "images/wakrah-storefront.jpg",
+      "sources": [
+        "contact.html"
+      ]
+    },
+    {
+      "asset": "images/kharaitiyat-storefront.jpg",
+      "sources": [
+        "contact.html"
+      ]
+    },
+    {
+      "asset": "images/products/1775125327728-831885018.webp",
+      "sources": [
+        "index.html",
+        "menu.js"
+      ]
+    }
+  ]
+}

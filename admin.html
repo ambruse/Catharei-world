@@ -1580,7 +1580,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       allOrders.forEach(o => {
         const items = JSON.parse(o.items || '[]');
         const itemsList = items.map(i => `${i.qty}x ${i.name}`).join(', ');
-        const mapUrl = `https://www.google.com/maps?q=${o.lat},${o.lng}`;
+        const hasPin = Number.isFinite(o.lat) && Number.isFinite(o.lng) && Math.abs(o.lat) <= 90 && Math.abs(o.lng) <= 180;
+        const mapUrl = hasPin ? `https://www.openstreetmap.org/?mlat=${o.lat}&mlon=${o.lng}#map=17/${o.lat}/${o.lng}` : '';
+        const safeAddress = String(o.address || '').replace(/[&<>"']/g, char => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[char]));
 
         let statusBadge = `<span class="category-pill" style="background:${getStatusColor(o.status)}; color:#000; font-weight:700;">${o.status.toUpperCase()}</span>`;
         if (o.status === 'completed') {
@@ -1596,8 +1598,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div style="font-size:0.8rem; line-height:1.4;">
                <div><strong>Items:</strong> ${itemsList}</div>
-               <div style="color:var(--muted)"><strong>Addr:</strong> ${o.address}</div>
-               <a href="${mapUrl}" target="_blank" style="color:var(--accent); text-decoration:none; font-size:0.75rem;"><i class=ui-icon data-icon=pin aria-hidden=true></i> View on Map</a>
+               <div style="color:var(--muted); white-space:pre-wrap; overflow-wrap:anywhere"><strong>Addr:</strong> ${safeAddress}</div>
+               ${hasPin ? `<a href="${mapUrl}" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none; font-size:0.75rem;"><i class=ui-icon data-icon=pin aria-hidden=true></i> View on Map</a>` : `<span style="color:var(--muted)">Map unverified — confirm address with customer</span>`}
             </div>
             <div style="font-size:0.85rem;">
                <div style="font-weight:600;">Qr ${parseFloat(o.total).toFixed(2)}</div>

@@ -21,7 +21,7 @@
 
   let products = [];
   let activeCategory = 'all';
-  let searchTerm = '';
+  let searchTerm = new URLSearchParams(window.location.search).get('q')?.trim().toLocaleLowerCase() || '';
   let constellationMetrics = [];
   let activeDetail = null;
   let pointerTimer = 0;
@@ -99,14 +99,14 @@
     container.innerHTML = `<div class="menu-grid">${products.map(cardTemplate).join('')}</div>`;
     container.querySelectorAll('.menu-item').forEach((card, index) => {
       const product = products.find(item => String(item.id) === card.dataset.productId);
-      card.querySelector('.menu-open-button').addEventListener('click', event => { event.stopPropagation(); openProduct(product, card); });
+      card.querySelector('.menu-open-button').addEventListener('click', event => { event.stopPropagation(); openProduct(product, card, undefined, event.currentTarget); });
       card.querySelector('.menu-add-button').addEventListener('click', event => {
         event.stopPropagation();
         const variantsData = typeof product.variants === 'string' ? product.variants : (product.variants ? JSON.stringify(product.variants) : '');
         addToCart(event, String(product.id), product.name, Number(product.price || 0), product.image || '', variantsData);
       });
       card.addEventListener('click', event => { if (!event.target.closest('button, a')) openProduct(product, card); });
-      card.addEventListener('keydown', event => { if ((event.key === 'Enter' || event.key === ' ') && !event.target.closest('button')) { event.preventDefault(); openProduct(product, card); } });
+      card.addEventListener('keydown', event => { if ((event.key === 'Enter' || event.key === ' ') && event.target === card) { event.preventDefault(); openProduct(product, card); } });
       if (finePointer.matches) addDepthWindow(card);
       if (index < 4) card.classList.add('is-constellation-target');
     });
@@ -119,7 +119,7 @@
     holder.innerHTML = featured.map((product, index) => `<button class="constellation-product" type="button" data-product-id="${escapeHTML(product.id)}" aria-label="Explore ${escapeHTML(titleFor(product))}"><img src="${escapeHTML(safeImage(product.image, index))}" alt=""></button>`).join('');
     holder.querySelectorAll('.constellation-product').forEach(node => {
       const product = products.find(item => String(item.id) === node.dataset.productId);
-      node.addEventListener('click', () => openProduct(product, document.getElementById(`product-${product.id}`)));
+      node.addEventListener('click', () => openProduct(product, document.getElementById(`product-${product.id}`), undefined, node));
     });
     requestAnimationFrame(measureConstellation);
   }
@@ -137,7 +137,7 @@
   }
 
   function updateConstellation() {
-    if (reducedMotion.matches || !constellationMetrics.length) return;
+    if (reducedMotion.matches || !finePointer.matches || !constellationMetrics.length) return;
     const stage = document.getElementById('menu-stage');
     const progress = clamp(window.scrollY / Math.max(1, stage.offsetHeight * .72), 0, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
@@ -159,7 +159,7 @@
     indicator.style.width = `${buttonRect.width}px`;
     indicator.style.transform = `translateX(${buttonRect.left - railRect.left + rail.scrollLeft}px)`;
     if (!animate) requestAnimationFrame(() => { indicator.style.transition = ''; });
-    if (window.innerWidth <= 768) button.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+    if (animate && window.innerWidth <= 768) button.scrollIntoView({ behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
   }
 
   function selectCategory(category, trigger) {
@@ -183,12 +183,12 @@
   function updateHeading(category) {
     const heading = document.getElementById('active-category-title');
     const next = categoryLabel(category);
-    if (reducedMotion.matches) { heading.textContent = next; return; }
+    document.getElementById('collection-description').textContent = (categoryMeta[category] || categoryMeta.all).description;
+    if (reducedMotion.matches || !finePointer.matches) { heading.textContent = next; return; }
     heading.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-18px)', opacity: 0 }], { duration: 180, easing: 'ease-in', fill: 'forwards' }).finished.then(() => {
       heading.textContent = next;
       heading.animate([{ transform: 'translateY(18px)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: 360, easing: 'cubic-bezier(.2,.72,.18,1)', fill: 'forwards' });
     });
-    document.getElementById('collection-description').textContent = (categoryMeta[category] || categoryMeta.all).description;
   }
 
   function matchesFilters(card) {
@@ -207,7 +207,7 @@
     const entering = cards.filter(card => card.hidden && matchesFilters(card));
     const staying = cards.filter(card => !card.hidden && matchesFilters(card));
 
-    if (!reducedMotion.matches) {
+    if (!reducedMotion.matches && finePointer.matches) {
       leaving.forEach((card, index) => card.animate([
         { opacity: 1, filter: 'blur(0)', transform: 'translate3d(0,0,0) scale(1)' },
         { opacity: 0, filter: 'blur(8px)', transform: `translate3d(${index % 2 ? 24 : -24}px,28px,-60px) scale(.94)` }
@@ -224,13 +224,13 @@
       staying.forEach(card => {
         const first = before.get(card);
         const last = card.getBoundingClientRect();
-        if (!first || reducedMotion.matches) return;
+        if (!first || reducedMotion.matches || !finePointer.matches) return;
         card.animate([
           { transform: `translate3d(${first.left - last.left}px,${first.top - last.top}px,0)` },
           { transform: 'translate3d(0,0,0)' }
         ], { duration: 620, easing: 'cubic-bezier(.2,.72,.18,1)' });
       });
-      if (!reducedMotion.matches) entering.forEach((card, index) => card.animate([
+      if (!reducedMotion.matches && finePointer.matches) entering.forEach((card, index) => card.animate([
         { opacity: 0, filter: 'blur(7px)', transform: `translate3d(${index % 2 ? 32 : -32}px,25px,0) scale(.95)` },
         { opacity: 1, filter: 'blur(0)', transform: 'translate3d(0,0,0) scale(1)' }
       ], { duration: 560, delay: index * 38, easing: 'cubic-bezier(.2,.72,.18,1)' }));
@@ -244,6 +244,8 @@
 
   function updateCount(count) {
     document.getElementById('visible-count').textContent = String(count).padStart(2, '0');
+    const status = document.getElementById('menu-results-status');
+    if (status) status.textContent = isArabic() ? `${count} نتائج` : `${count} creations found`;
   }
 
   function updateSignature(product) {
@@ -255,8 +257,8 @@
       <div class="signature-story-copy"><p class="menu-kicker">CATHAREi signature</p><h3 id="signature-title">${escapeHTML(titleFor(product))}</h3><p>${escapeHTML(descriptionFor(product))}</p><span class="signature-story-price">${escapeHTML(priceFor(product))}</span></div>
     </article>`;
     const story = section.querySelector('.signature-story');
-    story.addEventListener('click', () => openProduct(product, document.getElementById(`product-${product.id}`), story.querySelector('img')));
-    story.addEventListener('keydown', event => { if (event.key === 'Enter') openProduct(product, document.getElementById(`product-${product.id}`), story.querySelector('img')); });
+    story.addEventListener('click', () => openProduct(product, document.getElementById(`product-${product.id}`), story.querySelector('img'), story));
+    story.addEventListener('keydown', event => { if (event.key === 'Enter') openProduct(product, document.getElementById(`product-${product.id}`), story.querySelector('img'), story); });
   }
 
   function addDepthWindow(card) {
@@ -295,12 +297,13 @@
     </div>`;
   }
 
-  async function openProduct(product, card, sourceOverride) {
+  async function openProduct(product, card, sourceOverride, returnFocus = card) {
     if (!product || activeDetail) return;
     const source = sourceOverride || card?.querySelector('.menu-product-media img');
     const wrapper = document.createElement('div');
     wrapper.innerHTML = detailMarkup(product);
     const detail = wrapper.firstElementChild;
+    activeDetail = { detail, product, card, source, closing: false };
     detail.hidden = true;
     document.body.appendChild(detail);
     const detailImage = detail.querySelector('.product-detail-media img');
@@ -313,28 +316,19 @@
       detail.hidden = false;
       document.body.classList.add('has-product-open');
       if (source) source.style.visibility = 'hidden';
+      window.cathareiModal.open(detail, { onClose: closeProduct, initialFocus: detail.querySelector('.product-detail-close'), returnFocus });
     };
-    if (document.startViewTransition && !reducedMotion.matches && source) {
+    if (document.startViewTransition && !reducedMotion.matches && finePointer.matches && source) {
       const transition = document.startViewTransition(reveal);
       await transition.finished.catch(() => {});
     } else reveal();
 
     if (source) source.style.viewTransitionName = '';
     detailImage.style.viewTransitionName = '';
-    activeDetail = { detail, product, card, source, lastFocus: document.activeElement };
     detail.querySelector('.product-detail-close').addEventListener('click', closeProduct);
     detail.querySelector('.product-detail-add').addEventListener('click', event => {
       const variantsData = typeof product.variants === 'string' ? product.variants : (product.variants ? JSON.stringify(product.variants) : '');
       addToCart(event, String(product.id), product.name, Number(product.price || 0), product.image || '', variantsData);
-    });
-    detail.addEventListener('keydown', event => {
-      if (event.key !== 'Tab') return;
-      const focusable = [...detail.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])')].filter(element => !element.disabled);
-      if (!focusable.length) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     });
     detail.addEventListener('pointermove', event => {
       if (!finePointer.matches) return;
@@ -347,8 +341,9 @@
   }
 
   async function closeProduct() {
-    if (!activeDetail) return;
-    const { detail, source, card, product, lastFocus } = activeDetail;
+    if (!activeDetail || activeDetail.closing) return;
+    activeDetail.closing = true;
+    const { detail, source, card, product } = activeDetail;
     const detailImage = detail.querySelector('.product-detail-media img');
     const transitionName = `menu-product-${product.id}`;
     detailImage.style.viewTransitionName = transitionName;
@@ -357,16 +352,16 @@
         source.style.visibility = '';
         source.style.viewTransitionName = transitionName;
       }
-      detail.remove();
       document.body.classList.remove('has-product-open');
+      window.cathareiModal.close(detail);
+      detail.remove();
     };
-    if (document.startViewTransition && !reducedMotion.matches && source && card && !card.hidden) {
+    if (document.startViewTransition && !reducedMotion.matches && finePointer.matches && source && card && !card.hidden) {
       const transition = document.startViewTransition(conceal);
       await transition.finished.catch(() => {});
     } else conceal();
     if (source) source.style.viewTransitionName = '';
     activeDetail = null;
-    (lastFocus?.isConnected ? lastFocus : card)?.focus?.();
   }
 
   function showEntry() {
@@ -389,7 +384,7 @@
     window.addEventListener('scroll', () => {
       updateHeader();
       updateConstellation();
-      if (!reducedMotion.matches) {
+      if (!reducedMotion.matches && finePointer.matches) {
         const now = performance.now();
         const velocity = (window.scrollY - lastScrollY) / Math.max(16, now - lastScrollTime);
         scrollLean += (clamp(velocity * 6,-1,1) - scrollLean) * .34;
@@ -400,14 +395,13 @@
         bindGlobalMotion.settle = setTimeout(() => document.documentElement.style.setProperty('--scroll-lag','0px'),120);
       }
       const signature = document.querySelector('.signature-story');
-      if (signature && !reducedMotion.matches) {
+      if (signature && !reducedMotion.matches && finePointer.matches) {
         const rect = signature.getBoundingClientRect();
         const progress = clamp(1 - Math.abs(rect.top + rect.height / 2 - innerHeight / 2) / innerHeight,0,1);
         signature.style.setProperty('--signature-scale', String(.82 + progress * .18));
       }
     }, { passive: true });
     window.addEventListener('resize', () => { measureConstellation(); moveIndicator(document.querySelector('.category-button.is-active'),false); }, { passive: true });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape' && activeDetail) closeProduct(); });
     if (finePointer.matches) document.addEventListener('pointermove', event => {
       document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
       document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
@@ -432,6 +426,11 @@
       updateSignature(products[Math.floor(products.length / 2)]);
       bindGlobalMotion();
       const input = document.getElementById('menu-search');
+      input.value = new URLSearchParams(window.location.search).get('q') || '';
+      if (searchTerm) {
+        filterProducts();
+        document.getElementById('menu-browser').scrollIntoView({ block: 'start' });
+      }
       input.addEventListener('input', () => {
         searchTerm = input.value.trim().toLocaleLowerCase();
         filterProducts();

@@ -485,3 +485,55 @@ html { scroll-behavior: smooth; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .js .reveal-section { opacity: 1; transform: none; }
 }
+
+/* Keep the original photographic hero and editorial rhythm, sized for phones. */
+@media (max-width: 768px) {
+  .home-page .site-header { padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right)); }
+  .home-page .action-icons { right: 56px; gap: 0; }
+  [dir="rtl"] .home-page .action-icons { left: 56px; right: auto; }
+  .home-page .hero-banner { min-height: 0; }
+  .home-page .hero-spread-layout {
+    min-height: calc(100svh - 70px);
+    padding: clamp(180px, 30svh, 280px) 20px 52px;
+  }
+  .home-page .hero-title { font-size: clamp(2.9rem, 12.5vw, 5.2rem); line-height: .98; overflow-wrap: normal; }
+  .home-page .hero-title em { margin-inline: .1em 0; }
+  .home-page .hero-subtitle { font-size: 16px; margin-block: 24px 28px; line-height: 1.7; }
+  .home-page .hero-actions { gap: 16px; }
+  .home-page .text-link { min-height: 44px; align-items: center; }
+  .home-page .container { padding-inline: 20px; }
+  .home-page .section-padding { padding-block: 60px; }
+  .home-intro, .craft-stage-inner, .locations-layout { gap: 32px; }
+  .home-page h2 { font-size: clamp(2rem, 9vw, 3.8rem); line-height: 1.08; }
+  .home-categories .section-head, .home-featured .section-head { margin-bottom: 32px; }
+  .home-page .eyebrow { font-size: 12px; line-height: 1.6; }
+  .home-page .craft-points li { font-size: 14px; letter-spacing: .06em; text-align: start; }
+  .home-page .craft-copy .eyebrow, .home-page .craft-points li span:first-child { color: #5c4512; }
+  .home-page .home-featured .menu-item-img { object-fit: contain; }
+  .home-page .home-featured .menu-item-price, .home-page .home-featured .menu-item-desc { font-size: 14px; }
+  .home-page .home-featured .menu-item-name { font-size: 1.25rem; line-height: 1.35; }
+  .home-page .home-featured .add-to-cart { min-height: 44px; font-size: 14px !important; padding: 12px !important; }
+  .home-page .home-featured .menu-item-info { align-items: stretch; }
+  .home-page .home-featured .menu-item-desc { display: block; overflow: visible; }
+  .home-custom .promo-text { padding: 44px 22px; }
+  .home-custom .promo-text h2 { font-size: clamp(2.2rem, 10vw, 3.8rem); }
+  .home-page .home-partners { padding-bottom: 48px !important; }
+  .home-page .home-partners h3 { color: var(--home-muted); font-size: 14px; letter-spacing: .12em; }
+  .home-page .home-locations .eyebrow { color: var(--home-ink); }
+  .home-page .home-partners .partner-logo { min-height: 44px; display: inline-flex; align-items: center; }
+  .home-page .location-list a { gap: 12px; }
+  .home-page .location-list strong { font-size: 1.15rem; }
+  .home-page .home-seo-copy { color: var(--home-muted); font-size: 14px; line-height: 1.75; }
+  .home-page .home-seo-copy h2 { font-size: 14px; line-height: 1.6; }
+  .home-page .site-footer .footer-title, .home-page .footer-stores .stores-title { font-size: 14px !important; }
+  .home-page .site-footer .footer-links a { color: var(--home-muted) !important; }
+  [dir="rtl"] .home-page .hero-title { font-family: 'Cairo', var(--font-serif); line-height: 1.35; letter-spacing: 0; }
+  [dir="rtl"] .home-page .hero-title em { margin-inline: 0; }
+}
+@media (max-width: 480px) {
+  .home-page .home-featured .product-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .home-page .home-featured .menu-item-img { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 768px) and (max-height: 500px) {
+  .home-page .hero-spread-layout { padding-top: 80px; }
+}

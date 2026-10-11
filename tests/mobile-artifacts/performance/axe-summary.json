@@ -1,0 +1,1019 @@
+{
+  "scope": "Automated WCAG A/AA checks at a 390×844 mobile Chrome viewport in both language modes. Partial translation coverage is preserved. Analytics blocked; account identity is a QA-only browser fixture. Automated scans cannot establish full WCAG conformance or real-device behavior.",
+  "lastRunAt": "2026-10-11T11:19:46.569Z",
+  "lastRunRoutes": [
+    "/about.html",
+    "/account.html",
+    "/blog",
+    "/catering.html",
+    "/checkout.html",
+    "/contact.html",
+    "/corporate-gifting.html",
+    "/delivery.html",
+    "/faq.html",
+    "/",
+    "/login.html",
+    "/menu.html",
+    "/privacy.html",
+    "/ramadan-eid.html",
+    "/terms.html",
+    "/thankyou.html",
+    "/navigation/Arabic_sweets.html",
+    "/navigation/cakes.html",
+    "/navigation/cart.html",
+    "/navigation/oriental_sweets.html",
+    "/navigation/savories.html",
+    "/locations/al-aziziya.html",
+    "/locations/al-kharaitiyat.html",
+    "/locations/al-wakrah.html",
+    "/blog/history-of-luqaimat",
+    "/blog/best-arabic-sweets-gifting",
+    "/luqaimat-qatar.html",
+    "/menu/cake-crunchy-choclate-17",
+    "/menu/mini-sandwich-20",
+    "/menu/variant-test-cake-36",
+    "/menu/variant-test-cake-37",
+    "/menu/hot-cheese-kunafa-38",
+    "/menu/pistachio-baklava-1kg-box-39",
+    "/menu/date-maamoul-12-pcs-40",
+    "/menu/basbousa-slice-41",
+    "/menu/zaatar-manakeesh-42",
+    "/menu/spinach-fatayer-dozen-43"
+  ],
+  "results": [
+    {
+      "route": "/account.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "route": "/about.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/about.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/account.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "route": "/blog",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/blog",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/checkout.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/catering.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/catering.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/checkout.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/contact.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/contact.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/corporate-gifting.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "route": "/corporate-gifting.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "route": "/delivery.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "route": "/faq.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/delivery.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "route": "/faq.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/login.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "bypass",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 20
+        },
+        {
+          "id": "video-caption",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 7
+        },
+        {
+          "id": "video-caption",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "route": "/login.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "bypass",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "route": "/menu.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 69
+        }
+      ]
+    },
+    {
+      "route": "/menu.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "count": 1
+        },
+        {
+          "id": "color-contrast",
+          "count": 65
+        }
+      ]
+    },
+    {
+      "route": "/privacy.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/privacy.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/ramadan-eid.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "route": "/ramadan-eid.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "route": "/terms.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/terms.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/thankyou.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/thankyou.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "route": "/navigation/Arabic_sweets.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 32
+        }
+      ]
+    },
+    {
+      "route": "/navigation/Arabic_sweets.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "route": "/navigation/cakes.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 29
+        }
+      ]
+    },
+    {
+      "route": "/navigation/cakes.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 26
+        }
+      ]
+    },
+    {
+      "route": "/navigation/cart.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/navigation/cart.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "route": "/navigation/oriental_sweets.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "route": "/navigation/oriental_sweets.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/navigation/savories.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 18
+        }
+      ]
+    },
+    {
+      "route": "/navigation/savories.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 14
+        }
+      ]
+    },
+    {
+      "route": "/locations/al-aziziya.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/locations/al-aziziya.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/locations/al-kharaitiyat.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/locations/al-wakrah.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/locations/al-kharaitiyat.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/locations/al-wakrah.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/blog/history-of-luqaimat",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/blog/history-of-luqaimat",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/blog/best-arabic-sweets-gifting",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/blog/best-arabic-sweets-gifting",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "route": "/luqaimat-qatar.html",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 19
+        }
+      ]
+    },
+    {
+      "route": "/luqaimat-qatar.html",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 19
+        }
+      ]
+    },
+    {
+      "route": "/menu/cake-crunchy-choclate-17",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 27
+        }
+      ]
+    },
+    {
+      "route": "/menu/cake-crunchy-choclate-17",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "route": "/menu/mini-sandwich-20",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "route": "/menu/variant-test-cake-36",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 27
+        }
+      ]
+    },
+    {
+      "route": "/menu/mini-sandwich-20",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 29
+        }
+      ]
+    },
+    {
+      "route": "/menu/variant-test-cake-36",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "route": "/menu/variant-test-cake-37",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 27
+        }
+      ]
+    },
+    {
+      "route": "/menu/variant-test-cake-37",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "route": "/menu/hot-cheese-kunafa-38",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 32
+        }
+      ]
+    },
+    {
+      "route": "/menu/hot-cheese-kunafa-38",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 33
+        }
+      ]
+    },
+    {
+      "route": "/menu/pistachio-baklava-1kg-box-39",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 32
+        }
+      ]
+    },
+    {
+      "route": "/menu/pistachio-baklava-1kg-box-39",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 33
+        }
+      ]
+    },
+    {
+      "route": "/menu/date-maamoul-12-pcs-40",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 32
+        }
+      ]
+    },
+    {
+      "route": "/menu/date-maamoul-12-pcs-40",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 33
+        }
+      ]
+    },
+    {
+      "route": "/menu/basbousa-slice-41",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 32
+        }
+      ]
+    },
+    {
+      "route": "/menu/basbousa-slice-41",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 33
+        }
+      ]
+    },
+    {
+      "route": "/menu/zaatar-manakeesh-42",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "route": "/menu/zaatar-manakeesh-42",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 29
+        }
+      ]
+    },
+    {
+      "route": "/menu/spinach-fatayer-dozen-43",
+      "lang": "en",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 28
+        }
+      ]
+    },
+    {
+      "route": "/menu/spinach-fatayer-dozen-43",
+      "lang": "ar",
+      "status": 200,
+      "violationCount": 0,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "count": 29
+        }
+      ]
+    }
+  ]
+}

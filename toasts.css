@@ -1,5 +1,9 @@
 @import url('/icons.css');
 
+/* Standalone account/checkout pages also use the shared keyboard skip link. */
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 6000; padding: 12px 18px; background: #f0ede8; color: #0b0b0b; transform: translateY(-160%); }
+.skip-link:focus { transform: none; }
+
 /* --- Shared Toast Notification System --- */
 #toast-container {
   position: fixed;
@@ -54,4 +58,18 @@
 
 @keyframes toastSlideOut {
   to { opacity: 0; transform: translateX(40px); }
+}
+
+@media (max-width: 768px) {
+  #toast-container {
+    top: max(12px, env(safe-area-inset-top));
+    inset-inline: 12px;
+    max-width: none;
+    pointer-events: none;
+  }
+  .toast { padding: 14px 16px; overflow-wrap: anywhere; font-size: 16px; }
+  .toast button, .toast a { pointer-events: auto; min-width: 44px; min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast { animation-duration: .01ms; }
 }

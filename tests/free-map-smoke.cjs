@@ -1,0 +1,24 @@
+const { chromium } = require('playwright');
+const fs = require('node:fs');
+const path = require('node:path');
+const origin = process.env.MOBILE_ORIGIN || 'http://127.0.0.1:3118';
+(async () => {
+  const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--enable-unsafe-swiftshader'] });
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  await context.route(/googletagmanager|google-analytics/, route => route.abort());
+  await context.addInitScript(() => localStorage.setItem('catharei-cart-data', JSON.stringify([{id:'qa',name:'QA fixture',price:40,qty:1}])));
+  const page = await context.newPage(); const errors=[]; const failed=[];const requests=[];
+  page.on('pageerror', error=>errors.push(error.message)); page.on('requestfailed', request=>failed.push(request.url()));page.on('request',r=>requests.push(r.url()));
+  await page.goto(origin+'/checkout.html');
+  const initialMapRequests=requests.filter(url=>/maplibre|openfreemap/.test(url));
+  const openedAt=Date.now();
+  await page.locator('#open-location').click();
+  await page.waitForFunction(()=>!document.getElementById('locate-btn').disabled || document.getElementById('location-picker').dataset.state==='error',{},{timeout:25000});
+  await page.locator('#location-search').fill('Doha');
+  await page.waitForTimeout(1000);
+  fs.mkdirSync(path.join(__dirname,'map-artifacts','after'),{recursive:true});
+  await page.screenshot({path:path.join(__dirname,'map-artifacts','after','smoke-390.png')});
+  const report={initialMapRequests,openToScreenshotMs:Date.now()-openedAt,errors,failed,state:await page.locator('#location-picker').getAttribute('data-state'),status:await page.locator('#location-status').innerText(),options:await page.locator('#location-results').innerText(),attribution:await page.locator('.maplibregl-ctrl-attrib').allTextContents(),requests:requests.filter(u=>/maplibre|openfreemap/.test(u)).slice(0,15)};
+  fs.writeFileSync(path.join(__dirname,'map-artifacts/after/loading.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+  await browser.close();
+})().catch(error=>{console.error(error);process.exit(1);});

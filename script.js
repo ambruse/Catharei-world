@@ -333,6 +333,12 @@ let cartItems = JSON.parse(localStorage.getItem('catharei-cart-data') || '[]');
 
 document.addEventListener('DOMContentLoaded', async () => {
   initLanguage();
+  // Navigation and accessibility must be ready even on a slow catalogue connection.
+  setupEventListeners();
+  setupSharedAccessibility();
+  applyTranslations();
+  setupFAQ();
+  initHomeEnhancements();
   updateCartBadgeUI();
   renderCartDropdown(); // Initially render the hover dropdown if it exists
   initShowcaseSection(); // Dynamic showcase section renderer
@@ -370,12 +376,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  setupEventListeners();
   applyTranslations();
-  setupFAQ();
   syncCategoryCircleImages();
   initCakeAnimation();
-  initHomeEnhancements();
   checkLoginStatus();
 
 
@@ -392,37 +395,288 @@ function initLanguage() {
 }
 
 function updateCartBadgeUI() {
-  const badge = document.getElementById('cart-badge');
-  if(badge) {
-    let count = 0;
-    cartItems.forEach(item => count += item.qty);
+  const count = cartItems.reduce((total, item) => total + item.qty, 0);
+  document.querySelectorAll('.cart-badge').forEach(badge => {
     badge.textContent = count;
     badge.setAttribute('data-count', count);
+  });
+  document.getElementById('cart-btn')?.setAttribute('aria-label', `${translations[currentLang]['cart.view']}, ${count}`);
+}
+
+// One stack keeps nested product/size dialogs and the mobile drawer predictable.
+const interactionLayers = [];
+let savedPageScroll = null;
+let inactiveBranches = [];
+const focusableSelector = 'a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])';
+
+function visibleControls(roots) {
+  return roots.flatMap(root => [root, ...root.querySelectorAll(focusableSelector)])
+    .filter((element, index, all) => all.indexOf(element) === index && element.matches(focusableSelector) &&
+      !element.disabled && !element.closest('[inert]') && element.getClientRects().length &&
+      getComputedStyle(element).visibility !== 'hidden');
+}
+
+function refreshInteractionLayers() {
+  inactiveBranches.forEach(([element, inert]) => { element.inert = inert; });
+  inactiveBranches = [];
+  const layer = interactionLayers.at(-1);
+  if (!layer) {
+    if (savedPageScroll) {
+      const saved = savedPageScroll;
+      savedPageScroll = null;
+      Object.entries(saved.styles).forEach(([property, value]) => { document.body.style[property] = value; });
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(saved.x, saved.y);
+      document.documentElement.style.scrollBehavior = saved.scrollBehavior;
+    }
+    return;
+  }
+  if (!savedPageScroll) {
+    const properties = ['position', 'top', 'left', 'right', 'width', 'overflow'];
+    savedPageScroll = { x: window.scrollX, y: window.scrollY,
+      scrollBehavior: document.documentElement.style.scrollBehavior,
+      styles: Object.fromEntries(properties.map(property => [property, document.body.style[property]])) };
+    Object.assign(document.body.style, { position: 'fixed', top: `-${savedPageScroll.y}px`, left: '0', right: '0', width: '100%', overflow: 'hidden' });
+  }
+  const preserve = [...layer.roots, document.getElementById('toast-container')].filter(Boolean);
+  const disableBranches = parent => [...parent.children].forEach(element => {
+    if (preserve.some(root => root === element || root.contains(element))) return;
+    if (preserve.some(root => element.contains(root))) disableBranches(element);
+    else if (!['SCRIPT', 'STYLE', 'LINK'].includes(element.tagName)) {
+      inactiveBranches.push([element, element.inert]);
+      element.inert = true;
+    }
+  });
+  disableBranches(document.body);
+}
+
+function openInteractionLayer(element, roots, dismiss, initialFocus, returnFocus) {
+  if (interactionLayers.some(layer => layer.element === element)) return;
+  const layer = { element, roots, dismiss, trigger: returnFocus || document.activeElement };
+  interactionLayers.push(layer);
+  refreshInteractionLayers();
+  let focusAttempts = 0;
+  const focusInitialControl = () => {
+    if (interactionLayers.at(-1) !== layer) return;
+    const focusTarget = initialFocus || visibleControls(roots)[0] || element;
+    if (!focusTarget.matches(focusableSelector)) focusTarget.setAttribute('tabindex', '-1');
+    focusTarget.focus({ preventScroll: true });
+    // visibility transitions can keep a newly opened dialog unfocusable for a frame.
+    if (document.activeElement !== focusTarget && focusAttempts++ < 30) requestAnimationFrame(focusInitialControl);
+  };
+  focusInitialControl();
+}
+
+function closeInteractionLayer(element, { restoreFocus = true } = {}) {
+  const index = interactionLayers.findIndex(layer => layer.element === element);
+  if (index < 0) return;
+  const wasTop = index === interactionLayers.length - 1;
+  const [layer] = interactionLayers.splice(index, 1);
+  refreshInteractionLayers();
+  if (restoreFocus && wasTop) {
+    const nextLayer = interactionLayers.at(-1);
+    const target = layer.trigger?.isConnected && !layer.trigger.closest('[inert]')
+      ? layer.trigger : nextLayer && visibleControls(nextLayer.roots)[0];
+    target?.focus({ preventScroll: true });
+  }
+}
+
+window.cathareiModal = {
+  open(element, { onClose, initialFocus, returnFocus } = {}) {
+    if (!element) return;
+    const dialog = element.querySelector('.modal-content, .v-modal') || element;
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    const title = dialog.querySelector('h2, .modal-title');
+    if (title && !dialog.hasAttribute('aria-labelledby')) {
+      title.id ||= `${element.id || 'catharei-dialog'}-title`;
+      dialog.setAttribute('aria-labelledby', title.id);
+    }
+    element.setAttribute('aria-hidden', 'false');
+    const dismiss = onClose || (() => {
+      element.classList.remove('active', 'is-open');
+      window.cathareiModal.close(element);
+    });
+    element.cathareiDismiss = dismiss;
+    if (!element.dataset.cathareiBackdrop && element.matches('.modal-overlay, .v-modal-bg')) {
+      element.dataset.cathareiBackdrop = 'true';
+      element.addEventListener('click', event => {
+        if (event.target === element && interactionLayers.at(-1)?.element === element) element.cathareiDismiss?.();
+      });
+    }
+    openInteractionLayer(element, [element], dismiss,
+      initialFocus || dialog.querySelector('input:checked') || undefined, returnFocus);
+  },
+  close(element, options) {
+    if (!element) return;
+    closeInteractionLayer(element, options);
+    element.setAttribute('aria-hidden', 'true');
+  },
+  dismiss(element) { element?.cathareiDismiss?.(); }
+};
+
+document.addEventListener('keydown', event => {
+  const layer = interactionLayers.at(-1);
+  if (!layer) return;
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    layer.dismiss();
+  } else if (event.key === 'Tab') {
+    const controls = visibleControls(layer.roots);
+    const first = controls[0];
+    const last = controls.at(-1);
+    if (!first) { event.preventDefault(); return; }
+    if (event.shiftKey && (document.activeElement === first || !controls.includes(document.activeElement))) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !controls.includes(document.activeElement))) {
+      event.preventDefault(); first.focus();
+    }
+  }
+}, true);
+
+function setupSharedAccessibility() {
+  document.querySelectorAll('.site-footer span[aria-label]').forEach(icon => {
+    if (!icon.hasAttribute('role')) icon.setAttribute('role', 'img');
+  });
+  document.querySelectorAll('.bottom-nav-item[href$="cart.html"]').forEach(link => {
+    if (!link.textContent.trim()) link.setAttribute('aria-label', translations[currentLang]['cart.view']);
+  });
+  document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.setAttribute('aria-hidden', String(!modal.classList.contains('active')));
+    modal.querySelectorAll('.modal-close').forEach(button => {
+      button.type = 'button';
+      button.setAttribute('aria-label', currentLang === 'ar' ? 'إغلاق' : 'Close dialog');
+      if (!button.hasAttribute('onclick')) button.addEventListener('click', () => window.cathareiModal.dismiss(modal));
+    });
+  });
+  document.querySelectorAll('input, textarea, select').forEach(input => {
+    if (!input.labels?.length && !input.hasAttribute('aria-label') && input.placeholder) input.setAttribute('aria-label', input.placeholder);
+    if (input.type === 'email') { input.autocomplete ||= 'email'; input.inputMode = 'email'; }
+    if (input.type === 'tel') { input.autocomplete ||= 'tel'; input.inputMode = 'tel'; input.dir = 'ltr'; }
+  });
+  let toastContainer = document.getElementById('toast-container');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.id = 'toast-container';
+    document.body.appendChild(toastContainer);
+  }
+  toastContainer.setAttribute('aria-live', 'polite');
+  toastContainer.setAttribute('aria-atomic', 'false');
+  const main = document.querySelector('main');
+  if (main && !document.querySelector('.skip-link')) {
+    main.id ||= 'main-content';
+    const skip = document.createElement('a');
+    skip.className = 'skip-link';
+    skip.href = `#${main.id}`;
+    skip.textContent = currentLang === 'ar' ? 'انتقل إلى المحتوى' : 'Skip to content';
+    document.body.prepend(skip);
   }
 }
 
 function setupEventListeners() {
-  // Mobile Menu Toggle
-  const menuToggle = document.getElementById('mobile-menu-toggle');
+  let menuToggle = document.getElementById('mobile-menu-toggle');
   const navList = document.getElementById('nav-list');
   if(menuToggle && navList) {
-    menuToggle.addEventListener('click', () => {
-      const isOpen = navList.classList.toggle('active');
+    if (menuToggle.tagName !== 'BUTTON') {
+      const button = document.createElement('button');
+      [...menuToggle.attributes].forEach(attribute => button.setAttribute(attribute.name, attribute.value));
+      button.innerHTML = menuToggle.innerHTML;
+      menuToggle.replaceWith(button);
+      menuToggle = button;
+    }
+    menuToggle.type = 'button';
+    menuToggle.setAttribute('aria-controls', navList.id);
+    const mobile = window.matchMedia('(max-width: 768px)');
+    const backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    backdrop.hidden = true;
+    backdrop.setAttribute('aria-hidden', 'true');
+    (document.querySelector('.site-header') || document.body).appendChild(backdrop);
+    const setMenuOpen = (isOpen, restoreFocus = true) => {
+      isOpen = isOpen && mobile.matches;
+      navList.classList.toggle('active', isOpen);
       menuToggle.classList.toggle('is-active', isOpen);
       menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-    });
+      menuToggle.setAttribute('aria-label', currentLang === 'ar'
+        ? (isOpen ? 'إغلاق القائمة' : 'فتح القائمة') : (isOpen ? 'Close navigation' : 'Open navigation'));
+      backdrop.hidden = !isOpen;
+      navList.inert = mobile.matches && !isOpen;
+      if (mobile.matches) navList.setAttribute('aria-hidden', String(!isOpen));
+      else navList.removeAttribute('aria-hidden');
+      if (isOpen) openInteractionLayer(navList, [menuToggle, navList, backdrop], () => setMenuOpen(false), navList.querySelector('a[href],button,input'), menuToggle);
+      else {
+        closeInteractionLayer(navList, { restoreFocus });
+        navList.inert = mobile.matches;
+        navList.querySelectorAll('.has-dropdown.open').forEach(parent => {
+          parent.classList.remove('open');
+          parent.querySelector(':scope > button')?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    };
+    menuToggle.addEventListener('click', () => setMenuOpen(!navList.classList.contains('active')));
+    backdrop.addEventListener('click', () => setMenuOpen(false));
+    navList.addEventListener('click', event => { if (event.target.closest('a[href]')) setMenuOpen(false, false); });
+    mobile.addEventListener('change', () => setMenuOpen(false, false));
+    window.addEventListener('pagehide', () => setMenuOpen(false, false));
+    setMenuOpen(false, false);
   }
 
   // Search Toggle
   const searchBtn = document.getElementById('search-btn');
   const searchContainer = document.getElementById('search-container');
   const searchInput = document.getElementById('search-input');
-  if(searchBtn) {
+  if(searchBtn && searchContainer && searchInput) {
+    const searchDesktopParent = searchContainer.parentNode;
+    const searchDesktopNext = searchContainer.nextSibling;
+    const searchMobile = window.matchMedia('(max-width: 768px)');
+    const searchItem = document.createElement('li');
+    searchItem.className = 'nav-search-item';
+    searchBtn.setAttribute('aria-controls', searchInput.id);
+    searchBtn.setAttribute('aria-expanded', 'false');
+    searchInput.type = 'search';
+    searchInput.enterKeyHint = 'search';
+    searchInput.tabIndex = -1;
+    const submitSearch = () => {
+      if (!searchInput.value.trim()) { searchInput.focus(); return; }
+      const query = new URLSearchParams({ q: searchInput.value.trim() });
+      if (currentLang === 'ar') query.set('lang', 'ar');
+      window.location.href = `/menu.html?${query}`;
+    };
+    const placeSearch = () => {
+      if (!navList) return;
+      if (searchMobile.matches) {
+        searchItem.appendChild(searchContainer);
+        navList.prepend(searchItem);
+        searchContainer.classList.add('active');
+        searchInput.tabIndex = 0;
+        searchBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        searchDesktopParent.insertBefore(searchContainer, searchDesktopNext);
+        searchItem.remove();
+        searchContainer.classList.remove('active');
+        searchInput.tabIndex = -1;
+        searchBtn.setAttribute('aria-expanded', 'false');
+      }
+    };
+    searchMobile.addEventListener('change', placeSearch);
+    placeSearch();
     searchBtn.addEventListener('click', () => {
-      searchContainer.classList.toggle('active');
-      if(searchContainer.classList.contains('active')) {
-        searchInput.focus();
+      if (searchMobile.matches) { submitSearch(); return; }
+      const open = searchContainer.classList.toggle('active');
+      searchBtn.setAttribute('aria-expanded', String(open));
+      searchInput.tabIndex = open ? 0 : -1;
+      if(open) searchInput.focus();
+    });
+    searchInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && searchInput.value.trim()) {
+        event.preventDefault();
+        submitSearch();
+      } else if (event.key === 'Escape') {
+        searchContainer.classList.remove('active');
+        searchBtn.setAttribute('aria-expanded', 'false');
+        searchInput.tabIndex = -1;
+        searchBtn.focus();
       }
     });
   }
@@ -430,8 +684,9 @@ function setupEventListeners() {
   // Cart Button Redirection
   const cartBtn = document.getElementById('cart-btn');
   if(cartBtn) {
+    cartBtn.setAttribute('aria-label', translations[currentLang]['cart.view']);
     cartBtn.addEventListener('click', () => {
-      let cartUrl = window.location.pathname.includes('/navigation/') ? 'cart.html' : 'navigation/cart.html';
+      const cartUrl = '/navigation/cart.html';
       // Do not redirect if we are already on the cart page (pathname ends with cart.html)
       if(!window.location.pathname.endsWith('cart.html')) {
          window.location.href = cartUrl;
@@ -442,26 +697,77 @@ function setupEventListeners() {
   // Account Button Redirection
   const accountBtn = document.getElementById('account-btn');
   if(accountBtn) {
+    accountBtn.setAttribute('aria-label', currentLang === 'ar' ? 'الحساب' : 'Account');
     accountBtn.addEventListener('click', () => {
       handleAccountClick();
     });
   }
 
-  // Dropdowns for Mobile
+  // Keep the existing dropdowns, adding touch and keyboard operation.
   const dropdownParents = document.querySelectorAll('.has-dropdown');
-  dropdownParents.forEach(parent => {
-    parent.addEventListener('click', (e) => {
-      if(window.innerWidth <= 768) {
-        if(e.target.tagName === 'BUTTON' || e.target.parentElement.tagName === 'BUTTON') {
-          // close others
-          dropdownParents.forEach(other => {
-            if(other !== parent) other.classList.remove('open');
-          });
-          parent.classList.toggle('open');
+  dropdownParents.forEach((parent, index) => {
+    const button = parent.querySelector(':scope > button');
+    const dropdown = parent.querySelector(':scope > .dropdown-menu');
+    if (!button || !dropdown) return;
+    dropdown.id ||= `navigation-dropdown-${index}`;
+    button.type = 'button';
+    button.setAttribute('aria-controls', dropdown.id);
+    button.setAttribute('aria-expanded', 'false');
+    const setExpanded = open => {
+      parent.classList.toggle('open', open);
+      button.setAttribute('aria-expanded', String(open));
+    };
+    button.addEventListener('click', () => {
+      const open = !parent.classList.contains('open');
+      dropdownParents.forEach(other => {
+        if (other !== parent) {
+          other.classList.remove('open');
+          other.querySelector(':scope > button')?.setAttribute('aria-expanded', 'false');
         }
-      }
+      });
+      setExpanded(open);
     });
+    parent.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { event.preventDefault(); setExpanded(false); button.focus(); }
+    });
+    parent.addEventListener('focusout', event => { if (!parent.contains(event.relatedTarget) && window.innerWidth > 768) setExpanded(false); });
+    parent.addEventListener('pointerenter', () => { if (matchMedia('(hover: hover)').matches && window.innerWidth > 768) button.setAttribute('aria-expanded', 'true'); });
+    parent.addEventListener('pointerleave', () => { if (!parent.classList.contains('open')) button.setAttribute('aria-expanded', 'false'); });
+    document.addEventListener('click', event => { if (!parent.contains(event.target)) setExpanded(false); });
+    dropdown.querySelectorAll('button').forEach(option => { option.type = 'button'; });
   });
+  document.querySelectorAll('.nav').forEach(nav => {
+    if (!nav.hasAttribute('aria-label')) nav.setAttribute('aria-label', currentLang === 'ar' ? 'القائمة الرئيسية' : 'Main navigation');
+  });
+  const couponArea = document.getElementById('cart-coupon-area');
+  if (couponArea) {
+    const input = couponArea.querySelector('input');
+    const feedback = document.createElement('p');
+    feedback.id = 'cart-coupon-feedback';
+    feedback.className = 'cart-coupon-feedback';
+    feedback.setAttribute('role', 'status');
+    feedback.hidden = true;
+    couponArea.after(feedback);
+    input.setAttribute('aria-describedby', feedback.id);
+    input.autocomplete = 'off';
+    input.spellcheck = false;
+    const applyCoupon = () => {
+      // No coupon validation API exists; never imply a discount was accepted.
+      feedback.textContent = input.value.trim()
+        ? (currentLang === 'ar' ? 'تعذر تطبيق هذا الرمز. يرجى التواصل مع أقرب فرع للمساعدة.' : 'This coupon could not be applied. Please contact your nearest branch for help.')
+        : (currentLang === 'ar' ? 'أدخل رمز الخصم.' : 'Enter a coupon code.');
+      feedback.hidden = false;
+      input.setAttribute('aria-invalid', 'true');
+      input.focus();
+    };
+    couponArea.querySelector('[data-i18n="cart.apply"]')?.addEventListener('click', applyCoupon);
+    input.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); applyCoupon(); } });
+    input.addEventListener('input', () => { input.removeAttribute('aria-invalid'); feedback.hidden = true; });
+    couponArea.querySelector('[data-i18n="cart.update"]')?.addEventListener('click', () => {
+      renderCartPage();
+      showToast(currentLang === 'ar' ? 'السلة محدثة.' : 'Your cart is up to date.');
+    });
+  }
 }
 
 async function syncCategoryCircleImages() {
@@ -496,9 +802,16 @@ async function syncCategoryCircleImages() {
 
 function setupFAQ() {
   const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
+  faqItems.forEach((item, index) => {
     const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
     if(question) {
+      if (answer) {
+        answer.id ||= `faq-answer-${index}`;
+        question.setAttribute('aria-controls', answer.id);
+        answer.hidden = !item.classList.contains('active');
+      }
+      question.setAttribute('aria-expanded', String(item.classList.contains('active')));
       question.addEventListener('click', () => {
         // close others (optional, but requested accordion style often implements this)
         faqItems.forEach(otherItem => {
@@ -506,10 +819,13 @@ function setupFAQ() {
             otherItem.classList.remove('active');
             const otherQuestion = otherItem.querySelector('.faq-question');
             if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            if (otherAnswer) otherAnswer.hidden = true;
           }
         });
         item.classList.toggle('active');
         question.setAttribute('aria-expanded', String(item.classList.contains('active')));
+        if (answer) answer.hidden = !item.classList.contains('active');
       });
     }
   });
@@ -656,9 +972,16 @@ function addToCart(e, id, name, price, image, variantsData) {
   if (variantsData && variantsData !== 'null' && variantsData !== '') {
     try {
       const variants = JSON.parse(variantsData);
-      openVariantModal(id, name, price, image, variants);
+      openVariantModal(id, name, price, image, variants, e?.currentTarget);
       return;
     } catch(err) { console.error("Error with variantsData", err); }
+  }
+
+  const trigger = e?.currentTarget;
+  if (trigger instanceof HTMLButtonElement) {
+    if (trigger.dataset.cartPending) return;
+    trigger.dataset.cartPending = 'true';
+    setTimeout(() => { delete trigger.dataset.cartPending; }, 450);
   }
 
   // Check if item exists in cart already
@@ -672,7 +995,7 @@ function addToCart(e, id, name, price, image, variantsData) {
   finalizeCartAddition();
 }
 
-function openVariantModal(id, name, price, image, variants) {
+function openVariantModal(id, name, price, image, variants, returnFocus) {
   pendingVariantItem = { id, name, price, image, variants };
   const modal = document.getElementById('variant-modal');
   const optionsWrap = document.getElementById('variant-options');
@@ -689,19 +1012,30 @@ function openVariantModal(id, name, price, image, variants) {
         <input type="radio" name="product-size" value="${size}" style="accent-color: var(--color-accent); width: 18px; height: 18px;" ${index === 0 ? 'checked' : ''}>
         <div style="flex: 1;">
           <div style="font-weight: 600; color: #fff;">${label}</div>
-          <div style="font-size: 0.85rem; color: var(--color-accent);">Qr ${variants[size].toFixed(2)}</div>
+          <div style="font-size: 0.85rem; color: var(--color-accent);">Qr ${Number(variants[size]).toFixed(2)}</div>
         </div>
       </label>
     `;
   });
 
   optionsWrap.innerHTML = html;
+  optionsWrap.setAttribute('role', 'radiogroup');
+  optionsWrap.setAttribute('aria-label', translations[currentLang]['menu.selectSize']);
+  const confirmButton = modal.querySelector('button[onclick="confirmVariantAddToCart()"]');
+  if (confirmButton) confirmButton.disabled = !availableSizes.length;
+  if (!availableSizes.length) {
+    optionsWrap.textContent = currentLang === 'ar' ? 'لا توجد أحجام متاحة حالياً.' : 'No sizes are currently available.';
+  }
   modal.classList.add('active');
+  window.cathareiModal.open(modal, { onClose: closeVariantModal, returnFocus });
 }
 
 function closeVariantModal() {
   const modal = document.getElementById('variant-modal');
-  if(modal) modal.classList.remove('active');
+  if(modal) {
+    modal.classList.remove('active');
+    window.cathareiModal.close(modal);
+  }
   pendingVariantItem = null;
 }
 
@@ -753,6 +1087,9 @@ function finalizeCartAddition() {
 }
 
 function removeFromCart(id) {
+  const index = cartItems.findIndex(item => item.id === id);
+  const removed = cartItems[index];
+  if (!removed) return;
   cartItems = cartItems.filter(item => item.id !== id);
   localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
   updateCartBadgeUI();
@@ -760,22 +1097,45 @@ function removeFromCart(id) {
   if(document.getElementById('cart-page-body')) {
     renderCartPage();
   }
+  const toast = showToast(currentLang === 'ar' ? 'تمت إزالة المنتج من السلة' : 'Item removed from cart') || document.querySelector('#toast-container .toast:last-child');
+  if (!toast) return;
+  const undo = document.createElement('button');
+  undo.type = 'button';
+  undo.className = 'toast-undo';
+  undo.textContent = currentLang === 'ar' ? 'تراجع' : 'Undo';
+  undo.addEventListener('click', () => {
+    const existing = cartItems.find(item => item.id === removed.id);
+    if (existing) existing.qty += removed.qty;
+    else cartItems.splice(Math.min(index, cartItems.length), 0, removed);
+    localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
+    updateCartBadgeUI();
+    renderCartDropdown();
+    renderCartPage();
+    toast.remove();
+  }, { once: true });
+  toast.appendChild(undo);
 }
 
 function updateCartQuantity(id, delta) {
+  const focused = document.activeElement;
+  const action = focused?.dataset.cartAction;
   let existingItem = cartItems.find(item => item.id === id);
   if(existingItem) {
-    existingItem.qty += delta;
-    if(existingItem.qty <= 0) {
+    if(existingItem.qty + delta <= 0) {
       removeFromCart(id);
       return;
     }
+    existingItem.qty += delta;
   }
   localStorage.setItem('catharei-cart-data', JSON.stringify(cartItems));
   updateCartBadgeUI();
   renderCartDropdown();
   if(document.getElementById('cart-page-body')) {
     renderCartPage();
+    if (action) {
+      const row = [...document.querySelectorAll('[data-cart-id]')].find(element => element.dataset.cartId === id);
+      row?.querySelector(`[data-cart-action="${action}"]`)?.focus({ preventScroll: true });
+    }
   }
 }
 
@@ -806,6 +1166,7 @@ async function initShowcaseSection() {
     const sectionSubtitle = translations[currentLang]?.["showcase.subtitle"] || (isAr ? "استكشف أحدث ابتكاراتنا والأصناف الأكثر طلباً طازجة يومياً" : "Experience our signature trending & newly arrived artisanal creations");
 
     let cardsHtml = '';
+    const allowAutoplay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData;
 
 
     items.forEach(item => {
@@ -827,19 +1188,19 @@ async function initShowcaseSection() {
             ${videoSrc ? `
               <video class="showcase-video"
                      src="${videoSrc}"
-                     preload="auto"
+                     preload="metadata"
+                     poster="${posterSrc || '/images/background/hero_spread.webp'}"
                      muted
                      playsinline
                      loop
-                     autoplay
                      aria-label="${item.title || 'Product Showcase Video'}">
                 <source src="${videoSrc}">
                 Your browser does not support video playback.
               </video>
               <img loading="lazy" src="${posterSrc || 'images/background/hero_spread.webp'}" alt="${item.title}" class="showcase-poster-img" style="display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
-              <button class="showcase-video-toggle" onclick="toggleShowcaseVideoPlay(this)" aria-label="Toggle Play Pause">
-                <svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                <svg class="icon-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+              <button class="showcase-video-toggle" type="button" onclick="toggleShowcaseVideoPlay(this)" aria-label="Play video">
+                <svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                <svg class="icon-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
               </button>
             ` : `
               <img loading="lazy" src="${posterSrc || 'images/background/hero_spread.webp'}" alt="${item.title}" class="showcase-poster-img">
@@ -874,7 +1235,7 @@ async function initShowcaseSection() {
     `;
     container.style.display = 'block';
 
-    // Programmatically trigger continuous autoplay on loaded videos
+    // Keep the established video treatment, but only play while visible.
     container.querySelectorAll('video').forEach(video => {
       video.muted = true;
       video.loop = true;
@@ -886,7 +1247,6 @@ async function initShowcaseSection() {
 
       const triggerPlayback = () => {
         if (!video.src || video.src.endsWith('/')) return;
-        video.load();
         const p = video.play();
         if (p !== undefined) {
           p.then(() => {
@@ -912,19 +1272,22 @@ async function initShowcaseSection() {
         }
       });
 
-      triggerPlayback();
-
-      // Ensure continuous looping
-      video.addEventListener('ended', () => {
-        video.currentTime = 0;
-        triggerPlayback();
-      });
-
-      video.addEventListener('pause', () => {
-        if (!video.dataset.userPaused && video.style.display !== 'none') {
-          triggerPlayback();
-        }
-      });
+      const syncToggle = () => {
+        if (!toggleBtn) return;
+        toggleBtn.setAttribute('aria-label', video.paused ? 'Play video' : 'Pause video');
+        toggleBtn.querySelector('.icon-pause').style.display = video.paused ? 'none' : 'inline-block';
+        toggleBtn.querySelector('.icon-play').style.display = video.paused ? 'inline-block' : 'none';
+      };
+      video.addEventListener('play', syncToggle);
+      video.addEventListener('pause', syncToggle);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(entries => {
+          const visible = entries.some(entry => entry.isIntersecting);
+          if (visible && allowAutoplay && !video.dataset.userPaused && !document.hidden) triggerPlayback();
+          else if (!visible) video.pause();
+        }, { threshold: 0.25 }).observe(video);
+      } else if (allowAutoplay) triggerPlayback();
+      document.addEventListener('visibilitychange', () => { if (document.hidden) video.pause(); });
     });
 
 
@@ -978,9 +1341,7 @@ function renderCartDropdown() {
     total += sub;
     // Determine path depth dynamically based on where we are, but handle absolute URLs correctly
     let imgPath = item.image;
-    if (window.location.pathname.includes('/navigation/') && !imgPath.startsWith('http') && !imgPath.startsWith('data:')) {
-      imgPath = '../' + imgPath.replace('../', '');
-    }
+    if (imgPath && !/^(https?:|data:|\/)/.test(imgPath)) imgPath = '/' + imgPath.replace(/^(\.\.\/)+/, '');
 
     html += `
       <div class="cart-dropdown-item">
@@ -989,14 +1350,14 @@ function renderCartDropdown() {
           <div class="cart-dropdown-title">${item.name}</div>
           <div class="cart-dropdown-price">${item.qty} x Qr ${item.price.toFixed(2)}</div>
         </div>
-        <button class="cart-dropdown-remove" onclick="removeFromCart('${item.id}')">&times;</button>
+        <button class="cart-dropdown-remove" type="button" aria-label="${currentLang === 'ar' ? 'إزالة المنتج' : 'Remove item'}" onclick="removeFromCart('${item.id}')">&times;</button>
       </div>
     `;
   });
   html += '</div>';
 
   // Calculate relative URL to cart page correctly depending on current directory
-  let cartUrl = window.location.pathname.includes('/navigation/') ? 'cart.html' : 'navigation/cart.html';
+  const cartUrl = '/navigation/cart.html';
 
   html += `
     <div class="cart-dropdown-footer">
@@ -1017,22 +1378,24 @@ function renderCartPage() {
   const couponArea = document.getElementById('cart-coupon-area');
 
   if(!container || !totalsBox) return;
+  const text = key => translations[currentLang][key];
+  const totalsTitle = currentLang === 'ar' ? 'إجمالي السلة' : 'Cart totals';
 
   if(cartItems.length === 0) {
     if (headerRow) headerRow.style.display = 'none';
     if (couponArea) couponArea.style.display = 'none';
-    container.innerHTML = '<p style="padding: 20px 0; color: #999;">Your cart is currently empty. Explore our sweets!</p>';
+    container.innerHTML = `<p style="padding: 20px 0; color: #999;">${currentLang === 'ar' ? text('cart.empty') : 'Your cart is currently empty. Explore our sweets!'}</p>`;
     totalsBox.innerHTML = `
-      <h3 style="margin-bottom:20px; font-size:1.2rem;">Cart totals</h3>
+      <h3 style="margin-bottom:20px; font-size:1.2rem;">${totalsTitle}</h3>
       <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:1px solid #ddd; padding-bottom:15px;">
-        <span>Subtotal</span>
+        <span>${text('cart.subtotal')}</span>
         <span>Qr 0.00</span>
       </div>
       <div style="display:flex; justify-content:space-between; margin-bottom:25px; font-weight:bold;">
-        <span>Total</span>
+        <span>${text('checkout.total')}</span>
         <span>Qr 0.00</span>
       </div>
-      <button class="btn btn-primary" style="width:100%; opacity:0.5; cursor:not-allowed;" disabled>Proceed to checkout</button>
+      <button class="btn btn-primary" style="width:100%; opacity:0.5; cursor:not-allowed;" disabled>${text('cart.checkout')}</button>
     `;
     return;
   }
@@ -1045,7 +1408,7 @@ function renderCartPage() {
   cartItems.forEach(item => {
     subtotal += item.price * item.qty;
     html += `
-      <div class="cart-table-row">
+      <div class="cart-table-row" data-cart-id="${item.id}">
         <div class="cart-col-product">
           <img loading="lazy" src="${item.image}" alt="${item.name}">
           <div class="cart-item-meta">
@@ -1056,16 +1419,16 @@ function renderCartPage() {
         </div>
         <div class="cart-col-qty">
           <div class="qty-adjuster">
-             <button onclick="updateCartQuantity('${item.id}', -1)">-</button>
-             <input type="text" value="${item.qty}" readonly>
-             <button onclick="updateCartQuantity('${item.id}', 1)">+</button>
+             <button type="button" data-cart-action="decrease" aria-label="${currentLang === 'ar' ? 'تقليل الكمية' : 'Decrease quantity'}" onclick="updateCartQuantity('${item.id}', -1)">-</button>
+             <input type="text" value="${item.qty}" aria-label="${text('cart.qty')}" readonly tabindex="-1">
+             <button type="button" data-cart-action="increase" aria-label="${currentLang === 'ar' ? 'زيادة الكمية' : 'Increase quantity'}" onclick="updateCartQuantity('${item.id}', 1)">+</button>
           </div>
         </div>
         <div class="cart-col-subtotal">
           <span class="subtotal-val">Qr ${(item.price * item.qty).toFixed(2)}</span>
         </div>
         <div class="cart-col-remove">
-          <button onclick="removeFromCart('${item.id}')" aria-label="Remove item">
+          <button type="button" onclick="removeFromCart('${item.id}')" aria-label="${currentLang === 'ar' ? 'إزالة المنتج' : 'Remove item'}">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
           </button>
         </div>
@@ -1076,22 +1439,22 @@ function renderCartPage() {
 
   // Render totals
   totalsBox.innerHTML = `
-    <h3 style="margin-bottom:20px; font-size:1.2rem; border-bottom:1px solid #e0e0e0; padding-bottom:15px;">Cart totals</h3>
+    <h3 style="margin-bottom:20px; font-size:1.2rem; border-bottom:1px solid #e0e0e0; padding-bottom:15px;">${totalsTitle}</h3>
 
     <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-size:0.95rem;">
-      <span>Subtotal</span>
+      <span>${text('cart.subtotal')}</span>
       <span>Qr ${subtotal.toFixed(2)}</span>
     </div>
 
 
     <div style="display:flex; justify-content:space-between; margin-bottom:25px; font-weight:bold; font-size:1.1rem;">
-      <span>Total</span>
+      <span>${text('checkout.total')}</span>
       <div style="text-align:right;">
          <span>Qr ${subtotal.toFixed(2)} <small style="display:block;font-size:0.7rem;font-weight:normal;color:#999;">(includes Qr 0.00 VAT)</small></span>
       </div>
     </div>
 
-    <button class="btn" style="width:100%; background-color:#D4AF37; color:white; border-radius:5px; padding:12px;" onclick="window.location.href='../checkout.html'">Proceed to checkout</button>
+    <button class="btn" style="width:100%; background-color:#D4AF37; color:white; border-radius:5px; padding:12px;" onclick="window.location.href='../checkout.html'">${text('cart.checkout')}</button>
   `;
 }
 
@@ -1111,6 +1474,7 @@ function showToast(message, type = 'success') {
 
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
+  toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
   toast.innerHTML = `
     ${icons[type] || icons.success}
     <span>${message}</span>
@@ -1122,7 +1486,8 @@ function showToast(message, type = 'success') {
     setTimeout(() => {
       toast.remove();
     }, 400);
-  }, 4000);
+  }, type === 'success' ? 7000 : 5000);
+  return toast;
 }
 
 window.setLanguage = function(langCode) {
@@ -1165,11 +1530,16 @@ function initCakeAnimation() {
   if (!canvas || !section) return;
 
   const context = canvas.getContext('2d');
+  if (!context) return;
+  const staticSequence = window.matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData;
+  if (staticSequence) {
+    section.classList.add('is-static-sequence');
+    if (textOverlay) textOverlay.style.opacity = '1';
+  }
 
-  const frameCount = 240;
+  const frameCount = staticSequence ? 1 : 240;
   // Compute image path depending on depth
-  const isNav = window.location.pathname.includes('/navigation/');
-  const prefix = isNav ? '../images/herosection_1/' : 'images/herosection_1/';
+  const prefix = '/images/herosection_1/';
 
   const currentFrame = index => {
     // ezgif-frame-001.webp
@@ -1211,14 +1581,14 @@ function initCakeAnimation() {
   };
 
   const setCanvasSize = () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 80; // minus header height
+    canvas.width = canvas.parentElement.clientWidth || window.innerWidth;
+    canvas.height = canvas.parentElement.clientHeight || Math.max(1, window.innerHeight - 80);
     // After resizing, update image dynamically if we have scroll data
     const scrollTop = html.scrollTop;
     let fallbackFrame = 1;
-    if(section.offsetTop > 0) {
+    if(section.offsetTop > 0 && !staticSequence) {
       const sectionScroll = scrollTop - section.offsetTop;
-      let scrollFraction = sectionScroll / (section.offsetHeight - window.innerHeight);
+      let scrollFraction = sectionScroll / Math.max(1, section.offsetHeight - window.innerHeight);
       if (scrollFraction < 0) scrollFraction = 0;
       if (scrollFraction > 1) scrollFraction = 1;
       fallbackFrame = Math.min(frameCount, Math.floor(scrollFraction * frameCount) + 1);
@@ -1247,6 +1617,9 @@ function initCakeAnimation() {
     preloadImages();
   }
 
+  if (staticSequence) return;
+  let animationFrame = 0;
+  let nextFrame = 1;
   window.addEventListener('scroll', () => {
     const scrollTop = html.scrollTop;
 
@@ -1259,14 +1632,18 @@ function initCakeAnimation() {
       return; // out of view
     }
 
-    const maxScrollObj = sectionHeight - window.innerHeight;
+    const maxScrollObj = Math.max(1, sectionHeight - window.innerHeight);
     const scrollFraction = (scrollTop - sectionTop) / maxScrollObj;
 
     let frameIndex = Math.floor(scrollFraction * frameCount) + 1;
     if (frameIndex < 1) frameIndex = 1;
     if (frameIndex > frameCount) frameIndex = frameCount;
 
-    requestAnimationFrame(() => updateImage(frameIndex));
+    nextFrame = frameIndex;
+    if (!animationFrame) animationFrame = requestAnimationFrame(() => {
+      updateImage(nextFrame);
+      animationFrame = 0;
+    });
 
     // Evaluate overlay text fading. Fade in between 20% and 80% scroll
     if(textOverlay) {
@@ -1276,7 +1653,7 @@ function initCakeAnimation() {
         textOverlay.style.opacity = 0;
       }
     }
-  });
+  }, { passive: true });
 }
 let currentUser = null;
 

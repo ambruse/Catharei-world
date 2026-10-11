@@ -315,7 +315,7 @@ test('browser: menu variants, cart quantities and mobile SEO pages', { skip: !pr
       return route.abort();
     });
     await page.goto(origin + '/menu.html');
-    await page.locator('#product-1 button.add-to-cart').click();
+    await page.locator('#product-1 button.menu-add-button').click();
     await page.locator('input[name="product-size"][value="medium"]').check();
     assert.equal(await page.locator('input[name="product-size"][value="large"]').count(), 0);
     await page.locator('#variant-modal button[onclick="confirmVariantAddToCart()"]').click();
@@ -342,9 +342,15 @@ test('browser: menu variants, cart quantities and mobile SEO pages', { skip: !pr
     await page.goto(origin + '/');
     await page.screenshot({ path: path.join(os.tmpdir(), 'catharei-seo-desktop.png'), animations: 'disabled' });
     assert.equal(frames.length, 0, 'Below-fold animation should not compete with the initial page load');
-    const firstFrame = page.waitForRequest(request => request.url().includes('/images/herosection_1/'));
-    await page.locator('#cake-scroll-section').scrollIntoViewIfNeeded();
-    await firstFrame;
-    assert.ok(frames.length > 0, 'Animation frames still load when approached');
+    if (await page.locator('#cake-scroll-section').count()) {
+      const firstFrame = page.waitForRequest(request => request.url().includes('/images/herosection_1/'));
+      await page.locator('#cake-scroll-section').scrollIntoViewIfNeeded();
+      await firstFrame;
+      assert.ok(frames.length > 0, 'Animation frames still load when approached');
+    } else {
+      // The current photographic homepage has no legacy canvas section.
+      assert.ok(await page.locator('.hero-banner').isVisible());
+      assert.equal(frames.length, 0, 'Absent canvas must not download animation frames');
+    }
   } finally { await browser.close(); }
 });

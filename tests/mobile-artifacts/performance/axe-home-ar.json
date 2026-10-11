@@ -1,0 +1,270 @@
+{
+  "route": "/",
+  "lang": "ar",
+  "status": 200,
+  "width": 390,
+  "height": 844,
+  "version": "4.14.0",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span aria-hidden=\"true\">→</span>",
+          "target": [
+            ".btn-text > span[aria-hidden=\"true\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "bold",
+                "messageKey": "bgGradient",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<span class=\"showcase-badge badge-trending\">Trending Now</span>",
+                  "target": [
+                    ".showcase-badge"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a background gradient"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"showcase-badge badge-trending\">Trending Now</span>",
+          "target": [
+            ".showcase-badge"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a background gradient"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.6pt (14.08px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<span class=\"showcase-price-tag\">QR 65.00</span>",
+                  "target": [
+                    ".showcase-price-tag"
+                  ]
+                },
+                {
+                  "html": "<video class=\"showcase-video\" src=\"/images/showcase/showcase-1786776829203-868207384.mp4\" preload=\"metadata\" poster=\"/images/products/1775115029250-903191392.webp\" muted=\"\" playsinline=\"\" loop=\"\" aria-label=\"Signature Hot Cheese Baklava\">",
+                  "target": [
+                    "video"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"showcase-price-tag\">QR 65.00</span>",
+          "target": [
+            ".showcase-price-tag"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<a href=\"navigation/Arabic_sweets.html\" class=\"btn-solid-gold showcase-cta-btn\">\n                <span>Order Hot Baklava</span> →\n              </a>",
+          "target": [
+            ".showcase-cta-btn"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "messageKey": "nonBmp"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content contains only non-text characters"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<strong>∞</strong>",
+          "target": [
+            ".trust-stat:nth-child(4) > strong"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content contains only non-text characters"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "11.0pt (14.72px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"category-circle-item\" data-category=\"savories\" onclick=\"window.location.href='navigation/savories.html'\">",
+                  "target": [
+                    "div[data-category=\"savories\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"cat.savories\" style=\"font-weight: 600;\">موالح</span>",
+          "target": [
+            "span[data-i18n=\"cat.savories\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "fontSize": "11.0pt (14.72px)",
+                "fontWeight": "normal",
+                "messageKey": "pseudoContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<div class=\"category-circle-item\" data-category=\"cakes\" onclick=\"window.location.href='navigation/cakes.html'\">",
+                  "target": [
+                    "div[data-category=\"cakes\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined due to a pseudo element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span data-i18n=\"cat.cakesPlain\" style=\"font-weight: 600;\">Cakes</span>",
+          "target": [
+            "span[data-i18n=\"cat.cakesPlain\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+        }
+      ]
+    },
+    {
+      "id": "video-caption",
+      "impact": "critical",
+      "tags": [
+        "cat.text-alternatives",
+        "wcag2a",
+        "wcag122",
+        "section508",
+        "section508.22.a",
+        "TTv5",
+        "TT17.a",
+        "EN-301-549",
+        "EN-9.1.2.2",
+        "RGAAv4",
+        "RGAA-4.3.1"
+      ],
+      "description": "Ensure <video> elements have captions",
+      "help": "<video> elements must have captions",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/video-caption?application=axeAPI",
+      "nodes": [
+        {
+          "any": [],
+          "all": [],
+          "none": [
+            {
+              "id": "caption",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Check that captions are available for the element"
+            }
+          ],
+          "impact": "critical",
+          "html": "<video class=\"showcase-video\" src=\"/images/showcase/showcase-1786776829203-868207384.mp4\" preload=\"metadata\" poster=\"/images/products/1775115029250-903191392.webp\" muted=\"\" playsinline=\"\" loop=\"\" aria-label=\"Signature Hot Cheese Baklava\">",
+          "target": [
+            "video"
+          ],
+          "failureSummary": "Fix all of the following:\n  Check that captions are available for the element"
+        }
+      ]
+    }
+  ],
+  "passes": 24,
+  "inapplicable": 39
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "en: visible mobile search and clear/no-result recovery",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "en: nested detail/size dialogs, Escape focus return, size price and double-click protection",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "en: cart quantity persists and subtotal updates",
+    "passed": true,
+    "detail": "2 × 60"
+  },
+  {
+    "name": "en: checkout validation, labels, language, verification dismissal and retained inputs",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "en: single real QA order POST, successful response and cart cleared",
+    "passed": true,
+    "detail": "Local QA order 94514784; external notifications disabled by preview"
+  },
+  {
+    "name": "en: success/rejection order-number rendering and short landscape scroll",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "ar: visible mobile search and clear/no-result recovery",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "ar: nested detail/size dialogs, Escape focus return, size price and double-click protection",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "ar: cart quantity persists and subtotal updates",
+    "passed": true,
+    "detail": "2 × 60"
+  },
+  {
+    "name": "ar: checkout validation, labels, language, verification dismissal and retained inputs",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "ar: single real QA order POST, successful response and cart cleared",
+    "passed": true,
+    "detail": "Local QA order 38583922; external notifications disabled by preview"
+  },
+  {
+    "name": "ar: success/rejection order-number rendering and short landscape scroll",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "320px account: keyboard panel controls, form labels, no horizontal overflow",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "Account history: checkout qty field renders correct item total",
+    "passed": true,
+    "detail": "Mock authenticated QA history"
+  },
+  {
+    "name": "320px login: reset controls and associated labels",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "name": "Checkout remains initialized when map library fails",
+    "passed": true,
+    "detail": ""
+  }
+]
