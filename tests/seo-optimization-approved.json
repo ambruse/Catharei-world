@@ -1,8 +1,51 @@
 {
-  "authorization": "One-time SEO implementation requested 2026-10-11; exact reviewed exceptions only",
+  "authorization": "One-time SEO implementation requested 2026-10-11; exact reviewed exceptions only; homepage category anchors, metadata and H1 explicitly requested 2026-10-29",
   "pages": {
     "admin.html": {
       "analytics": []
+    },
+    "index.html": {
+      "reason": "2026-10-29: approved homepage title/description (including social tags), H1, and four category anchors; retain all other protections",
+      "title": "<title>Arabic Sweets &amp; Cakes in Qatar | CATHAREi</title>",
+      "meta": [
+        "<meta charset=\"UTF-8\">",
+        "<meta name=\"description\" content=\"Explore CATHAREi’s Arabic sweets, baklava, maamoul and custom cakes. Browse the menu or visit our Doha, Al Wakrah and Al Kharaitiyat branches.\">",
+        "<meta name=\"robots\" content=\"index, follow, max-image-preview:large\">",
+        "<meta property=\"og:type\" content=\"website\">",
+        "<meta property=\"og:site_name\" content=\"CATHAREi\">",
+        "<meta property=\"og:title\" content=\"Arabic Sweets &amp; Cakes in Qatar | CATHAREi\">",
+        "<meta property=\"og:description\" content=\"Explore CATHAREi’s Arabic sweets, baklava, maamoul and custom cakes. Browse the menu or visit our Doha, Al Wakrah and Al Kharaitiyat branches.\">",
+        "<meta property=\"og:url\" content=\"https://www.catharei.com/\">",
+        "<meta property=\"og:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">",
+        "<meta name=\"twitter:card\" content=\"summary_large_image\">",
+        "<meta name=\"twitter:title\" content=\"Arabic Sweets &amp; Cakes in Qatar | CATHAREi\">",
+        "<meta name=\"twitter:description\" content=\"Explore CATHAREi’s Arabic sweets, baklava, maamoul and custom cakes. Browse the menu or visit our Doha, Al Wakrah and Al Kharaitiyat branches.\">",
+        "<meta name=\"twitter:image\" content=\"https://www.catharei.com/images/background/hero_spread.webp\">"
+      ],
+      "headings": [
+        "Arabic Sweets &amp;\n            Cakes in Qatar",
+        "Rooted in tradition.Finished with imagination.",
+        "A beautiful table begins with a generous gesture.",
+        "Made for every kind of craving.",
+        "Featured Sweets and Savories",
+        "A cake that belongs only to your celebration.",
+        "Frequently Asked Questions",
+        "Our Delivery Partners",
+        "Three addresses.One warm welcome.",
+        "حلويات وكيك في قطر",
+        "Find the right bakery for your occasion",
+        "Links",
+        "Help",
+        "Follow Us",
+        "Our Stores",
+        "Select Size"
+      ],
+      "addedLinks": [
+        "/navigation/savories.html",
+        "/navigation/Arabic_sweets.html",
+        "/navigation/oriental_sweets.html",
+        "/navigation/cakes.html"
+      ]
     }
   },
   "files": {

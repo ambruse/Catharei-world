@@ -44,7 +44,7 @@ test('mobile refinements preserve all page metadata, heading text, schema and an
   }
 });
 
-test('original link destinations are preserved except documented delivery placeholder repairs', () => {
+test('original link destinations are preserved with exact approved additions and delivery placeholder repairs', () => {
   for (const page of inventory.basePages) {
     const current = protectedContent(fs.readFileSync(path.join(root, page.file), 'utf8')).links;
     const expected = [...page.protectedContent.links];
@@ -62,6 +62,7 @@ test('original link destinations are preserved except documented delivery placeh
       assert.equal(partner, 3, 'The baseline must contain exactly the three delivery placeholders');
     }
     expected.push(...(addedContactLinks[page.file] || []));
+    expected.push(...(seoApproved.pages[page.file]?.addedLinks || []));
     const remaining = [...current];
     for (const destination of expected) {
       const index = remaining.indexOf(destination);
