@@ -1,0 +1,82 @@
+[
+  {
+    "id": "F01",
+    "priority": "High",
+    "title": "Reduce oversized catalogue images",
+    "action": "Generate appropriately sized WebP/AVIF derivatives; use srcset/sizes, explicit dimensions and below-fold lazy loading. Keep suitable priority imagery for the first viewport. Fix the upload pipeline so new images stay optimized.",
+    "owner": "Frontend/backend developer",
+    "dependency": "Preserve originals and verify derivative quality.",
+    "effort_assumption": "1–2 developer days",
+    "success_check": "Repeat fresh-context visits at the same viewport and delay; demonstrate reduced image transfer and intact imagery, then collect separate mobile lab and field baselines."
+  },
+  {
+    "id": "F02",
+    "priority": "High",
+    "title": "Reconcile branch hours",
+    "action": "Obtain one approved schedule per branch, including exceptions; publish it visibly and use the same source in structured data. Remove unsupported schedules until verified. Compare Business Profiles when access is available.",
+    "owner": "Business owner + developer",
+    "dependency": "Owner-approved hours; Business Profile access for later cross-check.",
+    "effort_assumption": "0.5–1 day after facts are supplied",
+    "success_check": "No conflicting hours; all marked-up schedules match visible approved information."
+  },
+  {
+    "id": "F03",
+    "priority": "Medium",
+    "title": "Replace copied menu schema",
+    "action": "Generate a page-specific Blog/CollectionPage and ContactPage with their own identity and URL, or remove the unrelated block. Preserve valid business entities.",
+    "owner": "Developer",
+    "dependency": "None",
+    "effort_assumption": "1–3 hours",
+    "success_check": "Source and rendered JSON-LD describe the current page without the copied menu entity."
+  },
+  {
+    "id": "F04",
+    "priority": "Medium",
+    "title": "Repair broken schema references",
+    "action": "Use an existing relevant branch/contact hub in breadcrumbs or build the intended hub. Replace image URLs with real appropriate branch images; omit unsupported optional references rather than inventing assets.",
+    "owner": "Developer + content owner",
+    "dependency": "Approved branch imagery and branch-hub decision.",
+    "effort_assumption": "2–4 hours if assets exist",
+    "success_check": "Referenced URLs return 200 with suitable content; breadcrumb hierarchy and branch images accurately describe the business."
+  },
+  {
+    "id": "F05",
+    "priority": "Medium",
+    "title": "Complete Arabic content before expanding Arabic search targeting",
+    "action": "Translate remaining headings, controls and meaningful product details. If separate Arabic search landing pages are intended, create fully translated stable URLs with appropriate canonicals and reciprocal language annotations. Do not change canonicals or add hreflang merely because a toggle exists.",
+    "owner": "Arabic editor + developer",
+    "dependency": "Arabic search strategy and approved translations.",
+    "effort_assumption": "2–5 days for a small pilot",
+    "success_check": "Fresh browsers show complete Arabic content and metadata; URL, canonical and language annotations consistently implement the selected strategy."
+  },
+  {
+    "id": "F06",
+    "priority": "Medium opportunity",
+    "title": "Enable accurate variant product offers",
+    "action": "Design selectable, addressable variants backed by truthful price/availability data, then implement appropriate product/offer markup. Do not invent reviews or use AggregateOffer as a shortcut for size variants. Validate against current Google requirements.",
+    "owner": "Developer + catalogue owner",
+    "dependency": "Variant selection and URL model; reliable offer data.",
+    "effort_assumption": "1–3 days",
+    "success_check": "Selected size, visible price, URL and JSON-LD agree; Rich Results Test confirms required fields. Eligibility does not guarantee display."
+  },
+  {
+    "id": "F07",
+    "priority": "Medium",
+    "title": "Verify service claims and answer buying questions",
+    "action": "Have operations verify dietary and delivery claims. Add approved portions, ingredients/allergens, lead times, delivery conditions and gifting minimums where applicable. Replace repeated superlatives with useful specifics and verified examples.",
+    "owner": "Operations/catalogue owner + editor",
+    "dependency": "Verified product/service facts and consent for customer proof.",
+    "effort_assumption": "1–3 editorial days for priority pages after fact collection",
+    "success_check": "Consequential claims have an internal fact source; priority buying questions have clear on-page answers without invented guarantees."
+  },
+  {
+    "id": "F08",
+    "priority": "Information",
+    "title": "Establish measurement baselines",
+    "action": "Use Search Console page/query and indexing reports plus GA4 organic conversion reporting. Capture dated mobile lab and available field metrics separately. Use observed queries and business outcomes to prioritize expansion.",
+    "owner": "SEO/analytics owner",
+    "dependency": "Authorized access or exports and agreed conversion definitions.",
+    "effort_assumption": "0.5–1 day if access exists",
+    "success_check": "Baselines record property, dates, filters and devices; before/after comparisons keep scope consistent."
+  }
+]

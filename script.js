@@ -141,6 +141,7 @@ const translations = {
     "nav.terms": "Terms of Service",
     "nav.offers": "Offers",
     "nav.other": "Other",
+    "nav.about": "About Us",
     "nav.catering": "Catering & Occasions",
     "nav.blog": "Blog",
     "checkout.title": "Checkout",
@@ -301,6 +302,7 @@ const translations = {
     "nav.terms": "شروط الخدمة",
     "nav.offers": "العروض",
     "nav.other": "المزيد",
+    "nav.about": "من نحن",
     "nav.catering": "التجهيزات والفعاليات",
     "nav.blog": "المدونة",
     "checkout.title": "إتمام الطلب",
@@ -377,6 +379,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Navigation and accessibility must be ready even on a slow catalogue connection.
   setupEventListeners();
   setupSharedAccessibility();
+  checkLoginStatus();
   applyTranslations();
   setupFAQ();
   initHomeEnhancements();
@@ -420,7 +423,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   applyTranslations();
   syncCategoryCircleImages();
   initCakeAnimation();
-  checkLoginStatus();
 
 
   // If on the cart.html page, render the cart list
@@ -1048,13 +1050,15 @@ function openVariantModal(id, name, price, image, variants, returnFocus) {
   const availableSizes = Object.keys(variants).filter(key => key !== '_disabled' && !disabled.includes(key));
 
   availableSizes.forEach((size, index) => {
-    const label = size.charAt(0).toUpperCase() + size.slice(1);
+    const label = currentLang === 'ar'
+      ? ({ small: 'صغير', medium: 'وسط', large: 'كبير' }[size] || size)
+      : size.charAt(0).toUpperCase() + size.slice(1);
     html += `
       <label style="display: flex; align-items: center; gap: 12px; padding: 12px 15px; background: rgba(255,255,255,0.03); border: 1px solid #333; border-radius: 8px; cursor: pointer; transition: all 0.2s;">
         <input type="radio" name="product-size" value="${size}" style="accent-color: var(--color-accent); width: 18px; height: 18px;" ${index === 0 ? 'checked' : ''}>
         <div style="flex: 1;">
           <div style="font-weight: 600; color: #fff;">${label}</div>
-          <div style="font-size: 0.85rem; color: var(--color-accent);">Qr ${Number(variants[size]).toFixed(2)}</div>
+          <div style="font-size: 0.85rem; color: var(--color-accent);">${currentLang === 'ar' ? 'ر.ق' : 'Qr'} ${Number(variants[size]).toFixed(2)}</div>
         </div>
       </label>
     `;
@@ -1504,7 +1508,7 @@ function renderCartPage() {
   `;
 }
 
-function showToast(message, type = 'success') {
+function showToast(message, type = 'success', duration = type === 'success' ? 7000 : 5000) {
   let container = document.getElementById('toast-container');
   if(!container) {
      container = document.createElement('div');
@@ -1532,7 +1536,7 @@ function showToast(message, type = 'success') {
     setTimeout(() => {
       toast.remove();
     }, 400);
-  }, type === 'success' ? 7000 : 5000);
+  }, duration);
   return toast;
 }
 
@@ -1704,11 +1708,21 @@ function initCakeAnimation() {
 let currentUser = null;
 
 async function checkLoginStatus() {
+  let loginSuccessAt = 0;
+  if (window.location.pathname === '/menu.html') {
+    try {
+      loginSuccessAt = Number(sessionStorage.getItem('catharei-login-success'));
+      sessionStorage.removeItem('catharei-login-success');
+    } catch {}
+  }
   try {
     const res = await fetch('/api/auth/me');
     const data = await res.json();
     if (data.loggedIn) {
       currentUser = data.user;
+      if (loginSuccessAt > 0 && Date.now() - loginSuccessAt < 60000) {
+        showToast(currentLang === 'ar' ? 'تم تسجيل الدخول بنجاح' : 'Logged in successfully', 'success', 6000);
+      }
     }
   } catch (err) {
     console.error("Error checking login status:", err);

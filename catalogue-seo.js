@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { escapeHtml: e } = require('./seo');
+const { localize: arabicProduct } = require('./menu-ar');
 const ORIGIN = 'https://www.catharei.com';
 const LUQ_PATH = '/luqaimat-qatar.html';
 
@@ -58,10 +59,15 @@ function priceRange(product) {
   const price = Number(product.price);
   return product.price !== null && product.price !== undefined && String(product.price).trim() !== '' && Number.isFinite(price) && price > 0 ? [price, price] : null;
 }
-function cards(products) {
+function cards(products, language = 'en') {
   return products.map(product => {
+    const arabic = language === 'ar';
+    const localized = arabic ? arabicProduct(product) : product;
+    const name = arabic && localized.name_ar ? localized.name_ar : product.name;
+    const description = arabic && localized.description_ar ? localized.description_ar : product.description;
+    const price = arabic ? priceText(product).replace(/Small/g, 'صغير').replace(/Medium/g, 'وسط').replace(/Large/g, 'كبير').replace(/QAR/g, 'ر.ق') : priceText(product);
     const image = imageUrl(product.image);
-    return `<article class="menu-item" id="product-${e(product.id)}">${image ? `<img class="menu-item-img" loading="lazy" width="400" height="300" src="${e(image)}" alt="${e(product.name || '')}">` : ''}<div class="menu-item-info"><div><h2 class="menu-item-name"><a href="${e(productPath(product))}">${e(product.name || '')}</a></h2><p class="menu-item-price">${e(priceText(product))}</p><p class="menu-item-desc">${e(product.description || '')}</p>${product.name_ar ? `<p lang="ar" dir="rtl">${e(product.name_ar)}</p>` : ''}</div><a href="/menu.html">View menu &amp; order</a></div></article>`;
+    return `<article class="menu-item" id="product-${e(product.id)}">${image ? `<img class="menu-item-img" loading="lazy" width="400" height="300" src="${e(image)}" alt="${e(name || '')}">` : ''}<div class="menu-item-info"><div><h2 class="menu-item-name"><a href="${e(productPath(product))}">${e(name || '')}</a></h2><p class="menu-item-price">${e(price)}</p><p class="menu-item-desc">${e(description || '')}</p>${!arabic && product.name_ar ? `<p lang="ar" dir="rtl">${e(product.name_ar)}</p>` : ''}</div><a href="/menu.html${arabic ? '?lang=ar' : ''}">${arabic ? 'عرض القائمة والطلب' : 'View menu &amp; order'}</a></div></article>`;
   }).join('');
 }
 function catalogueSchema(products, pagePath) {
@@ -156,7 +162,8 @@ function registerCatalogueSeo(app, getDb, root) {
       const hasLuq = all.some(isLuqaimat);
       const category = grid[0].match(/data-category="([^"]+)"/)?.[1];
       const products = all.filter(product => luq ? isLuqaimat(product) : category ? product.category === category : grid[0].includes('data-type="featured"') ? product.featured === 1 : true);
-      let content = products.length ? cards(products) : '<p>Menu details are currently unavailable. Please contact a branch for assistance.</p>';
+      const arabicMenu = file === 'menu.html' && req.query.lang === 'ar';
+      let content = products.length ? cards(products, arabicMenu ? 'ar' : 'en') : `<p>${arabicMenu ? 'القائمة غير متاحة حالياً. يرجى التواصل مع أحد الفروع للمساعدة.' : 'Menu details are currently unavailable. Please contact a branch for assistance.'}</p>`;
       if (file === 'menu.html') content = `<div class="menu-grid">${content}</div>`;
       template = template.replace(grid[0], grid[0].replace('</div>', content + '</div>'));
       template = template.replace(/<!-- luqaimat-link -->/g, hasLuq ? '<p><a href="/luqaimat-qatar.html">Fresh Luqaimat in Qatar · لقيمات طازجة في قطر</a></p>' : '');
@@ -169,6 +176,21 @@ function registerCatalogueSeo(app, getDb, root) {
       const schema = catalogueSchema(products, req.path);
       const json = JSON.stringify(schema).replace(/</g, '\\u003c');
       if (products.length) template = template.replace('</head>', `<script id="catalogue-schema" type="application/ld+json">${json}</script></head>`);
+      if (arabicMenu) {
+        template = metadata(template, 'قائمة الحلويات والكيك والموالح | كاثاري قطر', 'تصفح قائمة كاثاري للحلويات العربية والشرقية والكيك والموالح في قطر، واختر أصنافك المفضلة وتواصل مع أقرب فرع.', '/menu.html');
+        template = template.replace('<html lang="en">', '<html lang="ar" dir="rtl">')
+          .replace('<span>Explore</span><em>our menu</em>', '<span>اكتشف</span><em>قائمتنا</em>')
+          .replace('>Enter the collection</span>', '>تصفح التشكيلة</span>')
+          .replace('>CATHAREi · The edible collection</p>', '>كاثاري · تشكيلة المذاق</p>')
+          .replace('>Skip to menu</a>', '>انتقل إلى القائمة</a>')
+          .replace('>Search menu</span>', '>ابحث في القائمة</span>')
+          .replace('placeholder="Search menu…"', 'placeholder="ابحث في القائمة…"')
+          .replace('>The complete collection</p>', '>التشكيلة الكاملة</p>')
+          .replace('>All creations</span>', '>كل الأصناف</span>')
+          .replace('>No creations match your search.</p>', '>لا توجد أصناف تطابق بحثك.</p>')
+          .replace('Discover our full collection of premium treats, from traditional Arabic sweets to modern designer cakes. Handcrafted daily in Doha.', 'اكتشف تشكيلتنا الكاملة من الحلويات العربية والكيك العصري، المحضرة يومياً في الدوحة.')
+          .replace('From delicate Arabic sweets to celebration cakes and savouries, each piece is made to turn sharing into an occasion.', 'من الحلويات العربية إلى كيك المناسبات والموالح، أصناف تضيف لمسة مميزة إلى كل لقاء.');
+      }
       res.send(template);
     });
   });

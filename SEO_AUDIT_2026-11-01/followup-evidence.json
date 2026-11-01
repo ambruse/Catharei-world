@@ -1,0 +1,1211 @@
+[
+  {
+    "url": "https://www.catharei.com/locations/",
+    "captured_utc": "2026-11-01T12:25:51.745524+00:00",
+    "status": 404,
+    "final_url": "https://www.catharei.com/locations/",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:25:52 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "content-security-policy": "default-src 'none'",
+      "rndr-id": "e8e62a24-3b0a-42e3",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae274a898e0d0-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 149,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_locations_.html",
+    "analysis": {
+      "format_version": 1,
+      "url": "https://www.catharei.com/locations/",
+      "evidence_level": "source_html",
+      "source_sha256": "1e70efe8dc848ff634e4f8991b5bba031d435fd19acc392d9fa31e226462b5bb",
+      "titles": [
+        "Error"
+      ],
+      "descriptions": [],
+      "canonicals": [],
+      "robots": {},
+      "noindex_observed": false,
+      "headings": [],
+      "hreflang": [],
+      "lang": "en",
+      "viewport": null,
+      "images": [],
+      "links": [],
+      "link_counts": {
+        "internal": 0,
+        "external": 0,
+        "other": 0
+      },
+      "json_ld": [],
+      "visible_word_count": 3,
+      "word_count_scope": "All unsuppressed source text, including incidental or adversarial text; not main-content quality",
+      "visible_text_sha256": "63bb4b8b2b8cc9f59282194769bacb4db8257d91c52a39fbbbaa7836ecc8d86a",
+      "findings": [
+        {
+          "id": "DESCRIPTION_REVIEW",
+          "severity": "medium",
+          "observation": "No nonempty meta description observed",
+          "verification": "Decide whether an editorial search preview would help this page",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/locations/",
+          "evidence_pointer": "/descriptions"
+        },
+        {
+          "id": "CANONICAL_REVIEW",
+          "severity": "medium",
+          "observation": "A single nonempty canonical was not observed",
+          "verification": "Check header canonicals, duplicate URLs and intended preferred URL before changing tags",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/locations/",
+          "evidence_pointer": "/canonicals"
+        },
+        {
+          "id": "H1_REVIEW",
+          "severity": "info",
+          "observation": "The source does not contain exactly one H1",
+          "verification": "Review the heading structure for clarity; this is not evidence of a ranking penalty",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/locations/",
+          "evidence_pointer": "/headings"
+        }
+      ],
+      "measurements": {
+        "http_status": null,
+        "indexing": null,
+        "core_web_vitals": null,
+        "rankings": null,
+        "backlinks": null,
+        "ai_citations": null
+      },
+      "manual_review_required": [
+        "Metadata usefulness",
+        "Main-content relevance and factual support",
+        "Image purpose",
+        "Structured-data eligibility"
+      ],
+      "limitations": [
+        "Static snapshot only",
+        "CSS visibility and JavaScript not evaluated",
+        "Links and response headers not checked",
+        "No overall SEO score"
+      ]
+    }
+  },
+  {
+    "url": "https://www.catharei.com/images/salwa-storefront.jpg",
+    "captured_utc": "2026-11-01T12:25:51.746553+00:00",
+    "status": 404,
+    "final_url": "https://www.catharei.com/images/salwa-storefront.jpg",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:25:52 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "content-security-policy": "default-src 'none'",
+      "rndr-id": "efae550d-ee04-4ff1",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae274ad63e0c8-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 166,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_images_salwa-storefront.jpg.html",
+    "analysis": {
+      "format_version": 1,
+      "url": "https://www.catharei.com/images/salwa-storefront.jpg",
+      "evidence_level": "source_html",
+      "source_sha256": "8671b7f9e96175f3a9e70bc9c198b5f85ef894b75ab86a464e7fb486c39dbaeb",
+      "titles": [
+        "Error"
+      ],
+      "descriptions": [],
+      "canonicals": [],
+      "robots": {},
+      "noindex_observed": false,
+      "headings": [],
+      "hreflang": [],
+      "lang": "en",
+      "viewport": null,
+      "images": [],
+      "links": [],
+      "link_counts": {
+        "internal": 0,
+        "external": 0,
+        "other": 0
+      },
+      "json_ld": [],
+      "visible_word_count": 3,
+      "word_count_scope": "All unsuppressed source text, including incidental or adversarial text; not main-content quality",
+      "visible_text_sha256": "41eea049ebe6943b1f545846e588366ecdf4d160e851625922e683c4cf168e01",
+      "findings": [
+        {
+          "id": "DESCRIPTION_REVIEW",
+          "severity": "medium",
+          "observation": "No nonempty meta description observed",
+          "verification": "Decide whether an editorial search preview would help this page",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/salwa-storefront.jpg",
+          "evidence_pointer": "/descriptions"
+        },
+        {
+          "id": "CANONICAL_REVIEW",
+          "severity": "medium",
+          "observation": "A single nonempty canonical was not observed",
+          "verification": "Check header canonicals, duplicate URLs and intended preferred URL before changing tags",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/salwa-storefront.jpg",
+          "evidence_pointer": "/canonicals"
+        },
+        {
+          "id": "H1_REVIEW",
+          "severity": "info",
+          "observation": "The source does not contain exactly one H1",
+          "verification": "Review the heading structure for clarity; this is not evidence of a ranking penalty",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/salwa-storefront.jpg",
+          "evidence_pointer": "/headings"
+        }
+      ],
+      "measurements": {
+        "http_status": null,
+        "indexing": null,
+        "core_web_vitals": null,
+        "rankings": null,
+        "backlinks": null,
+        "ai_citations": null
+      },
+      "manual_review_required": [
+        "Metadata usefulness",
+        "Main-content relevance and factual support",
+        "Image purpose",
+        "Structured-data eligibility"
+      ],
+      "limitations": [
+        "Static snapshot only",
+        "CSS visibility and JavaScript not evaluated",
+        "Links and response headers not checked",
+        "No overall SEO score"
+      ]
+    }
+  },
+  {
+    "url": "https://www.catharei.com/images/wakrah-storefront.jpg",
+    "captured_utc": "2026-11-01T12:25:51.747104+00:00",
+    "status": 404,
+    "final_url": "https://www.catharei.com/images/wakrah-storefront.jpg",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:25:52 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "content-security-policy": "default-src 'none'",
+      "rndr-id": "eedd243b-c7ad-4f71",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae274adda8f56-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 167,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_images_wakrah-storefront.jpg.html",
+    "analysis": {
+      "format_version": 1,
+      "url": "https://www.catharei.com/images/wakrah-storefront.jpg",
+      "evidence_level": "source_html",
+      "source_sha256": "dd8e8c7a25ad4603941efd6b72fa9154de3ecd0fecbd1de2b19fa83b208f1068",
+      "titles": [
+        "Error"
+      ],
+      "descriptions": [],
+      "canonicals": [],
+      "robots": {},
+      "noindex_observed": false,
+      "headings": [],
+      "hreflang": [],
+      "lang": "en",
+      "viewport": null,
+      "images": [],
+      "links": [],
+      "link_counts": {
+        "internal": 0,
+        "external": 0,
+        "other": 0
+      },
+      "json_ld": [],
+      "visible_word_count": 3,
+      "word_count_scope": "All unsuppressed source text, including incidental or adversarial text; not main-content quality",
+      "visible_text_sha256": "1be872cb6e993c94306d878a2cdc5bcedd5e31185366a8b9df14423298b32596",
+      "findings": [
+        {
+          "id": "DESCRIPTION_REVIEW",
+          "severity": "medium",
+          "observation": "No nonempty meta description observed",
+          "verification": "Decide whether an editorial search preview would help this page",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/wakrah-storefront.jpg",
+          "evidence_pointer": "/descriptions"
+        },
+        {
+          "id": "CANONICAL_REVIEW",
+          "severity": "medium",
+          "observation": "A single nonempty canonical was not observed",
+          "verification": "Check header canonicals, duplicate URLs and intended preferred URL before changing tags",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/wakrah-storefront.jpg",
+          "evidence_pointer": "/canonicals"
+        },
+        {
+          "id": "H1_REVIEW",
+          "severity": "info",
+          "observation": "The source does not contain exactly one H1",
+          "verification": "Review the heading structure for clarity; this is not evidence of a ranking penalty",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/wakrah-storefront.jpg",
+          "evidence_pointer": "/headings"
+        }
+      ],
+      "measurements": {
+        "http_status": null,
+        "indexing": null,
+        "core_web_vitals": null,
+        "rankings": null,
+        "backlinks": null,
+        "ai_citations": null
+      },
+      "manual_review_required": [
+        "Metadata usefulness",
+        "Main-content relevance and factual support",
+        "Image purpose",
+        "Structured-data eligibility"
+      ],
+      "limitations": [
+        "Static snapshot only",
+        "CSS visibility and JavaScript not evaluated",
+        "Links and response headers not checked",
+        "No overall SEO score"
+      ]
+    }
+  },
+  {
+    "url": "https://www.catharei.com/images/kharaitiyat-storefront.jpg",
+    "captured_utc": "2026-11-01T12:25:51.747585+00:00",
+    "status": 404,
+    "final_url": "https://www.catharei.com/images/kharaitiyat-storefront.jpg",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:25:52 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "content-security-policy": "default-src 'none'",
+      "rndr-id": "eebc5d2a-cc21-48d1",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae274a8c7e0e0-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 172,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_images_kharaitiyat-storefront.jpg.html",
+    "analysis": {
+      "format_version": 1,
+      "url": "https://www.catharei.com/images/kharaitiyat-storefront.jpg",
+      "evidence_level": "source_html",
+      "source_sha256": "3f9172eae2b3bd6a8d0036672b5ceaf161fc061351b28e9b18e84e2b88fc6c5b",
+      "titles": [
+        "Error"
+      ],
+      "descriptions": [],
+      "canonicals": [],
+      "robots": {},
+      "noindex_observed": false,
+      "headings": [],
+      "hreflang": [],
+      "lang": "en",
+      "viewport": null,
+      "images": [],
+      "links": [],
+      "link_counts": {
+        "internal": 0,
+        "external": 0,
+        "other": 0
+      },
+      "json_ld": [],
+      "visible_word_count": 3,
+      "word_count_scope": "All unsuppressed source text, including incidental or adversarial text; not main-content quality",
+      "visible_text_sha256": "b435ac7f76fe9db94f4f4a3a4853f3a46f2de145db97075e8d8311b214b45d1d",
+      "findings": [
+        {
+          "id": "DESCRIPTION_REVIEW",
+          "severity": "medium",
+          "observation": "No nonempty meta description observed",
+          "verification": "Decide whether an editorial search preview would help this page",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/kharaitiyat-storefront.jpg",
+          "evidence_pointer": "/descriptions"
+        },
+        {
+          "id": "CANONICAL_REVIEW",
+          "severity": "medium",
+          "observation": "A single nonempty canonical was not observed",
+          "verification": "Check header canonicals, duplicate URLs and intended preferred URL before changing tags",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/kharaitiyat-storefront.jpg",
+          "evidence_pointer": "/canonicals"
+        },
+        {
+          "id": "H1_REVIEW",
+          "severity": "info",
+          "observation": "The source does not contain exactly one H1",
+          "verification": "Review the heading structure for clarity; this is not evidence of a ranking penalty",
+          "evidence_level": "source_html",
+          "affected_url": "https://www.catharei.com/images/kharaitiyat-storefront.jpg",
+          "evidence_pointer": "/headings"
+        }
+      ],
+      "measurements": {
+        "http_status": null,
+        "indexing": null,
+        "core_web_vitals": null,
+        "rankings": null,
+        "backlinks": null,
+        "ai_citations": null
+      },
+      "manual_review_required": [
+        "Metadata usefulness",
+        "Main-content relevance and factual support",
+        "Image purpose",
+        "Structured-data eligibility"
+      ],
+      "limitations": [
+        "Static snapshot only",
+        "CSS visibility and JavaScript not evaluated",
+        "Links and response headers not checked",
+        "No overall SEO score"
+      ]
+    }
+  },
+  {
+    "url": "https://www.catharei.com/llms.txt",
+    "captured_utc": "2026-11-01T12:25:52.140902+00:00",
+    "status": 200,
+    "final_url": "https://www.catharei.com/llms.txt",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:25:52 GMT",
+      "Content-Type": "text/plain; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "Cache-Control": "public, max-age=0",
+      "cf-cache-status": "DYNAMIC",
+      "etag": "W/\"2d5-1a1869c5210\"",
+      "last-modified": "Thu, 29 Oct 2026 07:42:34 GMT",
+      "rndr-id": "e874b74d-2fe2-40bf",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae27679a85720-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 725,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_llms.txt.txt",
+    "text": "# CATHAREi Bakery & Sweets\n\nBakery in Qatar with branches in Doha (Salwa Road), Al Wakrah and Al Kharaitiyat.\n\n- [Menu](https://www.catharei.com/menu.html): sweets, cakes and savouries\n- [Arabic sweets](https://www.catharei.com/navigation/Arabic_sweets.html)\n- [Contact and branches](https://www.catharei.com/contact.html)\n- [Delivery](https://www.catharei.com/delivery.html): confirm coverage and timing with the branch\n- [Catering](https://www.catharei.com/catering.html)\n- [Corporate gifting](https://www.catharei.com/corporate-gifting.html)\n- [Blog](https://www.catharei.com/blog)\n\nكاثاري للحلويات والكيك والمعجنات في قطر. الفروع: الدوحة والوكرة والخريطيات.\n"
+  },
+  {
+    "url": "https://www.catharei.com/luqaimat-qatar.html",
+    "captured_utc": "2026-11-01T12:25:52.141460+00:00",
+    "status": 200,
+    "final_url": "https://www.catharei.com/luqaimat-qatar.html",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:25:52 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "etag": "W/\"52f3-nXkHbqFg0ivmrGnQaRNQ2jK8ghs\"",
+      "rndr-id": "7bb575d8-2933-47cd",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae27689c7e0e0-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 21235,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_luqaimat-qatar.html.html",
+    "analysis": {
+      "format_version": 1,
+      "url": "https://www.catharei.com/luqaimat-qatar.html",
+      "evidence_level": "source_html",
+      "source_sha256": "702e89dcd1d9e0e4727e3e183c39d898843f49a17c5e6b6475433efaba0549cf",
+      "titles": [
+        "Fresh Luqaimat in Qatar | CATHAREi Bakery & Sweets"
+      ],
+      "descriptions": [
+        "Explore CATHAREi Luqaimat, current menu prices and our branches on Salwa Road, in Al Wakrah and Al Kharaitiyat. لقيمات طازجة في قطر."
+      ],
+      "canonicals": [
+        "https://www.catharei.com/luqaimat-qatar.html"
+      ],
+      "robots": {
+        "robots": [
+          "index, follow, max-image-preview:large"
+        ]
+      },
+      "noindex_observed": false,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Fresh Luqaimat in Qatar"
+        },
+        {
+          "level": 2,
+          "text": "Luqaimat at all three CATHAREi branches"
+        },
+        {
+          "level": 2,
+          "text": "لقيمات طازجة طوال العام"
+        },
+        {
+          "level": 2,
+          "text": "Lokmat El Kadi"
+        },
+        {
+          "level": 2,
+          "text": "Luqimat Molasses Dates"
+        },
+        {
+          "level": 2,
+          "text": "Choosing the best Luqaimat for your occasion"
+        },
+        {
+          "level": 2,
+          "text": "Find your nearest branch"
+        },
+        {
+          "level": 2,
+          "text": "كيف تختار اللقيمات لمناسبتك؟"
+        },
+        {
+          "level": 4,
+          "text": "Links"
+        },
+        {
+          "level": 4,
+          "text": "Help"
+        },
+        {
+          "level": 4,
+          "text": "Follow Us"
+        },
+        {
+          "level": 4,
+          "text": "Our Stores"
+        },
+        {
+          "level": 2,
+          "text": "Select Size"
+        }
+      ],
+      "hreflang": [],
+      "lang": "en",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "images": [
+        {
+          "src": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+          "alt": "CATHAREi Logo",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777894662140-217121576.JPEG",
+          "alt": "Lokmat El Kadi",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777894778833-69295436.JPEG",
+          "alt": "Luqimat Molasses Dates",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+          "alt": "CATHAREi Logo",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.catharei.com/",
+          "text": "CATHAREi كاثاري"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savories"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Arabic Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/oriental_sweets.html",
+          "text": "Oriental Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "CAKES"
+        },
+        {
+          "url": "https://www.catharei.com/about.html",
+          "text": "About Us"
+        },
+        {
+          "url": "https://www.catharei.com/catering.html",
+          "text": "Catering & Occasions"
+        },
+        {
+          "url": "https://www.catharei.com/blog",
+          "text": "Blog"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Contact Us"
+        },
+        {
+          "url": "https://www.catharei.com/faq.html",
+          "text": "FAQs"
+        },
+        {
+          "url": "https://www.catharei.com/privacy.html",
+          "text": "Privacy Policy"
+        },
+        {
+          "url": "https://www.catharei.com/terms.html",
+          "text": "Terms of Service"
+        },
+        {
+          "url": "https://www.catharei.com/admin.html",
+          "text": ""
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "Home"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cart.html",
+          "text": "0 Cart"
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "Home"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Arabic sweets"
+        },
+        {
+          "url": "https://www.catharei.com/menu/lokmat-el-kadi-39",
+          "text": "Lokmat El Kadi"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/luqimat-molasses-dates-41",
+          "text": "Luqimat Molasses Dates"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/blog/history-of-luqaimat",
+          "text": "history of Luqaimat and its place in Qatari food culture"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-aziziya.html",
+          "text": "Salwa Road, Al Aziziya / Al Waab"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-wakrah.html",
+          "text": "Al Wakrah"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-kharaitiyat.html",
+          "text": "Al Kharaitiyat"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Browse the menu and order"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Explore Arabic sweets"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "تصفح القائمة واطلب"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "تواصل مع فروعنا"
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "CATHAREi كاثاري"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savouries"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "Cakes"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Contact Us"
+        },
+        {
+          "url": "https://www.catharei.com/faq.html",
+          "text": "FAQs"
+        },
+        {
+          "url": "https://www.catharei.com/privacy.html",
+          "text": "Privacy Policy"
+        },
+        {
+          "url": "https://www.catharei.com/terms.html",
+          "text": "Terms of Service"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-aziziya.html",
+          "text": "Catharei Bakery - Doha (Salwa Road)"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-wakrah.html",
+          "text": "Catharei Bakery - Al Wakrah"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-kharaitiyat.html",
+          "text": "Catharei Bakery - Al Kharaitiyat"
+        }
+      ],
+      "link_counts": {
+        "internal": 43,
+        "external": 0,
+        "other": 0
+      },
+      "json_ld": [
+        {
+          "parse_status": "parsed",
+          "types": [
+            "BreadcrumbList",
+            "ListItem"
+          ],
+          "fingerprint": "faee337203fd8981d10db4567013002fe7bbc77790a8a82e3ae7acac9a4f2036",
+          "eligibility_validated": false
+        },
+        {
+          "parse_status": "parsed",
+          "types": [
+            "ItemList",
+            "ListItem"
+          ],
+          "fingerprint": "6003456c434006e81453a7ae7a847d0511512bfedb308dce1273001ea747479d",
+          "eligibility_validated": false
+        }
+      ],
+      "visible_word_count": 338,
+      "word_count_scope": "All unsuppressed source text, including incidental or adversarial text; not main-content quality",
+      "visible_text_sha256": "d0f28fec5a4c9b048b45b731a4b34a5a4b3741ec2b8b113659015346d7c66aab",
+      "findings": [],
+      "measurements": {
+        "http_status": null,
+        "indexing": null,
+        "core_web_vitals": null,
+        "rankings": null,
+        "backlinks": null,
+        "ai_citations": null
+      },
+      "manual_review_required": [
+        "Metadata usefulness",
+        "Main-content relevance and factual support",
+        "Image purpose",
+        "Structured-data eligibility"
+      ],
+      "limitations": [
+        "Static snapshot only",
+        "CSS visibility and JavaScript not evaluated",
+        "Links and response headers not checked",
+        "No overall SEO score"
+      ]
+    }
+  },
+  {
+    "url": "https://www.catharei.com/menu/fatayer-67",
+    "captured_utc": "2026-11-01T12:25:52.159040+00:00",
+    "status": 200,
+    "final_url": "https://www.catharei.com/menu/fatayer-67",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:25:52 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "etag": "W/\"5992-VibtFrIjnWZmyHvtpzS4Ty7pha8\"",
+      "rndr-id": "fc41026f-e342-43f2",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae2769f23fad7-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 22930,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_menu_fatayer-67.html",
+    "analysis": {
+      "format_version": 1,
+      "url": "https://www.catharei.com/menu/fatayer-67",
+      "evidence_level": "source_html",
+      "source_sha256": "59274250ac923661f2b7d81293f4f9e232dc6502ccbd1c47f09006881f7fe3ab",
+      "titles": [
+        "Fatayer in Doha, Qatar | CATHAREi"
+      ],
+      "descriptions": [
+        "Fatayer – Traditional middle eastern savory pastry, small size packet in plate, big size in. QAR Small: 40, Large: 60. Order from CATHAREi Bakery & Sweets in Doha, Qatar."
+      ],
+      "canonicals": [
+        "https://www.catharei.com/menu/fatayer-67"
+      ],
+      "robots": {
+        "robots": [
+          "index, follow, max-image-preview:large"
+        ]
+      },
+      "noindex_observed": false,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Fatayer"
+        },
+        {
+          "level": 2,
+          "text": "Order Fatayer in Doha"
+        },
+        {
+          "level": 2,
+          "text": "Fatayer في الدوحة، قطر"
+        },
+        {
+          "level": 2,
+          "text": "More savouries"
+        },
+        {
+          "level": 2,
+          "text": "Brown Sandwich"
+        },
+        {
+          "level": 2,
+          "text": "Chef Special Chicken Sandwich"
+        },
+        {
+          "level": 2,
+          "text": "Croissant Sandwich"
+        },
+        {
+          "level": 2,
+          "text": "Fancy Fatayer"
+        },
+        {
+          "level": 2,
+          "text": "Fathair mix siniya"
+        },
+        {
+          "level": 2,
+          "text": "Fried Ball Sandwich"
+        },
+        {
+          "level": 4,
+          "text": "Links"
+        },
+        {
+          "level": 4,
+          "text": "Help"
+        },
+        {
+          "level": 4,
+          "text": "Follow Us"
+        },
+        {
+          "level": 4,
+          "text": "Our Stores"
+        },
+        {
+          "level": 2,
+          "text": "Select Size"
+        }
+      ],
+      "hreflang": [],
+      "lang": "en",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "images": [
+        {
+          "src": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+          "alt": "CATHAREi Logo",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777980688738-353596243.JPEG",
+          "alt": "Fatayer",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "none"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777981252579-296195317.JPEG",
+          "alt": "Brown Sandwich",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777980895555-57856536.JPEG",
+          "alt": "Chef Special Chicken Sandwich",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777981142315-914595023.JPEG",
+          "alt": "Croissant Sandwich",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777981379496-793857132.JPG",
+          "alt": "Fancy Fatayer",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777981572274-763619368.JPEG",
+          "alt": "Fathair mix siniya",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777981003621-426043662.jpg",
+          "alt": "Fried Ball Sandwich",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+          "alt": "CATHAREi Logo",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.catharei.com/",
+          "text": "CATHAREi كاثاري"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savories"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Arabic Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/oriental_sweets.html",
+          "text": "Oriental Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "CAKES"
+        },
+        {
+          "url": "https://www.catharei.com/about.html",
+          "text": "About Us"
+        },
+        {
+          "url": "https://www.catharei.com/catering.html",
+          "text": "Catering & Occasions"
+        },
+        {
+          "url": "https://www.catharei.com/blog",
+          "text": "Blog"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Contact Us"
+        },
+        {
+          "url": "https://www.catharei.com/faq.html",
+          "text": "FAQs"
+        },
+        {
+          "url": "https://www.catharei.com/privacy.html",
+          "text": "Privacy Policy"
+        },
+        {
+          "url": "https://www.catharei.com/terms.html",
+          "text": "Terms of Service"
+        },
+        {
+          "url": "https://www.catharei.com/admin.html",
+          "text": ""
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "Home"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cart.html",
+          "text": "0 Cart"
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "Home"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savouries"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html#product-67",
+          "text": "View on full menu"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-aziziya.html",
+          "text": "Salwa Road"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-wakrah.html",
+          "text": "Al Wakrah"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-kharaitiyat.html",
+          "text": "Al Kharaitiyat"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "savouries in Doha, Qatar"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "full menu"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "موالح في قطر"
+        },
+        {
+          "url": "https://www.catharei.com/menu/brown-sandwich-76",
+          "text": "Brown Sandwich"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/chef-special-chicken-sandwich-70",
+          "text": "Chef Special Chicken Sandwich"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/croissant-sandwich-74",
+          "text": "Croissant Sandwich"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/fancy-fatayer-77",
+          "text": "Fancy Fatayer"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/fathair-mix-siniya-79",
+          "text": "Fathair mix siniya"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/fried-ball-sandwich-71",
+          "text": "Fried Ball Sandwich"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "CATHAREi كاثاري"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savouries"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "Cakes"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Contact Us"
+        },
+        {
+          "url": "https://www.catharei.com/faq.html",
+          "text": "FAQs"
+        },
+        {
+          "url": "https://www.catharei.com/privacy.html",
+          "text": "Privacy Policy"
+        },
+        {
+          "url": "https://www.catharei.com/terms.html",
+          "text": "Terms of Service"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-aziziya.html",
+          "text": "Catharei Bakery - Doha (Salwa Road)"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-wakrah.html",
+          "text": "Catharei Bakery - Al Wakrah"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-kharaitiyat.html",
+          "text": "Catharei Bakery - Al Kharaitiyat"
+        }
+      ],
+      "link_counts": {
+        "internal": 50,
+        "external": 0,
+        "other": 0
+      },
+      "json_ld": [
+        {
+          "parse_status": "parsed",
+          "types": [
+            "Brand",
+            "BreadcrumbList",
+            "ListItem",
+            "Product"
+          ],
+          "fingerprint": "c46c0fe5cc87a38fefc837c65eeb0f636636f216ff54ec0cc28a7fcf3ac59bc1",
+          "eligibility_validated": false
+        }
+      ],
+      "visible_word_count": 352,
+      "word_count_scope": "All unsuppressed source text, including incidental or adversarial text; not main-content quality",
+      "visible_text_sha256": "b0a67d22a99bc5f372e7681d09e95de6d495172c74f58e16d43aa8f896422664",
+      "findings": [],
+      "measurements": {
+        "http_status": null,
+        "indexing": null,
+        "core_web_vitals": null,
+        "rankings": null,
+        "backlinks": null,
+        "ai_citations": null
+      },
+      "manual_review_required": [
+        "Metadata usefulness",
+        "Main-content relevance and factual support",
+        "Image purpose",
+        "Structured-data eligibility"
+      ],
+      "limitations": [
+        "Static snapshot only",
+        "CSS visibility and JavaScript not evaluated",
+        "Links and response headers not checked",
+        "No overall SEO score"
+      ]
+    }
+  }
+]

@@ -1,0 +1,132 @@
+[
+  {
+    "path": "/menu.html?lang=ar",
+    "resources": [
+      {
+        "url": "https://www.catharei.com/images/products/1777291689112-71924553.JPEG",
+        "bytes": 1752702,
+        "decoded": 1752402,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1777292083261-308657434.JPEG",
+        "bytes": 1601515,
+        "decoded": 1601215,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1777893148456-845589298.JPEG",
+        "bytes": 1475090,
+        "decoded": 1474790,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1775610953705-737970099.JPEG",
+        "bytes": 1452240,
+        "decoded": 1451940,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1777291812957-682285879.JPEG",
+        "bytes": 1450642,
+        "decoded": 1450342,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1777979256580-316120982.JPEG",
+        "bytes": 1157992,
+        "decoded": 1157692,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1777291899437-304105471.JPEG",
+        "bytes": 984382,
+        "decoded": 984082,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/background/hero_spread.webp",
+        "bytes": 210702,
+        "decoded": 210402,
+        "type": "link"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1777291743664-459122849.JPEG",
+        "bytes": 191614,
+        "decoded": 191314,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/background/backgorund.webp",
+        "bytes": 28544,
+        "decoded": 28244,
+        "type": "css"
+      }
+    ]
+  },
+  {
+    "path": "/menu/mini-sandwich-2",
+    "resources": [
+      {
+        "url": "https://www.catharei.com/images/products/1777980895555-57856536.JPEG",
+        "bytes": 1825608,
+        "decoded": 1825308,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1775610953705-737970099.JPEG",
+        "bytes": 1452240,
+        "decoded": 1451940,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/images/products/1777981252579-296195317.JPEG",
+        "bytes": 1452240,
+        "decoded": 1451940,
+        "type": "img"
+      },
+      {
+        "url": "https://www.catharei.com/script.js",
+        "bytes": 23088,
+        "decoded": 78565,
+        "type": "script"
+      },
+      {
+        "url": "https://www.catharei.com/styles.css?v=3",
+        "bytes": 11830,
+        "decoded": 52122,
+        "type": "link"
+      },
+      {
+        "url": "https://www.catharei.com/menu.css?v=2",
+        "bytes": 8232,
+        "decoded": 34073,
+        "type": "link"
+      },
+      {
+        "url": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+        "bytes": 4776,
+        "decoded": 4476,
+        "type": "img"
+      },
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap",
+        "bytes": 1334,
+        "decoded": 13461,
+        "type": "link"
+      },
+      {
+        "url": "https://www.catharei.com/toasts.css",
+        "bytes": 1176,
+        "decoded": 1974,
+        "type": "link"
+      },
+      {
+        "url": "https://www.catharei.com/icons.css",
+        "bytes": 742,
+        "decoded": 2258,
+        "type": "css"
+      }
+    ]
+  }
+]

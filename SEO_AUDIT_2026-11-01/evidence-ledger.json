@@ -1,0 +1,159 @@
+[
+  {
+    "id": "F01",
+    "priority": "High",
+    "title": "Reduce oversized catalogue images",
+    "observation": "At 390 × 844, the Arabic menu recorded 10,370,061 resource transfer bytes and Mini Sandwich recorded 4,782,458. Seven menu JPEGs were approximately 0.98–1.75 MB each. These are single-run resource diagnostics, not field performance or CWV measurements.",
+    "urls": [
+      "https://www.catharei.com/menu.html?lang=ar",
+      "https://www.catharei.com/menu/mini-sandwich-2"
+    ],
+    "evidence": "rendered-evidence.json: resourceBytes; resource-sample.json: resources",
+    "evidence_level": "Rendered observation",
+    "confidence": "High",
+    "action": "Generate appropriately sized WebP/AVIF derivatives; use srcset/sizes, explicit dimensions and below-fold lazy loading. Keep suitable priority imagery for the first viewport. Fix the upload pipeline so new images stay optimized.",
+    "owner": "Frontend/backend developer",
+    "dependency": "Preserve originals and verify derivative quality.",
+    "effort_assumption": "1–2 developer days",
+    "success_check": "Repeat fresh-context visits at the same viewport and delay; demonstrate reduced image transfer and intact imagery, then collect separate mobile lab and field baselines.",
+    "capture_date": "2026-11-01"
+  },
+  {
+    "id": "F02",
+    "priority": "High",
+    "title": "Reconcile branch hours",
+    "observation": "Contact-page schema gives Salwa Road 06:00–23:00 and other branches 07:00–23:00. Delivery FAQ schema says all branches operate 08:00–22:00. The two inspected branch pages ask visitors to call for current hours. The correct schedule is unknown.",
+    "urls": [
+      "https://www.catharei.com/contact.html",
+      "https://www.catharei.com/delivery.html",
+      "https://www.catharei.com/locations/al-aziziya.html",
+      "https://www.catharei.com/locations/al-wakrah.html"
+    ],
+    "evidence": "Contact snapshot lines 64–136; delivery snapshot lines 94 and 118; branch Hours text",
+    "evidence_level": "Source HTML",
+    "confidence": "High",
+    "action": "Obtain one approved schedule per branch, including exceptions; publish it visibly and use the same source in structured data. Remove unsupported schedules until verified. Compare Business Profiles when access is available.",
+    "owner": "Business owner + developer",
+    "dependency": "Owner-approved hours; Business Profile access for later cross-check.",
+    "effort_assumption": "0.5–1 day after facts are supplied",
+    "success_check": "No conflicting hours; all marked-up schedules match visible approved information.",
+    "capture_date": "2026-11-01"
+  },
+  {
+    "id": "F03",
+    "priority": "Medium",
+    "title": "Replace copied menu schema",
+    "observation": "The blog index and contact page both identify themselves as the full menu in CollectionPage JSON-LD and point its url to /menu.html. Their titles and canonicals correctly describe their own pages.",
+    "urls": [
+      "https://www.catharei.com/blog",
+      "https://www.catharei.com/contact.html"
+    ],
+    "evidence": "www.catharei.com_blog.html:35; www.catharei.com_contact.html.html:35",
+    "evidence_level": "Source HTML",
+    "confidence": "High",
+    "action": "Generate a page-specific Blog/CollectionPage and ContactPage with their own identity and URL, or remove the unrelated block. Preserve valid business entities.",
+    "owner": "Developer",
+    "dependency": "None",
+    "effort_assumption": "1–3 hours",
+    "success_check": "Source and rendered JSON-LD describe the current page without the copied menu entity.",
+    "capture_date": "2026-11-01"
+  },
+  {
+    "id": "F04",
+    "priority": "Medium",
+    "title": "Repair broken schema references",
+    "observation": "Both sampled branch breadcrumbs point to /locations/, which returned 404. All three storefront JPEG URLs in contact-page Bakery markup also returned 404. These are schema-reference defects; a broken visible navigation link was not established.",
+    "urls": [
+      "https://www.catharei.com/locations/al-aziziya.html",
+      "https://www.catharei.com/locations/al-wakrah.html",
+      "https://www.catharei.com/contact.html"
+    ],
+    "evidence": "followup-evidence.json: /locations/ and three storefront URLs; branch BreadcrumbList; contact Bakery image fields",
+    "evidence_level": "HTTP response + source HTML",
+    "confidence": "High",
+    "action": "Use an existing relevant branch/contact hub in breadcrumbs or build the intended hub. Replace image URLs with real appropriate branch images; omit unsupported optional references rather than inventing assets.",
+    "owner": "Developer + content owner",
+    "dependency": "Approved branch imagery and branch-hub decision.",
+    "effort_assumption": "2–4 hours if assets exist",
+    "success_check": "Referenced URLs return 200 with suitable content; breadcrumb hierarchy and branch images accurately describe the business.",
+    "capture_date": "2026-11-01"
+  },
+  {
+    "id": "F05",
+    "priority": "Medium",
+    "title": "Complete Arabic content before expanding Arabic search targeting",
+    "observation": "The homepage H1 translates in the rendered Arabic view. On /menu.html?lang=ar, html lang becomes ar but the main heading and entry CTA stay English. Both tested Arabic URLs retain English titles, English-first source, base-page canonicals and no hreflang. This is currently a language toggle, not a complete set of localized search landing pages.",
+    "urls": [
+      "https://www.catharei.com/?lang=ar",
+      "https://www.catharei.com/menu.html?lang=ar"
+    ],
+    "evidence": "crawl-evidence.json: titles, canonicals, hreflang; rendered-evidence.json; render_menu_html_lang_ar-390.png",
+    "evidence_level": "Source HTML + rendered observation",
+    "confidence": "High",
+    "action": "Translate remaining headings, controls and meaningful product details. If separate Arabic search landing pages are intended, create fully translated stable URLs with appropriate canonicals and reciprocal language annotations. Do not change canonicals or add hreflang merely because a toggle exists.",
+    "owner": "Arabic editor + developer",
+    "dependency": "Arabic search strategy and approved translations.",
+    "effort_assumption": "2–5 days for a small pilot",
+    "success_check": "Fresh browsers show complete Arabic content and metadata; URL, canonical and language annotations consistently implement the selected strategy.",
+    "capture_date": "2026-11-01"
+  },
+  {
+    "id": "F06",
+    "priority": "Medium opportunity",
+    "title": "Enable accurate variant product offers",
+    "observation": "Mini Sandwich and Fatayer show size prices but Product JSON-LD omits offers, review and aggregateRating. Eclair Mix Box has an Offer matching the visible QAR 75 price. Local catalogue-seo.js deliberately omits offers for variants because individually selectable URLs are not implemented. This is an intentional limitation, not malformed JSON.",
+    "urls": [
+      "https://www.catharei.com/menu/mini-sandwich-2",
+      "https://www.catharei.com/menu/fatayer-67",
+      "https://www.catharei.com/menu/eclair-mix-box-4"
+    ],
+    "evidence": "Captured Product JSON-LD in initial/follow-up evidence; ../catalogue-seo.js:107–115",
+    "evidence_level": "Source HTML + local implementation context",
+    "confidence": "High",
+    "action": "Design selectable, addressable variants backed by truthful price/availability data, then implement appropriate product/offer markup. Do not invent reviews or use AggregateOffer as a shortcut for size variants. Validate against current Google requirements.",
+    "owner": "Developer + catalogue owner",
+    "dependency": "Variant selection and URL model; reliable offer data.",
+    "effort_assumption": "1–3 days",
+    "success_check": "Selected size, visible price, URL and JSON-LD agree; Rich Results Test confirms required fields. Eligibility does not guarantee display.",
+    "capture_date": "2026-11-01"
+  },
+  {
+    "id": "F07",
+    "priority": "Medium",
+    "title": "Verify service claims and answer buying questions",
+    "observation": "Delivery and corporate-gifting pages make dietary, delivery-speed, range and customer-trust claims not substantiated by the inspected material. Sample products route ingredients, allergens, portions and preparation questions to a branch. This is an evidence gap, not proof that claims are false.",
+    "urls": [
+      "https://www.catharei.com/delivery.html",
+      "https://www.catharei.com/corporate-gifting.html",
+      "https://www.catharei.com/menu/mini-sandwich-2",
+      "https://www.catharei.com/menu/eclair-mix-box-4"
+    ],
+    "evidence": "Delivery snapshot:272,286; corporate-gifting snapshot:259–264; product main content",
+    "evidence_level": "Source HTML + editorial assessment",
+    "confidence": "High for observed gap; underlying business facts unknown",
+    "action": "Have operations verify dietary and delivery claims. Add approved portions, ingredients/allergens, lead times, delivery conditions and gifting minimums where applicable. Replace repeated superlatives with useful specifics and verified examples.",
+    "owner": "Operations/catalogue owner + editor",
+    "dependency": "Verified product/service facts and consent for customer proof.",
+    "effort_assumption": "1–3 editorial days for priority pages after fact collection",
+    "success_check": "Consequential claims have an internal fact source; priority buying questions have clear on-page answers without invented guarantees.",
+    "capture_date": "2026-11-01"
+  },
+  {
+    "id": "F08",
+    "priority": "Information",
+    "title": "Establish measurement baselines",
+    "observation": "Search Console, GA4, Business Profile, CrUX, backlink and ranking evidence were unavailable. Actual indexing, organic conversions, query demand, field CWV and AI citation visibility remain unknown.",
+    "urls": [
+      "https://www.catharei.com/"
+    ],
+    "evidence": "Audit scope: no account exports supplied",
+    "evidence_level": "Unavailable evidence",
+    "confidence": "High",
+    "action": "Use Search Console page/query and indexing reports plus GA4 organic conversion reporting. Capture dated mobile lab and available field metrics separately. Use observed queries and business outcomes to prioritize expansion.",
+    "owner": "SEO/analytics owner",
+    "dependency": "Authorized access or exports and agreed conversion definitions.",
+    "effort_assumption": "0.5–1 day if access exists",
+    "success_check": "Baselines record property, dates, filters and devices; before/after comparisons keep scope consistent.",
+    "capture_date": "2026-11-01"
+  }
+]

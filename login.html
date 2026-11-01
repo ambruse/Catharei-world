@@ -440,12 +440,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (!res.ok) {
           showAlert('login-alert', data.error || 'Login failed', 'error');
         } else {
-          showAlert('login-alert', `Welcome back, ${data.username}!`, 'success');
-          let target = '/account.html';
+          let target = '/menu.html';
           if (data.role === 'admin') {
             target = (redirect && redirect !== 'admin') ? redirect : '/admin.html';
-          } else if (redirect) {
-            target = redirect === 'account' ? '/account.html' : redirect;
+          } else {
+            // Carry the confirmation across navigation, once per successful login.
+            try { sessionStorage.setItem('catharei-login-success', String(Date.now())); } catch {}
           }
           window.location.href = target;
         }

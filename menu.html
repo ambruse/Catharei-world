@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="icon" type="image/webp" href="/images/misc/Catharei_logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/toasts.css">
   <link rel="stylesheet" href="/styles.css?v=3">
   <link rel="stylesheet" href="/menu.css?v=2">
@@ -191,6 +191,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
   <script src="/script.js"></script>
+  <script src="/menu-ar.js"></script>
   <script src="/menu.js"></script>
   <script>
     async function initMenu() {
@@ -282,7 +283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        console.log("Showing details for product", id);
     }
 
-    initCinematicMenu();
+    document.addEventListener('DOMContentLoaded', () => initCinematicMenu());
   </script>
   <footer class="site-footer">
     <div class="container">
@@ -303,10 +304,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li><a href="/navigation/savories.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.savories">Savouries</a></li>
             <li><a href="/navigation/Arabic_sweets.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.arabicSweets">Sweets</a></li>
             <li><a href="/navigation/cakes.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.cakesPlain">Cakes</a></li>
-            <li><a href="/about.html" style="color:#ccc; font-size:0.85rem;">About Us</a></li>
-            <li><a href="/catering.html" style="color:#ccc; font-size:0.85rem;">Catering & Occasions</a></li>
-            <li><a href="/blog" style="color:#ccc; font-size:0.85rem;">Blog</a></li>
-            <li><a href="/menu.html">Menu</a></li>
+            <li><a href="/about.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.about">About Us</a></li>
+            <li><a href="/catering.html" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.catering">Catering & Occasions</a></li>
+            <li><a href="/blog" style="color:#ccc; font-size:0.85rem;" data-i18n="nav.blog">Blog</a></li>
+            <li><a href="/menu.html" data-i18n="nav.menu">Menu</a></li>
           </ul>
         </div>
         <div class="footer-col" style="text-align: left;">
@@ -369,11 +370,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="modal-overlay" id="variant-modal">
     <div class="modal-content" style="max-width: 400px; text-align: center;">
       <button class="modal-close" onclick="closeVariantModal()">&times;</button>
-      <h2 class="modal-title" id="variant-modal-title" style="margin-bottom: 20px; font-family: var(--font-serif); color: var(--color-accent); font-size: 1.5rem;">Select Size</h2>
+      <h2 class="modal-title" id="variant-modal-title" data-i18n="menu.selectSize" style="margin-bottom: 20px; font-family: var(--font-serif); color: var(--color-accent); font-size: 1.5rem;">Select Size</h2>
       <div id="variant-options" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; text-align: left;">
         <!-- JS will populate radio buttons here -->
       </div>
-      <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="confirmVariantAddToCart()">Add to Cart</button>
+      <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="confirmVariantAddToCart()" data-i18n="btn.addCart">Add to Cart</button>
     </div>
   </div>
 

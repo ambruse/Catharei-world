@@ -1,0 +1,599 @@
+[
+  {
+    "url": "https://www.catharei.com/",
+    "captured_utc": "2026-11-01T12:24:57.956697+00:00",
+    "status": 200,
+    "final_url": "https://www.catharei.com/",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:24:58 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "etag": "W/\"a2a0-MPCgu8OgV8uZQdQq3A08BRxREPA\"",
+      "rndr-id": "5554dff7-539e-4faf",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae1249f28e0e0-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 41632,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_.html",
+    "analysis": {
+      "format_version": 1,
+      "url": "https://www.catharei.com/",
+      "evidence_level": "source_html",
+      "source_sha256": "f27f8e5c574df60252dbad892d03030a4ff226155f005a83345281beecaafe29",
+      "titles": [
+        "Arabic Sweets & Cakes in Qatar | CATHAREi"
+      ],
+      "descriptions": [
+        "Explore CATHAREi’s Arabic sweets, baklava, maamoul and custom cakes. Browse the menu or visit our Doha, Al Wakrah and Al Kharaitiyat branches."
+      ],
+      "canonicals": [
+        "https://www.catharei.com/"
+      ],
+      "robots": {
+        "robots": [
+          "index, follow, max-image-preview:large"
+        ]
+      },
+      "noindex_observed": false,
+      "headings": [
+        {
+          "level": 1,
+          "text": "Arabic Sweets & Cakes in Qatar"
+        },
+        {
+          "level": 2,
+          "text": "Rooted in tradition.Finished with imagination."
+        },
+        {
+          "level": 2,
+          "text": "A beautiful table begins with a generous gesture."
+        },
+        {
+          "level": 2,
+          "text": "Made for every kind of craving."
+        },
+        {
+          "level": 2,
+          "text": "Featured Sweets and Savories"
+        },
+        {
+          "level": 2,
+          "text": "Anood"
+        },
+        {
+          "level": 2,
+          "text": "Basbousa Mix"
+        },
+        {
+          "level": 2,
+          "text": "Dates Box Mix"
+        },
+        {
+          "level": 2,
+          "text": "London Cake"
+        },
+        {
+          "level": 2,
+          "text": "Luqimat Molasses Dates"
+        },
+        {
+          "level": 2,
+          "text": "A cake that belongs only to your celebration."
+        },
+        {
+          "level": 2,
+          "text": "Frequently Asked Questions"
+        },
+        {
+          "level": 3,
+          "text": "Our Delivery Partners"
+        },
+        {
+          "level": 2,
+          "text": "Three addresses.One warm welcome."
+        },
+        {
+          "level": 2,
+          "text": "حلويات وكيك في قطر"
+        },
+        {
+          "level": 2,
+          "text": "Find the right bakery for your occasion"
+        },
+        {
+          "level": 4,
+          "text": "Links"
+        },
+        {
+          "level": 4,
+          "text": "Help"
+        },
+        {
+          "level": 4,
+          "text": "Follow Us"
+        },
+        {
+          "level": 4,
+          "text": "Our Stores"
+        },
+        {
+          "level": 2,
+          "text": "Select Size"
+        }
+      ],
+      "hreflang": [],
+      "lang": "en",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "images": [
+        {
+          "src": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+          "alt": "",
+          "alt_state": "empty",
+          "has_dimensions": false,
+          "lazy_method": "none"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1775138850586-203824645.webp",
+          "alt": "A curated CATHAREi tray of Arabic sweets",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1775146563418-538236780.webp",
+          "alt": "Savouries",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1775138850586-203824645.webp",
+          "alt": "Arabic Sweets",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1775125336887-558730937.webp",
+          "alt": "Oriental Sweets",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1775115029250-903191392.webp",
+          "alt": "Cakes",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777979256580-316120982.JPEG",
+          "alt": "Anood",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777893200933-769939081.JPEG",
+          "alt": "Basbousa Mix",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777979391826-248835007.JPEG",
+          "alt": "Dates Box Mix",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1790330377636-365770151.jpg",
+          "alt": "London Cake",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1777894778833-69295436.JPEG",
+          "alt": "Luqimat Molasses Dates",
+          "alt_state": "present",
+          "has_dimensions": true,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/products/1775115029250-903191392.webp",
+          "alt": "A custom celebration cake by CATHAREi",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        },
+        {
+          "src": "https://www.catharei.com/images/misc/Catharei_logo.webp",
+          "alt": "CATHAREi Logo",
+          "alt_state": "present",
+          "has_dimensions": false,
+          "lazy_method": "native"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://www.catharei.com/#main-content",
+          "text": "Skip to content"
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "CATHAREi كاثاري"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savories"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Arabic Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/oriental_sweets.html",
+          "text": "Oriental Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "CAKES"
+        },
+        {
+          "url": "https://www.catharei.com/about.html",
+          "text": "About Us"
+        },
+        {
+          "url": "https://www.catharei.com/catering.html",
+          "text": "Catering & Occasions"
+        },
+        {
+          "url": "https://www.catharei.com/blog",
+          "text": "Blog"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Contact Us"
+        },
+        {
+          "url": "https://www.catharei.com/faq.html",
+          "text": "FAQs"
+        },
+        {
+          "url": "https://www.catharei.com/privacy.html",
+          "text": "Privacy Policy"
+        },
+        {
+          "url": "https://www.catharei.com/terms.html",
+          "text": "Terms of Service"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Explore the menu"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Visit a boutique→"
+        },
+        {
+          "url": "https://www.catharei.com/about.html",
+          "text": "Our story"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savouries"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Arabic Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/oriental_sweets.html",
+          "text": "Oriental Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "Cakes"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View full menu"
+        },
+        {
+          "url": "https://www.catharei.com/menu/anood-57",
+          "text": "Anood"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/basbousa-mix-23",
+          "text": "Basbousa Mix"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/dates-box-mix-59",
+          "text": "Dates Box Mix"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/london-cake-80",
+          "text": "London Cake"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/menu/luqimat-molasses-dates-41",
+          "text": "Luqimat Molasses Dates"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "View menu & order"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Order Your Cake"
+        },
+        {
+          "url": "https://www.talabat.com/qatar/catharei-bakery-and-sweets",
+          "text": "Talabat"
+        },
+        {
+          "url": "https://www.gorafeeq.com/en/home/restaurants/catharei-bakery-1170",
+          "text": "Rafeeq"
+        },
+        {
+          "url": "https://snoonu.com/restaurants/catharei-bakery-and-sweets",
+          "text": "Snoonu"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-aziziya.html",
+          "text": "01Salwa RoadDoha · Al Waab / Al Aziziya"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-wakrah.html",
+          "text": "02Al WakrahAl Wakrah Main Street"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-kharaitiyat.html",
+          "text": "03Al KharaitiyatUmm Salal Mohammed"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "قائمة المنتجات"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "تواصل مع فروعنا"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "Cakes in Qatar"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Arabic sweets"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Full menu"
+        },
+        {
+          "url": "https://www.catharei.com/luqaimat-qatar.html",
+          "text": "Fresh Luqaimat in Qatar · لقيمات طازجة في قطر"
+        },
+        {
+          "url": "https://www.catharei.com/",
+          "text": "CATHAREi كاثاري"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/savories.html",
+          "text": "Savouries"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/Arabic_sweets.html",
+          "text": "Sweets"
+        },
+        {
+          "url": "https://www.catharei.com/navigation/cakes.html",
+          "text": "Cakes"
+        },
+        {
+          "url": "https://www.catharei.com/about.html",
+          "text": "About Us"
+        },
+        {
+          "url": "https://www.catharei.com/catering.html",
+          "text": "Catering & Occasions"
+        },
+        {
+          "url": "https://www.catharei.com/blog",
+          "text": "Blog"
+        },
+        {
+          "url": "https://www.catharei.com/menu.html",
+          "text": "Menu"
+        },
+        {
+          "url": "https://www.catharei.com/contact.html",
+          "text": "Contact Us"
+        },
+        {
+          "url": "https://www.catharei.com/faq.html",
+          "text": "FAQs"
+        },
+        {
+          "url": "https://www.catharei.com/privacy.html",
+          "text": "Privacy Policy"
+        },
+        {
+          "url": "https://www.catharei.com/terms.html",
+          "text": "Terms of Service"
+        },
+        {
+          "url": "https://www.instagram.com/catharei_bakery_sweets/",
+          "text": ""
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-aziziya.html",
+          "text": "Catharei Bakery - Doha (Salwa Road)"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-wakrah.html",
+          "text": "Catharei Bakery - Al Wakrah"
+        },
+        {
+          "url": "https://www.catharei.com/locations/al-kharaitiyat.html",
+          "text": "Catharei Bakery - Al Kharaitiyat"
+        }
+      ],
+      "link_counts": {
+        "internal": 57,
+        "external": 4,
+        "other": 0
+      },
+      "json_ld": [
+        {
+          "parse_status": "parsed",
+          "types": [
+            "Bakery",
+            "GeoCoordinates",
+            "PostalAddress"
+          ],
+          "fingerprint": "1bc85ab96740f103c81f92da323d43d35b5536bb1bd46c2c0003b36ed76a2a8f",
+          "eligibility_validated": false
+        },
+        {
+          "parse_status": "parsed",
+          "types": [
+            "AdministrativeArea",
+            "City",
+            "ContactPoint",
+            "Organization"
+          ],
+          "fingerprint": "0927514eff80a96373c5fa91d98a531751db917ab676fd111b30c191feb484ff",
+          "eligibility_validated": false
+        },
+        {
+          "parse_status": "parsed",
+          "types": [
+            "EntryPoint",
+            "Organization",
+            "SearchAction",
+            "WebSite"
+          ],
+          "fingerprint": "b3ab91c9c7a94275488978a7687a1a922dd5f4d8b52b2f40051afa6e70794b7f",
+          "eligibility_validated": false
+        },
+        {
+          "parse_status": "parsed",
+          "types": [
+            "ItemList",
+            "ListItem"
+          ],
+          "fingerprint": "956d30ef7baf55625cce8758983c82a6d4d06e51e4299cba5c644ada65f61c68",
+          "eligibility_validated": false
+        }
+      ],
+      "visible_word_count": 680,
+      "word_count_scope": "All unsuppressed source text, including incidental or adversarial text; not main-content quality",
+      "visible_text_sha256": "bc2798b0c0327841dc242badf7ea1327ed562d9a225e5be5d06bed86d1c8daa2",
+      "findings": [],
+      "measurements": {
+        "http_status": null,
+        "indexing": null,
+        "core_web_vitals": null,
+        "rankings": null,
+        "backlinks": null,
+        "ai_citations": null
+      },
+      "manual_review_required": [
+        "Metadata usefulness",
+        "Main-content relevance and factual support",
+        "Image purpose",
+        "Structured-data eligibility"
+      ],
+      "limitations": [
+        "Static snapshot only",
+        "CSS visibility and JavaScript not evaluated",
+        "Links and response headers not checked",
+        "No overall SEO score"
+      ]
+    }
+  },
+  {
+    "url": "https://www.catharei.com/robots.txt",
+    "captured_utc": "2026-11-01T12:24:57.957861+00:00",
+    "status": 200,
+    "final_url": "https://www.catharei.com/robots.txt",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:24:58 GMT",
+      "Content-Type": "text/plain; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "Cache-Control": "public, max-age=0",
+      "cf-cache-status": "DYNAMIC",
+      "etag": "W/\"56-1a1869c5210\"",
+      "last-modified": "Thu, 29 Oct 2026 07:42:34 GMT",
+      "rndr-id": "aaeaef93-0560-4316",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae1249b66e0d8-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 86,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_robots.txt.txt",
+    "text": "User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: https://www.catharei.com/sitemap.xml\n"
+  },
+  {
+    "url": "https://www.catharei.com/sitemap.xml",
+    "captured_utc": "2026-11-01T12:24:57.959373+00:00",
+    "status": 200,
+    "final_url": "https://www.catharei.com/sitemap.xml",
+    "headers": {
+      "Date": "Sun, 01 Nov 2026 12:24:58 GMT",
+      "Content-Type": "application/xml; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "access-control-allow-origin": "*",
+      "cf-cache-status": "DYNAMIC",
+      "etag": "W/\"1ab5-AtA0j005vcoFWD88yt59tSPtPn0\"",
+      "rndr-id": "ed3ff33c-afe0-4fda",
+      "Server": "cloudflare",
+      "vary": "Accept-Encoding",
+      "x-powered-by": "Express",
+      "x-render-origin-server": "Render",
+      "CF-RAY": "a53ae1249a54ed11-DOH",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "bytes": 6837,
+    "snapshot": "SEO_AUDIT_2026-11-01\\www.catharei.com_sitemap.xml.txt",
+    "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://www.catharei.com/about.html</loc></url>\n  <url><loc>https://www.catharei.com/blog</loc></url>\n  <url><loc>https://www.catharei.com/catering.html</loc></url>\n  <url><loc>https://www.catharei.com/contact.html</loc></url>\n  <url><loc>https://www.catharei.com/corporate-gifting.html</loc></url>\n  <url><loc>https://www.catharei.com/delivery.html</loc></url>\n  <url><loc>https://www.catharei.com/faq.html</loc></url>\n  <url><loc>https://www.catharei.com/</loc></url>\n  <url><loc>https://www.catharei.com/menu.html</loc></url>\n  <url><loc>https://www.catharei.com/privacy.html</loc></url>\n  <url><loc>https://www.catharei.com/ramadan-eid.html</loc></url>\n  <url><loc>https://www.catharei.com/terms.html</loc></url>\n  <url><loc>https://www.catharei.com/navigation/Arabic_sweets.html</loc></url>\n  <url><loc>https://www.catharei.com/navigation/cakes.html</loc></url>\n  <url><loc>https://www.catharei.com/navigation/oriental_sweets.html</loc></url>\n  <url><loc>https://www.catharei.com/navigation/savories.html</loc></url>\n  <url><loc>https://www.catharei.com/locations/al-aziziya.html</loc></url>\n  <url><loc>https://www.catharei.com/locations/al-kharaitiyat.html</loc></url>\n  <url><loc>https://www.catharei.com/locations/al-wakrah.html</loc></url>\n  <url><loc>https://www.catharei.com/blog/history-of-luqaimat</loc></url>\n  <url><loc>https://www.catharei.com/blog/best-arabic-sweets-gifting</loc></url>\n<url><loc>https://www.catharei.com/luqaimat-qatar.html</loc></url>\n  <url><loc>https://www.catharei.com/menu/mini-sandwich-2</loc></url>\n  <url><loc>https://www.catharei.com/menu/eclair-mix-box-4</loc></url>\n  <url><loc>https://www.catharei.com/menu/crackers-mix-5</loc></url>\n  <url><loc>https://www.catharei.com/menu/crispy-mix-6</loc></url>\n  <url><loc>https://www.catharei.com/menu/mini-victoria-cake-7</loc></url>\n  <url><loc>https://www.catharei.com/menu/baklava-9</loc></url>\n  <url><loc>https://www.catharei.com/menu/eclair-bites-10</loc></url>\n  <url><loc>https://www.catharei.com/menu/cheezy-rolls-with-sweet-sauces-11</loc></url>\n  <url><loc>https://www.catharei.com/menu/rangeena-thamer-12</loc></url>\n  <url><loc>https://www.catharei.com/menu/wafer-chocolate-cake-13</loc></url>\n  <url><loc>https://www.catharei.com/menu/oreo-truffle-14</loc></url>\n  <url><loc>https://www.catharei.com/menu/fruit-cheesecake-15</loc></url>\n  <url><loc>https://www.catharei.com/menu/chocolate-crunchy-17</loc></url>\n  <url><loc>https://www.catharei.com/menu/pistachio-kunafa-truffle-18</loc></url>\n  <url><loc>https://www.catharei.com/menu/thamariya-19</loc></url>\n  <url><loc>https://www.catharei.com/menu/galaxy-mix-20</loc></url>\n  <url><loc>https://www.catharei.com/menu/jullash-mix-box-21</loc></url>\n  <url><loc>https://www.catharei.com/menu/basbousa-caramel-22</loc></url>\n  <url><loc>https://www.catharei.com/menu/basbousa-mix-23</loc></url>\n  <url><loc>https://www.catharei.com/menu/deccan-chocolate-24</loc></url>\n  <url><loc>https://www.catharei.com/menu/salt-biscuit-25</loc></url>\n  <url><loc>https://www.catharei.com/menu/mamoul-mix-26</loc></url>\n  <url><loc>https://www.catharei.com/menu/crunchy-camel-eye-27</loc></url>\n  <url><loc>https://www.catharei.com/menu/milky-beatifor-28</loc></url>\n  <url><loc>https://www.catharei.com/menu/nutella-exotic-tart-box-29</loc></url>\n  <url><loc>https://www.catharei.com/menu/pistachio-cake-31</loc></url>\n  <url><loc>https://www.catharei.com/menu/milky-basbousa-32</loc></url>\n  <url><loc>https://www.catharei.com/menu/kuwaiti-biscuits-33</loc></url>\n  <url><loc>https://www.catharei.com/menu/nuts-chocolate-34</loc></url>\n  <url><loc>https://www.catharei.com/menu/nutella-cake-box-35</loc></url>\n  <url><loc>https://www.catharei.com/menu/pistachio-basbousa-36</loc></url>\n  <url><loc>https://www.catharei.com/menu/lotus-basbousa-37</loc></url>\n  <url><loc>https://www.catharei.com/menu/pomegranate-biscuits-38</loc></url>\n  <url><loc>https://www.catharei.com/menu/lokmat-el-kadi-39</loc></url>\n  <url><loc>https://www.catharei.com/menu/luqimat-molasses-dates-41</loc></url>\n  <url><loc>https://www.catharei.com/menu/mini-cheese-cake-round-42</loc></url>\n  <url><loc>https://www.catharei.com/menu/brownish-mix-box-43</loc></url>\n  <url><loc>https://www.catharei.com/menu/cake-lotus-44</loc></url>\n  <url><loc>https://www.catharei.com/menu/raffaello-cake-45</loc></url>\n  <url><loc>https://www.catharei.com/menu/red-velvet-cake-46</loc></url>\n  <url><loc>https://www.catharei.com/menu/cake-oreo-47</loc></url>\n  <url><loc>https://www.catharei.com/menu/cake-pistachio-48</loc></url>\n  <url><loc>https://www.catharei.com/menu/cake-tiramisu-50</loc></url>\n  <url><loc>https://www.catharei.com/menu/cake-mango-52</loc></url>\n  <url><loc>https://www.catharei.com/menu/cake-blueberry-53</loc></url>\n  <url><loc>https://www.catharei.com/menu/chocolate-cake-54</loc></url>\n  <url><loc>https://www.catharei.com/menu/half-half-cake-55</loc></url>\n  <url><loc>https://www.catharei.com/menu/fruits-cake-56</loc></url>\n  <url><loc>https://www.catharei.com/menu/anood-57</loc></url>\n  <url><loc>https://www.catharei.com/menu/cream-shariya-58</loc></url>\n  <url><loc>https://www.catharei.com/menu/dates-box-mix-59</loc></url>\n  <url><loc>https://www.catharei.com/menu/snickers-chocolate-60</loc></url>\n  <url><loc>https://www.catharei.com/menu/galaxy-chocolate-61</loc></url>\n  <url><loc>https://www.catharei.com/menu/mix-cheesecake-62</loc></url>\n  <url><loc>https://www.catharei.com/menu/petit-four-mix-63</loc></url>\n  <url><loc>https://www.catharei.com/menu/cheesecake-pops-64</loc></url>\n  <url><loc>https://www.catharei.com/menu/ultimate-mini-tart-box-65</loc></url>\n  <url><loc>https://www.catharei.com/menu/cheese-bread-66</loc></url>\n  <url><loc>https://www.catharei.com/menu/fatayer-67</loc></url>\n  <url><loc>https://www.catharei.com/menu/mini-french-sandwich-68</loc></url>\n  <url><loc>https://www.catharei.com/menu/saj-roll-platter-69</loc></url>\n  <url><loc>https://www.catharei.com/menu/chef-special-chicken-sandwich-70</loc></url>\n  <url><loc>https://www.catharei.com/menu/fried-ball-sandwich-71</loc></url>\n  <url><loc>https://www.catharei.com/menu/tortilla-rolls-with-chips-72</loc></url>\n  <url><loc>https://www.catharei.com/menu/mini-bites-73</loc></url>\n  <url><loc>https://www.catharei.com/menu/croissant-sandwich-74</loc></url>\n  <url><loc>https://www.catharei.com/menu/vine-leaves-75</loc></url>\n  <url><loc>https://www.catharei.com/menu/brown-sandwich-76</loc></url>\n  <url><loc>https://www.catharei.com/menu/fancy-fatayer-77</loc></url>\n  <url><loc>https://www.catharei.com/menu/musakhan-78</loc></url>\n  <url><loc>https://www.catharei.com/menu/fathair-mix-siniya-79</loc></url>\n  <url><loc>https://www.catharei.com/menu/london-cake-80</loc></url>\n</urlset>\n"
+  }
+]

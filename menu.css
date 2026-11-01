@@ -390,3 +390,20 @@ body.has-product-open .site-header { opacity: 0; pointer-events: none; }
 @media (pointer: coarse), (max-width: 900px) and (max-height: 500px) {
   .menu-search input { font-size: 16px; }
 }
+
+/* Arabic letterforms need natural spacing and upright display type. */
+[dir="rtl"] .menu-stage-copy h1,
+[dir="rtl"] .menu-stage-copy h1 em,
+[dir="rtl"] .menu-page .menu-item-name,
+[dir="rtl"] .product-detail h2 {
+  font-family: 'Cairo', sans-serif;
+  font-style: normal;
+  letter-spacing: normal;
+  line-height: 1.4;
+}
+[dir="rtl"] .menu-kicker,
+[dir="rtl"] .stage-scroll-link,
+[dir="rtl"] .menu-open-button,
+[dir="rtl"] .menu-add-button { letter-spacing: normal; }
+[dir="rtl"] .menu-stage-copy h1 { font-size: clamp(3.4rem, 14vw, 6.5rem); }
+[dir="rtl"] .menu-stage-copy h1 em { margin-left: 0; }

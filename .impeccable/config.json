@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "menu.html"
+        ],
+        "createdAt": "2026-11-01T12:38:51.264Z",
+        "reason": "Agent decision: preserve existing shared button styling for this scoped SEO and Arabic translation fix; no decorative styling redesign requested."
+      }
+    ]
+  }
+}

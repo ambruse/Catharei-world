@@ -32,6 +32,39 @@
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
   const isArabic = () => document.documentElement.lang === 'ar';
+  const text = (en, ar) => isArabic() ? ar : en;
+  const categoryDescriptionsAr = {
+    all: 'من الحلويات العربية إلى كيك المناسبات والموالح، أصناف تضيف لمسة مميزة إلى كل لقاء.',
+    savories: 'موالح ذهبية ومقرمشة لمائدة الصباح واجتماعات العمل والتجمعات العائلية.',
+    arabic_sweets: 'طبقات رقيقة ومكسرات محمصة وقطر حلو، حلويات تراثية لكل مناسبة.',
+    oriental_sweets: 'تشكيلة مستوحاة من نكهات المنطقة وتقاليد الضيافة.',
+    cakes: 'كيك بطبقات متناسقة ونكهات متوازنة يكمّل احتفالكم.'
+  };
+  function translateMenuInterface() {
+    const labels = [
+      ['.skip-link', 'Skip to menu', 'انتقل إلى القائمة'],
+      ['.menu-stage-copy .menu-kicker', 'CATHAREi · The edible collection', 'كاثاري · تشكيلة المذاق'],
+      ['#menu-title span', 'Explore', 'اكتشف'],
+      ['#menu-title em', 'our menu', 'قائمتنا'],
+      ['.stage-scroll-link span', 'Enter the collection', 'تصفح التشكيلة'],
+      ['.menu-search .sr-only', 'Search menu', 'ابحث في القائمة'],
+      ['#collection-kicker', 'The complete collection', 'التشكيلة الكاملة'],
+      ['#menu-empty', 'No creations match your search.', 'لا توجد أصناف تطابق بحثك.']
+    ];
+    labels.forEach(([selector, en, ar]) => {
+      const element = document.querySelector(selector);
+      if (element) element.textContent = text(en, ar);
+    });
+    document.getElementById('menu-search').placeholder = text('Search menu…', 'ابحث في القائمة…');
+    [
+      ['#menu-constellation', 'Featured menu products', 'أصناف مميزة من القائمة'],
+      ['#category-rail', 'Menu categories', 'فئات القائمة'],
+      ['#main-nav', 'Primary navigation', 'القائمة الرئيسية'],
+      ['.brand-link', 'CATHAREi home', 'الصفحة الرئيسية لكاثاري'],
+      ['#account-btn', 'Account', 'الحساب']
+    ].forEach(([selector, en, ar]) => document.querySelector(selector)?.setAttribute('aria-label', text(en, ar)));
+    updateHeading(activeCategory);
+  }
   const escapeHTML = value => String(value ?? '').replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char]);
   const safeImage = (value, index = 0) => {
     const image = String(value || '');
@@ -40,7 +73,7 @@
     return fallbackImages[index % fallbackImages.length];
   };
   const titleFor = product => isArabic() && product.name_ar ? product.name_ar : product.name;
-  const descriptionFor = product => isArabic() && product.description_ar ? product.description_ar : (product.description || 'Handcrafted daily by CATHAREi.');
+  const descriptionFor = product => isArabic() && product.description_ar ? product.description_ar : (product.description || text('Handcrafted daily by CATHAREi.', 'يُحضّر يومياً في كاثاري.'));
   // Mirrors productPath() in catalogue-seo.js.
   const productPath = product => `/menu/${String(product.name || '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'item'}-${encodeURIComponent(product.id)}`;
   const categoryLabel = id => (categoryMeta[id] || categoryMeta.all)[isArabic() ? 'ar' : 'en'];
@@ -57,17 +90,17 @@
       const disabled = Array.isArray(variants._disabled) ? variants._disabled : [];
       const available = ['small', 'medium', 'large']
         .filter(size => variants[size] !== undefined && !disabled.includes(size))
-        .map(size => `${size[0].toUpperCase() + size.slice(1)} ${Number(variants[size]).toFixed(0)}`);
-      if (available.length) return `QAR ${available.join(' · ')}`;
+        .map(size => `${isArabic() ? { small: 'صغير', medium: 'وسط', large: 'كبير' }[size] : size[0].toUpperCase() + size.slice(1)} ${Number(variants[size]).toFixed(0)}`);
+      if (available.length) return `${text('QAR', 'ر.ق')} ${available.join(' · ')}`;
     }
-    return `QAR ${Number(product.price || 0).toFixed(2)}`;
+    return `${text('QAR', 'ر.ق')} ${Number(product.price || 0).toFixed(2)}`;
   }
 
   function cardTemplate(product, index) {
     const title = titleFor(product);
     const description = descriptionFor(product);
     return `
-      <article class="menu-item${index % 4 === 1 ? ' is-break-frame' : ''}" id="product-${escapeHTML(product.id)}" data-product-id="${escapeHTML(product.id)}" data-category="${escapeHTML(product.category)}" tabindex="0" aria-label="Open ${escapeHTML(title)} details">
+      <article class="menu-item${index % 4 === 1 ? ' is-break-frame' : ''}" id="product-${escapeHTML(product.id)}" data-product-id="${escapeHTML(product.id)}" data-category="${escapeHTML(product.category)}" tabindex="0" aria-label="${escapeHTML(text(`Open ${title} details`, `عرض تفاصيل ${title}`))}">
         <div class="menu-product-media">
           <img loading="${index < 6 ? 'eager' : 'lazy'}" decoding="async" width="560" height="700" src="${escapeHTML(safeImage(product.image, index))}" alt="${escapeHTML(title)}">
         </div>
@@ -76,8 +109,8 @@
           <p class="menu-item-price">${escapeHTML(priceFor(product))}</p>
           <p class="menu-item-desc">${escapeHTML(description)}</p>
           <div class="menu-item-actions">
-            <button class="menu-open-button" type="button">View creation</button>
-            <button class="menu-add-button" type="button">Add</button>
+            <button class="menu-open-button" type="button">${text('View creation', 'عرض التفاصيل')}</button>
+            <button class="menu-add-button" type="button">${text('Add', 'أضف')}</button>
           </div>
         </div>
       </article>`;
@@ -116,7 +149,7 @@
   function buildConstellation() {
     const holder = document.getElementById('menu-constellation');
     const featured = products.slice(0, 4);
-    holder.innerHTML = featured.map((product, index) => `<button class="constellation-product" type="button" data-product-id="${escapeHTML(product.id)}" aria-label="Explore ${escapeHTML(titleFor(product))}"><img src="${escapeHTML(safeImage(product.image, index))}" alt=""></button>`).join('');
+    holder.innerHTML = featured.map((product, index) => `<button class="constellation-product" type="button" data-product-id="${escapeHTML(product.id)}" aria-label="${escapeHTML(text(`Explore ${titleFor(product)}`, `اكتشف ${titleFor(product)}`))}"><img src="${escapeHTML(safeImage(product.image, index))}" alt=""></button>`).join('');
     holder.querySelectorAll('.constellation-product').forEach(node => {
       const product = products.find(item => String(item.id) === node.dataset.productId);
       node.addEventListener('click', () => openProduct(product, document.getElementById(`product-${product.id}`), undefined, node));
@@ -183,7 +216,7 @@
   function updateHeading(category) {
     const heading = document.getElementById('active-category-title');
     const next = categoryLabel(category);
-    document.getElementById('collection-description').textContent = (categoryMeta[category] || categoryMeta.all).description;
+    document.getElementById('collection-description').textContent = isArabic() ? (categoryDescriptionsAr[category] || categoryDescriptionsAr.all) : (categoryMeta[category] || categoryMeta.all).description;
     if (reducedMotion.matches || !finePointer.matches) { heading.textContent = next; return; }
     heading.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-18px)', opacity: 0 }], { duration: 180, easing: 'ease-in', fill: 'forwards' }).finished.then(() => {
       heading.textContent = next;
@@ -254,7 +287,7 @@
     section.hidden = false;
     section.innerHTML = `<article class="signature-story" tabindex="0" data-product-id="${escapeHTML(product.id)}">
       <div class="signature-story-media"><img loading="lazy" width="760" height="760" src="${escapeHTML(safeImage(product.image, Number(product.id)))}" alt="${escapeHTML(titleFor(product))}"></div>
-      <div class="signature-story-copy"><p class="menu-kicker">CATHAREi signature</p><h3 id="signature-title">${escapeHTML(titleFor(product))}</h3><p>${escapeHTML(descriptionFor(product))}</p><span class="signature-story-price">${escapeHTML(priceFor(product))}</span></div>
+      <div class="signature-story-copy"><p class="menu-kicker">${text('CATHAREi signature', 'من إبداعات كاثاري')}</p><h3 id="signature-title">${escapeHTML(titleFor(product))}</h3><p>${escapeHTML(descriptionFor(product))}</p><span class="signature-story-price">${escapeHTML(priceFor(product))}</span></div>
     </article>`;
     const story = section.querySelector('.signature-story');
     story.addEventListener('click', () => openProduct(product, document.getElementById(`product-${product.id}`), story.querySelector('img'), story));
@@ -291,9 +324,9 @@
 
   function detailMarkup(product) {
     return `<div class="product-detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
-      <button class="product-detail-close" type="button" aria-label="Close product details"><i class=ui-icon data-icon=close aria-hidden=true></i></button>
+      <button class="product-detail-close" type="button" aria-label="${text('Close product details', 'إغلاق تفاصيل المنتج')}"><i class=ui-icon data-icon=close aria-hidden=true></i></button>
       <div class="product-detail-media"><img src="${escapeHTML(safeImage(product.image, Number(product.id)))}" alt="${escapeHTML(titleFor(product))}"></div>
-      <div class="product-detail-content"><p class="product-detail-category">${escapeHTML(categoryLabel(product.category))}</p><h2 id="detail-title">${escapeHTML(titleFor(product))}</h2><p class="product-detail-description">${escapeHTML(descriptionFor(product))}</p><p class="product-detail-price">${escapeHTML(priceFor(product))}</p><button class="product-detail-add" type="button">Add to cart</button><p class="product-detail-note">Prepared by CATHAREi. Contact your nearest boutique for ingredient and allergen guidance.</p></div>
+      <div class="product-detail-content"><p class="product-detail-category">${escapeHTML(categoryLabel(product.category))}</p><h2 id="detail-title">${escapeHTML(titleFor(product))}</h2><p class="product-detail-description">${escapeHTML(descriptionFor(product))}</p><p class="product-detail-price">${escapeHTML(priceFor(product))}</p><button class="product-detail-add" type="button">${text('Add to cart', 'أضف إلى السلة')}</button><p class="product-detail-note">${text('Prepared by CATHAREi. Contact your nearest boutique for ingredient and allergen guidance.', 'من تحضير كاثاري. تواصل مع أقرب فرع للاستفسار عن المكونات ومسببات الحساسية.')}</p></div>
     </div>`;
   }
 
@@ -372,7 +405,7 @@
     const entry = document.createElement('div');
     entry.className = 'menu-entry';
     entry.setAttribute('aria-hidden', 'true');
-    entry.innerHTML = `<span class="menu-entry-word">Savouries</span><span class="menu-entry-word">Arabic sweets</span><span class="menu-entry-word">Cakes</span><span class="menu-entry-word">Celebrations</span><img class="menu-entry-product" src="${escapeHTML(safeImage(products[0]?.image,0))}" alt="">`;
+    entry.innerHTML = `<span class="menu-entry-word">${categoryLabel('savories')}</span><span class="menu-entry-word">${categoryLabel('arabic_sweets')}</span><span class="menu-entry-word">${categoryLabel('cakes')}</span><span class="menu-entry-word">${text('Celebrations', 'مناسبات')}</span><img class="menu-entry-product" src="${escapeHTML(safeImage(products[0]?.image,0))}" alt="">`;
     document.body.appendChild(entry);
     setTimeout(() => entry.remove(), 1550);
     try { sessionStorage.setItem('catharei-menu-reveal', 'seen'); } catch {}
@@ -415,10 +448,11 @@
   window.initCinematicMenu = async function initCinematicMenu() {
     const container = document.getElementById('menu-content');
     if (!container) return;
+    translateMenuInterface();
     try {
       const response = await fetch('/api/products');
       if (!response.ok) throw new Error('Menu request failed');
-      products = (await response.json()).filter(product => product.active !== 0);
+      products = (await response.json()).filter(product => product.active !== 0).map(window.cathareiArabicCatalogue.localize);
       if (!products.length) throw new Error('No menu products returned');
       showEntry();
       buildRail();

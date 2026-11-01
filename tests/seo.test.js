@@ -328,6 +328,60 @@ test('guest checkout still persists an order in the disposable database', async 
   assert.equal(status.order_number, order.orderNumber);
 });
 
+test('audit fixes describe the correct pages, branch hours and reachable breadcrumbs', async () => {
+  const schemas = html => [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
+  const contact = await (await fetch(origin + '/contact.html')).text();
+  const contactData = schemas(contact);
+  assert.ok(contactData.some(s => s['@type'] === 'ContactPage' && s.url === 'https://www.catharei.com/contact.html'));
+  assert.ok(!contact.includes('storefront.jpg'));
+  assert.ok(!contact.includes('Full Menu'));
+  const branches = contactData.flatMap(s => s['@graph'] || []).filter(s => s['@type'] === 'Bakery');
+  assert.equal(branches.length, 3);
+  for (const branch of branches) {
+    assert.equal(branch.openingHoursSpecification.opens, branch['@id'].endsWith('#salwaroad') ? '06:00' : '07:00');
+    assert.equal(branch.openingHoursSpecification.closes, '23:00');
+  }
+  for (const branch of ['al-aziziya', 'al-wakrah', 'al-kharaitiyat']) {
+    const html = await (await fetch(origin + `/locations/${branch}.html`)).text();
+    const data = schemas(html);
+    const hours = data.find(s => s['@type'] === 'Bakery').openingHoursSpecification;
+    assert.equal(hours.opens, branch === 'al-aziziya' ? '06:00' : '07:00');
+    assert.equal(hours.closes, '23:00');
+    assert.ok(html.includes(`${hours.opens}–23:00`));
+    for (const item of data.find(s => s['@type'] === 'BreadcrumbList').itemListElement) {
+      assert.equal((await fetch(origin + new URL(item.item).pathname)).status, 200);
+    }
+  }
+  const blog = schemas(await (await fetch(origin + '/blog')).text());
+  assert.ok(blog.some(s => s['@type'] === 'Blog' && s.url === 'https://www.catharei.com/blog'));
+  const delivery = await (await fetch(origin + '/delivery.html')).text();
+  assert.ok(!/10PM|8AM|22:00/.test(delivery));
+  assert.ok(delivery.includes('06:00–23:00') && delivery.includes('07:00–23:00'));
+});
+
+test('Arabic menu source works before JavaScript and preserves catalogue identity', async () => {
+  const html = await (await fetch(origin + '/menu.html?lang=ar')).text();
+  assert.ok(html.includes('<html lang="ar" dir="rtl">'));
+  assert.ok(html.includes('<span>اكتشف</span><em>قائمتنا</em>'));
+  assert.ok(html.includes('قائمة الحلويات والكيك والموالح | كاثاري قطر'));
+  assert.ok(html.includes('rel="canonical" href="https://www.catharei.com/menu.html"'));
+  assert.equal((await fetch(origin + '/menu-ar.js')).status, 200);
+  const { localize } = require('../menu-ar');
+  const original = { id: 2, name: 'Mini Sandwich', description: 'Mini sandwich, a bite-sized treat. Small size packed in plate, big size in box', price: 40, image: '/images/example.jpg' };
+  const translated = localize(original);
+  assert.equal(translated.name_ar, 'ميني ساندويتش');
+  assert.match(translated.description_ar, /طبق/);
+  assert.equal(translated.price, original.price);
+  assert.equal(translated.image, original.image);
+  assert.equal(localize({ ...original, name_ar: 'اسم مخصص', description_ar: 'وصف مخصص' }).description_ar, 'وصف مخصص');
+  assert.equal(localize({ ...original, description: 'Changed ingredients' }).description_ar, '');
+  const { cards, productPath } = require('../catalogue-seo');
+  const source = cards([original], 'ar');
+  assert.ok(source.includes('ميني ساندويتش'));
+  assert.ok(source.includes(productPath(original)));
+  assert.ok(!source.includes('View menu &amp; order'));
+});
+
 test('browser: menu variants, cart quantities and mobile SEO pages', { skip: !process.env.CATHAREI_PLAYWRIGHT }, async () => {
   const { chromium } = require(process.env.CATHAREI_PLAYWRIGHT);
   const login = await fetch(origin + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: 'test', password: 'fixture-password' }) });

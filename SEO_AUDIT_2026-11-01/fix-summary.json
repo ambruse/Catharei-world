@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-01",
+  "status": "implemented locally; deployment pending",
+  "resolved": [
+    "Owner-confirmed branch schedules in visible content and JSON-LD",
+    "Blog and ContactPage schema identities",
+    "Branch breadcrumb links and nonexistent storefront image references",
+    "Arabic menu interface, source heading/metadata/cards and current 72-product fallback catalogue"
+  ],
+  "hours": {
+    "Salwa Road": "06:00–23:00",
+    "Al Wakrah": "07:00–23:00",
+    "Al Kharaitiyat": "07:00–23:00"
+  },
+  "validation": {
+    "automated_tests": "33 passed, 0 failed, including browser commerce checks",
+    "arabic_browser": "390px and 1440px: catalogue, search, product dialog, variants, cart, empty state and English switch",
+    "image_files": "287 hashes unchanged"
+  },
+  "notes": [
+    "Current admin Arabic fields override fallback translations. Changed English descriptions do not silently reuse stale translated copy.",
+    "Existing canonical language-toggle strategy retained; no new hreflang or Arabic landing-page URL architecture.",
+    "Existing gold button styling retained with scoped design-detector exception."
+  ],
+  "changed_files": [
+    "contact.html",
+    "blog.html",
+    "delivery.html",
+    "locations/al-aziziya.html",
+    "locations/al-wakrah.html",
+    "locations/al-kharaitiyat.html",
+    "menu.html",
+    "menu.js",
+    "menu-ar.js",
+    "menu.css",
+    "script.js",
+    "catalogue-seo.js",
+    "server.js",
+    "tests/seo.test.js",
+    "tests/seo-optimization-approved.json",
+    ".impeccable/config.json"
+  ]
+}
